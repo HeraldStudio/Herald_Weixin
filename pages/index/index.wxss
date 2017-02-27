@@ -1,21 +1,16 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
+
+/**基本Fl布局**/
+.basis{
+  display:flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
+  margin-top:20rpx;
+  margin-left: 24.72rpx;
+  margin-right:24.72rpx; 
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
 
-.userinfo-nickname {
-  color: #aaa;
-}
 
-.usermotto {
-  margin-top: 200px;
-}
+

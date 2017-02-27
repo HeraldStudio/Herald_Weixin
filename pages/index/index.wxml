@@ -1,10 +1,18 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+
+<view class="basis">
+<!--有关swiper写在这一部分的参数最好不要再动，因为圆角是用图片遮盖实现的-->
+  <swiper style="border-radius:15rpx;width:699rpx;height:350rpx;overflow:hidden;"  indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
+  <block wx:for="{{swiperItem}}">
+      <swiper-item bindtap="{{item.func}}">  
+      <image style="width:700rpx;height:350rpx;"  src="{{item.src}}" />
+      </swiper-item>
+  </block>
+  </swiper>
+  <image style="width:740rpx;height:50rpx;position:absolute;" src="./res/whiteup.png"></image>
+  <image style="width:740rpx;height:50rpx;position:absolute;top:349rpx;" src="./res/whitedown.png"></image>
+
+  <!--swiper到此结束-->
+
 </view>
