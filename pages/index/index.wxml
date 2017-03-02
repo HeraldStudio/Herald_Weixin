@@ -1,18 +1,67 @@
 <!--index.wxml-->
 
 
-<view class="basis">
+<view class="Herald-basis">
 <!--有关swiper写在这一部分的参数最好不要再动，因为圆角是用图片遮盖实现的-->
-  <swiper style="border-radius:15rpx;width:699rpx;height:350rpx;overflow:hidden;"  indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
+
+  <swiper style="border-radius:15rpx;width:660rpx;height:350rpx;overflow:hidden;"  indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
   <block wx:for="{{swiperItem}}">
       <swiper-item bindtap="{{item.func}}">  
       <image style="width:700rpx;height:350rpx;"  src="{{item.src}}" />
       </swiper-item>
   </block>
   </swiper>
-  <image style="width:740rpx;height:50rpx;position:absolute;" src="./res/whiteup.png"></image>
-  <image style="width:740rpx;height:50rpx;position:absolute;top:349rpx;" src="./res/whitedown.png"></image>
+  <image style="width:701rpx;height:50rpx;position:absolute;" src="./res/whiteup.png"></image>
+  <image style="width:701rpx;height:50rpx;position:absolute;top:346rpx;" src="./res/whitedown.png"></image>
 
   <!--swiper到此结束-->
 
 </view>
+
+<view class="Herald-basis" style="position:relative;top:3rpx;">
+
+
+
+
+<view class="Herald-module">
+
+        <view class="Herald-module-title">
+                <image class="Herald-module-title-icon"       src="../../module/Template/res/icon.png"></image>
+                <text class="Herald-module-title-text">样板模块</text>
+                <view class="Herald-module-title-reddot">12</view>
+        </view>
+        <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
+        <view class="Herald-module-subtitle">
+        <text>这是一个样板模块的模型，所有的模块在index页面上都应该抽象出符合模型要求的一个模块</text>
+        </view>
+
+       <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+        <view class="Herald-line" style="position:relative;left:-16rpx"></view>
+        <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+    </view>
+
+
+
+
+
+<view class="Herald-module">
+
+        <view class="Herald-module-title">
+                <image class="Herald-module-title-icon"       src="../../module/Template/res/icon.png"></image>
+                <text class="Herald-module-title-text">召唤海通兽</text>
+                
+        </view>
+        <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
+        <view class="Herald-module-subtitle">
+        <text>海通兽大哥哥最帅了~~</text>
+        </view>
+
+       <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+        <view class="Herald-line" style="position:relative;left:-16rpx"></view>
+        <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+    </view>
+
+
+
+</view>
+
