@@ -1,16 +1,51 @@
 /**index.wxss**/
 
-/**基本Fl布局**/
-.basis{
-  display:flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin-top:20rpx;
-  margin-left: 24.72rpx;
-  margin-right:24.72rpx; 
+.Herald-module{
+
+  position:relative;
+  left:20rpx;
+  width: 680rpx;
 }
 
+.Herald-module-title{
+  display: flex;
+  display:-webkit-flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.Herald-module-title-icon{
+  width:45rpx;
+  height: 45rpx;
+}
+
+.Herald-module-title-text{
+  position:relative;
+  left:12rpx;
+  font-weight: bold;
+}
+
+.Herald-module-title-reddot{
+  color: #F8F8F8;
+  background-color: #e74c3c;
+  font-size:25rpx;
+  border-radius: 25rpx;
+  width:32rpx;
+  height:28rpx;
+
+  padding-left: 5rpx;
+  padding-top:8rpx; 
+  position: relative;
+  
+  left:20rpx;
+
+}
+
+.Herald-module-subtitle{
+  font-size:30rpx;
+  color:#95a5a6;
+
+
+}
 
 

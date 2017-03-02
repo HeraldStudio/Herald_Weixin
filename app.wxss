@@ -1,10 +1,24 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
+.Herald-basis{
+  display:flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+  margin-top:20rpx;
+  margin-left: 24.72rpx;
+  margin-right:24.72rpx; 
+}
+
+.Herald-line{
+  height: 2rpx;
+  width:660rpx;
+  background-color: #D8D8D8;
+  margin:0 auto;
+}
+
+.Herald-blank{
+  height: 20rpx;
+  width:660rpx;
+  background-color: #FFFFFF;
+  margin:0 auto;
+}
