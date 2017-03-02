@@ -30,11 +30,12 @@
   background-color: #e74c3c;
   font-size:25rpx;
   border-radius: 25rpx;
-  width:32rpx;
+  
   height:28rpx;
-
-  padding-left: 5rpx;
-  padding-top:8rpx; 
+  padding-top: 8rpx;
+  padding-left: 12rpx;
+  padding-right: 12rpx;
+  text-align:center; 
   position: relative;
   
   left:20rpx;

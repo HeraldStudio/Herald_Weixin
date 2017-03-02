@@ -28,7 +28,7 @@
         <view class="Herald-module-title">
                 <image class="Herald-module-title-icon"       src="../../module/Template/res/icon.png"></image>
                 <text class="Herald-module-title-text">样板模块</text>
-                <view class="Herald-module-title-reddot">12</view>
+                <view class="Herald-module-title-reddot">2</view>
         </view>
         <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
         <view class="Herald-module-subtitle">
