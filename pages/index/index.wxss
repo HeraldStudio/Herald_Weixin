@@ -3,8 +3,8 @@
 .Herald-module{
 
   position:relative;
-  left:20rpx;
-  width: 680rpx;
+  left:12rpx;
+  width: 640rpx;
 }
 
 .Herald-module-title{
@@ -25,7 +25,7 @@
   font-weight: bold;
 }
 
-.Herald-module-title-reddot{
+.Herald-module-title-red-number{
   color: #F8F8F8;
   background-color: #e74c3c;
   font-size:25rpx;
@@ -40,6 +40,19 @@
   
   left:20rpx;
 
+}
+
+.Herald-module-title-red-dot{
+  
+  background-color: #e74c3c;
+  height:14rpx;
+  width:14rpx;
+  border-radius: 14rpx;
+   padding: 2rpx;
+ 
+  position: relative;
+  
+  left:20rpx;
 }
 
 .Herald-module-subtitle{

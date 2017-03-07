@@ -4,15 +4,13 @@
 <view class="Herald-basis">
 <!--有关swiper写在这一部分的参数最好不要再动，因为圆角是用图片遮盖实现的-->
 
-  <swiper style="border-radius:15rpx;width:660rpx;height:350rpx;overflow:hidden;"  indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
+  <swiper class="rounded" style="width:660rpx;height:264rpx;"  autoplay="true" interval="5000" duration="500" circular="true">
   <block wx:for="{{swiperItem}}">
       <swiper-item bindtap="{{item.func}}">  
       <image style="width:700rpx;height:350rpx;"  src="{{item.src}}" />
       </swiper-item>
   </block>
   </swiper>
-  <image style="width:701rpx;height:50rpx;position:absolute;" src="./res/whiteup.png"></image>
-  <image style="width:701rpx;height:50rpx;position:absolute;top:346rpx;" src="./res/whitedown.png"></image>
 
   <!--swiper到此结束-->
 
@@ -23,43 +21,43 @@
 
 
 
+<!--重复渲染的卡片部分-->
+<block wx:for="{{modules}}" wx:key="id">
 <view class="Herald-module">
+    <!--卡片标题-->
+    <view class="Herald-module-title">
+      <image class="Herald-module-title-icon" src="../../module/{{item.name}}/res/icon.png"></image>
+      
+      <!--标题-->
+      <text class="Herald-module-title-text">{{item.title}}</text>
+      <!--/标题/-->
 
-        <view class="Herald-module-title">
-                <image class="Herald-module-title-icon"       src="../../module/Template/res/icon.png"></image>
-                <text class="Herald-module-title-text">样板模块</text>
-                <view class="Herald-module-title-reddot">2</view>
-        </view>
-        <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
-        <view class="Herald-module-subtitle">
-        <text>这是一个样板模块的模型，所有的模块在index页面上都应该抽象出符合模型要求的一个模块</text>
-        </view>
-
-       <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
-        <view class="Herald-line" style="position:relative;left:-16rpx"></view>
-        <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+      <!--逼死强迫症的小红圈和小红点-->
+      <block wx:if="{{item.popnumber[0]}}">
+        <view class="Herald-module-title-red-number">{{item.popnumber[1]}}</view>
+      </block>
+      <block wx:if="{{item.popdot}}">
+      <view class="Herald-module-title-red-dot"></view>
+      </block>
+      <!--/逼死强迫症的小红圈和小红点/-->
     </view>
-
-
-
-
-
-<view class="Herald-module">
-
-        <view class="Herald-module-title">
-                <image class="Herald-module-title-icon"       src="../../module/Template/res/icon.png"></image>
-                <text class="Herald-module-title-text">召唤海通兽</text>
-                
-        </view>
-        <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
-        <view class="Herald-module-subtitle">
-        <text>海通兽大哥哥最帅了~~</text>
-        </view>
-
-       <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
-        <view class="Herald-line" style="position:relative;left:-16rpx"></view>
-        <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+    <!--/卡片标题/-->
+    <!--副标题-->
+      <view class="Herald-blank" style="position:relative;left:-16rpx"></view>
+      <view class="Herald-module-subtitle">
+      <text>{{item.subtitle}}</text>
     </view>
+    <!--/副标题-->
+
+    <view class="Herald-blank" stayle="width:15rpx;position:relative;left:-16rpx"></view>
+    <include src="../../module/Template/res/insert.wxml"/>
+    <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+    <view class="Herald-line" style="position:relative;left:-20rpx"></view>
+    <view class="Herald-blank" style="width:15rpx;position:relative;left:-16rpx"></view>
+</view>
+<!--卡片到此结束-->
+</block>
+
 
 
 
