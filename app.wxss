@@ -1,4 +1,7 @@
 /**app.wxss**/
+text{
+  font-family: "Microsoft YaHei UI","PingFang SC",-apple-system-font;
+}
 .rounded{
   overflow: hidden;
   border-radius: 10rpx;

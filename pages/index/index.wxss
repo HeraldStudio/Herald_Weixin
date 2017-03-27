@@ -1,10 +1,18 @@
-/**index.wxss**/
+/**index.wxss**//**
+@font-face {  
+font-family: 'test';  
+src:url('./BalooBhaina-Regular.ttf') format('truetype'); 
+    font-weight: normal;  
+    font-style: normal;  
+} **/
+
 
 .Herald-module{
 
   position:relative;
   left:12rpx;
   width: 640rpx;
+  
 }
 
 .Herald-module-title{
@@ -12,6 +20,7 @@
   display:-webkit-flex;
   flex-direction: row;
   align-items: center;
+  font-family: 'test';
 }
 
 .Herald-module-title-icon{
@@ -22,7 +31,8 @@
 .Herald-module-title-text{
   position:relative;
   left:12rpx;
-  font-weight: bold;
+ 
+  font-size:40rpx;
 }
 
 .Herald-module-title-red-number{
@@ -35,6 +45,7 @@
   padding-top: 8rpx;
   padding-left: 12rpx;
   padding-right: 12rpx;
+  padding-bottom: 8rpx;
   text-align:center; 
   position: relative;
   
