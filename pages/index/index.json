@@ -1,1 +1,4 @@
-{}
+{
+  "navigationBarTitleText": "小猴偷米",
+  "enablePullDownRefresh": true
+}
