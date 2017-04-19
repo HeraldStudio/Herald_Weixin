@@ -1,0 +1,27 @@
+searchbar {
+    width: 100%;
+    background: #fff;
+    border-bottom: 2rpx solid #f7f7f7;
+}
+
+searchbar .inner {
+    margin: 10rpx;
+    border-radius: 10rpx;
+    background: #fbfbfb;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+searchbar .icon {
+    width: 32rpx;
+    height: 32rpx;
+    margin: 14rpx;
+}
+
+searchbar .hint {
+    display: block;
+    flex-grow: 1;
+    font-size: 26rpx;
+    color: #818181;
+}

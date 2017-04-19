@@ -1,0 +1,36 @@
+subpage.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+subpage.login .logo {
+    width: 180rpx;
+    height: 180rpx;
+    margin: 90rpx auto 20rpx;
+    -webkit-filter: grayscale(0.3);
+}
+
+subpage.login .slogan {
+    font-size: 36rpx;
+    color: #555;
+    margin-bottom: 60rpx;
+}
+
+subpage.login input {
+    width: 480rpx;
+    text-align: center;
+    font-size: 28rpx;
+    line-height: 44rpx;
+    padding: 15rpx 20rpx;
+    background: #fafafa;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+}
+
+subpage.login button {
+    width: 520rpx;
+    text-align: center;
+    border-radius: 10rpx;
+    margin: 40rpx 0 20rpx;
+}

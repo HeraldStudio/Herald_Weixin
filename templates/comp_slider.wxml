@@ -1,0 +1,7 @@
+<block>
+  <swiper autoplay="true" circular="true" interval="5000" duration="500">
+    <swiper-item wx:for="{{ $slider }}">
+      <image src="{{ item.imageurl }}" mode="aspectFill"/>
+    </swiper-item>
+  </swiper>
+</block>
