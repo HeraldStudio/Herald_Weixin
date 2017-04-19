@@ -120,6 +120,7 @@ function ask(title, message, callback) {
 
 function requestApi(obj) {
   obj.data.uuid = getApp().storage.uuid || '0000000000000000000000000000000000000000'
+  obj.method = obj.method || 'POST',
   requestCompat(obj)
 }
 
@@ -156,6 +157,10 @@ function requestCompat(obj) {
   })
 }
 
+function comp(str) {
+  return require('../templates/comp_' + str + '.js')
+}
+
 function showSuccess(str, callback) {
   wx.showToast({ icon: 'success', title: str, success: callback })
 }
@@ -180,6 +185,6 @@ function checkRegister() {
 
 module.exports = {
   config, beginInject, Page, log, error,
-  ask, requestApi, requestCompat,
+  ask, requestApi, requestCompat, comp,
   showActions, showSuccess, showLoading, hideLoading, showError, checkRegister
 }

@@ -1,2 +1,7 @@
-<text>Hello, World</text>
- 
+<block wx:if="{{ $login.isLogin }}">
+    <include src="/templates/comp_searchbar.wxml"/>
+    <include src="/templates/comp_slider.wxml"/>
+</block>
+<block wx:else>
+    <include src="/templates/comp_login.wxml"/>
+</block>

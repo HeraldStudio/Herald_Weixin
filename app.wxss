@@ -1,34 +1,40 @@
 /**app.wxss**/
-text{
-  font-family: "Microsoft YaHei UI","PingFang SC",-apple-system-font;
+page, input, textarea {
+  font-family: "Microsoft YaHei UI", "PingFang SC", -apple-system-font;
 }
-.rounded{
+
+.rounded {
   overflow: hidden;
   border-radius: 10rpx;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
-
-.Herald-basis{
-  display:flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  align-items: center;
-  margin-top:20rpx;
-  margin-left: 24.72rpx;
-  margin-right:24.72rpx; 
+contact-button {
+  margin: 30rpx 0 30rpx 54rpx;
 }
 
-.Herald-line{
-  height: 2rpx;
-  width:660rpx;
-  background-color: #D8D8D8;
-  margin:0 auto;
+contact-button:before {
+  content: "无法使用？";
+  font-size: 26rpx;
+  color: #666;
+  margin-left: -54rpx;
+  margin-right: 55rpx;
+  line-height: 40rpx;
+  display: inline-block;
+  padding: 5rpx 20rpx;
 }
 
-.Herald-blank{
-  height: 20rpx;
-  width:660rpx;
-  background-color: #FFFFFF;
-  margin:0 auto;
+contact-button:after {
+  content: "联系客服";
+  font-size: 26rpx;
+  color: #1aad19;
+  line-height: 40rpx;
+  margin-left: -90rpx;
+  z-index: 99999999999;
+  display: inline-block;
+  padding: 5rpx 20rpx;
+  border: 1rpx solid #1aad19;
+  background: #fff;
+  border-radius: 40rpx;
+  pointer-events: none;
 }

@@ -1,0 +1,6 @@
+<searchbar catchtap="go" data-to="search">
+    <view class="inner">
+        <image class="icon" src="/images/ic_searchbar.png" mode="aspectFit"/>
+        <text class="hint">搜索数据和日程</text>
+    </view>
+</searchbar>

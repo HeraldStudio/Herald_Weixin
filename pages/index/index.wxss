@@ -1,0 +1,3 @@
+@import "/templates/comp_searchbar.wxss";
+@import "/templates/comp_slider.wxss";
+@import "/templates/comp_login.wxss";
