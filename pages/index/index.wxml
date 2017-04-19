@@ -1,7 +1,12 @@
-<block wx:if="{{ $login.isLogin }}">
+<block wx:if="{{ $login.isLogin === true }}">
     <include src="/templates/comp_searchbar.wxml"/>
     <include src="/templates/comp_slider.wxml"/>
+    <include src="/templates/comp_dashboard.wxml"/>
+    <contact-button/>
+</block>
+<block wx:elif="{{ $login.isLogin === false }}">
+    <include src="/templates/comp_login.wxml"/>
 </block>
 <block wx:else>
-    <include src="/templates/comp_login.wxml"/>
+    <!-- 空白 -->
 </block>

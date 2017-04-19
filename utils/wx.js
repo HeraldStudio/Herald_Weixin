@@ -119,6 +119,7 @@ function ask(title, message, callback) {
 }
 
 function requestApi(obj) {
+  obj.data = obj.data || {}
   obj.data.uuid = getApp().storage.uuid || '0000000000000000000000000000000000000000'
   obj.method = obj.method || 'POST',
   requestCompat(obj)
@@ -133,7 +134,11 @@ function requestCompat(obj) {
     header: obj.header,
     method: obj.method || 'GET',
     success: function(res) {
-      obj.success && obj.success(res)
+      if (res.statusCode < 400) {
+        obj.success && obj.success(res)
+      } else {
+        obj.fail && obj.fail(res)
+      }
     },
     fail: function(res) {
       obj.fail && obj.fail(res)
@@ -141,13 +146,13 @@ function requestCompat(obj) {
     complete: function(res) {
       if (res.statusCode < 400) {
         wx.$.log(
-          res.statusCode, (obj.method || 'GET') + ' ' + obj.route,
+          res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
           'Data:', obj.data || 'none',
           'Result: ', res
         );
       } else {
         wx.$.error(
-          res.statusCode, (obj.method || 'GET') + ' ' + obj.route,
+          res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
           'Data:', obj.data || 'none',
           'Response: ', res
         );

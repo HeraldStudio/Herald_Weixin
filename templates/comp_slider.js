@@ -1,4 +1,8 @@
 exports.bind = function(page){
+    if (!wx.$.util('user').isLogin()) {
+        return
+    }
+    
     page.setData({ $slider: [] })
 
     wx.$.requestApi({

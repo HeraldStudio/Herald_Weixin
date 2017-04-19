@@ -1,0 +1,5 @@
+<!-- 新版的客服按钮 目前微信暂时还没支持 可以先用原来的<contact-button> -->
+<contact>
+    <text class="hint">服务出现问题？</text>
+    <button open-type="contact">联系客服</button>
+</contact>

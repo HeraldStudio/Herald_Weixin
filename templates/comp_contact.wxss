@@ -1,0 +1,31 @@
+contact {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+contact .hint {
+    font-size: 26rpx;
+    color: #666;
+    line-height: 40rpx;
+    display: block;
+    padding: 5rpx 20rpx;
+}
+
+contact button {
+    font-size: 26rpx;
+    color: #00abd4;
+    line-height: 40rpx;
+    padding: 5rpx 20rpx;
+    border: 1rpx solid #00abd4;
+    background: #fff;
+    border-radius: 40rpx !important;
+    pointer-events: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+contact button:after {
+    border: none;
+}
