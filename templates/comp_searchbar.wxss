@@ -1,27 +1,39 @@
 searchbar {
-    width: 100%;
-    background: #fff;
-    border-bottom: 2rpx solid #f7f7f7;
-}
-
-searchbar .inner {
-    margin: 10rpx;
-    border-radius: 10rpx;
-    background: #fbfbfb;
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 13rpx;
+}
+
+searchbar .inner {
+    border-radius: 10rpx;
+    background: #f8f8f8;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 searchbar .icon {
-    width: 32rpx;
-    height: 32rpx;
-    margin: 14rpx;
+    width: 36rpx;
+    height: 36rpx;
+    margin: 0 15rpx 0 25rpx;
 }
 
 searchbar .hint {
     display: block;
-    flex-grow: 1;
     font-size: 26rpx;
+    margin: 14rpx 0;
     color: #818181;
+}
+
+.sticky-line {
+    width: 100%;
+    height: 1rpx;
+    top: 0;
+    background: #e4e4e4;
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 9999;
 }

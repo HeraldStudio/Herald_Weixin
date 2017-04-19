@@ -1,4 +1,11 @@
 /**app.wxss**/
+page {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
 page, input, textarea {
   font-family: "Microsoft YaHei UI", "PingFang SC", -apple-system-font;
 }
@@ -9,12 +16,35 @@ page, input, textarea {
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
+relative {
+  position: relative;
+}
+
+.singleline {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+button[type="blue"] {
+  color: #fff;
+  background-color: #00abd4;
+}
+
+button[type="blue"]:active,
+button-hover[type="blue"] {
+  color: #fff;
+  background-color: #0097ba !important;
+}
+
 contact-button {
   margin: 30rpx 0 30rpx 54rpx;
 }
 
 contact-button:before {
-  content: "无法使用？";
+  content: "服务出现问题？";
   font-size: 26rpx;
   color: #666;
   margin-left: -54rpx;
@@ -27,13 +57,13 @@ contact-button:before {
 contact-button:after {
   content: "联系客服";
   font-size: 26rpx;
-  color: #1aad19;
+  color: #00abd4;
   line-height: 40rpx;
   margin-left: -90rpx;
   z-index: 99999999999;
   display: inline-block;
   padding: 5rpx 20rpx;
-  border: 1rpx solid #1aad19;
+  border: 1rpx solid #00abd4;
   background: #fff;
   border-radius: 40rpx;
   pointer-events: none;

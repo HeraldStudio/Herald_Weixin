@@ -1,3 +1,5 @@
+@import "/templates/comp_contact.wxss"
+
 subpage.login {
     display: flex;
     flex-direction: column;
@@ -8,7 +10,6 @@ subpage.login .logo {
     width: 180rpx;
     height: 180rpx;
     margin: 90rpx auto 20rpx;
-    -webkit-filter: grayscale(0.3);
 }
 
 subpage.login .slogan {
@@ -28,9 +29,21 @@ subpage.login input {
     margin-bottom: 20rpx;
 }
 
-subpage.login button {
+subpage.login button.login {
     width: 520rpx;
     text-align: center;
     border-radius: 10rpx;
     margin: 40rpx 0 20rpx;
+}
+
+subpage.login .copyright {
+    font-size: 26rpx;
+    color: #aaa;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 50rpx;
+    text-align: center;
 }

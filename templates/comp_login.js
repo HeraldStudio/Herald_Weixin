@@ -1,14 +1,14 @@
+let data = {
+    cardnum: '',
+    password: ''
+}
+
 exports.bind = function(page){
     page.setData({
         $login: {
             isLogin: wx.$.util('user').isLogin()
         }
     })
-
-    let data = {
-        cardnum: '',
-        password: ''
-    }
 
     page.$login_onCardnumChange = function(event) {
         data.cardnum = event.detail.value
@@ -27,6 +27,11 @@ exports.bind = function(page){
                     isLogin: wx.$.util('user').isLogin()
                 }
             })
+            page.reloadData()
+            data = {
+                cardnum: '',
+                password: ''
+            }
         })
     }
 }

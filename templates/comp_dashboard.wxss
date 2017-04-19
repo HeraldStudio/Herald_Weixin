@@ -1,0 +1,201 @@
+dashboard-title {
+    display: block;
+    padding: 30rpx 35rpx 30rpx 0;
+    margin-left: 35rpx;
+    font-size: 28rpx;
+    color: #333;
+    text-align: left;
+}
+
+dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    justify-content: stretch;
+    border-top: 1rpx solid #e4e4e4;
+}
+
+dashboard items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: -1rpx;
+}
+
+dashboard item {
+    flex-grow: 1;
+    width: 185rpx;
+    margin: 40rpx 0;
+    padding: 5rpx 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+    background: #fff;
+    border-color: #ddd;
+    border-left: 1rpx solid #ddd;
+    border-right: 1rpx solid #ddd;
+    margin-left: -1rpx;
+    -webkit-transition: .3s;
+}
+
+dashboard item expandable {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    -webkit-transition: .3s;
+}
+
+dashboard item:active {
+    background: #fafafa;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    border-left: 1rpx solid transparent;
+    border-right: 1rpx solid transparent;
+    padding: 44rpx 0;
+}
+
+dashboard item.expanded {
+    width: 100%;
+    min-height: 0rpx;
+    background: #fafafa;
+    margin: -1rpx 0 0 0;
+    padding: 25rpx 0;
+    border-left: 1rpx solid transparent;
+    border-top: 1rpx solid #ddd;
+    border-bottom: 1rpx solid #ddd;
+    position: relative;
+    -webkit-transition: .3s;
+}
+
+dashboard item short, 
+dashboard item long {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    -webkit-transition: .3s;
+}
+
+dashboard item long {
+    border-left: 1rpx solid #ddd;
+    display: none;
+}
+
+dashboard item list {
+    display: none;
+}
+
+dashboard item.expanded long {
+    display: flex;
+    border-color: #f2f2f2;
+}
+
+dashboard item.expanded list {
+    display: block;
+}
+
+dashboard item .desc {
+    color: #777;
+    font-size: 26rpx;
+    -webkit-transition: .3s;
+}
+
+dashboard item .info {
+    color: #00abd4;
+    font-size: 36rpx;
+    padding-top: 10rpx;
+    -webkit-transition: .3s;
+}
+
+dashboard item .intro {
+    color: #aaa;
+    font-size: 24rpx;
+    padding-top: 10rpx;
+    height: 40rpx;
+    overflow: hidden;
+    -webkit-transition: .3s;
+    display: none;
+}
+
+dashboard item.expanded .intro {
+    padding-top: 0;
+    height: 0;
+    opacity: 0;
+}
+
+dashboard .arrow {
+    position: absolute;
+    margin-left: -14rpx;
+    top: -15rpx;
+    width: 28rpx;
+    height: 28rpx;
+    -webkit-transform: rotate(45deg);
+    background: #fafafa;
+    border-top: 1rpx solid #ddd;
+    border-left: 1rpx solid #ddd;
+    -webkit-transition: .3s;
+    z-index: 1;
+}
+
+dashboard item.long:active:before {
+    bottom: -13rpx;
+}
+
+dashboard item list {
+    margin-top: 10rpx;
+    padding-top: 15rpx;
+}
+
+dashboard item list button.loading {
+    background: none;
+}
+
+dashboard item list button.loading:before,
+dashboard item list button.loading:after {
+    border: none;
+}
+
+dashboard item list > view {
+    margin: 0 15rpx;
+    padding: 20rpx 15rpx;
+    border-top: 1rpx solid #eee;
+}
+
+dashboard item list .line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+dashboard item list .top-left,
+dashboard item list .bottom-left {
+    flex-grow: 1;
+    text-align: left;
+}
+
+dashboard item list .top-left {
+    font-size: 32rpx;
+    color: #333;
+}
+
+dashboard item list .top-right,
+dashboard item list .bottom-left {
+    font-size: 26rpx;
+    color: #666;
+}
+
+dashboard item list .bottom-right {
+    font-size: 26rpx;
+    color: #999;
+}
+
+dashboard item list .collapse {
+    font-size: 26rpx;
+    color: #aaa;
+}
