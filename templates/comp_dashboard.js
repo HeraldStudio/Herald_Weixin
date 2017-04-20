@@ -5,7 +5,8 @@ exports.bind = function(page) {
 
     page.setData({
         $dashboard: [],
-        $dashboard_expandedIndex: -1
+        $dashboard_expandedIndex: -1,
+        $dashboard_expanded: null
     })
 
     function resolveData(data) {
@@ -14,20 +15,23 @@ exports.bind = function(page) {
                 page.data.$dashboard[i] = data
                 page.setData({
                     $dashboard: page.data.$dashboard,
-                    $dashboard_expandedIndex: -1
+                    $dashboard_expandedIndex: -1,
+                    $dashboard_expanded: null
                 })
                 return
             }
         }
         page.setData({
             $dashboard: page.data.$dashboard.concat([data]),
-            $dashboard_expandedIndex: -1
+            $dashboard_expandedIndex: -1,
+            $dashboard_expanded: null
         })
     }
 
     wx.$.util('dashboard').getCard(resolveData)
     wx.$.util('dashboard').getPe(resolveData)
     wx.$.util('dashboard').getLecture(resolveData)
+    wx.$.util('dashboard').getSrtp(resolveData)
 
     page.$dashboard_toggleExpand = function(event) {
         let index = event.currentTarget.dataset.index
@@ -38,12 +42,14 @@ exports.bind = function(page) {
         page.data.$dashboard[index].isLong = isExpanded
         page.setData({
             $dashboard: page.data.$dashboard,
-            $dashboard_expandedIndex: isExpanded ? index : -1
+            $dashboard_expandedIndex: index,
+            $dashboard_expanded: isExpanded ? page.data.$dashboard[index] : null
         })
         isExpanded && page.data.$dashboard[index].long.getter &&
-        page.data.$dashboard[index].long.getter(function() {
+        page.data.$dashboard_expanded.long.getter(function() {
             page.setData({
-                $dashboard: page.data.$dashboard
+                $dashboard: page.data.$dashboard,
+                $dashboard_expanded: page.data.$dashboard_expanded
             })
         })
     }

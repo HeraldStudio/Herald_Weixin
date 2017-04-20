@@ -2,6 +2,7 @@
     <include src="/templates/comp_searchbar.wxml"/>
     <include src="/templates/comp_slider.wxml"/>
     <include src="/templates/comp_dashboard.wxml"/>
+    <include src="/templates/comp_schedule.wxml"/>
     <contact-button/>
 </block>
 <block wx:elif="{{ $login.isLogin === false }}">

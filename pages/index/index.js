@@ -6,6 +6,7 @@ Page({
     wx.$.comp('slider').bind(this)
     wx.$.comp('login').bind(this)
     wx.$.comp('dashboard').bind(this)
+    wx.$.comp('schedule').bind(this)
   },
   onLoad: function(options) {
     this.reloadData()

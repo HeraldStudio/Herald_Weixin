@@ -10,9 +10,17 @@ dashboard-title {
 dashboard {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     justify-content: stretch;
     justify-content: stretch;
-    border-top: 1rpx solid #e4e4e4;
+    border-top: 1rpx solid #ddd;
+}
+
+relative {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
 }
 
 dashboard items {
@@ -20,7 +28,7 @@ dashboard items {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: -1rpx;
+    margin-left: 1rpx;
 }
 
 dashboard item {
@@ -35,9 +43,8 @@ dashboard item {
     justify-content: center;
     text-align: center;
     background: #fff;
-    border-color: #ddd;
-    border-left: 1rpx solid #ddd;
-    border-right: 1rpx solid #ddd;
+    border-left: 1rpx solid #e3e3e3;
+    border-right: 1rpx solid #e3e3e3;
     margin-left: -1rpx;
     -webkit-transition: .3s;
 }
@@ -50,30 +57,50 @@ dashboard item expandable {
 }
 
 dashboard item:active {
-    background: #fafafa;
+    background: rgba(0, 0, 0, .05);
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: 0;
+    border-left: 2rpx solid transparent;
+    border-right: 2rpx solid transparent;
+    padding: 44rpx 0;
+}
+
+dashboard items item.long {
+    background: #00abd4;
+    margin-top: 0;
+    margin-bottom: 0;
     border-left: 1rpx solid transparent;
     border-right: 1rpx solid transparent;
     padding: 44rpx 0;
 }
 
+dashboard items item.long + item {
+    border-left: 0 solid transparent;
+    margin-left: 0;
+}
+
 dashboard item.expanded {
     width: 100%;
-    min-height: 0rpx;
+    display: block;
     background: #fafafa;
     margin: -1rpx 0 0 0;
     padding: 25rpx 0;
-    border-left: 1rpx solid transparent;
-    border-top: 1rpx solid #ddd;
-    border-bottom: 1rpx solid #ddd;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1rpx solid #dedede;
     position: relative;
+    opacity: 1;
     -webkit-transition: .3s;
 }
 
-dashboard item short, 
-dashboard item long {
+dashboard item.expanded.hidden {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+}
+
+dashboard item blk {
+    width: 185rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,9 +108,8 @@ dashboard item long {
     -webkit-transition: .3s;
 }
 
-dashboard item long {
+dashboard item.expanded blk {
     border-left: 1rpx solid #ddd;
-    display: none;
 }
 
 dashboard item list {
@@ -122,10 +148,26 @@ dashboard item .intro {
     display: none;
 }
 
+dashboard item.long .desc, 
+dashboard item.long .info, 
+dashboard item.long .intro {
+    color: #fff;
+}
+
 dashboard item.expanded .intro {
     padding-top: 0;
     height: 0;
     opacity: 0;
+}
+
+dashboard item .hint {
+    display: block;
+    color: #888;
+    font-size: 26rpx;
+    padding: 10rpx 0;
+    height: 40rpx;
+    overflow: hidden;
+    -webkit-transition: .3s;
 }
 
 dashboard .arrow {
@@ -134,12 +176,21 @@ dashboard .arrow {
     top: -15rpx;
     width: 28rpx;
     height: 28rpx;
-    -webkit-transform: rotate(45deg);
     background: #fafafa;
-    border-top: 1rpx solid #ddd;
-    border-left: 1rpx solid #ddd;
+    border-top: 1rpx solid #00abd4;
+    border-left: 1rpx solid #00abd4;
     -webkit-transition: .3s;
+    opacity: 1;
+    -webkit-transform: rotate(45deg);
     z-index: 1;
+}
+
+dashboard .arrow.hidden {
+    background: transparent;
+    border-top: 1rpx solid transparent;
+    border-left: 1rpx solid transparent;
+    -webkit-transition: .01s;
+    opacity: 0;
 }
 
 dashboard item.long:active:before {
@@ -163,7 +214,7 @@ dashboard item list button.loading:after {
 dashboard item list > view {
     margin: 0 15rpx;
     padding: 20rpx 15rpx;
-    border-top: 1rpx solid #eee;
+    border-top: 1rpx solid #e5e5e5;
 }
 
 dashboard item list .line {
@@ -181,7 +232,7 @@ dashboard item list .bottom-left {
 
 dashboard item list .top-left {
     font-size: 32rpx;
-    color: #333;
+    color: #00abd4;
 }
 
 dashboard item list .top-right,

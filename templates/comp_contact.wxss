@@ -19,7 +19,7 @@ contact button {
     color: #00abd4;
     line-height: 40rpx;
     padding: 5rpx 20rpx;
-    border: 1rpx solid #00abd4;
+    border: 2rpx solid #00abd4;
     background: #fff;
     border-radius: 40rpx !important;
     pointer-events: none;

@@ -125,41 +125,49 @@ function requestApi(obj) {
   requestCompat(obj)
 }
 
+var requestCount = 0
+
 function requestCompat(obj) {
   obj.header = obj.header || {}
   obj.header['Content-Type'] = 'application/x-www-form-urlencoded'
-  wx.request({
-    url: obj.route ? config.urlFormatter(obj.route) : obj.url,
-    data: obj.data,
-    header: obj.header,
-    method: obj.method || 'GET',
-    success: function(res) {
-      if (res.statusCode < 400) {
-        obj.success && obj.success(res)
-      } else {
-        obj.fail && obj.fail(res)
-      }
-    },
-    fail: function(res) {
-      obj.fail && obj.fail(res)
-    },
-    complete: function(res) {
-      if (res.statusCode < 400) {
-        wx.$.log(
-          res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
-          'Data:', obj.data || 'none',
-          'Result: ', res
-        );
-      } else {
-        wx.$.error(
-          res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
-          'Data:', obj.data || 'none',
-          'Response: ', res
-        );
-      }
-      obj.complete && obj.complete(res)
+  
+  function beginRequest() {
+    if (requestCount >= 5) {
+      setTimeout(beginRequest, 500)
+      return
     }
-  })
+    requestCount += 1
+    wx.request({
+      url: obj.route ? config.urlFormatter(obj.route) : obj.url,
+      data: obj.data,
+      header: obj.header,
+      method: obj.method || 'GET',
+      success: function(res) {
+        obj.success && obj.success(res)
+      },
+      fail: function(res) {
+        obj.fail && obj.fail(res)
+      },
+      complete: function(res) {
+        if (res.statusCode < 400) {
+          wx.$.log(
+            res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
+            'Data:', obj.data || 'none',
+            'Result: ', res
+          );
+        } else {
+          wx.$.error(
+            res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
+            'Data:', obj.data || 'none',
+            'Response: ', res
+          );
+        }
+        obj.complete && obj.complete(res)
+        requestCount -= 1
+      }
+    })
+  }
+  beginRequest()
 }
 
 function comp(str) {
