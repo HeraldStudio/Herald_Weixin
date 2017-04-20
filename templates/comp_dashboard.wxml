@@ -3,35 +3,29 @@
         <item wx:for="{{ $dashboard }}"
             class="{{ item.isLong ? 'long' : '' }}" 
             catchtap="$dashboard_toggleExpand" data-index="{{ index }}">
-            <short>
-                <text class="desc">{{ item.desc }}</text>
-                <text class="info">{{ item.info }}</text>
-            </short>
-            <text class="intro">{{ item.intro }}</text>
+            <blk>
+                <text class="desc">{{ item.blocks[0].desc }}</text>
+                <text class="info">{{ item.blocks[0].info }}</text>
+            </blk>
         </item>
     </items>
-
-    <relative>
-        <view class="arrow" style="left: {{ ($dashboard_expandedIndex + 0.5) / $dashboard.length * 100 }}%"></view>
-
-        <item wx:for="{{ $dashboard }}" wx:if="{{ item.isLong }}"
-            class="expanded" 
-            catchtap="$dashboard_toggleExpand" data-index="{{ $dashboard_expandedIndex }}">
-            <expandable>
-                <short>
-                    <text class="desc">{{ item.desc }}</text>
-                    <text class="info">{{ item.info }}</text>
-                </short>
-                <long wx:if="{{ item.long.desc || item.long.info }}">
-                    <text class="desc">{{ item.long.desc }}</text>
-                    <text class="info">{{ item.long.info }}</text>
-                </long>
-            </expandable>
-            <text class="intro">{{ item.intro }}</text>
-            <list>
-                <button class="loading" wx:if="{{ !item.long.data }}" loading="true"/>
-                <text class="hint" wx:if="{{ item.long.data === 'fail' }}">加载失败</text>
-                <view wx:if="{{ item.long.data !== 'fail' }}" wx:for="{{ item.long.data }}">
+    <item
+        wx:for="{{ [$dashboard_expanded] }}"
+        class="expanded {{ item != null ? '' : 'hidden' }}" 
+        catchtap="$dashboard_toggleExpand" data-index="{{ $dashboard_expandedIndex }}">
+        <view class="arrow {{ item != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex + 0.5) / $dashboard.length * 100 }}%"></view>
+        <expandable>
+            <blk wx:for="{{ item.blocks }}">
+                <text class="desc">{{ item.desc }}</text>
+                <text class="info">{{ item.info }}</text>
+            </blk>
+        </expandable>
+        <text class="intro">{{ item.intro }}</text>
+        <list>
+            <button class="loading" wx:if="{{ !item.long.data }}" loading="true"/>
+            <text class="hint" wx:if="{{ item.long.data == 'fail' }}">加载失败</text>
+            <block wx:if="{{ item.long.data != 'fail' }}">
+                <view wx:for="{{ item.long.data }}">
                     <view class="line">
                         <text class="top-left singleline">{{ item.topLeft }}</text>
                         <text class="top-right singleline">{{ item.topRight }}</text>
@@ -41,8 +35,8 @@
                         <text class="bottom-right singleline">{{ item.bottomRight }}</text>
                     </view>
                 </view>
-                <text class="collapse">收起</text>
-            </list>
-        </item>
-    </relative>
+            </block>
+            <text class="collapse">收起</text>
+        </list>
+    </item>
 </dashboard>

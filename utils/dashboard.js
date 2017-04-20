@@ -2,8 +2,7 @@ module.exports = {
     getCard: function(callback) {
         callback && callback({
             id: 'card',
-            desc: '一卡通',
-            info: '···'
+            blocks: [{ desc: '一卡通', info: '···' }]
         })
         wx.$.requestApi({
             route: 'api/card',
@@ -13,12 +12,17 @@ module.exports = {
             success: function(res) {
                 callback && callback({
                     id: 'card',
-                    desc: '一卡通余额',
-                    info: res.data.content.cardLeft,
-                    intro: '查看消费流水',
+                    blocks: [
+                        {
+                            desc: '一卡通余额',
+                            info: res.data.content.cardLeft
+                        },
+                        {
+                            desc: '一卡通状态',
+                            info: res.data.content.state,
+                        }
+                    ],
                     long: {
-                        desc: '一卡通状态',
-                        info: res.data.content.state,
                         getter: function(callback2) {
                             var that = this
                             wx.$.requestApi({
@@ -52,8 +56,7 @@ module.exports = {
     getPe: function(callback) {
         callback && callback({
             id: 'pe',
-            desc: '跑操',
-            info: '···'
+            blocks: [{ desc: '跑操', info: '···' }]
         })
         var d = new Date()
         let hm = d.getHours() * 60 + d.getMinutes()
@@ -66,12 +69,25 @@ module.exports = {
                         success: function(res2) {
                             callback && callback({
                                 id: 'pe',
-                                desc: '跑操预告',
-                                info: res.data.content == 'refreshing' ? '暂无' : res.data.content,
-                                intro: '查询打卡记录',
+                                blocks: [
+                                    {
+                                        desc: '跑操预告',
+                                        info: res.data.content == 'refreshing' ? '暂无' : res.data.content.replace('今天', '')
+                                    },
+                                    {
+                                        desc: '已跑操次数',
+                                        info: res2.data.content
+                                    },
+                                    {
+                                        desc: '剩余次数',
+                                        info: Math.max(0, 45 - parseInt(res2.data.content))
+                                    },
+                                    {
+                                        desc: '预计剩余天数',
+                                        info: res2.data.remain
+                                    }
+                                ],
                                 long: {
-                                    desc: '跑操次数',
-                                    info: res2.data.content,
                                     getter: function(callback2) {
                                         var that = this
                                         wx.$.requestApi({
@@ -108,12 +124,25 @@ module.exports = {
                 success: function(res) {
                     callback && callback({
                         id: 'pe',
-                        desc: '跑操次数',
-                        info: res.data.content,
-                        intro: '查询打卡记录',
+                        blocks: [
+                            {
+                                desc: '已跑操次数',
+                                info: res.data.content
+                            },
+                            {
+                                desc: '击败人数',
+                                info: res.data.rank + '%'
+                            },
+                            {
+                                desc: '剩余次数',
+                                info: Math.max(0, 45 - parseInt(res.data.content))
+                            },
+                            {
+                                desc: '预计剩余天数',
+                                info: res.data.remain
+                            }
+                        ],
                         long: {
-                            desc: '击败人数',
-                            info: res.data.rank + '%',
                             getter: function(callback2) {
                                 var that = this
                                 wx.$.requestApi({
@@ -147,23 +176,57 @@ module.exports = {
     getLecture: function(callback) {
         callback && callback({
             id: 'lecture',
-            desc: '人文讲座',
-            info: '···'
+            blocks: [{ desc: '人文讲座', info: '···' }]
         })
         wx.$.requestApi({
             route: 'api/lecture',
             success: function(res) {
                 callback && callback({
                     id: 'lecture',
-                    desc: '讲座打卡次数',
-                    info: res.data.content.count,
-                    intro: '查看详情',
+                    blocks: [
+                        {
+                            desc: '讲座打卡次数',
+                            info: res.data.content.count,
+                        }
+                    ],
                     long: {
                         data: res.data.content.detial.map((k, i) => {
                             return {
                                 topLeft: k.date,
-                                topRight: k.place,
-                                bottomLeft: '第' + (i + 1) + '次打卡'
+                                topRight: k.place
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    },
+    getSrtp: function(callback) {
+        callback && callback({
+            id: 'srtp',
+            blocks: [{ desc: 'SRTP', info: '···' }]
+        })
+        wx.$.requestApi({
+            route: 'api/srtp',
+            success: function(res) {
+                callback && callback({
+                    id: 'srtp',
+                    blocks: [
+                        {
+                            desc: 'SRTP学分数',
+                            info: res.data.content[0].total
+                        },
+                        {
+                            desc: 'SRTP状态',
+                            info: res.data.content[0].score
+                        },
+                    ],
+                    long: {
+                        data: res.data.content.slice(1).map((k, i) => {
+                            return {
+                                topLeft: k.project,
+                                bottomLeft: k.credit,
+                                bottomRight: k.date + ' · ' + k.type
                             }
                         })
                     }

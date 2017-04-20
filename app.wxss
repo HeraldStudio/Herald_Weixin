@@ -2,6 +2,7 @@
 page {
   margin: 0;
   padding: 0;
+  width: 750rpx;
   text-align: center;
   overflow-x: hidden;
 }
@@ -14,10 +15,6 @@ page, input, textarea {
   overflow: hidden;
   border-radius: 10rpx;
   -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-}
-
-relative {
-  position: relative;
 }
 
 .singleline {
@@ -63,7 +60,7 @@ contact-button:after {
   z-index: 99999999999;
   display: inline-block;
   padding: 5rpx 20rpx;
-  border: 1rpx solid #00abd4;
+  border: 2rpx solid #00abd4;
   background: #fff;
   border-radius: 40rpx;
   pointer-events: none;

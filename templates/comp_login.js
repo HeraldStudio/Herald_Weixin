@@ -12,12 +12,10 @@ exports.bind = function(page){
 
     page.$login_onCardnumChange = function(event) {
         data.cardnum = event.detail.value
-        console.log(data)
     }
 
     page.$login_onPasswordChange = function(event) {
         data.password = event.detail.value
-        console.log(data)
     }
 
     page.$login_submit = function(event) {

@@ -43,7 +43,6 @@ module.exports = {
 
   logout: function() {
     getApp().storage.uuid = null
-    wx.$.log('Herald', 'Logged out')
-    getApp().forceUpdateStorage()
+    wx.clearStorageSync()
   }
 }
