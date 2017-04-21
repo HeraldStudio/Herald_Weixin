@@ -5,15 +5,15 @@
             catchtap="$dashboard_toggleExpand" data-index="{{ index }}">
             <blk>
                 <text class="desc">{{ item.blocks[0].desc }}</text>
-                <text class="info">{{ item.blocks[0].info }}</text>
+                <text class="info">{{ item.blocks[0].info === undefined ? '加载失败' : item.blocks[0].info }}</text>
             </blk>
         </item>
+        <view class="arrow {{ $dashboard_expanded != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex + 0.5) / $dashboard.length * 100 }}%"></view>
     </items>
     <item
         wx:for="{{ [$dashboard_expanded] }}"
         class="expanded {{ item != null ? '' : 'hidden' }}" 
         catchtap="$dashboard_toggleExpand" data-index="{{ $dashboard_expandedIndex }}">
-        <view class="arrow {{ item != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex + 0.5) / $dashboard.length * 100 }}%"></view>
         <expandable>
             <blk wx:for="{{ item.blocks }}">
                 <text class="desc">{{ item.desc }}</text>

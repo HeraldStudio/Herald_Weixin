@@ -7,6 +7,10 @@ page {
   overflow-x: hidden;
 }
 
+text {
+  cursor: default;
+}
+
 page, input, textarea {
   font-family: "Microsoft YaHei UI", "PingFang SC", -apple-system-font;
 }
@@ -64,4 +68,91 @@ contact-button:after {
   background: #fff;
   border-radius: 40rpx;
   pointer-events: none;
+}
+
+/*
+  Material Design 风格的浮动动作按钮（Floating Action Button）
+*/
+fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 109rpx;
+  height: 109rpx;
+  background: #00abd4;
+  border-radius: 50%;
+  display: block;
+  /*box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);*/
+  -webkit-transition: .25s;
+  z-index: 99999999999;
+}
+
+/* 加号的横 */
+fab::before {
+  content: ' ';
+  position: absolute;
+  display: block;
+  right: 35rpx;
+  bottom: 53rpx;
+  width: 40rpx;
+  height: 4rpx;
+  background: #fff;
+  -webkit-transition: .25s;
+}
+
+/* 加号的竖 */
+fab::after {
+  content: ' ';
+  position: absolute;
+  display: block;
+  right: 53rpx;
+  bottom: 35rpx;
+  width: 4rpx;
+  height: 40rpx;
+  background: #fff;
+  -webkit-transition: .25s;
+}
+
+/* 叉的第一笔 */
+fab.close::before {
+  -webkit-transform: rotate(45deg);
+}
+
+/* 叉的第二笔 */
+fab.close::after {
+  -webkit-transform: rotate(45deg);
+}
+
+/* 对勾的第一笔 */
+fab.confirm::before {
+  -webkit-transform: rotate(45deg);
+  right: 58rpx;
+  bottom: 44rpx;
+  width: 25rpx;
+}
+
+/* 对勾的第二笔 */
+fab.confirm::after {
+  -webkit-transform: rotate(45deg);
+  right: 46rpx;
+  bottom: 30rpx;
+  height: 45rpx;
+}
+
+/* Material 点击效果 */
+fab:active {
+  background: #008dad;
+  /*box-shadow: 0 2rpx 4rpx rgba(2, 0, 33, .2);*/
+  -webkit-transition: .25s;
+}
+
+/* fab 支持 hidden 属性，可动态显示或隐藏 */
+fab.hidden {
+  bottom: -120rpx;
+}
+
+/* hidden 状态下加号半透明 */
+fab.hidden::before,
+fab.hidden::after {
+  opacity: 0;
 }

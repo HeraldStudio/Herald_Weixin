@@ -4,6 +4,5 @@
         <text class="hint">搜索数据和日程</text>
     </view>
     <image class="icon" src="/images/ic_user.png" mode="aspectFit"
-        catchtap="go" data-to="user"/>
+        catchtap="$searchbar_userMenu"/>
 </searchbar>
-<view class="sticky-line"></view>

@@ -10,21 +10,24 @@ exports.bind = function(page) {
     })
 
     function resolveData(data) {
+        if (page.data.$dashboard_expanded
+            && page.data.$dashboard_expanded.id == data.id) {
+            page.setData({
+                $dashboard_expanded: data
+            })
+        }
         for (let i in page.data.$dashboard) {
             if (page.data.$dashboard[i].id == data.id) {
+                data.isLong = page.data.$dashboard[i].isLong
                 page.data.$dashboard[i] = data
                 page.setData({
-                    $dashboard: page.data.$dashboard,
-                    $dashboard_expandedIndex: -1,
-                    $dashboard_expanded: null
+                    $dashboard: page.data.$dashboard
                 })
                 return
             }
         }
         page.setData({
-            $dashboard: page.data.$dashboard.concat([data]),
-            $dashboard_expandedIndex: -1,
-            $dashboard_expanded: null
+            $dashboard: page.data.$dashboard.concat([data])
         })
     }
 
@@ -45,12 +48,18 @@ exports.bind = function(page) {
             $dashboard_expandedIndex: index,
             $dashboard_expanded: isExpanded ? page.data.$dashboard[index] : null
         })
-        isExpanded && page.data.$dashboard[index].long.getter &&
-        page.data.$dashboard_expanded.long.getter(function() {
-            page.setData({
-                $dashboard: page.data.$dashboard,
-                $dashboard_expanded: page.data.$dashboard_expanded
+        if(isExpanded 
+            && page.data.$dashboard[index].long.getter
+            && !page.data.$dashboard_expanded.long.getting) {
+
+            page.data.$dashboard_expanded.long.getting = true
+            page.data.$dashboard_expanded.long.getter(function() {
+                page.data.$dashboard_expanded.long.getting = false
+                page.setData({
+                    $dashboard: page.data.$dashboard,
+                    $dashboard_expanded: page.data.$dashboard_expanded
+                })
             })
-        })
+        }
     }
 }

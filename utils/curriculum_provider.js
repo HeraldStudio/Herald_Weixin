@@ -1,12 +1,3 @@
-// Array.prototype.logged = function() {
-//     let snapshot = []
-//     for(let i in this) {
-//         snapshot.push(this[i])
-//     }
-//     console.log(snapshot)
-//     return this
-// }
-
 module.exports = {
 
     key: 'schedule_curriculum',
@@ -14,7 +5,7 @@ module.exports = {
     getOrUpdateAsync: function(obj) {
         obj = obj || {}
         let got = this.get()
-        if (got) {
+        if (Array.isArray(got)) {
             obj.success && obj.success(got)
         } else {
             this.update(obj)
@@ -22,13 +13,17 @@ module.exports = {
     },
 
     get: function() {
-        let storage = wx.getStorageSync(this.key)
-        if (storage) {
+        let storage = wx.$.userStorage(this.key)
+        if (Array.isArray(storage)) {
             let nowTime = new Date().getTime()
             return storage.filter(k => k.toTime > nowTime && k.fromTime < nowTime + 7 * 86400000)
         } else {
             return null
         }
+    },
+
+    clear: function() {
+        wx.$.userStorage(this.key, '')
     },
 
     update: function(obj) {
@@ -39,14 +34,14 @@ module.exports = {
 
         wx.$.requestApi({
             route: 'api/term',
-            success: function(res) {
-                let term = res.data.content[0]
+            complete: function(res) {
+                let term = res.statusCode < 400 ? res.data.content[0] : null
                 wx.$.requestApi({
                     route: 'api/curriculum',
                     data: { term },
-                    success: function(result) {
+                    complete: function(result) {
                         try {
-                            wx.setStorageSync(that.key, that.format(result.data))
+                            wx.$.userStorage(that.key, that.format(result.data))
                             success && success(that.get())
                         } catch (e) {
                             wx.$.error(e)
@@ -55,8 +50,7 @@ module.exports = {
                         }
                     }
                 })
-            },
-            fail: fail
+            }
         })
     },
 
@@ -120,7 +114,7 @@ module.exports = {
                 if (/^\(双\)/.test(cell[2])) { weeks = weeks.filter(s => s % 2 == 0); weekDesc += '双周' }
                 return { name, teacher, credit, weeks, weekDesc, dayFromMon, startTime, endTime, place }
             })
-        }).reduce((a, b) => a.concat(b)/* 把转换好的每一列合并成一个数组 */).map(model => { // 对每一节课进行遍历
+        }).reduce((a, b) => a.concat(b)/* 把转换好的每一列合并成一个数组 */, []).map(model => { // 对每一节课进行遍历
             return model.weeks.map(week => { // 对这节课的每周上课进行遍历。
                 // 求这一周这一课程上下课时间
                 let startTime = startDate.getTime() + (((week - 1) * 7 + model.dayFromMon) * 24 * 60 + model.startTime) * 60 * 1000
@@ -137,26 +131,6 @@ module.exports = {
                     }
                 }
             })
-        }).reduce((a, b) => a.concat(b)).sort((a, b) => a.fromTime - b.fromTime)
+        }).reduce((a, b) => a.concat(b), []).sort((a, b) => a.fromTime - b.fromTime)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

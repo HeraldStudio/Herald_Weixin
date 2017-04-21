@@ -88,7 +88,7 @@ function error(title, status, obj1, obj2, obj3, obj4) {
   ]
 */
 function showActions(actions) {
-  actions = actions.filter(k => k.condition != false)
+  actions = actions.filter(k => k.condition !== false)
   if (actions.length) {
     wx.showActionSheet({
       itemList: actions.map(k => k.name),
@@ -142,25 +142,21 @@ function requestCompat(obj) {
       data: obj.data,
       header: obj.header,
       method: obj.method || 'GET',
-      success: function(res) {
-        obj.success && obj.success(res)
-      },
-      fail: function(res) {
-        obj.fail && obj.fail(res)
-      },
+      success: obj.success,
+      fail: obj.fail,
       complete: function(res) {
         if (res.statusCode < 400) {
           wx.$.log(
             res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
             'Data:', obj.data || 'none',
             'Result: ', res
-          );
+          )
         } else {
           wx.$.error(
             res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
             'Data:', obj.data || 'none',
             'Response: ', res
-          );
+          )
         }
         obj.complete && obj.complete(res)
         requestCount -= 1
@@ -168,6 +164,14 @@ function requestCompat(obj) {
     })
   }
   beginRequest()
+}
+
+function userStorage(key, value) {
+  if (value !== undefined) {
+    wx.setStorageSync(wx.$.util('user').getUuid() + '-' + key, value)
+  } else {
+    return wx.getStorageSync(wx.$.util('user').getUuid() + '-' + key)
+  }
 }
 
 function comp(str) {
@@ -198,6 +202,6 @@ function checkRegister() {
 
 module.exports = {
   config, beginInject, Page, log, error,
-  ask, requestApi, requestCompat, comp,
+  ask, requestApi, requestCompat, userStorage, comp,
   showActions, showSuccess, showLoading, hideLoading, showError, checkRegister
 }
