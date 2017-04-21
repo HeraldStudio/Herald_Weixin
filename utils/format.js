@@ -1,6 +1,6 @@
 Date.prototype.getFullWeek = function(){
-    var baseDay = new Date(1970, 1, 5);
-    return Math.ceil((this.getTime() - baseDay.getTime()) / (7 * 24 * 3600 * 1000));
+    var baseDay = new Date(1970, 0, 5);
+    return parseInt((this.getTime() - baseDay.getTime()) / (7 * 24 * 3600 * 1000)) + 1;
 }
 
 module.exports = {

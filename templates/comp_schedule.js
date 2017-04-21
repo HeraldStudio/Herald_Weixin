@@ -4,7 +4,9 @@ exports.bind = function(page) {
     }
 
     page.setData({
-        $schedule: []
+        $schedule: [],
+        $schedule_loading: [],
+        $schedule_error: []
     })
 
     function stringToBytes(str) {
@@ -22,6 +24,11 @@ exports.bind = function(page) {
             k.displayData.time = wx.$.util('format').formatTimeNatural(k.fromTime)
             k.displayData.period = wx.$.util('format').formatPeriodNatural(k.fromTime, k.toTime)
 
+            let now = new Date().getTime()
+            if (now >= k.fromTime && now < k.toTime) {
+                k.displayData.goingOn = true
+            }
+
             if (!k.displayData.image) {
                 let title = k.displayData.topLeft
                 k.displayData.color = [
@@ -31,16 +38,38 @@ exports.bind = function(page) {
                 ][(stringToBytes(title).length * 2 + title.length) % 8]
             }
             return k
-        })
+        }).sort((a, b) => a.fromTime - b.fromTime)
     }
 
-    function parseResult(result) {
-        console.log(result)
+    let reloadProvider = (p, force) => {
         page.setData({
-            $schedule: formatSchedule(page.data.$schedule.concat(result))
+            $schedule_loading: page.data.$schedule_loading.concat(p)
+        })
+        if (force) {
+            wx.$.util(p).clear()
+        }
+        wx.$.util(p).getOrUpdateAsync({ 
+            success: function(result) {
+                page.setData({
+                    $schedule: formatSchedule(page.data.$schedule.concat(result)),
+                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p)
+                })
+            }, 
+            fail: function() { 
+                page.setData({
+                    $schedule_error: page.data.$schedule_error.concat([p]),
+                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p)
+                })
+            }
         })
     }
 
-    wx.$.util('curriculum_provider').getOrUpdateAsync({ success: parseResult })
-    wx.$.util('experiment_provider').getOrUpdateAsync({ success: parseResult })
+    ['curriculum_provider', 'experiment_provider'].forEach(reloadProvider)
+
+    page.$schedule_forceReload = function() {
+        page.data.$schedule_error.forEach(reloadProvider, true)
+        page.setData({
+            $schedule_error: []
+        })
+    }
 }

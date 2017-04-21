@@ -3,11 +3,15 @@
         <image src="/images/ic_schedule.png" mode="aspectFit"/>
         <text>当前日程</text>
     </view>
+    <view class="error" wx:if="{{ $schedule_error.length }}" catchtap="$schedule_forceReload">
+        <text>由于教务处系统问题，部分日程获取失败，点击重试</text>
+    </view>
+    <button class="loading" wx:if="{{ $schedule_loading.length }}" loading="true"> 正在获取日程信息 ({{$schedule_loading.length}}) </button>
     <item wx:for="{{ $schedule }}">
         <image class="schedule-avatar {{ item.displayData.image ? '' : 'dot' }}" src="{{ item.displayData.image }}" style="background: {{ item.displayData.color }}" mode="aspectFill"/>
         <view class="schedule-desc">
             <view class="line top-line">
-                <text class="bottom-left singleline">{{ item.displayData.period }}</text>
+                <text class="bottom-left singleline {{ item.displayData.goingOn ? 'going-on' : '' }}">{{ item.displayData.period }}</text>
                 <text class="bottom-right singleline">{{ item.type }}</text>
             </view>
             <view class="line">
@@ -20,4 +24,5 @@
             </view>
         </view>
     </item>
+    <fab></fab>
 </schedule>

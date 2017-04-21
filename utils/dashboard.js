@@ -9,7 +9,7 @@ module.exports = {
             data: {
                 timedelta: 1
             },
-            success: function(res) {
+            complete: function(res) {
                 callback && callback({
                     id: 'card',
                     blocks: [
@@ -30,7 +30,7 @@ module.exports = {
                                 data: {
                                     timedelta: 14
                                 },
-                                success: function(res) {
+                                complete: function(res) {
                                     if (!Array.isArray(res.data.content.detial)) {
                                         that.data = 'fail'
                                         return
@@ -42,9 +42,6 @@ module.exports = {
                                         bottomRight: k.price
                                     }})
                                     callback2 && callback2()
-                                },
-                                fail: function(res) {
-                                    that.data = 'fail'
                                 }
                             })
                         }
@@ -63,10 +60,10 @@ module.exports = {
         if (hm > 390 && hm < 440) {
             wx.$.requestApi({
                 route: 'api/pc',
-                success: function(res) {
+                complete: function(res) {
                     wx.$.requestApi({
                         route: 'api/pe',
-                        success: function(res2) {
+                        complete: function(res2) {
                             callback && callback({
                                 id: 'pe',
                                 blocks: [
@@ -92,7 +89,7 @@ module.exports = {
                                         var that = this
                                         wx.$.requestApi({
                                             route: 'api/pedetail',
-                                            success: function(res) {
+                                            complete: function(res) {
                                                 if (!Array.isArray(res.data.content)) {
                                                     that.data = 'fail'
                                                     return
@@ -106,9 +103,6 @@ module.exports = {
                                                     }
                                                 })
                                                 callback2 && callback2()
-                                            },
-                                            fail: function(res) {
-                                                that.data = 'fail'
                                             }
                                         })
                                     }
@@ -121,7 +115,7 @@ module.exports = {
         } else {
             wx.$.requestApi({
                 route: 'api/pe',
-                success: function(res) {
+                complete: function(res) {
                     callback && callback({
                         id: 'pe',
                         blocks: [
@@ -147,7 +141,7 @@ module.exports = {
                                 var that = this
                                 wx.$.requestApi({
                                     route: 'api/pedetail',
-                                    success: function(res) {
+                                    complete: function(res) {
                                         if (!Array.isArray(res.data.content)) {
                                             that.data = 'fail'
                                             return
@@ -161,9 +155,6 @@ module.exports = {
                                             }
                                         })
                                         callback2 && callback2()
-                                    },
-                                    fail: function(res) {
-                                        that.data = 'fail'
                                     }
                                 })
                             }
@@ -180,7 +171,7 @@ module.exports = {
         })
         wx.$.requestApi({
             route: 'api/lecture',
-            success: function(res) {
+            complete: function(res) {
                 callback && callback({
                     id: 'lecture',
                     blocks: [
@@ -208,7 +199,7 @@ module.exports = {
         })
         wx.$.requestApi({
             route: 'api/srtp',
-            success: function(res) {
+            complete: function(res) {
                 callback && callback({
                     id: 'srtp',
                     blocks: [

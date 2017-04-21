@@ -16,24 +16,36 @@ dashboard {
     border-top: 1rpx solid #ddd;
 }
 
-relative {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-}
-
 dashboard items {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin-left: 1rpx;
+    position: relative;
+}
+
+dashboard .arrow {
+    position: absolute;
+    margin-left: -20rpx;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-top: 20rpx solid transparent;
+    border-left: 20rpx solid transparent;
+    border-right: 20rpx solid transparent;
+    border-bottom: 20rpx solid #fafafa;
+    -webkit-transition: .3s;
+    opacity: 1;
+    z-index: 1;
+}
+
+dashboard .arrow.hidden {
+    bottom: -20rpx;
 }
 
 dashboard item {
-    flex-grow: 1;
-    width: 185rpx;
+    width: 187rpx;
     margin: 40rpx 0;
     padding: 5rpx 0;
     display: flex;
@@ -168,29 +180,6 @@ dashboard item .hint {
     height: 40rpx;
     overflow: hidden;
     -webkit-transition: .3s;
-}
-
-dashboard .arrow {
-    position: absolute;
-    margin-left: -14rpx;
-    top: -15rpx;
-    width: 28rpx;
-    height: 28rpx;
-    background: #fafafa;
-    border-top: 1rpx solid #00abd4;
-    border-left: 1rpx solid #00abd4;
-    -webkit-transition: .3s;
-    opacity: 1;
-    -webkit-transform: rotate(45deg);
-    z-index: 1;
-}
-
-dashboard .arrow.hidden {
-    background: transparent;
-    border-top: 1rpx solid transparent;
-    border-left: 1rpx solid transparent;
-    -webkit-transition: .01s;
-    opacity: 0;
 }
 
 dashboard item.long:active:before {

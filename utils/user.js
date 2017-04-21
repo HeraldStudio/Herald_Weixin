@@ -27,7 +27,7 @@ module.exports = {
           getApp().forceUpdateStorage()
           callback && callback(res)
         } else {
-          wx.$.showError('用户名和密码不匹配，请重试')
+          wx.$.showError('无法访问信息门户或密码错误，请重试')
         }
       }
     })
@@ -43,6 +43,17 @@ module.exports = {
 
   logout: function() {
     getApp().storage.uuid = null
-    wx.clearStorageSync()
+    getApp().forceUpdateStorage()
+  },
+
+  changeAvatar: function(callback) {
+    wx.chooseImage({
+      count: 1, sizeType: ['compressed'], sourceType: ['album', 'camera'],
+      success: function(res) {
+        var tempFilePaths = res.tempFilePaths
+        var uploadFinishCB = console.log
+        wx.$.util('upload').upload(tempFilePaths, uploadFinishCB)
+      }
+    })
   }
 }
