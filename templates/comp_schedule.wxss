@@ -66,7 +66,7 @@ schedule button.loading:after {
 
 schedule swiper {
     height: 170rpx;
-    -webkit-transition: .3s;
+    -webkit-transition: .5s;
 }
 
 schedule swiper-item {
