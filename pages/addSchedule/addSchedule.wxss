@@ -119,3 +119,12 @@ form radio {
 .picker-container .picker:active {
     background: #008dad;
 }
+
+.footer {
+    padding: 20rpx 30rpx 20rpx 0;
+    margin-left: 30rpx;
+    text-align: left;
+    color: #aaa;
+    border-top: 1rpx solid #eee;
+    font-size: 26rpx;
+}

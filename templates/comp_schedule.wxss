@@ -129,9 +129,12 @@ schedule item .line {
     justify-content: stretch;
 }
 
-schedule item .going-on:before {
-    content: "进行中 ";
-    color: #f2800d;
+schedule item .going-on {
+    color: #57a509;
+}
+
+schedule item .expired {
+    color: #f2460d;
 }
 
 schedule item .top-line {
@@ -154,7 +157,6 @@ schedule item .top-left {
 schedule item .top-right,
 schedule item .bottom-left {
     font-size: 26rpx;
-    color: #666;
 }
 
 schedule item .top-right,

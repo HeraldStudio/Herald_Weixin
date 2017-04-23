@@ -15,12 +15,13 @@
                 <image class="schedule-avatar {{ item.displayData.image ? '' : 'dot' }}" src="{{ item.displayData.image }}" style="background: {{ item.displayData.color }}" mode="aspectFill"/>
                 <view class="schedule-desc">
                     <view class="line top-line">
-                        <text class="bottom-left singleline {{ item.displayData.goingOn ? 'going-on' : '' }}">{{ item.displayData.period }}</text>
+                        <text class="bottom-left singleline">{{ item.displayData.period }}</text>
                         <text class="bottom-right singleline">{{ item.type }}</text>
                     </view>
                     <view class="line">
                         <text class="top-left singleline">{{ item.displayData.topLeft }}</text>
-                        <text class="top-right singleline">{{ item.displayData.topRight }}</text>
+                        <text wx:if="{{ item.displayData.goingOn }}" class="top-right singleline going-on">进行中</text>
+                        <text wx:if="{{ item.displayData.expired }}" class="top-right singleline expired">已过期</text>
                     </view>
                     <view class="line">
                         <text class="bottom-left singleline">{{ item.displayData.bottomLeft }}</text>
