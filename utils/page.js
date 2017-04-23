@@ -130,7 +130,6 @@ module.exports = {
     wx.navigateBack()
   },
 
-
   /*
     viewimg: 展示图片
     用法：<view catchtap="viewimg" data-current="{{ currentUrl }}" data-urls="{{ arrayOfUrls }}" data-pathmap="image">

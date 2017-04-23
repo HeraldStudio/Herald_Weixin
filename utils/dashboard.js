@@ -41,7 +41,7 @@ module.exports = {
                                         bottomLeft: k.date,
                                         bottomRight: k.price
                                     }})
-                                    callback2 && callback2()
+                                    callback2 && callback2(that.data)
                                 }
                             })
                         }
@@ -102,7 +102,7 @@ module.exports = {
                                                         bottomLeft: '第' + (index + 1) + '次跑操'
                                                     }
                                                 })
-                                                callback2 && callback2()
+                                                callback2 && callback2(that.data)
                                             }
                                         })
                                     }
@@ -154,7 +154,7 @@ module.exports = {
                                                 bottomLeft: '第' + (index + 1) + '次跑操'
                                             }
                                         })
-                                        callback2 && callback2()
+                                        callback2 && callback2(that.data)
                                     }
                                 })
                             }

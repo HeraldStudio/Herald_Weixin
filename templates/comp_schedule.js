@@ -6,21 +6,12 @@ exports.bind = function(page) {
     page.setData({
         $schedule: [],
         $schedule_loading: [],
-        $schedule_error: []
+        $schedule_error: [],
+        $schedule_week: wx.$.userStorage('schedule_week')
     })
 
-    function stringToBytes(str) {
-        var ch, st, re = [];
-        for (var i = 0; i < str.length; i++) {
-            ch = str.charCodeAt(i); st = [];
-            do { st.push(ch & 0xFF); ch = ch >> 8 } while (ch)
-            re = re.concat(st.reverse())
-        }  
-        return re;  
-    }
-
     function formatSchedule(schedule) {
-        return schedule.map(k => {
+        return schedule.filter(k => k !== null).map(k => {
             k.displayData.time = wx.$.util('format').formatTimeNatural(k.fromTime)
             k.displayData.period = wx.$.util('format').formatPeriodNatural(k.fromTime, k.toTime)
 
@@ -31,14 +22,25 @@ exports.bind = function(page) {
 
             if (!k.displayData.image) {
                 let title = k.displayData.topLeft
-                k.displayData.color = [
-                    '#b271cf', '#fb6e6e', '#fca538', 
-                    '#acc625', '#60c2b3', '#73b4dc', 
-                    '#7497f0', '#9f73e5'
-                ][(stringToBytes(title).length * 2 + title.length) % 8]
+                k.displayData.color = wx.$.util('format').stringToColor(title)
             }
             return k
         }).sort((a, b) => a.fromTime - b.fromTime)
+    }
+
+    function getCurrentWeek() {
+        let startDate = wx.$.userStorage('startDate')
+        if (!startDate) {
+            return ''
+        }
+        // 计算当前周
+        let now = new Date()
+        now.setHours(0)
+        now.setMinutes(0)
+        now.setSeconds(0)
+        now.setMilliseconds(0)
+        let thisWeek = parseInt((now.getTime() - startDate) / 86400000 / 7 + 1)
+        return (thisWeek <= 0 ? '假日' : '第' + thisWeek + '周' + wx.$.util('format').formatTime(now, 'EE'))
     }
 
     let reloadProvider = (p, force) => {
@@ -52,24 +54,39 @@ exports.bind = function(page) {
             success: function(result) {
                 page.setData({
                     $schedule: formatSchedule(page.data.$schedule.concat(result)),
-                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p)
+                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p),
+                    $schedule_week: getCurrentWeek()
                 })
             }, 
             fail: function() { 
                 page.setData({
                     $schedule_error: page.data.$schedule_error.concat([p]),
-                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p)
+                    $schedule_loading: page.data.$schedule_loading.filter(q => q != p),
+                    $schedule_week: getCurrentWeek()
                 })
             }
         })
     }
 
-    ['curriculum_provider', 'experiment_provider'].forEach(reloadProvider)
+    ['curriculum_provider', 'experiment_provider', 'custom_provider'].forEach(k => reloadProvider(k, false))
 
     page.$schedule_forceReload = function() {
         page.data.$schedule_error.forEach(reloadProvider, true)
         page.setData({
             $schedule_error: []
+        })
+    }
+
+    page.$schedule_delete = function(event) {
+        let id = event.currentTarget.dataset.id
+        wx.$.util('custom_provider').delete(id)
+        page.setData({
+            $schedule: page.data.$schedule.map(k => {
+                if (k.id == id) {
+                    k.deleted = true
+                }
+                return k
+            })
         })
     }
 }

@@ -76,6 +76,10 @@ module.exports = {
 
         // 如果开学日期比今天晚了超过两个月，则认为是去年开学的。这里用while保证了当前周数永远大于零
         let now = new Date()
+        now.setHours(0)
+        now.setMinutes(0)
+        now.setSeconds(0)
+        now.setMilliseconds(0)
         while (startDate.getTime() - now.getTime() > 60 * 86400000) {
             startDate.setFullYear(startDate.getFullYear() - 1)
         }
@@ -85,12 +89,8 @@ module.exports = {
             startDate.setTime(startDate.getTime() - (startDate.getDay() + 6) % 7 * 86400000)
         }
 
-        // 计算当前周
-        now.setHours(0)
-        now.setMinutes(0)
-        now.setSeconds(0)
-        now.setMilliseconds(0)
-        let thisWeek = parseInt((now.getTime() - startDate.getTime()) / 86400000 / 7 + 1)
+        // 保存开学日期以便其它地方使用
+        wx.$.userStorage('startDate', startDate.getTime())
 
         // 解析和转换数据
         let startTimes = [

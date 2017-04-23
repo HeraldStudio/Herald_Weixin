@@ -2,27 +2,36 @@
     <view class="subtitle">
         <image src="/images/ic_schedule.png" mode="aspectFit"/>
         <text>当前日程</text>
+        <space/>
+        <text>{{ $schedule_week }}</text>
     </view>
     <view class="error" wx:if="{{ $schedule_error.length }}" catchtap="$schedule_forceReload">
         <text>由于教务处系统问题，部分日程获取失败，点击重试</text>
     </view>
     <button class="loading" wx:if="{{ $schedule_loading.length }}" loading="true"> 正在获取日程信息 ({{$schedule_loading.length}}) </button>
-    <item wx:for="{{ $schedule }}">
-        <image class="schedule-avatar {{ item.displayData.image ? '' : 'dot' }}" src="{{ item.displayData.image }}" style="background: {{ item.displayData.color }}" mode="aspectFill"/>
-        <view class="schedule-desc">
-            <view class="line top-line">
-                <text class="bottom-left singleline {{ item.displayData.goingOn ? 'going-on' : '' }}">{{ item.displayData.period }}</text>
-                <text class="bottom-right singleline">{{ item.type }}</text>
-            </view>
-            <view class="line">
-                <text class="top-left singleline">{{ item.displayData.topLeft }}</text>
-                <text class="top-right singleline">{{ item.displayData.topRight }}</text>
-            </view>
-            <view class="line">
-                <text class="bottom-left singleline">{{ item.displayData.bottomLeft }}</text>
-                <text class="bottom-right singleline">{{ item.displayData.bottomRight }}</text>
-            </view>
-        </view>
-    </item>
-    <fab></fab>
+    <swiper wx:for="{{ $schedule }}" bindchange="$schedule_delete" data-id="{{ item.id }}" class="{{ item.deleted ? 'deleted' : '' }}">
+        <swiper-item>
+            <item>
+                <image class="schedule-avatar {{ item.displayData.image ? '' : 'dot' }}" src="{{ item.displayData.image }}" style="background: {{ item.displayData.color }}" mode="aspectFill"/>
+                <view class="schedule-desc">
+                    <view class="line top-line">
+                        <text class="bottom-left singleline {{ item.displayData.goingOn ? 'going-on' : '' }}">{{ item.displayData.period }}</text>
+                        <text class="bottom-right singleline">{{ item.type }}</text>
+                    </view>
+                    <view class="line">
+                        <text class="top-left singleline">{{ item.displayData.topLeft }}</text>
+                        <text class="top-right singleline">{{ item.displayData.topRight }}</text>
+                    </view>
+                    <view class="line">
+                        <text class="bottom-left singleline">{{ item.displayData.bottomLeft }}</text>
+                        <text class="bottom-right singleline">{{ item.displayData.bottomRight }}</text>
+                    </view>
+                </view>
+            </item>
+        </swiper-item>
+        <swiper-item class="delete" wx:if="{{ item.id }}">
+            删除日程
+        </swiper-item>
+    </swiper>
+    <fab catchtap="go" data-to="addSchedule"></fab>
 </schedule>

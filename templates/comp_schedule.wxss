@@ -64,6 +64,29 @@ schedule button.loading:after {
     border-radius: 0 !important;
 }
 
+schedule swiper {
+    height: 170rpx;
+    -webkit-transition: .3s;
+}
+
+schedule swiper-item {
+    background: #fff;
+}
+
+schedule swiper-item.delete {
+    background: #f43434;
+    color: #fff;
+    text-align: left;
+    line-height: 110rpx;
+    font-size: 36rpx;
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+
+schedule swiper.deleted {
+    height: 0;
+}
+
 schedule item {
     margin: 0 30rpx;
     display: flex;
@@ -89,9 +112,13 @@ schedule item .schedule-avatar.dot {
 }
 
 schedule item .schedule-desc {
+    height: 119rpx;
     margin-left: 25rpx;
     flex-grow: 1;
     padding: 25rpx 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-bottom: 1rpx solid #e3e3e3;
 }
 
@@ -115,6 +142,7 @@ schedule item .top-line {
 schedule item .top-left,
 schedule item .bottom-left {
     flex-grow: 1;
+    flex-shrink: 1;
     text-align: left;
 }
 
@@ -129,7 +157,8 @@ schedule item .bottom-left {
     color: #666;
 }
 
-schedule item .bottom-left {
+schedule item .top-right,
+schedule item .bottom-right {
     flex-shrink: 0;
 }
 
