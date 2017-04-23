@@ -71,7 +71,7 @@ schedule swiper {
 
 schedule swiper-item {
     background: #fff;
-}
+} 
 
 schedule swiper-item.delete {
     background: #f43434;
