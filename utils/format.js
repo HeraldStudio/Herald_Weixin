@@ -26,10 +26,24 @@ module.exports = {
     formatPeriodNatural: function(start, end) {
         let startDate = this.formatDateNatural(start)
         let endDate = this.formatDateNatural(end)
+        let startTime = this.formatTime(start, 'H:mm')
+        let endTime = this.formatTime(end, 'H:mm')
+
+        if (startTime == '0:00' && (endTime == '23:59' || endTime == '0:00')) {
+            if (startDate == endDate) {
+                return startDate + '全天'
+            } else {
+                return startDate + '~' + endDate + ' 全天'
+            }
+        }
+
         if (startDate == endDate) {
+            if (startTime == endTime) {
+                return startDate + ' ' + this.formatTime(start, 'H:mm')
+            }
             return startDate + ' ' + this.formatTime(start, 'H:mm') + '~' + this.formatTime(end, 'H:mm')
         } else {
-            return startDate + ' ' + this.formatTime(start, 'H:mm') + '~' + endDate + this.formatTime(end, 'H:mm')
+            return startDate + this.formatTime(start, 'H:mm') + '~' + endDate + this.formatTime(end, 'H:mm')
         }
     },
 
@@ -60,13 +74,13 @@ module.exports = {
         if (date.getFullWeek() == today.getFullWeek() + 1) {
             return '下周' + ['日', '一', '二', '三', '四', '五', '六'][date.getDay()]
         }
-        if (date.getMonth() == today.getMonth()) {
-            return Math.abs(dday) + '天' + (dday < 0 ? '前' : '后')
-        }
+        let ret = Math.abs(dday) + '天' + (dday < 0 ? '前' : '后') + ' ('
         if (date.getFullYear() == today.getFullYear()) {
-            return this.formatTime(timestamp, 'M月d日')
+            ret += this.formatTime(timestamp, 'M月d日')
+        } else {
+            ret += this.formatTime(timestamp, 'yyyy年M月d日')
         }
-        return this.formatTime(timestamp, 'yyyy年M月d日')
+        return ret + ')'
     },
 
     formatTime: function(timestamp, format) {
@@ -81,26 +95,35 @@ module.exports = {
             "q+" : Math.floor((date.getMonth()+3)/3), //季度
             "S" : date.getMilliseconds() //毫秒
         }
-        var week = {
-            "0" : "/u65e5",
-            "1" : "/u4e00",
-            "2" : "/u4e8c",
-            "3" : "/u4e09",
-            "4" : "/u56db",
-            "5" : "/u4e94",
-            "6" : "/u516d"
-        }
+        var week = ['日', '一', '二', '三', '四', '五', '六']
         if(/(y+)/.test(format)){
             format=format.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length))
         }
         if(/(E+)/.test(format)){
-            format=format.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[date.getDay()+""])
+            format=format.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "星期" : "周") : "")+week[date.getDay()])
         }
         for(var k in o){
             if(new RegExp("("+ k +")").test(format)){
                 format = format.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)))
             }
         }
-        return format
+        return format.replace(/N?aN/g, '')
+    },
+
+    stringToColor: function(string) {
+        let sdbmCode = function(str){
+            var hash = 0;
+            for (var i = 0; i < str.length; i++) {
+                var char = str.charCodeAt(i);
+                hash = char + (hash << 6) + (hash << 16) - hash;
+            }
+            return hash;
+        }
+
+        return [
+            '#b271cf', '#fb6e6e', '#fca538', 
+            '#acc625', '#60c2b3', '#73b4dc', 
+            '#7497f0', '#9f73e5'
+        ][Math.abs(sdbmCode(string) % 8)]
     }
 }

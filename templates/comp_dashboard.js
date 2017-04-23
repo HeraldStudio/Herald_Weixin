@@ -49,16 +49,21 @@ exports.bind = function(page) {
             $dashboard_expanded: isExpanded ? page.data.$dashboard[index] : null
         })
         if(isExpanded 
+            && page.data.$dashboard_expanded
+            && page.data.$dashboard_expanded.long
+            && !page.data.$dashboard[index].long.data
             && page.data.$dashboard[index].long.getter
             && !page.data.$dashboard_expanded.long.getting) {
 
             page.data.$dashboard_expanded.long.getting = true
-            page.data.$dashboard_expanded.long.getter(function() {
-                page.data.$dashboard_expanded.long.getting = false
-                page.setData({
-                    $dashboard: page.data.$dashboard,
-                    $dashboard_expanded: page.data.$dashboard_expanded
-                })
+            page.data.$dashboard_expanded.long.getter(function(data) {
+                if (page.data.$dashboard_expandedIndex == index) {
+                    page.data.$dashboard[index].long.data = data
+                    page.setData({
+                        $dashboard: page.data.$dashboard,
+                        $dashboard_expanded: page.data.$dashboard_expanded
+                    })
+                }
             })
         }
     }

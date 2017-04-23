@@ -20,6 +20,7 @@ Page({
   },
   onShow: function() {
     wx.$.comp('login').bind(this)
+    wx.$.comp('schedule').bind(this)
   },
   onPullDownRefresh: function() {
     this.reloadData()
