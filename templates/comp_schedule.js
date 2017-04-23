@@ -18,6 +18,8 @@ exports.bind = function(page) {
             let now = new Date().getTime()
             if (now >= k.fromTime && now < k.toTime) {
                 k.displayData.goingOn = true
+            } else if (now >= k.toTime) {
+                k.displayData.expired = true
             }
 
             if (!k.displayData.image) {
