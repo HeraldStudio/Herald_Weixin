@@ -129,14 +129,6 @@ schedule item .line {
     justify-content: stretch;
 }
 
-schedule item .going-on {
-    color: #57a509;
-}
-
-schedule item .expired {
-    color: #f2460d;
-}
-
 schedule item .top-line {
     margin-bottom: 5rpx;
     opacity: .5;
@@ -157,6 +149,7 @@ schedule item .top-left {
 schedule item .top-right,
 schedule item .bottom-left {
     font-size: 26rpx;
+    color: #666;
 }
 
 schedule item .top-right,
@@ -167,4 +160,12 @@ schedule item .bottom-right {
 schedule item .bottom-right {
     font-size: 26rpx;
     color: #999;
+}
+
+schedule item .going-on {
+    color: #57a509;
+}
+
+schedule item .expired {
+    color: #f2460d;
 }
