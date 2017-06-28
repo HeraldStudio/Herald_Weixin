@@ -1,4 +1,4 @@
-exports.bind = function(page) {
+exports.bind = function(page, forceReload) {
     if (!wx.$.util('user').isLogin()) {
         return
     }
@@ -6,12 +6,11 @@ exports.bind = function(page) {
     page.setData({
         $schedule: [],
         $schedule_loading: [],
-        $schedule_error: [],
-        $schedule_week: wx.$.userStorage('schedule_week')
+        $schedule_error: []
     })
 
     function formatSchedule(schedule) {
-        return schedule.filter(k => k !== null).map(k => {
+        let arr = schedule.filter(k => k !== null).map(k => {
             k.displayData.time = wx.$.util('format').formatTimeNatural(k.fromTime)
             k.displayData.period = wx.$.util('format').formatPeriodNatural(k.fromTime, k.toTime)
 
@@ -28,6 +27,8 @@ exports.bind = function(page) {
             }
             return k
         }).sort((a, b) => a.fromTime - b.fromTime)
+        
+        return arr.filter((item, index) => arr.indexOf(item) === index)
     }
 
     function getCurrentWeek() {
@@ -42,17 +43,14 @@ exports.bind = function(page) {
         now.setSeconds(0)
         now.setMilliseconds(0)
         let thisWeek = parseInt((now.getTime() - startDate) / 86400000 / 7 + 1)
-        return (thisWeek <= 0 ? '假日' : '第' + thisWeek + '周' + wx.$.util('format').formatTime(now, 'EE'))
+        return (thisWeek <= 0 || thisWeek > 16 ? '' : '第' + thisWeek + '周' + wx.$.util('format').formatTime(now, 'EE'))
     }
 
     let reloadProvider = (p, force) => {
         page.setData({
             $schedule_loading: page.data.$schedule_loading.concat(p)
         })
-        if (force) {
-            wx.$.util(p).clear()
-        }
-        wx.$.util(p).getOrUpdateAsync({ 
+        let obj = { 
             success: function(result) {
                 page.setData({
                     $schedule: formatSchedule(page.data.$schedule.concat(result)),
@@ -67,10 +65,15 @@ exports.bind = function(page) {
                     $schedule_week: getCurrentWeek()
                 })
             }
-        })
+        }
+        if (force) {
+            wx.$.util(p).update(obj)
+        } else {
+            wx.$.util(p).getOrUpdateAsync(obj)
+        }
     }
 
-    ['curriculum_provider', 'experiment_provider', 'custom_provider'].forEach(k => reloadProvider(k, false))
+    ['curriculum_provider', 'experiment_provider', 'custom_provider'].forEach(k => reloadProvider(k, forceReload))
 
     page.$schedule_forceReload = function() {
         page.data.$schedule_error.forEach(reloadProvider, true)
@@ -90,5 +93,13 @@ exports.bind = function(page) {
                 return k
             })
         })
+    }
+
+    page.tapEgg = function() {
+        this.egg = this.egg ? this.egg + 1 : 1
+        if (this.egg >= 10) {
+            this.egg = 0
+            wx.navigateTo({ url: '/pages/logs/logs' })
+        }
     }
 }

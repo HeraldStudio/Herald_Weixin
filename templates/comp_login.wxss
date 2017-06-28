@@ -1,4 +1,4 @@
-@import "/templates/comp_contact.wxss"
+@import "/templates/comp_contact.wxss";
 
 subpage.login {
     display: flex;
@@ -24,7 +24,7 @@ subpage.login input {
     font-size: 28rpx;
     line-height: 44rpx;
     padding: 15rpx 20rpx;
-    background: #fafafa;
+    background: #ffffff;
     border-radius: 10rpx;
     margin-bottom: 20rpx;
 }
@@ -43,7 +43,7 @@ subpage.login .copyright {
     bottom: 0;
     left: 0;
     right: 0;
-    background: #fff;
+    background: #ffffff;
     padding: 50rpx;
     text-align: center;
 }

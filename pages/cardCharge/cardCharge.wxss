@@ -1,0 +1,134 @@
+.subtitle {
+    padding: 15rpx 30rpx;
+    background: #f4f4f4;
+    text-align: left;
+    color: #666;
+    font-size: 28rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.subtitle button {
+    margin: -7rpx 0;
+}
+
+.greeting {
+    display: block;
+    padding: 25rpx 30rpx;
+    font-size: 28rpx;
+    color: #888;
+    text-align: left;
+}
+
+.charge {
+    padding: 30rpx 30rpx 0;
+}
+
+.charge line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20rpx;
+    height: 50rpx;
+}
+
+.charge line .row-name {
+    font-size: 28rpx;
+    color: #555;
+    display: block;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.charge line input {
+    margin-left: 30rpx;
+    width: 400rpx;
+    border-bottom: 1rpx solid #eee;
+    text-align: right;
+    font-size: 28rpx;
+    color: #555;
+    -webkit-transition: .3s;
+}
+
+.charge line .content {
+    margin-left: 0;
+    width: 400rpx;
+    text-align: right;
+    font-size: 28rpx;
+    color: #555;
+    -webkit-transition: .3s;
+}
+
+button::after {
+    border: none;
+}
+
+line.amount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 40rpx 0 20rpx;
+}
+
+line.amount input {
+  line-height: 50rpx;
+  color: #333;
+  font-size: 28rpx;
+  flex-grow: 1;
+  text-align: right;
+  width: auto;
+}
+
+line.amount button {
+    line-height: 50rpx;
+    padding: 4rpx 20rpx;
+    border-radius: 8rpx;
+    background: #f8f8f8;
+    color: #333;
+    font-size: 28rpx;
+    margin: 15rpx 5rpx 15rpx 0;
+    -webkit-transition: .3s;
+    flex-shrink: 0;
+}
+
+line.amount button:active, 
+line.amount button.selected {
+    color: #fff;
+    background: #00abd4;
+    -webkit-transition: .1s;
+}
+
+line.amount input.selected {
+  border-bottom: 3rpx solid #00abd4;
+}
+
+line.amount text {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #aaa;
+  margin: 10rpx 0;
+}
+
+button.submit {
+  margin: 15rpx 30rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: normal;
+  background: #00abd4;
+    border-radius: 8rpx;
+    -webkit-transition: .3s;
+}
+
+button.submit:active {
+  background: #00556a;
+}
+
+button.submit.disabled {
+  background: #ccc;
+}
+
+switch {
+  margin-right: -10rpx;
+}

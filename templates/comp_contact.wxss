@@ -20,12 +20,13 @@ contact button {
     line-height: 40rpx;
     padding: 5rpx 20rpx;
     border: 2rpx solid #00abd4;
-    background: #fff;
+    background: #ffffff;
     border-radius: 40rpx !important;
     pointer-events: none;
     margin-left: 0;
     margin-right: 0;
 }
+
 contact button:after {
     border: none;
 }

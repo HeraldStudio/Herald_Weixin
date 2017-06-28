@@ -3,7 +3,7 @@ exports.bind = function(page){
         return
     }
     
-    page.setData({ $slider: [] })
+    page.setData({ $service: {} })
 
     let info = wx.getSystemInfoSync()
     wx.$.requestApi({
@@ -14,7 +14,7 @@ exports.bind = function(page){
             versioncode: ''
         },
         success: function(res) {
-            page.setData({ $slider: res.data.content.sliderviews })
+            page.setData({ $service: res.data.content })
         }
     })
 }
