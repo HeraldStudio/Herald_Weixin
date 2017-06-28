@@ -1,0 +1,53 @@
+<view class="subtitle">
+    <text>欢迎进入小猴偷米小程序开发者调试（xi）中心</text>
+</view>
+<text class="greeting">小猴偷米工作室常年招新中，如果你有一定的Android/iOS/Web/Python基础，有项目经验和团队责任心，欢迎发送简历邮件至 vhyme@live.cn 申请加入我们。报名时请注明「来自小程序调试中心」。
+
+当然，你不可以滥用此工具，对于频繁请求API造成服务器压力的用户，小猴偷米有权进行封禁处理。
+</text>
+<view class="subtitle">
+    <text>用户统一身份标识</text>
+</view>
+<text class="greeting" selectable="true">{{ uuid }}</text>
+<view class="subtitle">
+    <text>运行日志</text>
+</view>
+<view class="log {{ item.collapsed ? 'collapsed' : 'expanded' }} {{ item.type == 'error' ? 'error' : '' }}" wx:for="{{ logs }}" catchtap="toggleCollapsed" catchlongtap="nil" data-index="{{ index }}">
+    <text class="log-title" selectable="true">{{ item.title }}</text>
+    <text class="log-status" selectable="true">{{ item.status }}</text>
+    <text class="log-content" selectable="true" wx:for="{{ item.content }}">{{ item }}</text>
+</view>
+<view class="subtitle">
+    <text>模拟请求</text>
+    <space/>
+    <button class="param-add" catchtap="send">发送请求</button>
+</view>
+<view class="postman">
+    <line>
+        <text class="row-name">请求域名</text>
+        <picker bindchange="onDomainChange" value="{{ domainIndex }}" range="{{ domains }}">
+            <view class="picker">{{ domains[domainIndex] }}</view>
+        </picker>
+    </line>
+    <line>
+        <text class="row-name">请求路由</text>
+        <input placeholder="请输入请求路由" bindinput="onRouteChange" value="{{ route }}"/>
+    </line>
+    <line>
+        <text class="row-name">请求方式</text>
+        <picker bindchange="onMethodChange" value="{{ methodIndex }}" range="{{ methods }}">
+            <view class="picker">{{ methods[methodIndex] }}</view>
+        </picker>
+    </line>
+    <line>
+        <text class="row-name">请求参数</text>
+        <space/>
+        <button class="param-add" catchtap="addParam">+</button>
+    </line>
+    <line wx:for="{{ params }}">
+        <input class="param-key" placeholder="key" bindinput="onKeyChange" data-index="{{ index }}" value="{{ item[0] }}"/>
+        <space/>
+        <input class="param-value" placeholder="value" bindinput="onValueChange" data-index="{{ index }}" value="{{ item[1] }}"/>
+        <button class="param-add" catchtap="deleteParam" data-index="{{ index }}">-</button>
+    </line>
+</view>

@@ -2,7 +2,7 @@
 page {
   margin: 0;
   padding: 0;
-  width: 750rpx;
+  background: #ffffff;
   text-align: center;
   overflow-x: hidden;
 }
@@ -30,18 +30,18 @@ page, input, textarea {
 }
 
 button[type="blue"] {
-  color: #fff;
+  color: #ffffff;
   background-color: #00abd4;
 }
 
 button[type="blue"]:active,
 button-hover[type="blue"] {
-  color: #fff;
+  color: #ffffff;
   background-color: #0097ba !important;
 }
 
 contact-button {
-  margin: 30rpx 0 30rpx 54rpx;
+  margin: 40rpx 0 40rpx 34rpx;
 }
 
 contact-button:before {
@@ -65,7 +65,7 @@ contact-button:after {
   display: inline-block;
   padding: 5rpx 20rpx;
   border: 2rpx solid #00abd4;
-  background: #fff;
+  background: #ffffff;
   border-radius: 40rpx;
   pointer-events: none;
 }
@@ -102,7 +102,7 @@ fab::before,
   bottom: 53rpx;
   width: 40rpx;
   height: 4rpx;
-  background: #fff;
+  background: #ffffff;
   -webkit-transition: .25s;
 }
 
@@ -126,7 +126,7 @@ fab::after,
   bottom: 35rpx;
   width: 4rpx;
   height: 40rpx;
-  background: #fff;
+  background: #ffffff;
   -webkit-transition: .25s;
 }
 
@@ -180,4 +180,14 @@ fab.hidden::after,
 .fab.hidden::before,
 .fab.hidden::after {
   opacity: 0;
+}
+
+.empty-hint {
+  display: block;
+  width: 100%;
+  padding: 35rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #888;
+  background: #fcfcfc;
 }

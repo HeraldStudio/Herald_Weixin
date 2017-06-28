@@ -153,5 +153,21 @@ module.exports = {
       current: current,
       urls: urls
     })
+  },
+
+  open(event) {
+    var url = event.currentTarget.dataset.url
+    if (!url) return
+    url = url.replace(/\[uuid]/g, wx.$.util('user').getUuid())
+    wx.setClipboardData({
+      data: url,
+      success: function (res) {
+        wx.showModal({ title: '打开链接', content: '由于微信限制，小程序内不能直接打开链接，已为你复制到剪贴板，粘贴到浏览器即可打开~', showCancel: false })
+      }
+    })
+  },
+
+  nil: function(event) {
+    
   }
 }

@@ -103,7 +103,12 @@ module.exports = {
             return data.content[k].map(cell => { // 对课表上每个单元格进行遍历，转换成标准的课程数据
                 let name = cell[0]
                 let { teacher, credit } = sidebar[name]
-                let [startWeek, endWeek, startTime, endTime] = cell[1].match(/(\d+)/g).slice(0)
+
+                // 这里不要忘了用 parseInt 否则会导致数值比较变成字符串比较，丢失部分课程
+                // 另外由于 parseInt 可接受两个参数，直接用 map(parseInt) 会导致部分平台出现问题
+                // 参见 https://ruby-china.org/topics/17151
+                let [startWeek, endWeek, startTime, endTime] = cell[1].match(/(\d+)/g).slice(0).map(k => parseInt(k))
+
                 startTime = startTimes[startTime - 1]
                 endTime = startTimes[endTime - 1] + 45
                 let place = cell[2].replace(/^\([单双]\)/, '')

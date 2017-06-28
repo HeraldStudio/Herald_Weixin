@@ -8,16 +8,19 @@
                 <text class="info">{{ item.blocks[0].info === undefined ? '加载失败' : item.blocks[0].info }}</text>
             </blk>
         </item>
-        <view class="arrow {{ $dashboard_expanded != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex + 0.5) / $dashboard.length * 100 }}%"></view>
+        <view class="arrow {{ $dashboard_expanded != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex) / $dashboard.length * 100 }}%"></view>
     </items>
     <item
         wx:for="{{ [$dashboard_expanded] }}"
         class="expanded {{ item != null ? '' : 'hidden' }}" 
         catchtap="$dashboard_toggleExpand" data-index="{{ $dashboard_expandedIndex }}">
         <expandable>
-            <blk wx:for="{{ item.blocks }}">
+            <blk wx:for="{{ item.blocks }}" wx:if="{{ !item.page }}">
                 <text class="desc">{{ item.desc }}</text>
                 <text class="info">{{ item.info }}</text>
+            </blk>
+            <blk wx:for="{{ item.blocks }}" wx:if="{{ item.page }}" catchtap="go" data-to="{{ item.page }}">
+                <text class="navigate">{{ item.desc }}</text>
             </blk>
         </expandable>
         <text class="intro">{{ item.intro }}</text>
@@ -27,7 +30,7 @@
             <block wx:if="{{ item.long.data != 'fail' }}">
                 <view wx:for="{{ item.long.data }}">
                     <view class="line">
-                        <text class="top-left singleline">{{ item.topLeft }}</text>
+                        <text class="top-left">{{ item.topLeft }}</text>
                         <text class="top-right singleline">{{ item.topRight }}</text>
                     </view>
                     <view class="line">
@@ -36,6 +39,7 @@
                     </view>
                 </view>
             </block>
+            <text wx:if="{{ item.long.hint }}" class="declaration">{{ item.long.hint }}</text>
             <text class="collapse">收起</text>
         </list>
     </item>

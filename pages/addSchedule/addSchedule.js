@@ -63,21 +63,12 @@ Page({
         let title = event.detail.value
         this.data.item.displayData.topLeft = title
         this.data.item.displayData.color = wx.$.util('format').stringToColor(title)
-        this.setData({
-            item: this.data.item
-        })
     },
     onBottomLeftChange: function(event) {
         this.data.item.displayData.bottomLeft = event.detail.value
-        this.setData({
-            item: this.data.item
-        })
     },
     onBottomRightChange: function(event) {
         this.data.item.displayData.bottomRight = event.detail.value
-        this.setData({
-            item: this.data.item
-        })
     },
     onFromDateChange: function(event) {
         this.setData({

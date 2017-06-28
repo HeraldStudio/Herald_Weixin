@@ -18,7 +18,19 @@ exports.bind = function(page){
         data.password = event.detail.value
     }
 
-    page.$login_submit = function(event) {
+    page.$login_submit = function (event) {
+      if (data.cardnum.trim() == '') {
+        wx.$.showError('请输入一卡通号')
+        return
+      }
+      if (data.password.trim() == '') {
+        wx.$.showError('请输入密码')
+        return
+      }
+        if (data.cardnum.substr(0, 2) != '21') {
+            wx.$.showError('仅支持东南大学本科生登录，请检查一卡通号')
+            return
+        }
         wx.$.util('user').auth(data.cardnum, data.password, function() {
             page.setData({
                 $login: {

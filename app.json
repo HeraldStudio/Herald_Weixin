@@ -1,13 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/addSchedule/addSchedule"
+    "pages/addSchedule/addSchedule",
+    "pages/curriculum/curriculum",
+    "pages/logs/logs",
+    "pages/cardCharge/cardCharge"
   ],
   "window": {
-    "backgroundColor": "#fff",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#00abd4",
-    "navigationBarTitleText": "小猴偷米2",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "小猴偷米",
+    "navigationBarTextStyle": "black"
   }
 }

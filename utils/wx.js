@@ -5,6 +5,8 @@ var config = {
   stopPoints: []
 }
 
+var logs = []
+
 // 注入对象：把 injector 中的成员注入到 injectee
 // 若 replace == true，有冲突时，优先保留新注入的 injector 成员，原来 injectee 的成员名前加 super_ 作为备选
 // 若 replace == false，有冲突时，优先保留原有的 injectee 成员，新注入的成员名前加 super_ 作为备选
@@ -61,20 +63,38 @@ function _Page(obj) {
 function log(title, status, obj1, obj2, obj3, obj4) {
   console.log(
     '%c' + title + '%c' + status,
-    "display: block; color: #fff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
-    "display: block; color: #fff; background: #88b46a; border-radius: 0 2px 2px 0; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #88b46a; border-radius: 0 2px 2px 0; padding:2px 5px; line-height: 20px",
     obj1 || '', obj2 || '', obj3 || '', obj4 || ''
   )
+  logs.push({ 
+    type: 'log', 
+    title: title, 
+    status: status, 
+    content: [obj1, obj2, obj3, obj4]
+      .filter(obj => obj !== undefined)
+      .map(obj => JSON.stringify(obj, null, 2))
+      .map(str => str.replace(/(^\")|(\"$)/g, ''))
+  })
 }
 
 // Pretty Log
 function error(title, status, obj1, obj2, obj3, obj4) {
   console.error(
     '%c' + title + '%c' + status,
-    "display: block; color: #fff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
-    "display: block; color: #fff; background: #88b46a; border-radius: 0 2px 2px 0; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #88b46a; border-radius: 0 2px 2px 0; padding:2px 5px; line-height: 20px",
     obj1 || '', obj2 || '', obj3 || '', obj4 || ''
   )
+  logs.push({ 
+    type: 'error', 
+    title: title, 
+    status: status, 
+    content: [obj1, obj2, obj3, obj4]
+      .filter(obj => obj !== undefined)
+      .map(obj => JSON.stringify(obj, null, 2))
+      .map(str => str.replace(/(^\")|(\"$)/g, ''))
+  })
 }
 
 /*
@@ -147,13 +167,13 @@ function requestCompat(obj) {
       complete: function(res) {
         if (res.statusCode < 400) {
           wx.$.log(
-            res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
+            res.statusCode || 0, (obj.method || 'GET') + ' ' + (obj.route ? config.urlFormatter(obj.route) : obj.url),
             'Data:', obj.data || 'none',
             'Result: ', res
           )
         } else {
           wx.$.error(
-            res.statusCode, (obj.method || 'GET') + ' ' + (obj.route || obj.url),
+            res.statusCode || 0, (obj.method || 'GET') + ' ' + (obj.route ? config.urlFormatter(obj.route) : obj.url),
             'Data:', obj.data || 'none',
             'Response: ', res
           )
@@ -201,7 +221,7 @@ function checkRegister() {
 }
 
 module.exports = {
-  config, beginInject, Page, log, error,
+  config, beginInject, Page, log, error, logs,
   ask, requestApi, requestCompat, userStorage, comp,
   showActions, showSuccess, showLoading, hideLoading, showError, checkRegister
 }

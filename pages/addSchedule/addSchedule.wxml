@@ -1,4 +1,4 @@
-<view class="subtitle">
+<!--<view class="subtitle">
     <text>日程预览</text>
 </view>
 <item>
@@ -17,7 +17,7 @@
             <text class="bottom-right singleline">{{ item.displayData.bottomRight }}</text>
         </view>
     </view>
-</item>
+</item>-->
 <form>
     <view class="subtitle">
         <text>基本信息</text>

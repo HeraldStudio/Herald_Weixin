@@ -1,5 +1,13 @@
-@import "/templates/comp_searchbar.wxss";
-@import "/templates/comp_slider.wxss";
+@import "/templates/comp_menu_tip.wxss";
+@import "/templates/comp_service.wxss";
+@import "/templates/comp_avatar.wxss";
 @import "/templates/comp_dashboard.wxss";
 @import "/templates/comp_schedule.wxss";
 @import "/templates/comp_login.wxss";
+
+.waiting {
+  display: block;
+  font-size: 36rpx;
+  color: #ccc;
+  padding: 450rpx 0;
+}
