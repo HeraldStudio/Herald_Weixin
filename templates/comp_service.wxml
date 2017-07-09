@@ -1,5 +1,5 @@
 <service wx:if="{{ $service.message }}" class="{{ $service.message.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.message.url }}">
-    <view class="subtitle" catchtap="tapEgg">
+    <view class="subtitle">
         <image src="/images/ic_notice.png" mode="aspectFit"/>
         <text>小猴公告</text>
         <space/>
