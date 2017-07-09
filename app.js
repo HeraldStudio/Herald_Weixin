@@ -5,10 +5,10 @@ App({
     require('utils/wx.js').beginInject()
 
     this.storage = wx.getStorageSync('storage') || {}
-    this.scene = options.scene
+    // this.scene = options.scene
   },
   onShow: function (options) {
-    this.scene = options.scene
+    // this.scene = options.scene
   },
   onHide: function () {
     this.forceUpdateStorage()
