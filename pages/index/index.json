@@ -2,6 +2,6 @@
   "navigationBarTitleText": "召唤小猴",
   "backgroundColor": "#00abd4",
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#00abd4;display:none",
+  "navigationBarBackgroundColor": "#00abd4",
   "navigationBarTextStyle": "white"
 }
