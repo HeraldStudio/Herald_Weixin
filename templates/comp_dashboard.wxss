@@ -41,7 +41,7 @@ dashboard .arrow.hidden {
 }
 
 dashboard item {
-    width: 187rpx;
+    width: 25%;
     margin: 40rpx 0;
     padding: 5rpx 0;
     display: flex;
