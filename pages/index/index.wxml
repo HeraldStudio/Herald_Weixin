@@ -4,7 +4,7 @@
     <include src="/templates/comp_dashboard.wxml"/>
     <include src="/templates/comp_service.wxml"/>
     <include src="/templates/comp_schedule.wxml"/>
-    <contact-button type="default-light"/>
+    <!--<contact-button type="default-light"/>-->
 </block>
 <block wx:elif="{{ $login.isLogin === false }}">
     <include src="/templates/comp_login.wxml"/>

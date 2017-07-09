@@ -1,7 +1,4 @@
 <view class="avatar-container">
-  <image class="avatar" src="{{ $avatar.url }}" mode="aspectFill" catchtap="$avatar_userMenu"/>
-  <view class="right-container">
     <text class="name">{{ $avatar.name }}</text>
     <text class="identity">{{ $avatar.identity }}</text>
-  </view>
 </view>

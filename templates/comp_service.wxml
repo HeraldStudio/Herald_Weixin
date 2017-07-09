@@ -1,8 +1,8 @@
-<service wx:if="{{ $service.message }}" class="{{ $service.message.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.message.url }}">
+<service>
     <view class="subtitle">
         <image src="/images/ic_notice.png" mode="aspectFit"/>
         <text>小猴公告</text>
         <space/>
     </view>
-    <text class="content">{{ $service.message.content }}</text>
+    <text class="content">{{ $avatar.name ? $avatar.name + '，' : '' }}欢迎使用小Q定制版小猴偷米，小猴偷米工作室将联手小Q机器人，为你提供各类查询服务~</text>
 </service>

@@ -9,12 +9,13 @@ exports.bind = function(page){
     wx.$.requestApi({
         url: 'https://myseu.cn/checkversion',
         data: {
-            versiontype: 'wxapp-' + info.platform,
+            uuid: wx.$.util('user').getUuid(),
+            versiontype: 'wxapp-xiaoq',
             versionname: info.system,
             versioncode: ''
-        },
-        success: function(res) {
-            page.setData({ $service: res.data.content })
-        }
+        }// ,
+        // success: function(res) {
+        //     page.setData({ $service: res.data.content })
+        // }
     })
 }

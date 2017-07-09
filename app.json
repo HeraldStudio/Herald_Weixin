@@ -1,16 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/addSchedule/addSchedule",
-    "pages/curriculum/curriculum",
-    "pages/logs/logs",
-    "pages/cardCharge/cardCharge"
+    "pages/index/index"
   ],
   "window": {
     "backgroundColor": "#ffffff",
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "小猴偷米",
+    "navigationBarTitleText": "小猴偷米 - 小Q定制版",
     "navigationBarTextStyle": "black"
   }
 }

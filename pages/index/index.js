@@ -4,7 +4,7 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '小猴偷米2',
+      title: '小猴偷米',
       path: '/pages/index/index'
     }
   },
@@ -20,7 +20,6 @@ Page({
   },
   onShow() {
     wx.$.comp('login').bind(this)
-    wx.$.comp('menu_tip').bind(this)
   },
   onPullDownRefresh() {
     wx.$.comp('service').bind(this)
