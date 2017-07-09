@@ -11,7 +11,6 @@ Page({
   reloadData() {
     wx.$.comp('login').bind(this)
     wx.$.comp('service').bind(this)
-    wx.$.comp('avatar').bind(this)
     wx.$.comp('dashboard').bind(this)
     wx.$.comp('schedule').bind(this)
   },
@@ -23,7 +22,6 @@ Page({
   },
   onPullDownRefresh() {
     wx.$.comp('service').bind(this)
-    wx.$.comp('avatar').bind(this)
     wx.$.comp('login').bind(this)
     wx.$.comp('dashboard').bind(this)
     wx.$.comp('schedule').bind(this, true)

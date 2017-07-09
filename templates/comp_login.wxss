@@ -18,13 +18,19 @@ subpage.login .slogan {
     margin-bottom: 60rpx;
 }
 
+subpage.login .tip {
+    font-size: 26rpx;
+    width: 480rpx;
+    color: #ffafab;
+}
+
 subpage.login input {
     width: 480rpx;
     text-align: center;
     font-size: 28rpx;
     line-height: 44rpx;
     padding: 15rpx 20rpx;
-    background: #ffffff;
+    background: #fafafa;
     border-radius: 10rpx;
     margin-bottom: 20rpx;
 }

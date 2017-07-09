@@ -94,12 +94,4 @@ exports.bind = function(page, forceReload) {
             })
         })
     }
-
-    page.tapEgg = function() {
-        this.egg = this.egg ? this.egg + 1 : 1
-        if (this.egg >= 10) {
-            this.egg = 0
-            wx.navigateTo({ url: '/pages/logs/logs' })
-        }
-    }
 }

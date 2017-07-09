@@ -1,5 +1,5 @@
 <schedule>
-    <view class="subtitle" catchtap="tapEgg">
+    <view class="subtitle">
         <image src="/images/ic_schedule.png" mode="aspectFit"/>
         <text>课表/实验</text>
         <space/>

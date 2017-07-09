@@ -1,6 +1,7 @@
 <block wx:if="{{ $login.isLogin === true }}">
+    <text class="banner-temp">此处可放图片，宽高比约 5:2 ~ 5:3，
+宽度建议不低于1080像素</text>
     <include src="/templates/comp_menu_tip.wxml"/>
-    <include src="/templates/comp_avatar.wxml"/>
     <include src="/templates/comp_dashboard.wxml"/>
     <include src="/templates/comp_service.wxml"/>
     <include src="/templates/comp_schedule.wxml"/>
@@ -10,5 +11,5 @@
     <include src="/templates/comp_login.wxml"/>
 </block>
 <block wx:else>
-    <text class="waiting">小猴正在赶来，马上就好啦</text>
+    <text class="waiting">小猴正在睡懒觉，马上就来啦</text>
 </block>
