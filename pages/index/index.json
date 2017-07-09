@@ -1,8 +1,7 @@
 {
   "navigationBarTitleText": "召唤小猴",
-  "enablePullDownRefresh": true,
   "backgroundColor": "#00abd4",
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#00abd4",
+  "navigationBarBackgroundColor": "#00abd4;display:none",
   "navigationBarTextStyle": "white"
 }
