@@ -10,6 +10,7 @@
   height: auto;
   z-index: -1;
   background: #00abd4;
+  display: block;
 }
 
 subpage.login {
