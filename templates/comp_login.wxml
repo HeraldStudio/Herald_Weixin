@@ -1,6 +1,6 @@
 <image class="background" src="/images/bg.png" mode="aspectFill"></image>
 <subpage class="login">
-    <image class="logo" src="https://ws2.sinaimg.cn/large/006tKfTcly1fhhc2xrxnnj31kw0o47cx.jpg" mode="aspectFit"></image>
+    <image class="logo" src="/images/logo2.png" mode="aspectFit"></image>
     <text class="slogan">东大小Q专属通道</text>
     <input placeholder="一卡通号" focus="true" type="number" maxlength="9" bindinput="$login_onCardnumChange" bindconfirm="$login_submit"/>
     <input placeholder="统一身份认证密码" password="true" type="text" bindinput="$login_onPasswordChange" bindconfirm="$login_submit"/>
