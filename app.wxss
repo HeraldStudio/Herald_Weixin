@@ -185,7 +185,7 @@ fab.hidden::after,
 .empty-hint {
   display: block;
   width: 100%;
-  padding: 35rpx 0;
+  padding: 80rpx 0;
   text-align: center;
   font-size: 26rpx;
   color: #888;
