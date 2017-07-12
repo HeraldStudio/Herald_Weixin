@@ -1,6 +1,6 @@
 schedule .subtitle {
     padding: 15rpx 30rpx;
-    background: #f4f4f4;
+    background: #fafafa;
     display: flex;
     flex-direction: row;
     align-items: center;

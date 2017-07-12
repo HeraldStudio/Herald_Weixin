@@ -12,10 +12,9 @@
   padding: 450rpx 0;
 }
 
-.banner-temp {
+.banner {
+  width: 100%;
+  height: 200px;
   display: block;
-  background: #cccccc;
-  padding: 150rpx 100rpx;
-  color: #888;
-  font-size: 28rpx;
+  background: #00abd4;
 }

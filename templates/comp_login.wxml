@@ -1,12 +1,13 @@
+<image class="background" src="/images/bg.png" mode="aspectFill"></image>
 <subpage class="login">
-    <image class="logo" src="/images/logo_180.png" mode="aspectFit"></image>
-    <text class="slogan">小猴偷米丨小Q专属版</text>
+    <image class="logo" src="/images/logo2.png" mode="aspectFit"></image>
+    <text class="slogan">东大小Q专属通道</text>
     <input placeholder="一卡通号" focus="true" type="number" maxlength="9" bindinput="$login_onCardnumChange" bindconfirm="$login_submit"/>
     <input placeholder="统一身份认证密码" password="true" type="text" bindinput="$login_onPasswordChange" bindconfirm="$login_submit"/>
-    <text class="tip">
-注意：新生目前暂时不能登录，请关注小Q团队或小猴偷米官方通知！</text>
     <button type="blue" class="login" bindtap="$login_submit">登录</button>
     <!--<contact-button/>-->
+    <text class="tip">
+东南大学在校生使用一卡通号登录，使用查跑操、查询讲座打卡次数，查SRTP学分、查一卡通余额、查课表等相关功能。</text>
     <!-- <include src="/templates/comp_contact.wxml"/> -->
-    <text class="copyright">© 2017 东南大学小猴偷米工作室 公益出品</text>
+    <text class="copyright">© 城墙砖文化 小猴偷米工作室 公益出品</text>
 </subpage>

@@ -189,5 +189,5 @@ fab.hidden::after,
   text-align: center;
   font-size: 26rpx;
   color: #888;
-  background: #fcfcfc;
+  background: #fff;
 }

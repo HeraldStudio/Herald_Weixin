@@ -1,6 +1,6 @@
 service .subtitle {
     padding: 15rpx 30rpx;
-    background: #f4f4f4;
+    background: #fafafa;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,7 +27,7 @@ service .content {
   text-align: left;
   font-size: 26rpx;
   color: #555;
-  background: #fcfcfc;
+  background: #fff;
 }
 
 service.selectable:active .subtitle {
@@ -36,4 +36,13 @@ service.selectable:active .subtitle {
 
 service.selectable:active .content {
   background: #f0f0f0;
+}
+
+.logout {
+  display: block;
+  width: 100%;
+  padding: 30rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #aaa;
 }

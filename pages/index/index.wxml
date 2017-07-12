@@ -1,10 +1,9 @@
 <block wx:if="{{ $login.isLogin === true }}">
-    <text class="banner-temp">此处可放图片，宽高比约 5:2 ~ 5:3，
-宽度建议不低于1080像素</text>
+    <image class="banner" src="/images/header.png" mode="aspectFill"></image>
     <include src="/templates/comp_menu_tip.wxml"/>
     <include src="/templates/comp_dashboard.wxml"/>
-    <include src="/templates/comp_service.wxml"/>
     <include src="/templates/comp_schedule.wxml"/>
+    <include src="/templates/comp_service.wxml"/>
     <!--<contact-button type="default-light"/>-->
 </block>
 <block wx:elif="{{ $login.isLogin === false }}">
