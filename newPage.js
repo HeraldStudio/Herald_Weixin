@@ -25,16 +25,16 @@ function newPage(name, path = "./pages/"){
     fs.mkdirSync(dir)
   }
   function createType(type){
-    var fileName = dir + "/" + name + "." + type
-    if(!fs.existsSync(fileName)){
-      console.log("creating file: ", fileName)
-      fs.writeFile(fileName,"", err => {
+    var filename = dir + "/" + name + "." + type
+    if(!fs.existsSync(filename)){
+      console.log("creating file: ", filename)
+      fs.writeFile(filename,"", err => {
         if(err) {
           return console.log(err)
         }
       })
     } else {
-      console.log(fileName, "\t already exists  !!!!!")
+      console.log(filename, "\t already exists  !!!!!")
     }
   }
   list.map(createType)

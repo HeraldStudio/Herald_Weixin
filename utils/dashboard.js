@@ -1,5 +1,5 @@
 module.exports = {
-    getCard: function(callback) {
+    getCard(callback) {
         callback && callback({
             id: 'card',
             blocks: [{ desc: '一卡通', info: '···' }]
@@ -14,7 +14,7 @@ module.exports = {
                     id: 'card',
                     blocks: [
                         {
-                            desc: '一卡通余额',
+                            desc: '卡余额',
                             info: res.data.content.cardLeft
                         },
                         {
@@ -62,7 +62,7 @@ module.exports = {
             }
         })
     },
-    getPe: function(callback) {
+    getPe(callback) {
         callback && callback({
             id: 'pe',
             blocks: [{ desc: '跑操', info: '···' }]
@@ -136,7 +136,7 @@ module.exports = {
                         id: 'pe',
                         blocks: [
                             {
-                                desc: '已跑操次数',
+                                desc: '跑操次数',
                                 info: res.data.content
                             },
                             {
@@ -183,7 +183,7 @@ module.exports = {
             })
         }
     },
-    getLecture: function(callback) {
+    getLecture(callback) {
         callback && callback({
             id: 'lecture',
             blocks: [{ desc: '人文讲座', info: '···' }]
@@ -195,7 +195,7 @@ module.exports = {
                     id: 'lecture',
                     blocks: [
                         {
-                            desc: '讲座打卡数',
+                            desc: '讲座次数',
                             info: res.data.content.count,
                         }
                     ],
@@ -212,7 +212,7 @@ module.exports = {
             }
         })
     },
-    getSrtp: function(callback) {
+    getSrtp(callback) {
         callback && callback({
             id: 'srtp',
             blocks: [{ desc: 'SRTP', info: '···' }]
@@ -224,7 +224,7 @@ module.exports = {
                     id: 'srtp',
                     blocks: [
                         {
-                            desc: 'SRTP学分数',
+                            desc: 'SRTP学分',
                             info: res.data.content[0].total
                         },
                         {

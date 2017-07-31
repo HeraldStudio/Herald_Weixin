@@ -24,6 +24,8 @@ module.exports = {
     var to = params.to
     var url = wx.$.config.pageFormatter(to)
     var regex = /^\//g
+    
+    var pages = getCurrentPages()
     if (to == 'self') {
       url = '/' + pages[pages.length - 1].__route__.replace(regex, '')
     }
@@ -140,7 +142,7 @@ module.exports = {
   */
   viewimg: function(event) {
     var current = event.currentTarget.dataset.current
-    var urls = event.currentTarget.dataset.urls
+    var urls = event.currentTarget.dataset.urls || [current]
     var pathmap = event.currentTarget.dataset.pathmap
     if (pathmap) {
       let paths = pathmap.split('.')

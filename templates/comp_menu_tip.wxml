@@ -1,4 +1,4 @@
 <menu-tip wx:if="{{ $menuTip }}">
   <view class="arrow"/>
-  <text class="content">点击菜单-显示在聊天顶部，查询更方便</text>
+  <text class="content">点击菜单-显示在聊天顶部，实时查看日程信息</text>
 </menu-tip>

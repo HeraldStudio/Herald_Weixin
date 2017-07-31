@@ -57,10 +57,13 @@ module.exports = {
                 fromTime: date.getTime() + hm * 60000,
                 toTime: date.getTime() + hm * 60000 + 3 * 3600000,
                 displayData: {
-                    topLeft: lab.name,
-                    topRight: '',
-                    bottomLeft: lab.Teacher + ' ' + lab.Address,
-                    bottomRight: type
+                  topLeft: lab.name,
+                  topRight: '',
+                  bottomLeft: lab.Teacher + ' ' + lab.Address,
+                  bottomRight: type
+                },
+                noticeData: {
+                  text: '[' + lab.Address + '] ' + lab.name
                 }
             }
         })).reduce((a, b) => a.concat(b), []).sort((a, b) => a.fromTime - b.fromTime)

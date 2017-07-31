@@ -4,6 +4,8 @@
 @import "/templates/comp_dashboard.wxss";
 @import "/templates/comp_schedule.wxss";
 @import "/templates/comp_login.wxss";
+@import "/templates/comp_jwc.wxss";
+@import "/templates/comp_server_down.wxss";
 
 .waiting {
   display: block;

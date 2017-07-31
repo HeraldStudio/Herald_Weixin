@@ -1,6 +1,5 @@
 menu-tip {
   display: block;
-  background: #00abd4;
   padding: 15rpx 25rpx;
   position: relative;
 }
@@ -13,14 +12,14 @@ menu-tip .arrow {
   width: 0;
   height: 0;
   border: 15rpx solid transparent;
-  border-bottom: 15rpx solid #2fb9db;
+  border-bottom: 15rpx solid #f5f5f5;
 }
 
 menu-tip .content {
   display: block;
   padding: 15rpx 25rpx;
-  background: #2fb9db;
+  background: #f5f5f5;
   border-radius: 8rpx;
-  color: #fff;
-  font-size: 26rpx;
+  color: #666;
+  font-size: 28rpx;
 }
