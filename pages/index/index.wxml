@@ -1,7 +1,13 @@
 <block wx:if="{{ $login.isLogin === true }}">
     <include src="/templates/comp_menu_tip.wxml"/>
-    <include src="/templates/comp_avatar.wxml"/>
-    <include src="/templates/comp_dashboard.wxml"/>
+    <block wx:if="{{ $service.serverHealth }}">
+        <include src="/templates/comp_avatar.wxml"/>
+        <include src="/templates/comp_dashboard.wxml"/>
+        <include src="/templates/comp_jwc.wxml"/>
+    </block>
+    <block wx:else>
+        <include src="/templates/comp_server_down.wxml"/>
+    </block>
     <include src="/templates/comp_service.wxml"/>
     <include src="/templates/comp_schedule.wxml"/>
     <contact-button type="default-light"/>

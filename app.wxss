@@ -31,13 +31,13 @@ page, input, textarea {
 
 button[type="blue"] {
   color: #ffffff;
-  background-color: #00abd4;
+  background-color: #3688ff;
 }
 
 button[type="blue"]:active,
 button-hover[type="blue"] {
   color: #ffffff;
-  background-color: #0097ba !important;
+  background-color: #1c78ff !important;
 }
 
 contact-button {
@@ -46,7 +46,7 @@ contact-button {
 
 contact-button:before {
   content: "服务出现问题？";
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #666;
   margin-left: -54rpx;
   margin-right: 55rpx;
@@ -57,14 +57,14 @@ contact-button:before {
 
 contact-button:after {
   content: "联系客服";
-  font-size: 26rpx;
-  color: #00abd4;
+  font-size: 28rpx;
+  color: #3688ff;
   line-height: 40rpx;
   margin-left: -90rpx;
   z-index: 99999999999;
   display: inline-block;
   padding: 5rpx 20rpx;
-  border: 2rpx solid #00abd4;
+  border: 2rpx solid #3688ff;
   background: #ffffff;
   border-radius: 40rpx;
   pointer-events: none;
@@ -84,7 +84,7 @@ fab, .fab {
   bottom: 40rpx;
   width: 109rpx;
   height: 109rpx;
-  background: #00abd4;
+  background: #3688ff;
   border-radius: 50%;
   display: block;
   /*box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);*/
@@ -163,7 +163,7 @@ fab.confirm::after,
 /* Material 点击效果 */
 fab:active, 
 .fab:active {
-  background: #008dad;
+  background: #1c78ff;
   /*box-shadow: 0 2rpx 4rpx rgba(2, 0, 33, .2);*/
   -webkit-transition: .25s;
 }
@@ -187,7 +187,7 @@ fab.hidden::after,
   width: 100%;
   padding: 35rpx 0;
   text-align: center;
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #888;
   background: #fcfcfc;
 }

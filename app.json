@@ -4,7 +4,8 @@
     "pages/addSchedule/addSchedule",
     "pages/curriculum/curriculum",
     "pages/logs/logs",
-    "pages/cardCharge/cardCharge"
+    "pages/cardCharge/cardCharge",
+    "pages/jwcDetail/jwcDetail"
   ],
   "window": {
     "backgroundColor": "#ffffff",

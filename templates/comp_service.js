@@ -2,8 +2,6 @@ exports.bind = function(page){
     if (!wx.$.util('user').isLogin()) {
         return
     }
-    
-    page.setData({ $service: {} })
 
     let info = wx.getSystemInfoSync()
     wx.$.requestApi({

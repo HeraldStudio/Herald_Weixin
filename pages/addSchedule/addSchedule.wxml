@@ -29,7 +29,7 @@
         <text>重复</text>
     </view>
     <radio-group>
-        <radio wx:for="{{ [['once', '不重复'], ['daily', '每天'], ['weekly', '每周'], ['fortnightly', '每两周'], ['monthly', '每月']] }}" value="{{ item[0] }}" checked="{{ item[0] == 'once' }}" color="#00abd4">{{ item[1] }}</radio>
+        <radio wx:for="{{ [['once', '不重复'], ['daily', '每天'], ['weekly', '每周'], ['fortnightly', '每两周'], ['monthly', '每月']] }}" value="{{ item[0] }}" checked="{{ item[0] == 'once' }}" color="#3688ff">{{ item[1] }}</radio>
     </radio-group> -->
     <view class="subtitle">
         <text>起止时间</text>

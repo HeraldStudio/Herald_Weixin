@@ -73,7 +73,7 @@ exports.bind = function(page, forceReload) {
         }
     }
 
-    ['curriculum_provider', 'experiment_provider', 'custom_provider'].forEach(k => reloadProvider(k, forceReload))
+    ['curriculum_provider', 'experiment_provider', 'exam_provider', 'custom_provider'].forEach(k => reloadProvider(k, forceReload))
 
     page.$schedule_forceReload = function() {
         page.data.$schedule_error.forEach(reloadProvider, true)

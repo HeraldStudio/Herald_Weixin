@@ -34,35 +34,38 @@ module.exports = {
 
         wx.$.requestApi({
             route: 'api/exam',
-            // complete: function(result) {
-            //     console.log(result)
-            //     try {
-            //         wx.$.userStorage(that.key, that.format(result.data.content))
-            //         success && success(that.get())
-            //     } catch (e) {
-            //         wx.$.error(e)
-            //         fail && fail()
-            //         return
-            //     }
-            // }
+            complete: function(result) {
+                console.log(result)
+                try {
+                    wx.$.userStorage(that.key, that.format(result.data.content))
+                    success && success(that.get())
+                } catch (e) {
+                    wx.$.error(e)
+                    fail && fail()
+                    return
+                }
+            }
         })
     },
 
     format: function(data) {
-        return Object.keys(data).filter(k => data[k].length).map(type => data[type].map(lab => {
-            let [year, month, day] = lab.Date.match(/(\d+)/g).slice(0)
-            let date = new Date(year, month, day)
-            let hm = { '上午': 9 * 60 + 45, '下午': 13 * 60 + 45, '晚上': 18 * 60 + 15 }[lab.Day]
-            return {
-                fromTime: date.getTime() + hm * 60000,
-                toTime: date.getTime() + hm * 60000 + 3 * 3600000,
-                displayData: {
-                    topLeft: lab.name,
-                    topRight: '实验',
-                    bottomLeft: lab.Teacher + ' ' + lab.Address,
-                    bottomRight: type
-                }
-            }
-        })).reduce((a, b) => a.concat(b), []).sort((a, b) => a.fromTime - b.fromTime)
+        return data.map(exam => {
+          let [year, month, day, hour, minute] = exam.time.match(/(\d+)/g).slice(0)
+          let date = new Date(year, month - 1, day, hour, minute)
+          let minutes = exam.hour
+          return {
+              fromTime: date.getTime(),
+              toTime: date.getTime() + minutes * 60 * 1000,
+              displayData: {
+                topLeft: exam.course,
+                topRight: '考试',
+                bottomLeft: exam.location,
+                bottomRight: ''
+              },
+              noticeData: {
+                text: '[' + exam.location + '] ' + exam.course
+              }
+          }
+        }).sort((a, b) => a.fromTime - b.fromTime)
     }
 }

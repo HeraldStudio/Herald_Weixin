@@ -69,7 +69,7 @@ item .top-left {
 
 item .top-right,
 item .bottom-left {
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: #666;
 }
 
@@ -79,7 +79,7 @@ item .bottom-right {
 }
 
 item .bottom-right {
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: #999;
 }
 
@@ -105,12 +105,12 @@ form radio {
     justify-content: space-between;
     padding: 20rpx 30rpx;
     font-size: 30rpx;
-    color: #00abd4;
+    color: #3688ff;
 }
 
 .picker-container .picker {
     padding: 10rpx 15rpx;
-    background: #00abd4;
+    background: #3688ff;
     color: #ffffff;
     border-radius: 6rpx;
     -webkit-transition: .3s;
@@ -126,5 +126,5 @@ form radio {
     text-align: left;
     color: #aaa;
     border-top: 1rpx solid #eee;
-    font-size: 26rpx;
+    font-size: 28rpx;
 }

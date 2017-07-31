@@ -1,0 +1,24 @@
+<view class="notice-body" wx:if="{{ notice }}">
+  <view class="title" wx:if="{{ notice.title }}">
+    <text selectable="true">{{ notice.title }}</text>
+  </view>
+  <view class="publish-date" wx:if="{{ notice.publishDate }}">
+    <text selectable="true">发布时间：{{ notice.publishDate }}</text>
+  </view>
+  <view class="content {{ item.link ? 'link' : ''}}" wx:for="{{ notice.content }}" catchtap="link" data-url="{{ item.link }}" data-filename="{{ item.content }}">
+    <text class="text" selectable="true" wx:if="{{ item.type == 'text' }}">{{ item.content }}</text>
+    <image class="image" mode="widthFix" wx:if="{{ item.type == 'image' }}" src="{{ item.src }}" catchtap="viewimg" data-current="{{ item.src }}"/>
+    <text class="link" selectable="true" wx:if="{{ item.type == 'link' }}" catchtap="link" data-url="{{ item.url }}">{{ item.url }}</text>
+  </view>
+  <view class="file" wx:if="{{ notice.isFile }}">
+    <view class="icon">
+        <image src="/images/ic_file.png" mode="aspectFit"/>
+    </view>
+    <text>{{ filename || '文件' }}</text>
+    <button type="blue" catchtap="openAsFile">下载并打开</button>
+  </view>
+  <view class="hint">
+    <text>页面经由小猴偷米自动转换，可能丢失部分信息，请以原文为准。</text>
+    <text class="link" catchtap="open" data-url="{{ notice.url }}">查看原文</text>
+  </view>
+</view>

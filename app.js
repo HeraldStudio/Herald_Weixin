@@ -7,11 +7,24 @@ App({
     this.storage = wx.getStorageSync('storage') || {}
     this.scene = options.scene
   },
+  interval: null,
+  topBar: '',
   onShow: function (options) {
     this.scene = options.scene
+    clearInterval(this.interval)
   },
   onHide: function () {
     this.forceUpdateStorage()
+    this.updateTopbar()
+    this.interval = setInterval(this.updateTopbar, 10000)
+  },
+  updateTopbar: function () {
+    let text = wx.$.comp('schedule_topbar').get()
+    if (this.topBar != text) {
+      wx.$.log('Topbar', text)
+      this.topBar = text
+    }
+    wx.setTopBarText({ text: text })
   },
   scene: 0,
   storage: {},

@@ -1,5 +1,5 @@
 service .subtitle {
-    padding: 15rpx 30rpx;
+    padding: 20rpx 30rpx;
     background: #f4f4f4;
     display: flex;
     flex-direction: row;
@@ -11,13 +11,14 @@ service .subtitle {
 }
 
 service .subtitle image {
-    width: 32rpx;
-    height: 32rpx;
+    width: 42rpx;
+    height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
 }
 
 service .subtitle text {
-    margin-left: 20rpx;
-    font-size: 26rpx;
+    font-size: 28rpx;
     color: #666;
 }
 
@@ -25,7 +26,7 @@ service .content {
   display: block;
   padding: 35rpx 30rpx;
   text-align: left;
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: #555;
   background: #fcfcfc;
 }

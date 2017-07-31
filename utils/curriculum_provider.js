@@ -129,10 +129,13 @@ module.exports = {
                     fromTime: startTime,
                     toTime: endTime,
                     displayData: {
-                        topLeft: model.name,
-                        topRight: '',
-                        bottomLeft: model.teacher + ' ' + model.place,
-                        bottomRight: model.weekDesc + ' (' + model.credit + '学分)'
+                      topLeft: model.name,
+                      topRight: '',
+                      bottomLeft: model.teacher + ' ' + model.place,
+                      bottomRight: model.weekDesc + ' (' + model.credit + '学分)'
+                    },
+                    noticeData: {
+                      text: '[' + model.place + '] ' + model.name
                     }
                 }
             })

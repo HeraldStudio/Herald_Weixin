@@ -95,12 +95,12 @@ line.amount button {
 line.amount button:active, 
 line.amount button.selected {
     color: #fff;
-    background: #00abd4;
+    background: #3688ff;
     -webkit-transition: .1s;
 }
 
 line.amount input.selected {
-  border-bottom: 3rpx solid #00abd4;
+  border-bottom: 3rpx solid #3688ff;
 }
 
 line.amount text {
@@ -116,7 +116,7 @@ button.submit {
   color: #fff;
   font-size: 32rpx;
   font-weight: normal;
-  background: #00abd4;
+  background: #3688ff;
     border-radius: 8rpx;
     -webkit-transition: .3s;
 }
