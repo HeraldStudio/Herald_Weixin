@@ -14,8 +14,6 @@ exports.bind = function(page) {
     }
 
     function animateZzz() {
-        if (page.data.$service.serverHealth) return
-
         var animation = wx.createAnimation({
             duration: 700
         })

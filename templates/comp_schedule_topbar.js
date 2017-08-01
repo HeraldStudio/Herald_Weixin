@@ -17,7 +17,7 @@ exports.get = function() {
     if (expiredCount) {
       return expiredCount + '个日程已过期'
     } else {
-      return '今天没有日程'
+      return '小猴偷米 · 今天没有日程'
     }
   }
 

@@ -43,6 +43,7 @@ module.exports = {
                                 complete: function(res) {
                                     if (!Array.isArray(res.data.content.detial)) {
                                         that.data = 'fail'
+                                        callback2 && callback2(that.data)
                                         return
                                     }
                                     that.data = that.data.concat(res.data.content.detial.map(k => { return {
@@ -84,7 +85,7 @@ module.exports = {
                                         info: res.data.content == 'refreshing' ? '暂无' : res.data.content.replace('今天', '')
                                     },
                                     {
-                                        desc: '已跑操次数',
+                                        desc: '跑操次数',
                                         info: res2.data.content
                                     },
                                     {
@@ -102,16 +103,16 @@ module.exports = {
                                         wx.$.requestApi({
                                             route: 'api/pedetail',
                                             complete: function(res) {
-                                                if (!Array.isArray(res.data.content)) {
+                                                if (!Array.isArray(res.data.content) || res.data.code >= 400) {
                                                     that.data = 'fail'
+                                                    callback2 && callback2(that.data)
                                                     return
                                                 }
                                                 that.data = res.data.content.map((k, index) => { 
                                                     let comps = k.sign_time.split('.')
                                                     return {
-                                                        topLeft: k.sign_date,
-                                                        topRight: comps[0] + ':' + (comps[1].length == 1 ? comps[1] + '0' : comps[1]),
-                                                        bottomLeft: '第' + (index + 1) + '次跑操'
+                                                        topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length == 1 ? comps[1] + '0' : comps[1]),
+                                                        topRight: '第' + (index + 1) + '次跑操'
                                                     }
                                                 })
                                                 callback2 && callback2(that.data)
@@ -160,13 +161,14 @@ module.exports = {
                                     complete: function(res) {
                                         if (!Array.isArray(res.data.content)) {
                                             that.data = 'fail'
+                                            callback2 && callback2(that.data)
                                             return
                                         }
                                         that.data = res.data.content.map((k, index) => { 
                                             let comps = k.sign_time.split('.')
                                             return {
                                                 topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length == 1 ? comps[1] + '0' : comps[1]),
-                                                topRight: '第' + (index + 1) + '次打卡'
+                                                topRight: '第' + (index + 1) + '次跑操'
                                             }
                                         })
                                         callback2 && callback2(that.data)
@@ -245,4 +247,34 @@ module.exports = {
             }
         })
     },
+    // getLibrary(callback) {
+    //     callback && callback({
+    //         id: 'library',
+    //         blocks: [{ desc: '图书馆', info: '···' }]
+    //     })
+    //     wx.$.requestApi({
+    //         route: 'api/library',
+    //         complete: function(res) {
+    //             callback && callback({
+    //                 id: 'library',
+    //                 blocks: [
+    //                     {
+    //                         desc: '已借图书',
+    //                         info: res.data.code == 401 ? '0' : res.data.content.length
+    //                     }
+    //                 ],
+    //                 long: {
+    //                     hint: res.data.code == 401 ? '图书馆认证失败，需要您登录图书馆账号。' : ''
+    //                     // data: res.data.content.map((k, i) => {
+    //                     //     return {
+    //                     //         topLeft: k.title,
+    //                     //         topRight: k.author,
+    //                     //         bottomLeft: '借于' + k.render_date + ' / ' + k.due_date + '到期'
+    //                     //     }
+    //                     // })
+    //                 }
+    //             })
+    //         }
+    //     })
+    // },
 }

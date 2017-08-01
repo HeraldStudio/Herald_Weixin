@@ -77,5 +77,6 @@
 }
 
 page {
-    padding-bottom: 30rpx;
+    display: flex;
+    flex-direction: column;
 }

@@ -16,7 +16,7 @@ App({
   onHide: function () {
     this.forceUpdateStorage()
     this.updateTopbar()
-    this.interval = setInterval(this.updateTopbar, 10000)
+    this.interval = setInterval(this.updateTopbar, 5000)
   },
   updateTopbar: function () {
     let text = wx.$.comp('schedule_topbar').get()
@@ -24,7 +24,7 @@ App({
       wx.$.log('Topbar', text)
       this.topBar = text
     }
-    wx.setTopBarText({ text: text })
+    wx.setTopBarText && wx.setTopBarText({ text: text })
   },
   scene: 0,
   storage: {},

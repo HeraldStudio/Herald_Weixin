@@ -35,6 +35,7 @@ exports.bind = function(page) {
     wx.$.util('dashboard').getPe(resolveData)
     wx.$.util('dashboard').getLecture(resolveData)
     wx.$.util('dashboard').getSrtp(resolveData)
+    // wx.$.util('dashboard').getLibrary(resolveData)
 
     page.$dashboard_toggleExpand = function(event) {
         let index = event.currentTarget.dataset.index

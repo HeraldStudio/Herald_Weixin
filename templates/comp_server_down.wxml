@@ -1,7 +1,8 @@
-<server-down>
+<server-down class="{{ $service.isLogin ? '' : 'guest' }}">
     <image src="/images/server_down_colored.png" mode="aspectFit" catchtap="$serverDown_click" animation="{{ $serverDown_iconAnimation }}"/>
     <text class="zzz" animation="{{ $serverDown_zzzAnimation1 }}">z</text>
     <text class="zzz" animation="{{ $serverDown_zzzAnimation2 }}">z</text>
     <text class="title">小猴睡着啦</text>
-    <text class="content">网络设施故障，查询功能不可用，请耐心等待恢复</text>
+    <text class="content">网络设施故障，{{ $service.isLogin ? '查询功能不可用' : '暂不能登录' }}，请耐心等待恢复</text>
+    <text class="hint">下拉刷新重试</text>
 </server-down>

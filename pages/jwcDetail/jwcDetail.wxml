@@ -19,6 +19,6 @@
   </view>
   <view class="hint">
     <text>页面经由小猴偷米自动转换，可能丢失部分信息，请以原文为准。</text>
-    <text class="link" catchtap="open" data-url="{{ notice.url }}">查看原文</text>
+    <text class="link" catchtap="open" data-url="{{ notice.url }}">原文链接</text>
   </view>
 </view>
