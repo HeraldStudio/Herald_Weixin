@@ -6,3 +6,21 @@
     </view>
     <text class="content">{{ $service.message.content }}</text>
 </service>
+<service wx:if="{{ $service.vote }}">
+    <view class="subtitle">
+        <image src="/images/ic_vote.png" mode="aspectFit"/>
+        <text>投票站</text>
+        <space/>
+    </view>
+    <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{ $service.vote.content }}</text>
+    <view class="vote-bar">
+        <view class="attitude">
+            <image src="/images/ic_vote_up.png" mode="aspectFit"/>
+            <text>{{ $service.vote.positive_verb }} {{ $service.vote.positive_count }}</text>
+        </view>
+        <view class="attitude">
+            <image src="/images/ic_vote_down.png" mode="aspectFit"/>
+            <text>{{ $service.vote.negative_verb }} {{ $service.vote.negative_count }}</text>
+        </view>
+    </view>
+</service>
