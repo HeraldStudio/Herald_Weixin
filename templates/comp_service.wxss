@@ -60,7 +60,7 @@ service .vote-bar .attitude {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  padding: 25rpx; 
+  padding: 25rpx;
   -webkit-transition: .3s;
 }
 
