@@ -124,7 +124,7 @@ form radio {
     padding: 20rpx 30rpx 20rpx 0;
     margin-left: 30rpx;
     text-align: left;
-    color: #aaa;
+    color: #999;
     border-top: 1rpx solid #eee;
     font-size: 28rpx;
 }

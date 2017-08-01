@@ -5,7 +5,8 @@
     "pages/curriculum/curriculum",
     "pages/logs/logs",
     "pages/cardCharge/cardCharge",
-    "pages/jwcDetail/jwcDetail"
+    "pages/jwcDetail/jwcDetail",
+    "pages/markdown/markdown"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -17,6 +18,5 @@
   "networkTimeout": {
     "request": 5000,
     "downloadFile": 7000
-  },
-  "debug": true
+  }
 }

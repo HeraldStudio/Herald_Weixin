@@ -1,5 +1,5 @@
 service .subtitle {
-    padding: 20rpx 30rpx;
+    padding: 20rpx 35rpx;
     background: #f4f4f4;
     display: flex;
     flex-direction: row;
@@ -24,10 +24,10 @@ service .subtitle text {
 
 service .content {
   display: block;
-  padding: 35rpx 30rpx;
+  padding: 35rpx 35rpx;
   text-align: left;
   font-size: 28rpx;
-  color: #555;
+  color: #666;
   background: #fcfcfc;
 }
 
@@ -61,11 +61,6 @@ service .vote-bar .attitude {
   justify-content: center;
   flex-grow: 1;
   padding: 25rpx;
-  -webkit-transition: .3s;
-}
-
-service .vote-bar .attitude:active {
-  background: #f0f0f0;
 }
 
 service .vote-bar .attitude image {
@@ -73,17 +68,10 @@ service .vote-bar .attitude image {
   height: 42rpx;
   margin: 3rpx;
   flex-shrink: 0;
-  -webkit-transition: .3s;
-}
-
-service .vote-bar .attitude:active image {
-  width: 48rpx;
-  height: 48rpx;
-  margin: 0;
 }
 
 service .vote-bar .attitude text {
   font-size: 28rpx;
-  color: #555;
+  color: #666;
   padding-left: 20rpx;
 }

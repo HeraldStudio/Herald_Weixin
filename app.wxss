@@ -188,6 +188,6 @@ fab.hidden::after,
   padding: 35rpx 0;
   text-align: center;
   font-size: 28rpx;
-  color: #888;
+  color: #666;
   background: #fcfcfc;
 }

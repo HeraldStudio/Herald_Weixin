@@ -131,7 +131,7 @@ dashboard item.expanded list {
 }
 
 dashboard item .desc {
-    color: #777;
+    color: #666;
     font-size: 28rpx;
     -webkit-transition: .3s;
 }
@@ -150,7 +150,7 @@ dashboard item .navigate {
 }
 
 dashboard item .intro {
-    color: #aaa;
+    color: #999;
     font-size: 24rpx;
     padding-top: 10rpx;
     height: 40rpx;
@@ -173,9 +173,9 @@ dashboard item.expanded .intro {
 
 dashboard item .hint {
     display: block;
-    color: #888;
+    color: #666;
     font-size: 28rpx;
-    padding: 10rpx 0;
+    padding: 30rpx 0;
     height: 40rpx;
     overflow: hidden;
     -webkit-transition: .3s;
@@ -183,7 +183,7 @@ dashboard item .hint {
 
 dashboard item .declaration {
     display: block;
-    color: #888;
+    color: #666;
     font-size: 28rpx;
     margin: 0 15rpx;
     padding: 20rpx 15rpx;
@@ -248,5 +248,5 @@ dashboard item list .bottom-right {
 
 dashboard item list .collapse {
     font-size: 28rpx;
-    color: #aaa;
+    color: #999;
 }

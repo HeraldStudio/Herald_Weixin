@@ -7,14 +7,14 @@
 .notice-body .publish-date {
     padding: 30rpx 30rpx;
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     border-bottom: 1rpx solid #f0f0f0;
 }
 
 .notice-body .content {
     margin: 30rpx 30rpx;
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     text-align: left;
 }
 
@@ -33,7 +33,7 @@
     padding: 30rpx;
     font-size: 28rpx;
     border-radius: 10rpx;
-    color: #555;
+    color: #666;
     text-align: left;
 }
 
@@ -67,7 +67,7 @@
 
 .notice-body .file text {
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     text-align: center;
     margin: 30rpx 0;
 }

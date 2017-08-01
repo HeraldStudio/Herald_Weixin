@@ -52,6 +52,12 @@ Page({
     }
   },
   onShareAppMessage() {
-  
+    var that = this
+    var url = escape(this.data.url)
+    var filename = escape(this.data.filename || '')
+    return {
+      title: that.data.notice.title,
+      path: '/pages/jwcDetail/jwcDetail?filename=' + filename + '&url=' + url
+    }
   }
 })

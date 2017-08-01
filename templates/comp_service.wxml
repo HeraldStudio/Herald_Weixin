@@ -6,7 +6,7 @@
     </view>
     <text class="content">{{ $service.message.content }}</text>
 </service>
-<service wx:if="{{ $service.vote }}">
+<service wx:if="{{ $service.vote }}" class="vote {{ $service.vote.voted ? 'voted' : '' }}">
     <view class="subtitle">
         <image src="/images/ic_vote.png" mode="aspectFit"/>
         <text>投票站</text>
@@ -14,12 +14,12 @@
     </view>
     <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{ $service.vote.content }}</text>
     <view class="vote-bar">
-        <view class="attitude">
-            <image src="/images/ic_vote_up.png" mode="aspectFit"/>
+        <view class="attitude" catchtap="$service_vote" data-attitude="positive">
+            <image src="/images/ic_vote_up.png" animation="{{ $service_voteAnimationPositive }}" mode="aspectFit"/>
             <text>{{ $service.vote.positive_verb }} {{ $service.vote.positive_count }}</text>
         </view>
-        <view class="attitude">
-            <image src="/images/ic_vote_down.png" mode="aspectFit"/>
+        <view class="attitude" catchtap="$service_vote" data-attitude="negative">
+            <image src="/images/ic_vote_down.png" animation="{{ $service_voteAnimationNegative }}" mode="aspectFit"/>
             <text>{{ $service.vote.negative_verb }} {{ $service.vote.negative_count }}</text>
         </view>
     </view>

@@ -1,5 +1,5 @@
 schedule .subtitle {
-    padding: 20rpx 30rpx;
+    padding: 20rpx 35rpx;
     background: #f4f4f4;
     display: flex;
     flex-direction: row;
@@ -53,7 +53,7 @@ schedule .error text {
 schedule button.loading {
     background: none;
     font-size: 28rpx;
-    color: #aaa;
+    color: #999;
     padding: 20rpx;
     background: #fcfcfc;
     border-radius: 0 !important;
@@ -89,7 +89,7 @@ schedule swiper.deleted {
 }
 
 schedule item {
-    margin: 0 30rpx;
+    margin: 0 35rpx;
     display: flex;
     flex-direction: row;
     align-items: center;

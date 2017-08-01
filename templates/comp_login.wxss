@@ -14,7 +14,7 @@ subpage.login .logo {
 
 subpage.login .slogan {
     font-size: 36rpx;
-    color: #555;
+    color: #666;
     margin-bottom: 60rpx;
 }
 
@@ -38,7 +38,7 @@ subpage.login button.login {
 
 subpage.login .copyright {
     font-size: 28rpx;
-    color: #aaa;
+    color: #999;
     position: fixed;
     bottom: 0;
     left: 0;
