@@ -139,9 +139,10 @@ function ask(title, message, callback) {
 }
 
 function requestApi(obj) {
+  obj = obj || {}
   obj.data = obj.data || {}
   obj.data.uuid = obj.data.uuid || wx.$.util('user').getUser().uuid || '0000000000000000000000000000000000000000'
-  obj.method = obj.method || 'POST',
+  obj.method = obj.method || 'POST'
   requestCompat(obj)
 }
 

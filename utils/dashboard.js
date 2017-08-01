@@ -246,7 +246,7 @@ module.exports = {
                 })
             }
         })
-    },
+    }
     // getLibrary(callback) {
     //     callback && callback({
     //         id: 'library',
