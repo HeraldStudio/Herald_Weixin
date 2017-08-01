@@ -21,24 +21,24 @@ server-down image {
     height: 180rpx;
     opacity: 0.7;
     font-size: 36rpx;
-    color: #555;
+    color: #666;
     padding: 10rpx;
 }
 
 server-down .title {
     font-size: 36rpx;
-    color: #555;
+    color: #333;
     padding: 10rpx;
 }
 
 server-down .content {
     font-size: 28rpx;
-    color: #555;
+    color: #666;
 }
 
 server-down .hint {
     font-size: 26rpx;
-    color: #ccc;
+    color: #999;
     margin-top: 20rpx;
 }
 

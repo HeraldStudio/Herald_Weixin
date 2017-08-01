@@ -17,7 +17,7 @@
     display: block;
     padding: 25rpx 30rpx;
     font-size: 28rpx;
-    color: #888;
+    color: #666;
     text-align: left;
 }
 
@@ -35,7 +35,7 @@
 
 .charge line .row-name {
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     display: block;
     text-align: left;
     flex-grow: 1;
@@ -47,7 +47,7 @@
     border-bottom: 1rpx solid #eee;
     text-align: right;
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     -webkit-transition: .3s;
 }
 
@@ -56,7 +56,7 @@
     width: 400rpx;
     text-align: right;
     font-size: 28rpx;
-    color: #555;
+    color: #666;
     -webkit-transition: .3s;
 }
 
@@ -107,7 +107,7 @@ line.amount text {
   display: block;
   text-align: center;
   font-size: 24rpx;
-  color: #aaa;
+  color: #999;
   margin: 10rpx 0;
 }
 

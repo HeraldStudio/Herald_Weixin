@@ -1,4 +1,7 @@
-<block wx:if="{{ $service.serverHealth === true }}">
+<block wx:if="{{ !$service }}">
+    <include src="/templates/comp_loading.wxml"/>
+</block>
+<block wx:elif="{{ $service.serverHealth === true }}">
     <block wx:if="{{ $login.isLogin === true }}">
         <include src="/templates/comp_menu_tip.wxml"/>
         <include src="/templates/comp_avatar.wxml"/>
@@ -12,7 +15,7 @@
         <include src="/templates/comp_login.wxml"/>
     </block>
 </block>
-<block wx:elif="{{ $service.serverHealth === false }}">
+<block wx:else>
     <block wx:if="{{ $login.isLogin === true }}">
         <include src="/templates/comp_menu_tip.wxml"/>
         <include src="/templates/comp_server_down.wxml"/>
@@ -23,7 +26,4 @@
     <block wx:elif="{{ $login.isLogin === false }}">
         <include src="/templates/comp_server_down.wxml"/>
     </block>
-</block>
-<block wx:else>
-    <text class="waiting">小猴正在赶来，马上就好啦</text>
 </block>

@@ -3,7 +3,7 @@ jwc {
   flex-direction: row;
   align-items: center;
   background: #fcfcfc;
-  padding: 20rpx 30rpx;
+  padding: 20rpx 35rpx;
   max-height: 100rpx;
   -webkit-transition: .3s;
 }
@@ -11,7 +11,7 @@ jwc {
 jwc.all {
   max-height: initial;
   align-items: flex-start;
-  padding: 30rpx;
+  padding: 30rpx 35rpx;
 }
 
 jwc.all .vertical {

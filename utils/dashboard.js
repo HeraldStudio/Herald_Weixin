@@ -93,7 +93,7 @@ module.exports = {
                                         info: Math.max(0, 45 - parseInt(res2.data.content))
                                     },
                                     {
-                                        desc: '预计剩余天数',
+                                        desc: '剩余天数',
                                         info: res2.data.remain
                                     }
                                 ],
@@ -149,7 +149,7 @@ module.exports = {
                                 info: Math.max(0, 45 - parseInt(res.data.content))
                             },
                             {
-                                desc: '预计剩余天数',
+                                desc: '剩余天数',
                                 info: res.data.remain
                             }
                         ],

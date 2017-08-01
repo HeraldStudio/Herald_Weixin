@@ -121,7 +121,7 @@ function showActions(actions) {
   } else {
     wx.showActionSheet({
       itemList: ['暂无相关操作'],
-      itemColor: '#888888'
+      itemColor: '#666'
     })
   }
 }
