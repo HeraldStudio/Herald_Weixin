@@ -75,3 +75,15 @@ jwc.selectable:active .subtitle {
 jwc.selectable:active .content {
   background: #f0f0f0;
 }
+
+jwc .hint {
+  display: block;
+  line-height: 40rpx;
+  box-sizing: border-box;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 28rpx;
+  padding-top: 20rpx;
+  color: #999;
+  overflow: hidden;
+}

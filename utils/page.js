@@ -164,7 +164,7 @@ module.exports = {
     wx.setClipboardData({
       data: url,
       success: function (res) {
-        wx.showModal({ title: '打开链接', content: '由于微信限制，小程序内不能直接打开链接，已为你复制到剪贴板，粘贴到浏览器即可打开~', showCancel: false })
+        wx.showModal({ title: '链接已复制', content: '由于微信限制，小程序内不能直接打开链接，已为你复制到剪贴板，粘贴到浏览器即可打开~', showCancel: false })
       }
     })
   },

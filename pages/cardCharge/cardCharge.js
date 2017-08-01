@@ -13,7 +13,8 @@ Page({
       success(res) {
         that.setData({
           cardnum: res.data.content.cardnum,
-          password: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum)
+          password: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum),
+          remember: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum) != ''
         })
       }
     })
@@ -77,6 +78,8 @@ Page({
             wx.$.showSuccess('充值成功')
             if (remember) {
               wx.$.userStorage('card_charge_password_' + cardnum, password)
+            } else {
+              wx.$.userStorage('card_charge_password_' + cardnum, '')
             }
           } else {
             wx.$.showError(res.data.errmsg || '未知错误，请稍后再试')

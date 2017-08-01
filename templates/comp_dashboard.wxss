@@ -18,31 +18,15 @@ dashboard {
 dashboard items {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     margin-left: 1rpx;
     position: relative;
-}
-
-dashboard .arrow {
-    position: absolute;
-    margin-left: -1rpx;
-    top: 0;
-    width: 25%;
-    height: 6rpx;
-    background: #3688ff;
-    -webkit-transition: .3s;
-    opacity: .7;
-    /*z-index: 1;*/
-}
-
-dashboard .arrow.hidden {
-    top: -20rpx;
+    overflow-x: scroll;
+    justify-content: center;
 }
 
 dashboard item {
-    width: 25%;
-    margin: 40rpx 0;
+    margin: 32rpx 0;
     padding: 5rpx 0;
     display: flex;
     position: relative;
@@ -53,8 +37,18 @@ dashboard item {
     background: transparent;
     border-left: 1rpx solid #f0f0f0;
     border-right: 1rpx solid #f0f0f0;
+    border-top: 7rpx solid transparent;
+    border-bottom: 7rpx solid transparent;
     margin-left: -1rpx;
     -webkit-transition: .3s;
+}
+
+dashboard item:first-child {
+    border-left: 1px solid transparent;
+}
+
+dashboard item:last-child {
+    border-right: 1px solid transparent;
 }
 
 dashboard item expandable {
@@ -68,9 +62,9 @@ dashboard item:active {
     background: rgba(0, 0, 0, .05);
     margin-top: 0;
     margin-bottom: 0;
-    border-left: 2rpx solid transparent;
-    border-right: 2rpx solid transparent;
-    padding: 44rpx 0;
+    border-left: 1rpx solid transparent;
+    border-right: 1rpx solid transparent;
+    padding: 37rpx 0;
 }
 
 dashboard items item.long {
@@ -79,7 +73,9 @@ dashboard items item.long {
     margin-bottom: 0;
     border-left: 1rpx solid transparent;
     border-right: 1rpx solid transparent;
-    padding: 44rpx 0;
+    border-top: 7rpx solid #3688ff;
+    border-bottom: 7rpx solid transparent;
+    padding: 37rpx 0;
 }
 
 dashboard items item.long + item {
@@ -108,10 +104,11 @@ dashboard item.expanded.hidden {
 }
 
 dashboard item blk {
-    width: 185rpx;
+    width: 180rpx;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     flex-grow: 1;
     -webkit-transition: .3s;
 }
@@ -149,7 +146,6 @@ dashboard item .info {
 dashboard item .navigate {
     color: #3688ff;
     font-size: 32rpx;
-    padding: 27rpx 0;
     -webkit-transition: .3s;
 }
 

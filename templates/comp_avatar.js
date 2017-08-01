@@ -5,21 +5,16 @@ exports.bind = function (page) {
   wx.login({
     success() {
       wx.getUserInfo({
-        success(info) {
-          wx.$.requestApi({
-            route: 'api/user',
-            success(res) {
-              console.log(res)
-              page.setData({
-                $avatar: {
-                  url: info.userInfo.avatarUrl,
-                  name: res.data.content.name,
-                  identity: {
-                    '21': '东南大学本科生', 
-                    '22': '东南大学研究生'
-                  }[res.data.content.cardnum.substr(0, 2)] || '未知身份'
-                }
-              })
+        complete(info) {
+          let user = wx.$.util('user').getUser()
+          page.setData({
+            $avatar: {
+              url: info.userInfo ? info.userInfo.avatarUrl : '',
+              name: user.name,
+              identity: {
+                '21': '东南大学本科生', 
+                '22': '东南大学研究生'
+              }[user.cardnum.substr(0, 2)] || '未知身份'
             }
           })
         }

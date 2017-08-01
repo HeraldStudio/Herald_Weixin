@@ -8,7 +8,6 @@
                 <text class="info">{{ item.blocks[0].info === undefined ? '加载失败' : item.blocks[0].info }}</text>
             </blk>
         </item>
-        <view class="arrow {{ $dashboard_expanded != null ? '' : 'hidden' }}" style="left: {{ ($dashboard_expandedIndex) / $dashboard.length * 100 }}%"></view>
     </items>
     <item
         wx:for="{{ [$dashboard_expanded] }}"

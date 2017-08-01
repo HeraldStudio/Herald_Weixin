@@ -13,5 +13,9 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "小猴偷米",
     "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 5000,
+    "downloadFile": 7000
   }
 }

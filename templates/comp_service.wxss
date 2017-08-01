@@ -38,3 +38,52 @@ service.selectable:active .subtitle {
 service.selectable:active .content {
   background: #f0f0f0;
 }
+
+service .subtitle.selectable:active {
+  background: #f0f0f0;
+}
+
+service .content.selectable:active {
+  background: #f0f0f0;
+}
+
+service .vote-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+
+service .vote-bar .attitude {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 25rpx; 
+  -webkit-transition: .3s;
+}
+
+service .vote-bar .attitude:active {
+  background: #f0f0f0;
+}
+
+service .vote-bar .attitude image {
+  width: 42rpx;
+  height: 42rpx;
+  margin: 3rpx;
+  flex-shrink: 0;
+  -webkit-transition: .3s;
+}
+
+service .vote-bar .attitude:active image {
+  width: 48rpx;
+  height: 48rpx;
+  margin: 0;
+}
+
+service .vote-bar .attitude text {
+  font-size: 28rpx;
+  color: #555;
+  padding-left: 20rpx;
+}

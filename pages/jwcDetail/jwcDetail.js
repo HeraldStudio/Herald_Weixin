@@ -12,10 +12,7 @@ Page({
     var that = this
     this.data.url = url
     wx.$.requestApi({
-      url: 'https://myseu.cn/jwc',
-      data: {
-        url: that.data.url
-      },
+      url: 'https://myseu.cn/jwc/' + that.data.url,
       success(res) {
         that.setData({ notice: res.data })
       }
@@ -25,24 +22,22 @@ Page({
     var that = this
     wx.$.showLoading("正在下载文件")
     wx.downloadFile({
-      url: 'http://localhost:8080/jwc/' + that.data.notice.url,
+      url: 'https://myseu.cn/jwc/' + that.data.notice.url,
       success(res) {
-        var filePath = res.tempFilePath
         wx.openDocument({
-          filePath: filePath,
+          filePath: res.tempFilePath,
           success() {
             wx.$.hideLoading()
           },
-          fail() {
+          fail(res) {
             wx.$.hideLoading()
-            wx.$.showError("无法打开该文件，请点击原文链接查看")
+            wx.$.showError("无法打开该文件，请点击原文链接查看\n" + res.errMsg)
           }
         })
       },
       fail(res) {
         wx.$.hideLoading()
-        wx.$.log('Open file', 'error', res)
-        wx.$.showError("无法下载该文件，请点击原文链接查看")
+        wx.$.showError("无法下载该文件，请点击原文链接查看\n" + res.errMsg)
       }
     })
   },

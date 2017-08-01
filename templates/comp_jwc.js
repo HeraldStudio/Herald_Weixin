@@ -1,4 +1,8 @@
-exports.bind = function(page) {
+exports.bind = function (page) {
+    if (!wx.$.util('user').isLogin()) {
+        return
+    }
+
     page.setData({ $jwc: [], $jwc_showAll: false })
 
     let info = wx.getSystemInfoSync()

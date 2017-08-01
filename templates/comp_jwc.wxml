@@ -9,5 +9,6 @@
         <view wx:for="{{ $jwc }}">
             <text class="content" catchtap="go" data-to="jwcDetail" data-url="{{ item.href }}" data-filename="{{ item.title }}">{{ item.title }}</text>
         </view>
+        <text class="hint">本公告条仅显示教务处【教务信息】版块，为了不错过其它重要信息，另请关注教务处官网以及您的学院官网。</text>
     </view>
 </jwc>
