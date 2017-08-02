@@ -167,6 +167,10 @@ function parse(md, page, options){
 				type: 'td',
 				content: getInlineContent(tokens[index+1]).map(function(inline){return inline.content;}).join('')
 			});
+		}else if(blockToken.type === 'hr'){
+			return {
+				type: 'hr'
+			}
 		}
 	};
 

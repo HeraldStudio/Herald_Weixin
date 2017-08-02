@@ -8,7 +8,7 @@
     <view class="error" wx:if="{{ $schedule_error.length }}" catchtap="$schedule_forceReload">
         <text>由于教务处系统问题，部分日程获取失败，点击重试</text>
     </view>
-    <button class="loading" wx:if="{{ $schedule_loading.length }}" loading="true"> 正在获取日程信息 ({{$schedule_loading.length}}) </button>
+    <button class="loading" wx:if="{{ $schedule_loading.length }}" loading="true"> 正在获取日程信息 ({{ $schedule_loading.length }}) </button>
     <text wx:if="{{ !$schedule_loading.length && !$schedule.length }}" class="empty-hint">暂无日程，按 + 添加自定义日程</text>
     <swiper wx:for="{{ $schedule }}" autoplay="{{ false }}" circular="{{ false }}" duration="300" bindchange="$schedule_delete" data-id="{{ item.id }}" class="{{ item.deleted ? 'deleted' : '' }}">
         <swiper-item>

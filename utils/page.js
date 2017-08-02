@@ -170,14 +170,17 @@ module.exports = {
       } else {
         wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
       }
+    } else if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
+      wx.$.util('downloader').download(url)
     } else {
-      url = url.replace(/\[uuid]/g, wx.$.util('user').getUuid())
-      wx.setClipboardData({
-        data: url,
-        success: function (res) {
-          wx.showModal({ title: '链接已复制', content: '由于微信限制，小程序内不能直接打开链接，已为你复制到剪贴板，粘贴到浏览器即可打开~', showCancel: false })
-        }
-      })
+      var pages = getCurrentPages()
+
+      wx.$.log('Convert html page to markdown', url)
+      if (pages.length < 5) {
+        wx.navigateTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
+      } else {
+        wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
+      }
     }
   },
 
