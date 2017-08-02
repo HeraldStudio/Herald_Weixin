@@ -38,7 +38,7 @@ Page({
       })
     } else { // 服务器转换加载
       wx.request({
-        url: 'https://myseu.cn/wxapp/tomd',
+        url: 'http://localhost:8080/wxapp/tomd',
         method: 'POST',
         data: parsedUrl,
         success(res) {
