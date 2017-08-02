@@ -144,6 +144,16 @@
     display: block;
     box-sizing: border-box;
     background-color:#fafafa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.markdown-body .img:first-child {
+  margin-top: 0;
+}
+
+.markdown-body .img:last-child {
+  margin-bottom: 0;
 }
 
 .markdown-body .code,.markdown-body .tt {
