@@ -2,8 +2,8 @@ Page({
   data: {
     url: '',
     title: '',
-    wemark: {},
-    markdown: ''
+    markdown: {},
+    markdownText: ''
   },
   onLoad(options) {
     this.loadUrl(unescape(options.url))
@@ -11,30 +11,66 @@ Page({
   loadUrl(url) {
     var that = this
     this.data.url = url
+
+    if (/\[uuid]/.test(url) && !wx.$.util('user').isLogin()) {
+      wx.$.ask('需要登录', '请先登录再使用本功能', () => wx.reLaunch({ url: '/pages/index/index' }))
+      return
+    }
+
     wx.$.showLoading('加载中')
-    wx.request({
-      url: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()),
-      success(res) {
-        wx.$.hideLoading()
-        if (res.statusCode < 400) {
-          that.setData({ markdown: res.data })
-          if (/(^|\n)#\s(.*)(\n|$)/.test(res.data)) {
-            let title = RegExp.$2
-            that.setData({ title: title })
-            wx.setNavigationBarTitle({ title: title })
+    let parsedUrl = url.replace(/\[uuid]/g, wx.$.util('user').getUuid())
+
+    if (/\.md$/.test(parsedUrl)) { // markdown 直接加载
+      wx.request({
+        url: parsedUrl,
+        success(res) {
+          wx.$.hideLoading()
+          if (res.statusCode < 400) {
+            that.loadMarkdown(res.data)
+          } else {
+            that.loadMarkdown('# ' + res.statusCode + '\n\n页面不存在或暂无法打开')
           }
-          wx.$.util('wemark/wemark').parse(res.data, that, { name: 'wemark' })
-        } else {
-          wx.$.showError('页面不存在或暂无法打开 [' + res.statusCode + ']')
-          wx.navigateBack()
+        },
+        fail(res) {
+          wx.$.hideLoading()
+          that.loadMarkdown('# 访问页面失败\n\n错误信息：' + res.errMsg)
         }
-      },
-      fail(res) {
-        wx.$.hideLoading()
-        wx.$.showError('请求超时 [' + res.errMsg + ']')
-        wx.navigateBack()
+      })
+    } else { // 服务器转换加载
+      wx.request({
+        url: 'https://myseu.cn/wxapp/tomd',
+        method: 'POST',
+        data: parsedUrl,
+        success(res) {
+          wx.$.hideLoading()
+          if (res.statusCode < 400) {
+            that.loadMarkdown(res.data)
+          } else {
+            that.loadMarkdown('# ' + res.statusCode + '\n\n页面不存在或暂无法打开')
+          }
+        },
+        fail(res) {
+          wx.$.hideLoading()
+          that.loadMarkdown('# 访问页面失败\n\n错误信息：' + res.errMsg)
+        }
+      })
+    }
+  },
+  loadMarkdown(data) {
+    this.setData({ markdownText: data })
+    if (/(^|\n)#\s(.*)(\n|$)/.test(data)) {
+      let title = RegExp.$2
+      this.setData({ title: title })
+      // 当前页面没退出时才设置标题，防止用户在加载过程中返回导致设置了别人的标题
+      if (getCurrentPages().slice(-1)[0] == this) {
+        wx.setNavigationBarTitle({ title: title })
       }
-    })
+    }
+    wx.$.util('wemark/wemark').parse(data, this, { name: 'markdown' })
+  },
+  onPullDownRefresh() {
+    this.loadUrl(this.data.url)
+    wx.stopPullDownRefresh()
   },
   parseLink(event) {
     var url = event.currentTarget.dataset.url

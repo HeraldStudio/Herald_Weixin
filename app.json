@@ -5,7 +5,6 @@
     "pages/curriculum/curriculum",
     "pages/logs/logs",
     "pages/cardCharge/cardCharge",
-    "pages/jwcDetail/jwcDetail",
     "pages/markdown/markdown"
   ],
   "window": {

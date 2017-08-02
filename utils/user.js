@@ -60,7 +60,7 @@ module.exports = {
   },
 
   logout: function() {
-    getApp().storage.uuid = null
+    getApp().storage.user = null
     getApp().forceUpdateStorage()
   },
 
