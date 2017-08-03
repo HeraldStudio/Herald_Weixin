@@ -9,6 +9,7 @@ page {
 
 text {
   cursor: default;
+  line-height: 1.45em;
 }
 
 page, input, textarea {
@@ -45,9 +46,9 @@ contact-button {
 }
 
 contact-button:before {
-  content: "服务出现问题？";
+  content: "© 2017 小猴偷米工作室 公益出品";
   font-size: 28rpx;
-  color: #666;
+  color: #999;
   margin-left: -54rpx;
   margin-right: 55rpx;
   line-height: 40rpx;
@@ -56,7 +57,7 @@ contact-button:before {
 }
 
 contact-button:after {
-  content: "联系客服";
+  content: "客服";
   font-size: 28rpx;
   color: #3688ff;
   line-height: 40rpx;

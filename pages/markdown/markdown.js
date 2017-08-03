@@ -38,7 +38,8 @@ Page({
       })
     } else { // 服务器转换加载
       wx.request({
-        url: 'http://localhost:8080/wxapp/tomd',
+        //url: 'http://localhost:8080/wxapp/tomd',
+        url: 'https://myseu.cn/wxapp/tomd',
         method: 'POST',
         data: parsedUrl,
         success(res) {
@@ -81,6 +82,23 @@ Page({
     }
     let ev = { currentTarget: { dataset: { url: url } } }
     this.open(ev)
+  },
+  longTapped: false,
+  onImageTap(event) {
+    if (!this.longTapped) {
+      this.viewimg(event)
+    }
+  },
+  onImageLongTap() {
+    this.longTapped = true
+    var that = this
+    wx.showModal({
+      title: '唔，你长按了',
+      content: '小程序内不支持长按识别二维码，请点击大图长按保存到相册，然后在微信扫一扫中打开图片进行识别~',
+      success: function (res) {
+        that.longTapped = false
+      }
+    })
   },
   onShareAppMessage() {
     var that = this

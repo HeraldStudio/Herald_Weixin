@@ -3,7 +3,7 @@ exports.bind = function (page) {
         return
     }
 
-    page.setData({ $jwc: [], $jwc_showAll: false })
+    page.setData({ $jwc_showAll: false })
 
     let info = wx.getSystemInfoSync()
     wx.$.requestApi({

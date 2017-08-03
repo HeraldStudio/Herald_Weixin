@@ -1,11 +1,18 @@
 .avatar-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   padding: 10rpx;
   margin: 25rpx;
   border-radius: 10rpx;
   box-shadow: 0 5rpx 30rpx rgba(0, 0, 0, .1);
+  height: 160rpx;
+  -webkit-transition: .3s;
+  overflow: hidden;
+}
+
+.avatar-container.expanded {
+  height: 280rpx;
 }
 
 .avatar-container .avatar {
@@ -20,6 +27,14 @@
   display: block;
   font-size: 34rpx;
   color: #333;
+  margin-top: 5rpx;
+}
+
+.avatar-container .divider {
+  width: 100%;
+  height: 1rpx;
+  margin: 20rpx 0;
+  background: #f0f0f0;
 }
 
 .avatar-container .identity {
@@ -34,10 +49,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin: 30rpx 0;
 }
 
 .avatar-container .icon {
   width: 48rpx;
   height: 48rpx;
-  margin: 30rpx;
+  margin: 56rpx 30rpx;
 }

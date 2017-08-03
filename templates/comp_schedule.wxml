@@ -1,15 +1,16 @@
 <schedule>
-    <view class="subtitle" catchtap="tapEgg">
-        <image src="/images/ic_schedule.png" mode="aspectFit"/>
-        <text>当前日程</text>
+    <view class="subtitle">
+        <image catchtap="tapEgg" src="/images/ic_schedule.png" mode="aspectFit"/>
+        <text catchtap="tapEgg">日程表</text>
         <space/>
         <text>{{ $schedule_week }}</text>
+        <image src="/images/ic_add.png" mode="aspectFit" catchtap="go" data-to="addSchedule" class="add"/>
     </view>
     <view class="error" wx:if="{{ $schedule_error.length }}" catchtap="$schedule_forceReload">
         <text>由于教务处系统问题，部分日程获取失败，点击重试</text>
     </view>
     <button class="loading" wx:if="{{ $schedule_loading.length }}" loading="true"> 正在获取日程信息 ({{ $schedule_loading.length }}) </button>
-    <text wx:if="{{ !$schedule_loading.length && !$schedule.length }}" class="empty-hint">暂无日程，按 + 添加自定义日程</text>
+    <text wx:if="{{ !$schedule_loading.length && !$schedule.length }}" class="empty-hint">暂无课表 / 实验 / 考试安排</text>
     <swiper wx:for="{{ $schedule }}" autoplay="{{ false }}" circular="{{ false }}" duration="300" bindchange="$schedule_delete" data-id="{{ item.id }}" class="{{ item.deleted ? 'deleted' : '' }}">
         <swiper-item>
             <item>
@@ -35,5 +36,5 @@
             删除日程
         </swiper-item>
     </swiper>
-    <fab catchtap="go" data-to="addSchedule"></fab>
+    <!-- <fab></fab> -->
 </schedule>

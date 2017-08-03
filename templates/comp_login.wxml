@@ -6,5 +6,5 @@
     <button type="blue" class="login" bindtap="$login_submit">登录</button>
     <contact-button/>
     <!-- <include src="/templates/comp_contact.wxml"/> -->
-    <text class="copyright">© 2017 东南大学小猴偷米工作室 公益出品</text>
+    <!-- <text class="copyright">© 2017 东南大学小猴偷米工作室 公益出品</text> -->
 </subpage>

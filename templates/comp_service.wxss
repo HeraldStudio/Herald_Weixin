@@ -22,13 +22,41 @@ service .subtitle text {
     color: #666;
 }
 
+service swiper {
+  height: 190rpx;
+}
+
 service .content {
-  display: block;
-  padding: 35rpx 35rpx;
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx;
+  box-sizing: border-box;
   text-align: left;
   font-size: 28rpx;
   color: #666;
   background: #fcfcfc;
+  overflow: hidden;
+}
+
+service .content image {
+  width: 200rpx;
+  height: 130rpx;
+  margin-right: 25rpx;
+  border-radius: 5rpx;
+  flex-shrink: 0;
+  background: #f5f5f5;
+}
+
+service .content .vertical {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+service .content .title {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 7rpx;
 }
 
 service.selectable:active .subtitle {

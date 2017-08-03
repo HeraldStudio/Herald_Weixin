@@ -1,15 +1,30 @@
-<service wx:if="{{ $service.message.content }}" class="{{ $service.message.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.message.url }}">
+<service wx:if="{{ $service.messages }}">
     <view class="subtitle">
         <image src="/images/ic_notice.png" mode="aspectFit"/>
-        <text>小猴公告</text>
+        <text>广播站</text>
         <space/>
     </view>
-    <text class="content">{{ $service.message.content }}</text>
+    <swiper wx:if="{{ $service.messages.length > 1 }}" autoplay="true" duration="300" circular="true">
+        <swiper-item wx:for="{{ $service.messages }}" class="content {{ item.url ? 'selectable': '' }}" catchtap="open" data-url="{{ item.url }}">
+            <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
+            <view class="vertical">
+                <text class="title" wx:if="{{ item.title }}">{{ item.title }}</text>
+                <text>{{ item.content }}</text>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view wx:if="{{ $service.messages.length == 1 }}" wx:for="{{ $service.messages }}" class="content {{ item.url ? 'selectable': '' }}" catchtap="open" data-url="{{ item.url }}">
+        <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
+        <view class="vertical">
+            <text class="title" wx:if="{{ item.title }}">{{ item.title }}</text>
+            <text>{{ item.content }}</text>
+        </view>
+    </view>
 </service>
 <service wx:if="{{ $service.vote }}" class="vote {{ $service.vote.voted ? 'voted' : '' }}">
     <view class="subtitle">
         <image src="/images/ic_vote.png" mode="aspectFit"/>
-        <text>投票站</text>
+        <text>投票箱</text>
         <space/>
     </view>
     <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{ $service.vote.content }}</text>

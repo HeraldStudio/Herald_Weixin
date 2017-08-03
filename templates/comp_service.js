@@ -3,6 +3,7 @@ exports.bind = function(page, callback){
     let user = wx.$.util('user').getUser()
     wx.$.requestApi({
         url: 'https://myseu.cn/checkversion',
+        // url: 'http://localhost:8080/checkversion',
         data: {
             versiontype: 'wxapp-' + info.platform,
             versionname: info.system,
