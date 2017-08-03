@@ -15,7 +15,7 @@
     "navigationBarTextStyle": "black"
   },
   "networkTimeout": {
-    "request": 5000,
+    "request": 7000,
     "downloadFile": 7000
   }
 }

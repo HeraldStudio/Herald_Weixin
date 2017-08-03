@@ -161,22 +161,31 @@ module.exports = {
     var url = event.currentTarget.dataset.url
     if (!url) return
 
-    if (/\.md$/.test(url)) {
-      var pages = getCurrentPages()
-
-      wx.$.log('Open markdown', url)
-      if (pages.length < 5) {
-        wx.navigateTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
-      } else {
-        wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
-      }
-    } else if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
+    if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
       wx.$.util('downloader').download(url)
+    } else if (/^(mailto:)?([0-9a-zA-Z\-\._]+@[0-9a-zA-Z\-\._]+)$/.test(url)) {
+      wx.$.showActions([
+        {name: '复制邮件地址', action: () => {
+            wx.setClipboardData({
+                data: RegExp.$2,
+                success: function (res) {
+                  wx.$.showSuccess('地址已复制')
+                }
+            })
+        }}
+      ])
     } else {
       var pages = getCurrentPages()
 
       wx.$.log('Convert html page to markdown', url)
-      if (pages.length < 5) {
+      if (pages.slice(-1)[0].__route__.indexOf('pages/markdown/markdown') > -1) {
+        if (pages.slice(-1)[0].data.url == url) {
+          wx.setClipboardData({ data: RegExp.$2 })
+          wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。', () => {})
+        } else {
+          pages.slice(-1)[0].loadUrl(url)
+        }
+      } else if (pages.length < 5) {
         wx.navigateTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
       } else {
         wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })

@@ -185,6 +185,10 @@
     border-radius: 6rpx;
 }
 
+.markdown-body .strong {
+    font-weight: bold;
+}
+
 .markdown-body .em {
   font-weight: 600;
 }

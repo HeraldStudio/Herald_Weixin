@@ -22,6 +22,14 @@ schedule .subtitle text {
     color: #666;
 }
 
+schedule .subtitle image.add {
+    width: 42rpx;
+    height: 42rpx;
+    color: #3688ff;
+    margin-left: 20rpx;
+  margin-right: 0;
+}
+
 schedule .error {
     padding: 15rpx 30rpx;
     background: #fafaa8;
@@ -71,7 +79,7 @@ schedule swiper {
 }
 
 schedule swiper-item {
-    background: #ffffff;
+    background: #fcfcfc;
 } 
 
 schedule swiper-item.delete {
@@ -120,7 +128,7 @@ schedule item .schedule-desc {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-bottom: 1rpx solid #e3e3e3;
+    border-bottom: 1rpx solid #f0f0f0;
 }
 
 schedule item .line {

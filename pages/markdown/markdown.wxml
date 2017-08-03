@@ -4,7 +4,7 @@
         <block wx:if="{{ block.content.push }}" wx:for="{{ block.content }}" wx:key="inlineIndex" wx:for-index="inlineIndex" wx:for-item="inline">
             <text selectable="true" class="{{ inline.type }} inline" wx:if="{{ inline.type === 'text' || inline.type === 'code' || inline.type === 'strong' || inline.type === 'deleted' || inline.type === 'em' || inline.type === 'th' || inline.type === 'td' }}">{{ inline.content }}</text>
             <text selectable="true" class="a inline" wx:if="{{ inline.type === 'a' }}" catchtap="parseLink" data-url="{{ inline.href }}">{{ inline.content }}</text>
-            <image mode="widthFix" class="img" src="{{ inline.src }}" wx:if="{{ inline.type === 'image' }}" catchtap="viewimg" data-current="{{ inline.src }}"></image>
+            <image mode="widthFix" class="img" src="{{ inline.src }}" wx:if="{{ inline.type === 'image' }}" catchtap="onImageTap" data-current="{{ inline.src }}" catchlongtap="onImageLongTap"></image>
         </block>
         <block wx:if="{{ !block.content.push }}">
             <view wx:if="{{ block.type === 'code' }}">{{ block.content }}</view>

@@ -114,7 +114,7 @@ function showActions(actions) {
       itemList: actions.map(k => k.name),
       success: function(data) {
         if (typeof data.tapIndex === "number") {
-          actions[data.tapIndex].action()
+          actions[data.tapIndex].action && actions[data.tapIndex].action()
         }
       }
     })
