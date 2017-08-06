@@ -1,21 +1,21 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/addSchedule/addSchedule",
-    "pages/curriculum/curriculum",
-    "pages/logs/logs",
-    "pages/cardCharge/cardCharge",
-    "pages/markdown/markdown"
-  ],
-  "window": {
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "小猴偷米",
-    "navigationBarTextStyle": "black"
-  },
-  "networkTimeout": {
-    "request": 7000,
-    "downloadFile": 7000
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/addSchedule/addSchedule",
+        "pages/curriculum/curriculum",
+        "pages/logs/logs",
+        "pages/cardCharge/cardCharge",
+        "pages/markdown/markdown"
+    ],
+    "window": {
+        "backgroundColor": "#ffffff",
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "小猴偷米",
+        "navigationBarTextStyle": "black"
+    },
+    "networkTimeout": {
+        "request": 7000,
+        "downloadFile": 7000
+    }
 }

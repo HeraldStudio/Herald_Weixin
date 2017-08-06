@@ -2,14 +2,14 @@ module.exports = {
     getCard(callback) {
         callback && callback({
             id: 'card',
-            blocks: [{ desc: '一卡通', info: '···' }]
+            blocks: [{desc: '一卡通', info: '···'}]
         })
         wx.$.requestApi({
             route: 'api/card',
             data: {
                 timedelta: 1
             },
-            complete: function(res) {
+            complete: function (res) {
                 callback && callback({
                     id: 'card',
                     blocks: [
@@ -22,42 +22,46 @@ module.exports = {
                             info: res.data.content.state,
                         },
                         {
-                          desc: '在线充值',
-                          page: 'cardCharge',
+                            desc: '在线充值',
+                            page: 'cardCharge',
                         }
                     ],
                     long: {
-                        data: res.data.content.detial.map(k => { return {
-                            topLeft: k.system,
-                            topRight: k.type,
-                            bottomLeft: k.date,
-                            bottomRight: k.price
-                        }}),
-                        getter: function(callback2) {
+                        data: res.data.content.detial.map(k => {
+                            return {
+                                topLeft: k.system,
+                                topRight: k.type,
+                                bottomLeft: k.date,
+                                bottomRight: k.price
+                            }
+                        }),
+                        getter: function (callback2) {
                             var that = this
                             wx.$.requestApi({
                                 route: 'api/card',
                                 data: {
                                     timedelta: 14
                                 },
-                                complete: function(res) {
+                                complete: function (res) {
                                     if (!Array.isArray(res.data.content.detial)) {
                                         that.data = 'fail'
                                         callback2 && callback2(that.data)
                                         return
                                     }
-                                    that.data = that.data.concat(res.data.content.detial.map(k => { return {
-                                        topLeft: k.system,
-                                        topRight: k.type,
-                                        bottomLeft: k.date,
-                                        bottomRight: k.price
-                                    }}))
+                                    that.data = that.data.concat(res.data.content.detial.map(k => {
+                                        return {
+                                            topLeft: k.system,
+                                            topRight: k.type,
+                                            bottomLeft: k.date,
+                                            bottomRight: k.price
+                                        }
+                                    }))
                                     callback2 && callback2(that.data)
                                 }
                             })
                         },
-                        hint: 'i. 数据来自一卡通中心官方，由于服务器缓存、一卡通中心系统延迟等原因，显示的余额与实际余额之间可能有出入，请自行鉴别；\n\n' + 
-                              'ii. 若您进行了线上充值，请在食堂或校之友超市刷卡到账；线上充值平台与小猴偷米无关，若钱款不能到账，请与校一卡通中心联系。'
+                        hint: 'i. 数据来自一卡通中心官方，由于服务器缓存、一卡通中心系统延迟等原因，显示的余额与实际余额之间可能有出入，请自行鉴别；\n\n' +
+                        'ii. 若您进行了线上充值，请在食堂或校之友超市刷卡到账；线上充值平台与小猴偷米无关，若钱款不能到账，请与校一卡通中心联系。'
                     }
                 })
             }
@@ -66,17 +70,17 @@ module.exports = {
     getPe(callback) {
         callback && callback({
             id: 'pe',
-            blocks: [{ desc: '跑操', info: '···' }]
+            blocks: [{desc: '跑操', info: '···'}]
         })
         var d = new Date()
         let hm = d.getHours() * 60 + d.getMinutes()
         if (hm > 390 && hm < 440) {
             wx.$.requestApi({
                 route: 'api/pc',
-                complete: function(res) {
+                complete: function (res) {
                     wx.$.requestApi({
                         route: 'api/pe',
-                        complete: function(res2) {
+                        complete: function (res2) {
                             callback && callback({
                                 id: 'pe',
                                 blocks: [
@@ -98,17 +102,17 @@ module.exports = {
                                     }
                                 ],
                                 long: {
-                                    getter: function(callback2) {
+                                    getter: function (callback2) {
                                         var that = this
                                         wx.$.requestApi({
                                             route: 'api/pedetail',
-                                            complete: function(res) {
+                                            complete: function (res) {
                                                 if (!Array.isArray(res.data.content) || res.data.code >= 400) {
                                                     that.data = 'fail'
                                                     callback2 && callback2(that.data)
                                                     return
                                                 }
-                                                that.data = res.data.content.map((k, index) => { 
+                                                that.data = res.data.content.map((k, index) => {
                                                     let comps = k.sign_time.split('.')
                                                     return {
                                                         topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length == 1 ? comps[1] + '0' : comps[1]),
@@ -119,10 +123,10 @@ module.exports = {
                                             }
                                         })
                                     },
-                                    hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' + 
-                                          'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' + 
-                                          'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' + 
-                                          'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
+                                    hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
+                                    'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
+                                    'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
+                                    'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
                                 }
                             })
                         }
@@ -132,7 +136,7 @@ module.exports = {
         } else {
             wx.$.requestApi({
                 route: 'api/pe',
-                complete: function(res) {
+                complete: function (res) {
                     callback && callback({
                         id: 'pe',
                         blocks: [
@@ -154,17 +158,17 @@ module.exports = {
                             }
                         ],
                         long: {
-                            getter: function(callback2) {
+                            getter: function (callback2) {
                                 var that = this
                                 wx.$.requestApi({
                                     route: 'api/pedetail',
-                                    complete: function(res) {
+                                    complete: function (res) {
                                         if (!Array.isArray(res.data.content)) {
                                             that.data = 'fail'
                                             callback2 && callback2(that.data)
                                             return
                                         }
-                                        that.data = res.data.content.map((k, index) => { 
+                                        that.data = res.data.content.map((k, index) => {
                                             let comps = k.sign_time.split('.')
                                             return {
                                                 topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length == 1 ? comps[1] + '0' : comps[1]),
@@ -175,10 +179,10 @@ module.exports = {
                                     }
                                 })
                             },
-                            hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' + 
-                                  'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' + 
-                                  'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' + 
-                                  'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
+                            hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
+                            'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
+                            'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
+                            'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
                         }
                     })
                 }
@@ -188,11 +192,11 @@ module.exports = {
     getLecture(callback) {
         callback && callback({
             id: 'lecture',
-            blocks: [{ desc: '人文讲座', info: '···' }]
+            blocks: [{desc: '人文讲座', info: '···'}]
         })
         wx.$.requestApi({
             route: 'api/lecture',
-            complete: function(res) {
+            complete: function (res) {
                 callback && callback({
                     id: 'lecture',
                     blocks: [
@@ -217,11 +221,11 @@ module.exports = {
     getSrtp(callback) {
         callback && callback({
             id: 'srtp',
-            blocks: [{ desc: 'SRTP', info: '···' }]
+            blocks: [{desc: 'SRTP', info: '···'}]
         })
         wx.$.requestApi({
             route: 'api/srtp',
-            complete: function(res) {
+            complete: function (res) {
                 callback && callback({
                     id: 'srtp',
                     blocks: [

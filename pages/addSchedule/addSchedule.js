@@ -12,7 +12,7 @@ Page({
             }
         }
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         this.data.item.fromTime = new Date().getTime()
         this.data.item.toTime = new Date().getTime()
         this.setData({
@@ -24,7 +24,7 @@ Page({
         this.data.item.displayData.color = wx.$.util('format').stringToColor(this.data.item.displayData.topLeft)
         this.loadDateTime()
     },
-    loadDateTime: function() {
+    loadDateTime: function () {
         let format = wx.$.util('format')
         let [fd, ft] = format.formatTime(this.data.item.fromTime, 'yyyy-M-d H:mm').split(' ')
         let [td, tt] = format.formatTime(this.data.item.toTime, 'yyyy-M-d H:mm').split(' ')
@@ -37,11 +37,11 @@ Page({
             item: this.data.item
         })
     },
-    saveDateTime: function() {
+    saveDateTime: function () {
 
         // 由于 parseInt 可接受两个参数，直接用 map(parseInt) 会导致部分平台出现问题
         // 参见 https://ruby-china.org/topics/17151
-        function int(str) {
+        function int (str) {
             return parseInt(str)
         }
 
@@ -59,18 +59,18 @@ Page({
             item: this.data.item
         })
     },
-    onTopLeftChange: function(event) {
+    onTopLeftChange: function (event) {
         let title = event.detail.value
         this.data.item.displayData.topLeft = title
         this.data.item.displayData.color = wx.$.util('format').stringToColor(title)
     },
-    onBottomLeftChange: function(event) {
+    onBottomLeftChange: function (event) {
         this.data.item.displayData.bottomLeft = event.detail.value
     },
-    onBottomRightChange: function(event) {
+    onBottomRightChange: function (event) {
         this.data.item.displayData.bottomRight = event.detail.value
     },
-    onFromDateChange: function(event) {
+    onFromDateChange: function (event) {
         this.setData({
             displayFromDate: event.detail.value
         })
@@ -81,7 +81,7 @@ Page({
             this.loadDateTime()
         }
     },
-    onFromTimeChange: function(event) {
+    onFromTimeChange: function (event) {
         this.setData({
             displayFromTime: event.detail.value
         })
@@ -92,7 +92,7 @@ Page({
             this.loadDateTime()
         }
     },
-    onToDateChange: function(event) {
+    onToDateChange: function (event) {
         this.setData({
             displayToDate: event.detail.value
         })
@@ -103,7 +103,7 @@ Page({
             this.loadDateTime()
         }
     },
-    onToTimeChange: function(event) {
+    onToTimeChange: function (event) {
         this.setData({
             displayToTime: event.detail.value
         })
@@ -114,7 +114,7 @@ Page({
             this.loadDateTime()
         }
     },
-    submit: function() {
+    submit: function () {
         if (!this.data.item.displayData.topLeft.trim().length) {
             wx.$.showError('请输入日程标题')
             return

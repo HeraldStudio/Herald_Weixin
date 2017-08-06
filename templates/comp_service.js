@@ -57,7 +57,7 @@ exports.bind = function(page, callback){
             success(res) {
                 if (res.data.code != '200') {
                     wx.$.showError(res.data.content)
-                    return
+
                 } else {
                     let service = page.data.$service
                     service.vote = res.data.content.vote
