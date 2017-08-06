@@ -71,17 +71,22 @@ module.exports = {
     let curYear = today.getFullYear()
     let curMonth = today.getMonth() + 1
     let curYearShort = curYear.toString().slice(2)
+    let lastLastYearShort = (curYear - 2).toString().slice(2)
     let lastYearShort = (curYear - 1).toString().slice(2)
     let nextYearShort = (curYear + 1).toString().slice(2)
     let termsAvailable = []
     if (curMonth <= 6) { // 前半年展示去年短学期、去年秋季学期、春季学期课表
       termsAvailable = [
+        lastLastYearShort + '-' + lastYearShort + '-2',
+        lastLastYearShort + '-' + lastYearShort + '-3',
         lastYearShort + '-' + curYearShort + '-1',
         lastYearShort + '-' + curYearShort + '-2',
         lastYearShort + '-' + curYearShort + '-3'
       ]
     } else { // 后半年展示春季学期、短学期、秋季学期课表
       termsAvailable = [
+        lastYearShort + '-' + curYearShort + '-1',
+        lastYearShort + '-' + curYearShort + '-2',
         lastYearShort + '-' + curYearShort + '-3',
         curYearShort + '-' + nextYearShort + '-1',
         curYearShort + '-' + nextYearShort + '-2'
@@ -98,7 +103,7 @@ module.exports = {
           route: 'api/curriculum',
           data: { term },
           success (result) {
-            wx.$.userStorage(that.key, that.getAll().concat(that.format(result.data)))
+            wx.$.userStorage(that.key, (that.getAll() || []).concat(that.format(result.data)))
             storedTerms = storedTerms.concat([ term ])
             wx.$.userStorage('schedule_terms', storedTerms)
             threads--
@@ -129,22 +134,14 @@ module.exports = {
     let startDate = new Date()
 
     // 服务器端返回的startMonth已经是Java/JavaScript型的月份表示，直接设置
+    let split = data.term.split('-')
+    startDate.setFullYear(parseInt('20' + split[0]) + (split[1] === 3 ? 1 : 0))
     startDate.setMonth(data.content.startdate.month)
     startDate.setDate(data.content.startdate.day)
     startDate.setHours(0)
     startDate.setMinutes(0)
     startDate.setSeconds(0)
     startDate.setMilliseconds(0)
-
-    // 如果开学日期比今天晚了超过两个月，则认为是去年开学的。这里用while保证了当前周数永远大于零
-    let now = new Date()
-    now.setHours(0)
-    now.setMinutes(0)
-    now.setSeconds(0)
-    now.setMilliseconds(0)
-    while (startDate.getTime() - now.getTime() > 60 * 86400000) {
-      startDate.setFullYear(startDate.getFullYear() - 1)
-    }
 
     // 为了保险，检查开学日期的星期，不是周一的话往前推到周一
     if (startDate.getDay() !== 1) {
