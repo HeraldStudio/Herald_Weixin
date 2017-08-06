@@ -22,6 +22,15 @@ module.exports = {
     }
   },
 
+  getAll: function () {
+    let storage = wx.$.userStorage(this.key)
+    if (Array.isArray(storage)) {
+      return storage
+    } else {
+      return null
+    }
+  },
+
   clear: function () {
     wx.$.userStorage(this.key, '')
   },
@@ -54,6 +63,8 @@ module.exports = {
       let date = new Date(year, month - 1, day, hour, minute)
       let minutes = exam.hour
       return {
+        type: '考试',
+        typeId: 'exam',
         fromTime: date.getTime(),
         toTime: date.getTime() + minutes * 60 * 1000,
         displayData: {

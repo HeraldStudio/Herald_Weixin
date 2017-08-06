@@ -1,7 +1,10 @@
+let custom = require('../../providers/schedule/custom.js')
+
 Page({
   data: {
     item: {
       type: '自定日程',
+      typeId: 'custom',
       fromTime: 0,
       toTime: 0,
       displayData: {
@@ -119,7 +122,7 @@ Page({
       wx.$.showError('请输入日程标题')
       return
     }
-    wx.$.util('custom_provider').addSchedule(this.data.item)
+    custom.addSchedule(this.data.item)
     wx.navigateBack()
   }
 })

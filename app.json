@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/addSchedule/addSchedule",
-    "pages/curriculum/curriculum",
+    "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
     "pages/markdown/markdown"
   ],

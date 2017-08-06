@@ -1,0 +1,29 @@
+<view class="week header">
+  <view class="day week-intro">
+  </view>
+  <view wx:for="{{ ['一', '二', '三', '四', '五', '六', '日'] }}" class="day">
+    <text class="date">{{ item }}</text>
+  </view>
+</view>
+<view class="week header-placeholder"/>
+<view wx:for="{{ weeks }}" wx:for-item="week" class="week">
+  <view class="day week-intro">
+    <text class="month">{{ (index == 0 || weeks[index - 1].d[0].m !== week.d[0].m) ? week.d[0].m + '月' : '·' }}</text>
+    <text class="from-time" wx:if="{{ week.f != week.t }}">{{ week.f }}:00</text>
+    <text class="to-time" wx:if="{{ week.f != week.t }}">{{ week.t }}:00</text>
+  </view>
+  <view wx:for="{{ week.d }}" wx:for-item="day" class="day {{ day.o }} {{ curDate == day.d && curYear == day.y && curMonth == day.m ? 'today' : '' }}"
+        id="{{ day.d == 1 && curYear == day.y && curMonth == day.m ? 'current' : '' }}">
+    <text class="date singleline {{ day.d == 1 ? 'new-month' : '' }}">{{ day.d }}</text>
+    <text class="hint" wx:if="{{ day.h && day.e.length }}">{{ day.h }}</text>
+    <view wx:for="{{ day.e }}" wx:for-item="event"
+          class="event {{ event.typeId }}"
+          style="height: {{ (event.t - event.f) * 24 }}rpx; margin-top: {{ (index == 0 ? event.f - week.f : event.f - day.e[index - 1].t) * 24 }}rpx;"
+          catchtap="showEvent" data-event="{{ event }}">
+      <text>{{ event.displayData.topLeft }}</text>
+    </view>
+  </view>
+</view>
+<floater>
+
+</floater>

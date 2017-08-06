@@ -10,7 +10,7 @@
     </item>
   </items>
   <item
-    wx:for="{{ [$dashboard_expanded] }}"
+    wx:for="{{ [$dashboard_expanded] }}" wx:key="*this"
     class="expanded {{ item != null ? '' : 'hidden' }}"
     catchtap="$dashboard_toggleExpand" data-index="{{ $dashboard_expandedIndex }}">
     <expandable>

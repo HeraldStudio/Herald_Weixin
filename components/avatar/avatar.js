@@ -5,7 +5,7 @@ exports.bind = function (page) {
   let user = wx.$.util('user').getUser()
   page.setData({
     $avatar: {
-      url: '',
+      url: page.data.$avatar ? page.data.$avatar.url : '',
       name: user.name,
       identity: {
         '21': '东南大学本科生',
