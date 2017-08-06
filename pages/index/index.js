@@ -1,14 +1,12 @@
 Page({
-  data: {
-
-  },
-  onShareAppMessage() {
+  data: {},
+  onShareAppMessage () {
     return {
       title: '小猴偷米',
       path: '/pages/index/index'
     }
   },
-  reloadData(force) {
+  reloadData (force) {
     wx.$.comp('service').bind(this, (serverHealth) => {
       if (serverHealth) {
         wx.$.comp('login').bind(this)
@@ -22,16 +20,16 @@ Page({
       }
     })
   },
-  onLoad(options) {
+  onLoad () {
     this.reloadData(false)
   },
-  onShow() {
+  onShow () {
     wx.$.comp('menu_tip').bind(this)
     wx.$.comp('login').bind(this)
     wx.$.comp('schedule').bind(this)
     wx.$.comp('server_down').bind(this)
   },
-  onPullDownRefresh() {
+  onPullDownRefresh () {
     this.reloadData(true)
     wx.stopPullDownRefresh()
   }

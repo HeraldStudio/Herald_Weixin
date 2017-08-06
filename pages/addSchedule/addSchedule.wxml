@@ -19,38 +19,38 @@
     </view>
 </item>-->
 <form>
-    <view class="subtitle">
-        <text>基本信息</text>
-    </view>
-    <input placeholder="日程标题" bindinput="onTopLeftChange" value="{{ item.displayData.topLeft }}" auto-focus="true"/>
-    <input placeholder="地点及详情" bindinput="onBottomLeftChange" value="{{ item.displayData.bottomLeft }}"/>
-    <input placeholder="备注" bindinput="onBottomRightChange" value="{{ item.displayData.bottomRight }}"/>
-    <!-- <view class="subtitle">
-        <text>重复</text>
-    </view>
-    <radio-group>
-        <radio wx:for="{{ [['once', '不重复'], ['daily', '每天'], ['weekly', '每周'], ['fortnightly', '每两周'], ['monthly', '每月']] }}" value="{{ item[0] }}" checked="{{ item[0] == 'once' }}" color="#3688ff">{{ item[1] }}</radio>
-    </radio-group> -->
-    <view class="subtitle">
-        <text>起止时间</text>
-    </view>
-    <view class="picker-container">
-        <picker mode="date" value="{{ displayFromDate }}" bindchange="onFromDateChange">
-            <view class="picker">{{ displayFromDate }}</view>
-        </picker>
-        <picker mode="time" value="{{ displayFromTime }}" bindchange="onFromTimeChange">
-            <view class="picker">{{ displayFromTime }}</view>
-        </picker>
-        <text class="separator">~</text>
-        <picker mode="date" value="{{ displayToDate }}" bindchange="onToDateChange">
-            <view class="picker">{{ displayToDate }}</view>
-        </picker>
-        <picker mode="time" value="{{ displayToTime }}" bindchange="onToTimeChange">
-            <view class="picker">{{ displayToTime }}</view>
-        </picker>
-    </view>
-    <view class="footer">
-        <text>自定义日程不会被自动清除，它会一直保留在首页直到你左滑删除它。</text>
-    </view>
-    <button class="fab confirm" catchtap="submit"/>
+  <view class="subtitle">
+    <text>基本信息</text>
+  </view>
+  <input placeholder="日程标题" bindinput="onTopLeftChange" value="{{ item.displayData.topLeft }}" auto-focus="true"/>
+  <input placeholder="地点及详情" bindinput="onBottomLeftChange" value="{{ item.displayData.bottomLeft }}"/>
+  <input placeholder="备注" bindinput="onBottomRightChange" value="{{ item.displayData.bottomRight }}"/>
+  <!-- <view class="subtitle">
+      <text>重复</text>
+  </view>
+  <radio-group>
+      <radio wx:for="{{ [['once', '不重复'], ['daily', '每天'], ['weekly', '每周'], ['fortnightly', '每两周'], ['monthly', '每月']] }}" value="{{ item[0] }}" checked="{{ item[0] == 'once' }}" color="#3688ff">{{ item[1] }}</radio>
+  </radio-group> -->
+  <view class="subtitle">
+    <text>起止时间</text>
+  </view>
+  <view class="picker-container">
+    <picker mode="date" value="{{ displayFromDate }}" bindchange="onFromDateChange">
+      <view class="picker">{{ displayFromDate }}</view>
+    </picker>
+    <picker mode="time" value="{{ displayFromTime }}" bindchange="onFromTimeChange">
+      <view class="picker">{{ displayFromTime }}</view>
+    </picker>
+    <text class="separator">~</text>
+    <picker mode="date" value="{{ displayToDate }}" bindchange="onToDateChange">
+      <view class="picker">{{ displayToDate }}</view>
+    </picker>
+    <picker mode="time" value="{{ displayToTime }}" bindchange="onToTimeChange">
+      <view class="picker">{{ displayToTime }}</view>
+    </picker>
+  </view>
+  <view class="footer">
+    <text>自定义日程不会被自动清除，它会一直保留在首页直到你左滑删除它。</text>
+  </view>
+  <button class="fab confirm" catchtap="submit"/>
 </form>

@@ -1,0 +1,11 @@
+<subpage class="login">
+  <image class="logo" src="/images/logo_180.png" mode="aspectFit"/>
+  <text class="slogan">更简单的校园生活</text>
+  <input placeholder="一卡通号" focus="true" type="number" maxlength="9" bindinput="$login_onCardnumChange"
+         bindconfirm="$login_submit"/>
+  <input placeholder="统一身份认证密码" password="true" type="text" bindinput="$login_onPasswordChange"
+         bindconfirm="$login_submit"/>
+  <button type="blue" class="login" bindtap="$login_submit">登录</button>
+  <contact-button/>
+  <!-- <text class="copyright">© 2017 东南大学小猴偷米工作室 公益出品</text> -->
+</subpage>

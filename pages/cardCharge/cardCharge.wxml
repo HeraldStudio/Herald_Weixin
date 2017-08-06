@@ -1,20 +1,23 @@
 <view class="charge">
-    <line>
-        <text class="row-name">一卡通号码</text>
-        <text class="content">{{ cardnum }}</text>
-    </line>
-    <line>
-        <text class="row-name">一卡通六位查询密码</text>
-        <input bindinput="onPasswordChange" type="password" value="{{ password }}"/>
-    </line>
-    <line>
-        <text class="row-name">记住密码</text>
-        <switch color="#3688ff" checked="{{ remember }}" bindchange="onRememberChange"/>
-    </line>
-    <line class="amount">
-      <button wx:for="{{ [50, 100, 200, 300, 500] }}" class="{{ amount == item ? 'selected' : '' }}" catchtap="changeAmount" data-to="{{ item }}">{{ item }}</button>
-      <input class="custom-amount {{ amount == (customAmount || 0) ? 'selected' : '' }}" placeholder="其他金额" bindinput="changeAmount" catchtap="changeAmount" data-to="{{ customAmount || 0 }}"/>
-    </line>
+  <line>
+    <text class="row-name">一卡通号码</text>
+    <text class="content">{{ cardnum }}</text>
+  </line>
+  <line>
+    <text class="row-name">一卡通六位查询密码</text>
+    <input bindinput="onPasswordChange" type="password" value="{{ password }}"/>
+  </line>
+  <line>
+    <text class="row-name">记住密码</text>
+    <switch color="#3688ff" checked="{{ remember }}" bindchange="onRememberChange"/>
+  </line>
+  <line class="amount">
+    <button wx:for="{{ [50, 100, 200, 300, 500] }}" class="{{ amount == item ? 'selected' : '' }}"
+            catchtap="changeAmount" data-to="{{ item }}">{{ item }}
+    </button>
+    <input class="custom-amount {{ amount == (customAmount || 0) ? 'selected' : '' }}" placeholder="其他金额"
+           bindinput="changeAmount" catchtap="changeAmount" data-to="{{ customAmount || 0 }}"/>
+  </line>
 </view>
 <text class="greeting">1. 充值的金额将从绑定的银行卡中扣除；
 

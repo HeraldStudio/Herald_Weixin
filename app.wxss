@@ -108,7 +108,7 @@ fab::before,
 }
 
 /* 加号的竖 */
-fab::after, 
+fab::after,
 .fab::after {
 
   /* 清除 button::after 原有样式 */
@@ -132,19 +132,19 @@ fab::after,
 }
 
 /* 叉的第一笔 */
-fab.close::before, 
+fab.close::before,
 .fab.close::before {
   -webkit-transform: rotate(45deg);
 }
 
 /* 叉的第二笔 */
-fab.close::after, 
+fab.close::after,
 .fab.close::after {
   -webkit-transform: rotate(45deg);
 }
 
 /* 对勾的第一笔 */
-fab.confirm::before, 
+fab.confirm::before,
 .fab.confirm::before {
   -webkit-transform: rotate(45deg);
   right: 58rpx;
@@ -153,7 +153,7 @@ fab.confirm::before,
 }
 
 /* 对勾的第二笔 */
-fab.confirm::after, 
+fab.confirm::after,
 .fab.confirm::after {
   -webkit-transform: rotate(45deg);
   right: 46rpx;
@@ -162,7 +162,7 @@ fab.confirm::after,
 }
 
 /* Material 点击效果 */
-fab:active, 
+fab:active,
 .fab:active {
   background: #1c78ff;
   /*box-shadow: 0 2rpx 4rpx rgba(2, 0, 33, .2);*/
@@ -170,14 +170,14 @@ fab:active,
 }
 
 /* fab 支持 hidden 属性，可动态显示或隐藏 */
-fab.hidden, 
+fab.hidden,
 .fab.hidden {
   bottom: -120rpx;
 }
 
 /* hidden 状态下加号半透明 */
 fab.hidden::before,
-fab.hidden::after, 
+fab.hidden::after,
 .fab.hidden::before,
 .fab.hidden::after {
   opacity: 0;
