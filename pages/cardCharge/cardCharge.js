@@ -6,26 +6,26 @@ Page({
     password: '',
     remember: false
   },
-  onLoad(options) {
-    var that = this
+  onLoad () {
+    let that = this
     wx.$.requestApi({
       route: 'api/user',
-      success(res) {
+      success (res) {
         that.setData({
           cardnum: res.data.content.cardnum,
           password: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum),
-          remember: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum) != ''
+          remember: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum) !== ''
         })
       }
     })
   },
-  onShareAppMessage() {
+  onShareAppMessage () {
     return {
       title: '一卡通充值',
       path: '/pages/cardCharge/cardCharge'
     }
   },
-  changeAmount(event) {
+  changeAmount (event) {
     if (event.detail.value !== undefined) {
       if (/^(([1-9]\d{0,3}|0)(\.\d{0,2})?)?$/.test(event.detail.value)) {
         this.setData({
@@ -41,10 +41,10 @@ Page({
       })
     }
   },
-  onPasswordChange(event) {
+  onPasswordChange (event) {
     this.data.password = event.detail.value
   },
-  onRememberChange(event) {
+  onRememberChange (event) {
     this.data.remember = event.detail.value
     if (!this.data.remember) {
       this.setData({
@@ -52,11 +52,11 @@ Page({
       })
     }
   },
-  submit(event) {
-    var cardnum = this.data.cardnum + ''
-    var password = this.data.password + ''
-    var amount = this.data.amount + ''
-    var remember = this.data.remember
+  submit () {
+    let cardnum = this.data.cardnum + ''
+    let password = this.data.password + ''
+    let amount = this.data.amount + ''
+    let remember = this.data.remember
     if (!/^\d{6}$/.test(password)) {
       wx.$.showError('请输入正确的查询密码')
       return
@@ -73,8 +73,8 @@ Page({
           password: password,
           amount: amount
         },
-        complete(res) {
-          if (res.data.errmsg == '转账成功') {
+        complete (res) {
+          if (res.data.errmsg === '转账成功') {
             wx.$.showSuccess('充值成功')
             if (remember) {
               wx.$.userStorage('card_charge_password_' + cardnum, password)

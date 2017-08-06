@@ -1,0 +1,250 @@
+dashboard-title {
+  display: block;
+  padding: 30rpx 35rpx 30rpx 0;
+  margin-left: 35rpx;
+  font-size: 28rpx;
+  color: #333;
+  text-align: left;
+}
+
+dashboard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  justify-content: stretch;
+}
+
+dashboard items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1rpx;
+  position: relative;
+  overflow-x: scroll;
+  justify-content: center;
+}
+
+dashboard item {
+  padding: 5rpx 0;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  border-left: 1rpx solid #f0f0f0;
+  border-right: 1rpx solid #f0f0f0;
+  border-top: 7rpx solid transparent;
+  border-bottom: 7rpx solid transparent;
+  margin: 32 rpx 0 32rpx -1rpx;
+  -webkit-transition: .3s;
+}
+
+dashboard item:first-child {
+  border-left: 1px solid transparent;
+}
+
+dashboard item:last-child {
+  border-right: 1px solid transparent;
+}
+
+dashboard item expandable {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  -webkit-transition: .3s;
+}
+
+dashboard item:active {
+  background: rgba(0, 0, 0, .05);
+  margin-top: 0;
+  margin-bottom: 0;
+  border-left: 1rpx solid transparent;
+  border-right: 1rpx solid transparent;
+  padding: 37rpx 0;
+}
+
+dashboard items item.long {
+  background: #f7f7f7;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-left: 1rpx solid transparent;
+  border-right: 1rpx solid transparent;
+  border-top: 7rpx solid #3688ff;
+  border-bottom: 7rpx solid transparent;
+  padding: 37rpx 0;
+}
+
+dashboard items item.long + item {
+  border-left: 0 solid transparent;
+  margin-left: 0;
+}
+
+dashboard item.expanded {
+  width: 100%;
+  display: block;
+  background: #f7f7f7;
+  margin: -1rpx 0 0 0;
+  padding: 25rpx 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1rpx solid #dedede;
+  position: relative;
+  opacity: 1;
+  -webkit-transition: .3s;
+}
+
+dashboard item.expanded.hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+dashboard item blk {
+  width: 180rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  -webkit-transition: .3s;
+}
+
+dashboard item.expanded blk {
+  border-left: 1rpx solid #ddd;
+}
+
+dashboard item list {
+  display: none;
+}
+
+dashboard item.expanded long {
+  display: flex;
+  border-color: #f4f4f4;
+}
+
+dashboard item.expanded list {
+  display: block;
+}
+
+dashboard item .desc {
+  color: #666;
+  font-size: 28rpx;
+  -webkit-transition: .3s;
+}
+
+dashboard item .info {
+  color: #3688ff;
+  font-size: 36rpx;
+  padding-top: 10rpx;
+  -webkit-transition: .3s;
+}
+
+dashboard item .navigate {
+  color: #3688ff;
+  font-size: 32rpx;
+  -webkit-transition: .3s;
+}
+
+dashboard item .intro {
+  color: #999;
+  font-size: 24rpx;
+  padding-top: 10rpx;
+  height: 40rpx;
+  overflow: hidden;
+  -webkit-transition: .3s;
+  display: none;
+}
+
+/*dashboard item.long .desc, 
+dashboard item.long .info, 
+dashboard item.long .intro {
+    color: #ffffff;
+}*/
+
+dashboard item.expanded .intro {
+  padding-top: 0;
+  height: 0;
+  opacity: 0;
+}
+
+dashboard item .hint {
+  display: block;
+  color: #666;
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  height: 40rpx;
+  overflow: hidden;
+  -webkit-transition: .3s;
+}
+
+dashboard item .declaration {
+  display: block;
+  color: #666;
+  font-size: 28rpx;
+  margin: 0 15rpx;
+  padding: 20rpx 15rpx;
+  border-top: 1rpx solid #e5e5e5;
+  text-align: left;
+  overflow: hidden;
+  -webkit-transition: .3s;
+}
+
+dashboard item.long:active:before {
+  bottom: -13rpx;
+}
+
+dashboard item list {
+  margin-top: 10rpx;
+  padding-top: 15rpx;
+}
+
+dashboard item list button.loading {
+  background: none;
+}
+
+dashboard item list button.loading:before,
+dashboard item list button.loading:after {
+  border: none;
+}
+
+dashboard item list > view {
+  margin: 0 15rpx;
+  padding: 20rpx 15rpx;
+  border-top: 1rpx solid #e5e5e5;
+}
+
+dashboard item list .line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+}
+
+dashboard item list .top-left,
+dashboard item list .bottom-left {
+  flex-grow: 1;
+  text-align: left;
+}
+
+dashboard item list .top-left {
+  font-size: 32rpx;
+  color: #3688ff;
+}
+
+dashboard item list .top-right,
+dashboard item list .bottom-left {
+  font-size: 28rpx;
+  color: #666;
+}
+
+dashboard item list .bottom-right {
+  font-size: 28rpx;
+  color: #999;
+}
+
+dashboard item list .collapse {
+  font-size: 28rpx;
+  color: #999;
+}

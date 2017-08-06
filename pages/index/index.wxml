@@ -1,29 +1,29 @@
 <block wx:if="{{ !$service }}">
-    <include src="/templates/comp_loading.wxml"/>
+  <include src="/components/loading/loading.wxml"/>
 </block>
 <block wx:elif="{{ $service.serverHealth === true }}">
-    <block wx:if="{{ $login.isLogin === true }}">
-        <include src="/templates/comp_menu_tip.wxml"/>
-        <include src="/templates/comp_avatar.wxml"/>
-        <include src="/templates/comp_dashboard.wxml"/>
-        <include src="/templates/comp_jwc.wxml"/>
-        <include src="/templates/comp_service.wxml"/>
-        <include src="/templates/comp_schedule.wxml"/>
-        <contact-button type="default-light"/>
-    </block>
-    <block wx:elif="{{ $login.isLogin === false }}">
-        <include src="/templates/comp_login.wxml"/>
-    </block>
+  <block wx:if="{{ $login.isLogin === true }}">
+    <include src="/components/menu_tip/menu_tip.wxml"/>
+    <include src="/components/avatar/avatar.wxml"/>
+    <include src="/components/dashboard/dashboard.wxml"/>
+    <include src="/components/jwc/jwc.wxml"/>
+    <include src="/components/service/service.wxml"/>
+    <include src="/components/schedule/schedule.wxml"/>
+    <contact-button type="default-light"/>
+  </block>
+  <block wx:elif="{{ $login.isLogin === false }}">
+    <include src="/components/login/login.wxml"/>
+  </block>
 </block>
 <block wx:else>
-    <block wx:if="{{ $login.isLogin === true }}">
-        <include src="/templates/comp_menu_tip.wxml"/>
-        <include src="/templates/comp_server_down.wxml"/>
-        <include src="/templates/comp_service.wxml"/>
-        <include src="/templates/comp_schedule.wxml"/>
-        <contact-button type="default-light"/>
-    </block>
-    <block wx:elif="{{ $login.isLogin === false }}">
-        <include src="/templates/comp_server_down.wxml"/>
-    </block>
+  <block wx:if="{{ $login.isLogin === true }}">
+    <include src="/components/menu_tip/menu_tip.wxml"/>
+    <include src="/components/server_down/server_down.wxml"/>
+    <include src="/components/service/service.wxml"/>
+    <include src="/components/schedule/schedule.wxml"/>
+    <contact-button type="default-light"/>
+  </block>
+  <block wx:elif="{{ $login.isLogin === false }}">
+    <include src="/components/server_down/server_down.wxml"/>
+  </block>
 </block>

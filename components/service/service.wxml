@@ -1,0 +1,48 @@
+<block>
+  <service wx:if="{{ $service.messages }}">
+    <view class="subtitle">
+      <image src="/images/ic_notice.png" mode="aspectFit"/>
+      <text>广播站</text>
+      <space/>
+    </view>
+    <swiper wx:if="{{ $service.messages.length > 1 }}" autoplay="true" duration="300" circular="true">
+      <swiper-item wx:for="{{ $service.messages }}" wx:key="*this" class="content {{ item.url ? 'selectable': '' }}"
+                   catchtap="open"
+                   data-url="{{ item.url }}">
+        <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
+        <view class="vertical">
+          <text class="title" wx:if="{{ item.title }}">{{ item.title }}</text>
+          <text>{{ item.content }}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view wx:if="{{ $service.messages.length == 1 }}" wx:for="{{ $service.messages }}" wx:key="*this"
+          class="content {{ item.url ? 'selectable': '' }}" catchtap="open" data-url="{{ item.url }}">
+      <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
+      <view class="vertical">
+        <text class="title" wx:if="{{ item.title }}">{{ item.title }}</text>
+        <text>{{ item.content }}</text>
+      </view>
+    </view>
+  </service>
+  <service wx:if="{{ $service.vote }}" class="vote {{ $service.vote.voted ? 'voted' : '' }}">
+  <view class="subtitle">
+    <image src="/images/ic_vote.png" mode="aspectFit"/>
+    <text>投票箱</text>
+    <space/>
+  </view>
+  <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{
+    $service.vote.content }}
+  </text>
+  <view class="vote-bar">
+    <view class="attitude" catchtap="$service_vote" data-attitude="positive">
+      <image src="/images/ic_vote_up.png" animation="{{ $service_voteAnimationPositive }}" mode="aspectFit"/>
+      <text>{{ $service.vote.positive_verb }} {{ $service.vote.positive_count }}</text>
+    </view>
+    <view class="attitude" catchtap="$service_vote" data-attitude="negative">
+      <image src="/images/ic_vote_down.png" animation="{{ $service_voteAnimationNegative }}" mode="aspectFit"/>
+      <text>{{ $service.vote.negative_verb }} {{ $service.vote.negative_count }}</text>
+    </view>
+  </view>
+  </service>
+</block>
