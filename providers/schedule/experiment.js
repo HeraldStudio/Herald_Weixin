@@ -22,6 +22,15 @@ module.exports = {
     }
   },
 
+  getAll: function () {
+    let storage = wx.$.userStorage(this.key)
+    if (Array.isArray(storage)) {
+      return storage
+    } else {
+      return null
+    }
+  },
+
   clear: function () {
     wx.$.userStorage(this.key, '')
   },
@@ -54,6 +63,7 @@ module.exports = {
       let hm = { '上午': 9 * 60 + 45, '下午': 13 * 60 + 45, '晚上': 18 * 60 + 15 }[lab.Day]
       return {
         type: '实验',
+        typeId: 'experiment',
         fromTime: date.getTime() + hm * 60000,
         toTime: date.getTime() + hm * 60000 + 3 * 3600000,
         displayData: {

@@ -93,7 +93,7 @@ fab, .fab {
   z-index: 99999999999;
 }
 
-/* 加号的横 */
+/* 加号 */
 fab::before,
 .fab::before {
   content: ' ';
@@ -106,8 +106,6 @@ fab::before,
   background: #ffffff;
   -webkit-transition: .25s;
 }
-
-/* 加号的竖 */
 fab::after,
 .fab::after {
 
@@ -131,19 +129,17 @@ fab::after,
   -webkit-transition: .25s;
 }
 
-/* 叉的第一笔 */
+/* 叉 */
 fab.close::before,
 .fab.close::before {
   -webkit-transform: rotate(45deg);
 }
-
-/* 叉的第二笔 */
 fab.close::after,
 .fab.close::after {
   -webkit-transform: rotate(45deg);
 }
 
-/* 对勾的第一笔 */
+/* 对勾 */
 fab.confirm::before,
 .fab.confirm::before {
   -webkit-transform: rotate(45deg);
@@ -151,8 +147,6 @@ fab.confirm::before,
   bottom: 44rpx;
   width: 25rpx;
 }
-
-/* 对勾的第二笔 */
 fab.confirm::after,
 .fab.confirm::after {
   -webkit-transform: rotate(45deg);

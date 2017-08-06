@@ -13,6 +13,10 @@ module.exports = {
   },
 
   get: function () {
+    return this.getAll()
+  },
+
+  getAll: function () {
     let storage = wx.$.userStorage(this.key)
     if (Array.isArray(storage)) {
       return storage

@@ -22,6 +22,15 @@ module.exports = {
     }
   },
 
+  getAll: function () {
+    let storage = wx.$.userStorage(this.key)
+    if (Array.isArray(storage)) {
+      return storage
+    } else {
+      return null
+    }
+  },
+
   clear: function () {
     wx.$.userStorage(this.key, '')
   },
@@ -41,7 +50,11 @@ module.exports = {
           data: { term },
           complete: function (result) {
             try {
+              // 此处属于在首页下拉刷新课表，这种情况下，清空原有的所有课表数据，更新当前学期课表进行填充
+              // 即刷新结束后，只留下当前学期课表
+              // 在 fullSchedule 中会补充获取当前一整年的课表
               wx.$.userStorage(that.key, that.format(result.data))
+              wx.$.userStorage('schedule_terms', [term])
               success && success(that.get())
             } catch (e) {
               wx.$.error(e)
@@ -51,6 +64,56 @@ module.exports = {
         })
       }
     })
+  },
+
+  updateFullYear: function (obj) {
+    let today = new Date()
+    let curYear = today.getFullYear()
+    let curMonth = today.getMonth() + 1
+    let curYearShort = curYear.toString().slice(2)
+    let lastYearShort = (curYear - 1).toString().slice(2)
+    let nextYearShort = (curYear + 1).toString().slice(2)
+    let termsAvailable = []
+    if (curMonth <= 6) { // 前半年展示去年短学期、去年秋季学期、春季学期课表
+      termsAvailable = [
+        lastYearShort + '-' + curYearShort + '-1',
+        lastYearShort + '-' + curYearShort + '-2',
+        lastYearShort + '-' + curYearShort + '-3'
+      ]
+    } else { // 后半年展示春季学期、短学期、秋季学期课表
+      termsAvailable = [
+        lastYearShort + '-' + curYearShort + '-3',
+        curYearShort + '-' + nextYearShort + '-1',
+        curYearShort + '-' + nextYearShort + '-2'
+      ]
+    }
+    let storedTerms = wx.$.userStorage('schedule_terms') || []
+    let threads = 0
+    let that = this
+    wx.$.showLoading('初始化全年课表')
+    for (let term of termsAvailable) {
+      if (storedTerms.filter(k => k === term).length === 0) {
+        threads++
+        wx.$.requestApi({
+          route: 'api/curriculum',
+          data: { term },
+          success (result) {
+            wx.$.userStorage(that.key, that.getAll().concat(that.format(result.data)))
+            storedTerms = storedTerms.concat([ term ])
+            wx.$.userStorage('schedule_terms', storedTerms)
+            threads--
+            if (threads === 0) {
+              wx.$.hideLoading()
+              obj.success && obj.success()
+            }
+          }
+        })
+      }
+    }
+    if (threads === 0) {
+      wx.$.hideLoading()
+      obj.success && obj.success()
+    }
   },
 
   format: function (data) {
@@ -133,6 +196,7 @@ module.exports = {
         let endTime = startDate.getTime() + (((week - 1) * 7 + model.dayFromMon) * 24 * 60 + model.endTime) * 60 * 1000
         return {
           type: '课程',
+          typeId: 'curriculum',
           fromTime: startTime,
           toTime: endTime,
           displayData: {

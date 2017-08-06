@@ -1,0 +1,159 @@
+.week {
+  display: flex;
+  flex-direction: row;
+  min-height: 135rpx;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+
+.week.header-placeholder {
+  height: 60rpx;
+  min-height: 0;
+}
+
+.week.header {
+  min-height: 0;
+  border-top: 1rpx solid #e4e4e4;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60rpx;
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, .1);
+}
+
+.week.header .date {
+  line-height: 40rpx;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-right: 1rpx solid #e4e4e4;
+  padding-bottom: 2rpx;
+  overflow: hidden;
+}
+
+.day:last-child {
+  border-right: 0;
+}
+
+.day.week-intro {
+  width: 0;
+  flex-grow: 3;
+  font-size: 20rpx;
+  color: #999;
+  background: #fafafa;
+}
+
+.day.week-intro .month {
+  font-size: 24rpx;
+  color: #333333;
+  padding: 10rpx 0;
+}
+
+.day.week-intro .from-time {
+  flex-grow: 1;
+}
+
+.day:nth-child(2),
+.day:nth-child(3),
+.day:nth-child(4),
+.day:nth-child(5),
+.day:nth-child(6) {
+  width: 0;
+  flex-grow: 5;
+}
+
+.day:nth-child(7),
+.day:nth-child(8) {
+  width: 0;
+  flex-grow: 4;
+  background: #fafafa;
+}
+
+.day.e {
+  background: #f5f5f5;
+}
+
+.day:active {
+  background: #e4e4e4;
+}
+
+.day.today {
+  background: #a4dff1;
+}
+
+.day.today:active {
+  background: #7bd7f1;
+}
+
+.date {
+  font-size: 28rpx;
+  color: #333333;
+  padding: 10rpx 0;
+}
+
+.day.today .date {
+  font-weight: bold;
+}
+
+.date.new-month {
+  font-weight: bold;
+}
+
+.hint {
+  font-size: 22rpx;
+  color: #666;
+  margin-bottom: 5rpx;
+}
+
+.event {
+  display: block;
+  font-size: 22rpx;
+  padding: 2rpx 0;
+  border-radius: 5rpx;
+  border: 1rpx solid #f0f0f0;
+  margin: 0 2rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.event:active {
+  -webkit-filter: brightness(0.8);
+}
+
+.event.curriculum {
+  background: #00b4ff;
+  color: #fff;
+  border-color: rgba(0, 141, 199, 0.5);
+}
+
+.event.experiment {
+  background: #c180ff;
+  color: #fff;
+  border-color: rgba(186, 84, 255, 0.5);
+}
+
+.event.exam {
+  background: #ff6042;
+  color: #fff;
+  border-color: rgba(206, 77, 53, 0.5)
+}
+
+.event.custom {
+  background: #73bf00;
+  color: #fff;
+  border-color: rgba(92, 153, 0, 0.5);
+}
+
+.event text {
+  display: block;
+  text-align: center;
+  line-height: 28rpx;
+  overflow: hidden;
+  text-overflow: fade;
+  padding: 1rpx 0;
+}
+
