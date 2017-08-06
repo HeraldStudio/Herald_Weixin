@@ -63,7 +63,7 @@ function _Page (obj) {
 function log (title, ...args) {
   console.log(
     '%c' + title,
-    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
     ...args
   )
 }
@@ -72,7 +72,7 @@ function log (title, ...args) {
 function error (title, ...args) {
   console.error(
     '%c' + title,
-    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px 0 0 2px; padding:2px 5px; line-height: 20px",
+    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
     ...args
   )
 }
@@ -199,7 +199,7 @@ function showError (str, callback) {
 }
 
 module.exports = {
-  config, beginInject, Page, log, error, logs,
+  config, beginInject, Page, log, error,
   ask, requestApi, requestCompat, userStorage, comp,
   showActions, showSuccess, showLoading, hideLoading, showError
 }
