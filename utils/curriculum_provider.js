@@ -46,7 +46,7 @@ module.exports = {
                         } catch (e) {
                             wx.$.error(e)
                             fail && fail()
-                            return
+
                         }
                     }
                 })

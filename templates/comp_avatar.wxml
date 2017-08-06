@@ -1,13 +1,14 @@
-<view class="avatar-container {{ $avatar.showAll ? 'expanded' : '' }}" catchtap="$avatar_toggle" wx:if="{{ $avatar.name }}">
-  <image class="avatar" src="{{ $avatar.url }}"/>
-  <view class="right-container">
-    <text class="name">{{ $avatar.name }}</text>
-    <text class="identity">{{ $avatar.identity }}</text>
-    <block wx:if="{{ $avatar.showAll }}">
-        <view class="divider"/>
-        <text class="identity">一卡通号：{{ $avatar.cardnum }}</text>
-        <text class="identity">学号：{{ $avatar.schoolnum }}</text>
-    </block>
-  </view>
-  <image class="icon" src="/images/ic_quit.png" mode="aspectFit" catchtap="$avatar_userMenu"/>
+<view class="avatar-container {{ $avatar.showAll ? 'expanded' : '' }}" catchtap="$avatar_toggle"
+      wx:if="{{ $avatar.name }}">
+    <image class="avatar" src="{{ $avatar.url }}"/>
+    <view class="right-container">
+        <text class="name">{{ $avatar.name }}</text>
+        <text class="identity">{{ $avatar.identity }}</text>
+        <block wx:if="{{ $avatar.showAll }}">
+            <view class="divider"/>
+            <text class="identity">一卡通号：{{ $avatar.cardnum }}</text>
+            <text class="identity">学号：{{ $avatar.schoolnum }}</text>
+        </block>
+    </view>
+    <image class="icon" src="/images/ic_quit.png" mode="aspectFit" catchtap="$avatar_userMenu"/>
 </view>

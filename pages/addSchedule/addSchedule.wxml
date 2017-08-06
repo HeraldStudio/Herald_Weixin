@@ -50,7 +50,7 @@
         </picker>
     </view>
     <view class="footer">
-        <text>自定义日程不会被自动清除，它会一直保留在首页直到你删除它。</text>
+        <text>自定义日程不会被自动清除，它会一直保留在首页直到你左滑删除它。</text>
     </view>
     <button class="fab confirm" catchtap="submit"/>
 </form>
