@@ -25,6 +25,7 @@ dashboard items {
 }
 
 dashboard item {
+  margin: 32rpx 0;
   padding: 5rpx 0;
   display: flex;
   position: relative;
@@ -37,7 +38,7 @@ dashboard item {
   border-right: 1rpx solid #f0f0f0;
   border-top: 7rpx solid transparent;
   border-bottom: 7rpx solid transparent;
-  margin: 32 rpx 0 32rpx -1rpx;
+  margin-left: -1rpx;
   -webkit-transition: .3s;
 }
 
