@@ -83,6 +83,15 @@ Page({
     let ev = { currentTarget: { dataset: { url: url } } }
     this.open(ev)
   },
+  adjustImage(event) {
+    let width = event.detail.width
+    let height = event.detail.height
+    let blockIndex = parseInt(event.currentTarget.dataset.blockIndex)
+    let inlineIndex = parseInt(event.currentTarget.dataset.inlineIndex)
+    this.data.markdown.renderList[blockIndex].content[inlineIndex].style = 'max-width: ' + width + 'rpx; max-height: ' + height + 'rpx; margin: 25rpx auto'
+    let that = this
+    this.setData({ markdown: that.data.markdown })
+  },
   longTapped: false,
   onImageTap (event) {
     if (!this.longTapped) {
