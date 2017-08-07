@@ -39,7 +39,15 @@ Page({
       .sort((a, b) => a.fromTime - b.fromTime)
 
     let today = new Date()
-    this.setData({ curYear: today.getFullYear(), curMonth: today.getMonth() + 1, curDate: today.getDate() })
+    today.setHours(0)
+    today.setMinutes(0)
+    today.setSeconds(0)
+    today.setMilliseconds(0)
+    this.setData({
+      curYear: today.getFullYear(),
+      curMonth: today.getMonth() + 1,
+      curDate: today.getDate()
+    })
 
     let weeks = []
 
