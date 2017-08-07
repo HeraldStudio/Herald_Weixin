@@ -1,3 +1,5 @@
+const schedule = require('../../components/schedule/schedule.js')
+
 const curriculum = require('../../providers/schedule/curriculum.js')
 const experiment = require('../../providers/schedule/experiment.js')
 const exam = require('../../providers/schedule/exam.js')
@@ -6,22 +8,24 @@ const ONE_DAY = 1000 * 60 * 60 * 24
 
 Page({
   data: {},
-  onLoad () {
+  onShow () {
     this.loadCurriculumForYear()
   },
-  showEvent(event) {
+  showPreview (event) {
     event = event.currentTarget.dataset.event
+    event = schedule.formatEvent(event)
 
-    wx.showActionSheet({
-      itemList: [
-        event.type + '详情',
-        wx.$.util('format').formatPeriodNatural(event.fromTime, event.toTime),
-        event.displayData.topLeft,
-        event.displayData.topRight,
-        event.displayData.bottomLeft,
-        event.displayData.bottomRight
-      ].filter(k => k.trim() !== ''),
-    })
+    this.setData({ previewing: true, previewItem: event })
+  },
+  hidePreview () {
+    this.setData({ previewing: false })
+  },
+  delPreviewingEvent () {
+    wx.$.showLoading()
+    let id = this.data.previewItem.id
+    custom.delete(id)
+    this.setData({ previewing: false })
+    this.loadSchedule()
   },
   loadCurriculumForYear() {
     let that = this
@@ -65,12 +69,13 @@ Page({
     let lastTime = lastTo
     let lastDay = new Date(lastTime.getFullYear(), lastTime.getMonth(), lastTime.getDate())
 
-    // 粗略限制数据量不超过两年，即不超过去年今天到明年今天
-    if (firstDay.getTime() < today.getTime() - 365 * ONE_DAY) {
-      firstDay = new Date(today.getTime() - 365 * ONE_DAY)
+    // 粗略限制数据量不超过前后一年；如果数据量太大，触发省内存模式，则限制数据量不超过前后半年
+    let limit = this.data.memorySaveMode ? 182 : 365
+    if (firstDay.getTime() < today.getTime() - limit * ONE_DAY) {
+      firstDay = new Date(today.getTime() - limit * ONE_DAY)
     }
-    if (lastDay.getTime() > today.getTime() + 365 * ONE_DAY) {
-      lastDay = new Date(today.getTime() + 365 * ONE_DAY)
+    if (lastDay.getTime() > today.getTime() + limit * ONE_DAY) {
+      lastDay = new Date(today.getTime() + limit * ONE_DAY)
     }
 
     let firstMonday = new Date(firstDay.getTime() - ((firstDay.getDay() + 6) % 7 + 7) * ONE_DAY)
@@ -135,7 +140,17 @@ Page({
     try {
       this.setData({ weeks })
     } catch (e) {
-      wx.$.showError('数据量过大，由于小程序限制无法展示，请删除持续时间较长的自定义日程，或者清空小程序数据后重试')
+      if (this.data.memorySaveMode) {
+        wx.$.showError('您的日程数据量过大，由于小程序限制无法展示，请清除小程序数据后重试')
+      } else {
+        this.setData({ memorySaveMode: true })
+        this.loadSchedule()
+        return
+      }
+    }
+
+    if (this.data.memorySaveMode) {
+      wx.$.showError('您的日程数据量过大，已开启低占用模式，将只展示前后半年内的日程')
     }
 
     let scroll = () => {
@@ -149,6 +164,12 @@ Page({
       }).exec()
     }
 
-    scroll()
-  }
+    if (!this.scrolled) {
+      scroll()
+      this.scrolled = true
+    } else {
+      wx.$.hideLoading()
+    }
+  },
+  scrolled: false
 })

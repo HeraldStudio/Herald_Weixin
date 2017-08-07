@@ -16,8 +16,14 @@ Page({
     }
   },
   onLoad: function (options) {
-    this.data.item.fromTime = new Date().getTime()
-    this.data.item.toTime = new Date().getTime()
+    if (options.date) {
+      let parts = options.date.split('-').map(k => parseInt(k))
+      this.data.item.fromTime = new Date(parts[0], parts[1] - 1, parts[2]).getTime() + 8 * 60 * 60 * 1000
+      this.data.item.toTime = this.data.item.fromTime + 60 * 60 * 1000
+    } else {
+      this.data.item.fromTime = new Date().getTime()
+      this.data.item.toTime = new Date().getTime()
+    }
     this.setData({
       item: this.data.item
     })
