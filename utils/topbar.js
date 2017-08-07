@@ -1,7 +1,7 @@
-const curriculum = require('../../providers/schedule/curriculum.js')
-const experiment = require('../../providers/schedule/experiment.js')
-const exam = require('../../providers/schedule/exam.js')
-const custom = require('../../providers/schedule/custom.js')
+const curriculum = require('../providers/schedule/curriculum.js')
+const experiment = require('../providers/schedule/experiment.js')
+const exam = require('../providers/schedule/exam.js')
+const custom = require('../providers/schedule/custom.js')
 
 exports.get = function () {
   let nextOrExpiredEvents = [curriculum, experiment, exam, custom].map(p => {
