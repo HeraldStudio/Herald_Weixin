@@ -2,7 +2,7 @@
   <image class="icon" src="/images/ic_jwc.png" mode="aspectFit"/>
   <swiper wx:if="{{ !$jwc_showAll }}" autoplay="true" duration="300" circular="true" vertical="true">
     <swiper-item wx:for="{{ $jwc }}" wx:key="href" catchtap="open" data-url="{{ item.href }}">
-      <text class="content">{{ item.title }}</text>
+      <text class="content singleline">{{ item.title }}</text>
     </swiper-item>
   </swiper>
   <view class="vertical" wx:if="{{ $jwc_showAll }}">
