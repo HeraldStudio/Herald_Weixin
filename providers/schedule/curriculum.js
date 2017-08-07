@@ -112,6 +112,13 @@ module.exports = {
               wx.$.hideLoading()
               obj.success && obj.success()
             }
+          },
+          fail () {
+            threads--
+            if (threads === 0) {
+              wx.$.hideLoading()
+              wx.$.showError(term + '课表获取失败，请返回重试')
+            }
           }
         })
       }

@@ -6,6 +6,7 @@
   </view>
 </view>
 <view class="week header-placeholder"/>
+<text class="empty-hint" wx:if="{{ weeks.length }}">~ 到顶啦 ~</text>
 <view wx:for="{{ weeks }}" wx:for-item="week" class="week">
   <view class="day week-intro">
     <text class="month">{{ (index == 0 || weeks[index - 1].d[0].m !== week.d[0].m) ? week.d[0].m + '月' : '·' }}</text>
@@ -27,6 +28,7 @@
     </view>
   </view>
 </view>
+<text class="empty-hint" wx:if="{{ weeks.length }}">~ 到底啦 ~</text>
 <floater wx:if="{{ previewing }}" class="{{ previewing ? '' : 'hidden' }}" catchtap="hidePreview"
   catchlongtap="nil" bindtouchstart="hidePreview">
   <preview-item catchtap="nil">
