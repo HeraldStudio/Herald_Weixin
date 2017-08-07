@@ -22,7 +22,7 @@ subpage.login input {
   font-size: 28rpx;
   line-height: 44rpx;
   padding: 15rpx 20rpx;
-  background: #ffffff;
+  background: #fafafa;
   border-radius: 10rpx;
   margin-bottom: 20rpx;
 }

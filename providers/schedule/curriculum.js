@@ -103,7 +103,8 @@ module.exports = {
           route: 'api/curriculum',
           data: { term },
           success (result) {
-            wx.$.userStorage(that.key, (that.getAll() || []).concat(that.format(result.data)))
+            let data = that.format(result.data)
+            wx.$.userStorage(that.key, (that.getAll() || []).concat(data))
             storedTerms = storedTerms.concat([ term ])
             wx.$.userStorage('schedule_terms', storedTerms)
             threads--
@@ -133,9 +134,9 @@ module.exports = {
     // 读取开学日期
     let startDate = new Date()
 
-    // 服务器端返回的startMonth已经是Java/JavaScript型的月份表示，直接设置
+    // 服务器端返回的startMonth已经是Java/JavaScript型的月份表示，直接设置不用减一
     let split = data.term.split('-')
-    startDate.setFullYear(parseInt('20' + split[0]) + (split[1] === 3 ? 1 : 0))
+    startDate.setFullYear(parseInt('20' + split[0]) + (split[2] === 3 ? 1 : 0))
     startDate.setMonth(data.content.startdate.month)
     startDate.setDate(data.content.startdate.day)
     startDate.setHours(0)
