@@ -3,6 +3,24 @@ const experiment = require('../../providers/schedule/experiment.js')
 const exam = require('../../providers/schedule/exam.js')
 const custom = require('../../providers/schedule/custom.js')
 
+exports.formatEvent = k => {
+  k.displayData.time = wx.$.util('format').formatTimeNatural(k.fromTime)
+  k.displayData.period = wx.$.util('format').formatPeriodNatural(k.fromTime, k.toTime)
+
+  let now = new Date().getTime()
+  if (now >= k.fromTime && now < k.toTime) {
+    k.displayData.goingOn = true
+  } else if (now >= k.toTime) {
+    k.displayData.expired = true
+  }
+
+  if (!k.displayData.image) {
+    let title = k.displayData.topLeft
+    k.displayData.color = wx.$.util('format').stringToColor(title)
+  }
+  return k
+}
+
 exports.bind = function (page, forceReload) {
   if (!wx.$.util('user').isLogin()) {
     return
@@ -15,23 +33,10 @@ exports.bind = function (page, forceReload) {
   })
 
   function formatSchedule (schedule) {
-    let arr = schedule.filter(k => k !== null).map(k => {
-      k.displayData.time = wx.$.util('format').formatTimeNatural(k.fromTime)
-      k.displayData.period = wx.$.util('format').formatPeriodNatural(k.fromTime, k.toTime)
-
-      let now = new Date().getTime()
-      if (now >= k.fromTime && now < k.toTime) {
-        k.displayData.goingOn = true
-      } else if (now >= k.toTime) {
-        k.displayData.expired = true
-      }
-
-      if (!k.displayData.image) {
-        let title = k.displayData.topLeft
-        k.displayData.color = wx.$.util('format').stringToColor(title)
-      }
-      return k
-    }).sort((a, b) => a.fromTime - b.fromTime)
+    let arr = schedule
+      .filter(k => k !== null)
+      .map(exports.formatEvent)
+      .sort((a, b) => a.fromTime - b.fromTime)
 
     return arr.filter((item, index) => arr.indexOf(item) === index)
   }

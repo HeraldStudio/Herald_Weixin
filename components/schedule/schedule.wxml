@@ -36,7 +36,7 @@
         </view>
       </item>
     </swiper-item>
-    <swiper-item class="delete" wx:if="{{ item.id }}">
+    <swiper-item class="delete" wx:if="{{ item.typeId === 'custom' }}">
       删除日程
     </swiper-item>
   </swiper>
