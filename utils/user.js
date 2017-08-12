@@ -63,14 +63,19 @@ module.exports = {
     getApp().forceUpdateStorage()
   },
 
-  changeAvatar: function () {
-    wx.chooseImage({
-      count: 1, sizeType: ['compressed'], sourceType: ['album', 'camera'],
-      success: function (res) {
-        let tempFilePaths = res.tempFilePaths
-        let uploadFinishCB = console.log
-        wx.$.util('upload').upload(tempFilePaths, uploadFinishCB)
+  checkSession: function () {
+    let that = this
+    wx.$.requestApi({
+      route: 'api/user',
+      data: { uuid: that.getUuid() },
+      complete (res2) {
+        if (parseInt(res2.statusCode) === 401) {
+          wx.$.ask('提示', '登录已过期，请重新登录', () => {
+            that.logout()
+            wx.relaunch()
+          })
+        }
       }
     })
-  }
+  },
 }

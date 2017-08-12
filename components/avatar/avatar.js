@@ -2,7 +2,10 @@ exports.bind = function (page) {
   if (!wx.$.util('user').isLogin()) {
     return
   }
+
+  wx.$.util('user').checkSession()
   let user = wx.$.util('user').getUser()
+
   page.setData({
     $avatar: {
       url: page.data.$avatar ? page.data.$avatar.url : '',
@@ -26,7 +29,7 @@ exports.bind = function (page) {
       })
     }
   })
-  page.$avatar_userMenu = function (event) {
+  page.$avatar_userMenu = function () {
     wx.$.showActions([
       {
         name: '退出登录',
