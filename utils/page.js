@@ -159,6 +159,7 @@ module.exports = {
 
   open (event) {
     let url = event.currentTarget.dataset.url
+    let noConvert = event.currentTarget.dataset.noconvert
     if (!url) return
 
     if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
@@ -176,15 +177,17 @@ module.exports = {
         }
         }
       ])
+    } else if (noConvert) {
+      wx.setClipboardData({ data: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()) })
+      wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。')
     } else {
       let pages = getCurrentPages()
 
       wx.$.log('Convert html page to markdown', url)
       if (pages.slice(-1)[0].__route__.indexOf('pages/markdown/markdown') > -1) {
         if (pages.slice(-1)[0].data.url === url) {
-          wx.setClipboardData({ data: RegExp.$2 })
-          wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。', () => {
-          })
+          wx.setClipboardData({ data: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()) })
+          wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。')
         } else {
           pages.slice(-1)[0].loadUrl(url)
         }
