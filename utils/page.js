@@ -19,17 +19,19 @@ module.exports = {
     3. 若跳转栈已达5层，此时的任何跳转都强制使用 redirect；
     4. 其余情况，使用 navigate。
   */
-  parseJumpEvent: function(event) {
-    var params = event.currentTarget.dataset
-    var to = params.to
-    var url = wx.$.config.pageFormatter(to)
-    var regex = /^\//g
-    if (to == 'self') {
+  parseJumpEvent: function (event) {
+    let params = event.currentTarget.dataset
+    let to = params.to
+    let url = wx.$.config.pageFormatter(to)
+    let regex = /^\//g
+
+    let pages = getCurrentPages()
+    if (to === 'self') {
       url = '/' + pages[pages.length - 1].__route__.replace(regex, '')
     }
-    for (var key in params) {
-      if (key != 'to') {
-        url += (url.indexOf('?') == -1 ? '?' : '&') + key + '=' + params[key];
+    for (let key in params) {
+      if (key !== 'to') {
+        url += (url.indexOf('?') === -1 ? '?' : '&') + key + '=' + params[key];
       }
     }
     return url
@@ -39,14 +41,14 @@ module.exports = {
     redirect: （强制）重定向到某页面
     只做重定向，不做其他任何事情
   */
-  redirect: function(event) {
-    var that = this
-    var url = that.parseJumpEvent(event)
-    var parts = url.match(/^([^\?]+)(\?[^\?]+)?$/)
+  redirect: function (event) {
+    let that = this
+    let url = that.parseJumpEvent(event)
+    let parts = url.match(/^([^\?]+)(\?[^\?]+)?$/)
 
-    var pages = getCurrentPages()
-    var regex = /^\//g
-    if (pages[pages.length - 1].__route__.replace(regex, '') == parts[1].replace(regex, '')) {
+    let pages = getCurrentPages()
+    let regex = /^\//g
+    if (pages[pages.length - 1].__route__.replace(regex, '') === parts[1].replace(regex, '')) {
       wx.$.log('redirect', 'Filtered Self-redirection', '', 'Note: To force going to the same page, please use catchtap="go" data-to="self"')
       return
     }
@@ -58,14 +60,14 @@ module.exports = {
   /*
     navigate: 跳转到某页面；若跳转栈满，重定向到某页面
   */
-  navigate: function(event) {
-    var that = this
-    var url = that.parseJumpEvent(event)
-    var parts = url.match(/^([^\?]+)(\?[^\?]+)?$/)
+  navigate: function (event) {
+    let that = this
+    let url = that.parseJumpEvent(event)
+    let parts = url.match(/^([^\?]+)(\?[^\?]+)?$/)
 
-    var pages = getCurrentPages()
-    var regex = /^\//g
-    if (pages[pages.length - 1].__route__.replace(regex, '') == parts[1].replace(regex, '')) {
+    let pages = getCurrentPages()
+    let regex = /^\//g
+    if (pages[pages.length - 1].__route__.replace(regex, '') === parts[1].replace(regex, '')) {
       wx.$.log('navigate', 'Filtered Self-navigation', '', 'Note: To force going to the same page, please use catchtap="go" data-to="self"')
       return
     }
@@ -85,28 +87,28 @@ module.exports = {
     go: 根据当前页内部 redirectList 控制，选择跳转或重定向到某页面
     若 redirectList 包含要跳转到的页面，则调用上面的 redirect；否则调用上面的 navigate。
   */
-  go: function(event) {
-    var that = this
-    var page = event.currentTarget.dataset.to.split('?')[0]
+  go: function (event) {
+    let that = this
+    let page = event.currentTarget.dataset.to.split('?')[0]
 
     // 此处支持第一条跳转规则
     // 解释详见本文件开头
-    if (that.redirectList.map(k => k == page).length) {
+    if (that.redirectList.map(k => k === page).length) {
       that.redirect(event)
       return
     }
 
     // 此处支持第二条跳转规则
     // 解释详见本文件开头
-    for (var i in wx.$.config.stopPoints) {
-      var stopPoint = wx.$.config.stopPoints[i]
+    for (let i in wx.$.config.stopPoints) {
+      let stopPoint = wx.$.config.stopPoints[i]
       if (getCurrentPages()
         .map(k => '/' + k.__route__.replace(/^\//g, ''))
         .slice(0, -1)
-        .filter(k => k == wx.$.config.pageFormatter(stopPoint))
-        .length) {
-          that.redirect(event)
-          return
+        .filter(k => k === wx.$.config.pageFormatter(stopPoint))
+          .length) {
+        that.redirect(event)
+        return
       }
     }
 
@@ -118,15 +120,15 @@ module.exports = {
   /*
     switchTab: 切换 Tab 页面
   */
-  switchTab: function(event) {
-    var that = this
+  switchTab: function (event) {
+    let that = this
     wx.switchTab({ url: that.parseJumpEvent(event) })
   },
 
   /*
     back: 跳转回上一个页面
   */
-  back: function(event) {
+  back: function () {
     wx.navigateBack()
   },
 
@@ -138,14 +140,14 @@ module.exports = {
     - data-urls 代表要预览的所有图片列表
     - data-pathmap（可选）
   */
-  viewimg: function(event) {
-    var current = event.currentTarget.dataset.current
-    var urls = event.currentTarget.dataset.urls
-    var pathmap = event.currentTarget.dataset.pathmap
+  viewimg: function (event) {
+    let current = event.currentTarget.dataset.current
+    let urls = event.currentTarget.dataset.urls || [current]
+    let pathmap = event.currentTarget.dataset.pathmap
     if (pathmap) {
       let paths = pathmap.split('.')
-      for (var index in paths) {
-        urls = urls.map(k => k[paths[index]]).filter(k => k)
+      for (let route of paths) {
+        urls = urls.map(k => k[route]).filter(k => k)
       }
     }
     wx.$.log('viewimg', current || 'default', urls ? 'URLs:' : '', urls || '')
@@ -155,19 +157,46 @@ module.exports = {
     })
   },
 
-  open(event) {
-    var url = event.currentTarget.dataset.url
+  open (event) {
+    let url = event.currentTarget.dataset.url
     if (!url) return
-    url = url.replace(/\[uuid]/g, wx.$.util('user').getUuid())
-    wx.setClipboardData({
-      data: url,
-      success: function (res) {
-        wx.showModal({ title: '打开链接', content: '由于微信限制，小程序内不能直接打开链接，已为你复制到剪贴板，粘贴到浏览器即可打开~', showCancel: false })
+
+    if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
+      wx.$.util('downloader').download(url)
+    } else if (/^(mailto:)?([0-9a-zA-Z\-\._]+@[0-9a-zA-Z\-\._]+)$/.test(url)) {
+      wx.$.showActions([
+        {
+          name: '复制邮件地址', action: () => {
+          wx.setClipboardData({
+            data: RegExp.$2,
+            success: function () {
+              wx.$.showSuccess('地址已复制')
+            }
+          })
+        }
+        }
+      ])
+    } else {
+      let pages = getCurrentPages()
+
+      wx.$.log('Convert html page to markdown', url)
+      if (pages.slice(-1)[0].__route__.indexOf('pages/markdown/markdown') > -1) {
+        if (pages.slice(-1)[0].data.url === url) {
+          wx.setClipboardData({ data: RegExp.$2 })
+          wx.$.ask('链接已复制', '暂不允许直接打开链接，你可以粘贴到浏览器打开。', () => {
+          })
+        } else {
+          pages.slice(-1)[0].loadUrl(url)
+        }
+      } else if (pages.length < 5) {
+        wx.navigateTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
+      } else {
+        wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
       }
-    })
+    }
   },
 
-  nil: function(event) {
-    
+  nil: function (event) {
+
   }
 }

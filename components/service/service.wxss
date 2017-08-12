@@ -1,0 +1,211 @@
+service .subtitle {
+  padding: 20rpx 35rpx;
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+service .subtitle image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
+}
+
+service .subtitle text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+service swiper {
+  height: 190rpx;
+}
+
+service .subtitle {
+  padding: 20rpx 35rpx;
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+service .subtitle image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
+}
+
+service .subtitle text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+service swiper {
+  height: 190rpx;
+}
+
+service .content {
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 28rpx;
+  color: #666;
+  background: #fcfcfc;
+  overflow: hidden;
+}
+
+service .content image {
+  width: 200rpx;
+  height: 130rpx;
+  margin-right: 25rpx;
+  border-radius: 5rpx;
+  flex-shrink: 0;
+  background: #f5f5f5;
+}
+
+service .content .vertical {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+service .content .title {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 7rpx;
+}
+
+service.selectable:active .subtitle {
+  background: #f0f0f0;
+}
+
+service.selectable:active .content {
+  background: #f0f0f0;
+}
+
+service .subtitle.selectable:active {
+  background: #f0f0f0;
+}
+
+service .content.selectable:active {
+  background: #f0f0f0;
+}
+
+service .vote-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+
+service .vote-bar .attitude {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 25rpx;
+}
+
+service .vote-bar .attitude image {
+  width: 42rpx;
+  height: 42rpx;
+  margin: 3rpx;
+  flex-shrink: 0;
+}
+
+service .vote-bar .attitude text {
+  font-size: 28rpx;
+  color: #666;
+  padding-left: 20rpx;
+}
+
+service .content {
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 28rpx;
+  color: #666;
+  background: #fcfcfc;
+  overflow: hidden;
+}
+
+service .content image {
+  width: 200rpx;
+  height: 130rpx;
+  margin-right: 25rpx;
+  border-radius: 5rpx;
+  flex-shrink: 0;
+  background: #f5f5f5;
+}
+
+service .content .vertical {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+service .content .title {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 7rpx;
+}
+
+service.selectable:active .subtitle {
+  background: #f0f0f0;
+}
+
+service.selectable:active .content {
+  background: #f0f0f0;
+}
+
+service .subtitle.selectable:active {
+  background: #f0f0f0;
+}
+
+service .content.selectable:active {
+  background: #f0f0f0;
+}
+
+service .vote-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}
+
+service .vote-bar .attitude {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 25rpx;
+}
+
+service .vote-bar .attitude image {
+  width: 42rpx;
+  height: 42rpx;
+  margin: 3rpx;
+  flex-shrink: 0;
+}
+
+service .vote-bar .attitude text {
+  font-size: 28rpx;
+  color: #666;
+  padding-left: 20rpx;
+}

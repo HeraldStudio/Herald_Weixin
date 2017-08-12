@@ -1,0 +1,29 @@
+herald-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 150rpx;
+  position: relative;
+}
+
+herald-loading image {
+  width: 180rpx;
+  height: 180rpx;
+  opacity: 0.7;
+  font-size: 36rpx;
+  color: #666;
+  padding: 10rpx;
+  margin: 30rpx;
+}
+
+herald-loading .title {
+  font-size: 36rpx;
+  color: #333;
+  padding: 10rpx;
+}
+
+herald-loading .content {
+  font-size: 28rpx;
+  color: #666;
+}

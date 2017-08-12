@@ -1,14 +1,27 @@
-<block wx:if="{{ $login.isLogin === true }}">
-    <image class="banner" src="/images/header.png" mode="aspectFill"></image>
-    <include src="/templates/comp_menu_tip.wxml"/>
-    <include src="/templates/comp_dashboard.wxml"/>
-    <include src="/templates/comp_schedule.wxml"/>
-    <include src="/templates/comp_service.wxml"/>
-    <!--<contact-button type="default-light"/>-->
+<block wx:if="{{ !$service }}">
+  <include src="/components/loading/loading.wxml"/>
 </block>
-<block wx:elif="{{ $login.isLogin === false }}">
-    <include src="/templates/comp_login.wxml"/>
+<block wx:elif="{{ $service.serverHealth === true }}">
+  <block wx:if="{{ $login.isLogin === true }}">
+    <include src="/components/avatar/avatar.wxml"/>
+    <include src="/components/dashboard/dashboard.wxml"/>
+    <include src="/components/service/service.wxml"/>
+    <include src="/components/schedule/schedule.wxml"/>
+    <!-- <contact-button type="default-light"/> -->
+    <text class="hint">「小猴偷米小程序」提供技术支持</text>
+  </block>
+  <block wx:elif="{{ $login.isLogin === false }}">
+    <include src="/components/login/login.wxml"/>
+  </block>
 </block>
 <block wx:else>
-    <text class="waiting">小猴正在睡懒觉，马上就来啦</text>
+  <block wx:if="{{ $login.isLogin === true }}">
+    <include src="/components/server_down/server_down.wxml"/>
+    <include src="/components/service/service.wxml"/>
+    <include src="/components/schedule/schedule.wxml"/>
+    <!-- <contact-button type="default-light"/> -->
+  </block>
+  <block wx:elif="{{ $login.isLogin === false }}">
+    <include src="/components/server_down/server_down.wxml"/>
+  </block>
 </block>

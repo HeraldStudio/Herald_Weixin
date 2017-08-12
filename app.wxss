@@ -9,6 +9,7 @@ page {
 
 text {
   cursor: default;
+  line-height: 1.45em;
 }
 
 page, input, textarea {
@@ -31,13 +32,13 @@ page, input, textarea {
 
 button[type="blue"] {
   color: #ffffff;
-  background-color: #00abd4;
+  background-color: #3688ff;
 }
 
 button[type="blue"]:active,
 button-hover[type="blue"] {
   color: #ffffff;
-  background-color: #0097ba !important;
+  background-color: #1c78ff !important;
 }
 
 contact-button {
@@ -45,9 +46,9 @@ contact-button {
 }
 
 contact-button:before {
-  content: "服务出现问题？";
-  font-size: 26rpx;
-  color: #666;
+  content: "小猴偷米工作室提供技术支持";
+  font-size: 28rpx;
+  color: #999;
   margin-left: -54rpx;
   margin-right: 55rpx;
   line-height: 40rpx;
@@ -56,15 +57,15 @@ contact-button:before {
 }
 
 contact-button:after {
-  content: "联系客服";
-  font-size: 26rpx;
-  color: #00abd4;
+  content: "客服";
+  font-size: 28rpx;
+  color: #3688ff;
   line-height: 40rpx;
   margin-left: -90rpx;
   z-index: 99999999999;
   display: inline-block;
   padding: 5rpx 20rpx;
-  border: 2rpx solid #00abd4;
+  border: 2rpx solid #3688ff;
   background: #ffffff;
   border-radius: 40rpx;
   pointer-events: none;
@@ -84,7 +85,7 @@ fab, .fab {
   bottom: 40rpx;
   width: 109rpx;
   height: 109rpx;
-  background: #00abd4;
+  background: #3688ff;
   border-radius: 50%;
   display: block;
   /*box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);*/
@@ -92,7 +93,7 @@ fab, .fab {
   z-index: 99999999999;
 }
 
-/* 加号的横 */
+/* 加号 */
 fab::before,
 .fab::before {
   content: ' ';
@@ -105,9 +106,7 @@ fab::before,
   background: #ffffff;
   -webkit-transition: .25s;
 }
-
-/* 加号的竖 */
-fab::after, 
+fab::after,
 .fab::after {
 
   /* 清除 button::after 原有样式 */
@@ -130,29 +129,25 @@ fab::after,
   -webkit-transition: .25s;
 }
 
-/* 叉的第一笔 */
-fab.close::before, 
+/* 叉 */
+fab.close::before,
 .fab.close::before {
   -webkit-transform: rotate(45deg);
 }
-
-/* 叉的第二笔 */
-fab.close::after, 
+fab.close::after,
 .fab.close::after {
   -webkit-transform: rotate(45deg);
 }
 
-/* 对勾的第一笔 */
-fab.confirm::before, 
+/* 对勾 */
+fab.confirm::before,
 .fab.confirm::before {
   -webkit-transform: rotate(45deg);
   right: 58rpx;
   bottom: 44rpx;
   width: 25rpx;
 }
-
-/* 对勾的第二笔 */
-fab.confirm::after, 
+fab.confirm::after,
 .fab.confirm::after {
   -webkit-transform: rotate(45deg);
   right: 46rpx;
@@ -161,22 +156,22 @@ fab.confirm::after,
 }
 
 /* Material 点击效果 */
-fab:active, 
+fab:active,
 .fab:active {
-  background: #008dad;
+  background: #1c78ff;
   /*box-shadow: 0 2rpx 4rpx rgba(2, 0, 33, .2);*/
   -webkit-transition: .25s;
 }
 
 /* fab 支持 hidden 属性，可动态显示或隐藏 */
-fab.hidden, 
+fab.hidden,
 .fab.hidden {
   bottom: -120rpx;
 }
 
 /* hidden 状态下加号半透明 */
 fab.hidden::before,
-fab.hidden::after, 
+fab.hidden::after,
 .fab.hidden::before,
 .fab.hidden::after {
   opacity: 0;
@@ -187,7 +182,7 @@ fab.hidden::after,
   width: 100%;
   padding: 80rpx 0;
   text-align: center;
-  font-size: 26rpx;
-  color: #888;
-  background: #fff;
+  font-size: 28rpx;
+  color: #666;
+  background: #fcfcfc;
 }

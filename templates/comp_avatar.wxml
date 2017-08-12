@@ -1,4 +1,0 @@
-<view class="avatar-container">
-    <text class="name">{{ $avatar.name }}</text>
-    <text class="identity">{{ $avatar.identity }}</text>
-</view>

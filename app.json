@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/markdown/markdown"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -8,5 +9,9 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "召唤小猴",
     "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 7000,
+    "downloadFile": 7000
   }
 }

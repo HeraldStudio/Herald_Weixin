@@ -1,0 +1,5 @@
+<herald-loading>
+  <image src="/images/ic_loading.png" mode="aspectFit"/>
+  <text class="title">正在召唤小猴</text>
+  <text class="content">稍等一下就好啦</text>
+</herald-loading>
