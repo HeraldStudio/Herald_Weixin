@@ -29,7 +29,7 @@ Page({
     wx.$.comp('server_down').bind(this)
   },
   onPullDownRefresh () {
-    this.reloadData(true)
+    this.reloadData(false)
     wx.stopPullDownRefresh()
   }
 })
