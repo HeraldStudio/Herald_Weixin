@@ -112,7 +112,7 @@ function ask (title, message, callback) {
     content: message,
     success: function (res) {
       if (res.confirm) {
-        callback()
+        callback && callback()
       }
     }
   })

@@ -49,6 +49,7 @@
 
 .avatar-container .detail.hidden {
   max-height: 0;
+  opacity: 0;
 }
 
 .right-container {
