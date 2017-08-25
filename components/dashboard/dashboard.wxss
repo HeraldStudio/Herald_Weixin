@@ -21,7 +21,7 @@ dashboard items {
   margin-left: 1rpx;
   position: relative;
   overflow-x: scroll;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 dashboard item {
@@ -248,4 +248,9 @@ dashboard item list .bottom-right {
 dashboard item list .collapse {
   font-size: 28rpx;
   color: #999;
+}
+
+dashboard item list .selectable:active {
+  background: rgba(0, 0, 0, .05);
+  -webkit-transition: .3s;
 }

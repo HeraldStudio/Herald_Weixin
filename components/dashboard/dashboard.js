@@ -36,6 +36,7 @@ exports.bind = function (page) {
   providers.getPe(resolveData)
   providers.getLecture(resolveData)
   providers.getSrtp(resolveData)
+  providers.getBus(resolveData)
 
   page.$dashboard_toggleExpand = function (event) {
     let index = event.currentTarget.dataset.index
