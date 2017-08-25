@@ -4,7 +4,8 @@
     "pages/addSchedule/addSchedule",
     "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
-    "pages/markdown/markdown"
+    "pages/markdown/markdown",
+    "pages/busDetail/busDetail"
   ],
   "window": {
     "backgroundColor": "#ffffff",

@@ -30,7 +30,7 @@
       <button class="loading" wx:if="{{ !item.long.data }}" loading="true"/>
       <text class="hint" wx:if="{{ item.long.data == 'fail' }}">加载失败</text>
       <block wx:if="{{ item.long.data != 'fail' }}">
-        <view wx:for="{{ item.long.data }}" wx:key="*this">
+        <view wx:for="{{ item.long.data }}" wx:key="*this" class="{{ item.link ? 'selectable' : '' }}" catchtap="{{ item.link ? 'go' : '' }}" data-to="{{ item.link }}">
           <view class="line">
             <text class="top-left">{{ item.topLeft }}</text>
             <text class="top-right singleline">{{ item.topRight }}</text>
