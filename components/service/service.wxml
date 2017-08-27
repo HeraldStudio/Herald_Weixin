@@ -6,7 +6,7 @@
       <space/>
     </view>
     <swiper wx:if="{{ $service.messages.length > 1 }}" autoplay="true" duration="300" circular="true">
-      <swiper-item wx:for="{{ $service.messages }}" wx:key="*this" class="content {{ item.url ? 'selectable': '' }}"
+      <swiper-item wx:for="{{ $service.messages }}" wx:key="content" class="content {{ item.url ? 'selectable': '' }}"
                    catchtap="open"
                    data-url="{{ item.url }}">
         <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
@@ -16,7 +16,7 @@
         </view>
       </swiper-item>
     </swiper>
-    <view wx:if="{{ $service.messages.length == 1 }}" wx:for="{{ $service.messages }}" wx:key="*this"
+    <view wx:if="{{ $service.messages.length == 1 }}" wx:for="{{ $service.messages }}" wx:key="content"
           class="content {{ item.url ? 'selectable': '' }}" catchtap="open" data-url="{{ item.url }}">
       <image src="{{ item.image }}" wx:if="{{ item.image }}" mode="aspectFill"/>
       <view class="vertical">

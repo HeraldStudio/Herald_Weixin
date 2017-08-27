@@ -14,13 +14,16 @@ dashboard {
   justify-content: stretch;
 }
 
+dashboard scroll-view {
+  width: auto;
+  margin: 0 10rpx;
+  position: relative;
+}
+
 dashboard items {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 1rpx;
-  position: relative;
-  overflow-x: scroll;
   justify-content: flex-start;
 }
 
@@ -57,15 +60,6 @@ dashboard item expandable {
   -webkit-transition: .3s;
 }
 
-dashboard item:active {
-  background: rgba(0, 0, 0, .05);
-  margin-top: 0;
-  margin-bottom: 0;
-  border-left: 1rpx solid transparent;
-  border-right: 1rpx solid transparent;
-  padding: 37rpx 0;
-}
-
 dashboard items item.long {
   background: #f7f7f7;
   margin-top: 0;
@@ -75,6 +69,14 @@ dashboard items item.long {
   border-top: 7rpx solid #3688ff;
   border-bottom: 7rpx solid transparent;
   padding: 37rpx 0;
+}
+
+dashboard anchor {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 dashboard items item.long + item {
@@ -114,6 +116,10 @@ dashboard item blk {
 
 dashboard item.expanded blk {
   border-left: 1rpx solid #ddd;
+}
+
+dashboard item.expanded blk:first-child {
+  border-left: none;
 }
 
 dashboard item list {
@@ -212,7 +218,7 @@ dashboard item list button.loading:after {
 
 dashboard item list > view {
   margin: 0 15rpx;
-  padding: 20rpx 15rpx;
+  padding: 20rpx 25rpx;
   border-top: 1rpx solid #e5e5e5;
 }
 

@@ -6,7 +6,7 @@
     </swiper-item>
   </swiper>
   <view class="vertical" wx:if="{{ $jwc_showAll }}">
-    <view wx:for="{{ $jwc }}" wx:key="*this">
+    <view wx:for="{{ $jwc }}" wx:key="href">
       <text class="content" catchtap="open" data-url="{{ item.href }}">{{ item.title }}</text>
     </view>
     <text class="hint">本公告条仅显示教务处【教务信息】版块，为了不错过其它重要信息，另请关注教务处官网以及您的学院官网。</text>

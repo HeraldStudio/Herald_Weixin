@@ -69,6 +69,9 @@ module.exports = {
     })
   },
   getPe (callback) {
+    if (wx.$.util('user').isGraduate()) {
+      return
+    }
     callback && callback({
       id: 'pe',
       blocks: [{ desc: '跑操', info: '···' }]
@@ -191,6 +194,9 @@ module.exports = {
     }
   },
   getLecture (callback) {
+    if (wx.$.util('user').isGraduate()) {
+      return
+    }
     callback && callback({
       id: 'lecture',
       blocks: [{ desc: '人文讲座', info: '···' }]
@@ -220,6 +226,9 @@ module.exports = {
     })
   },
   getSrtp (callback) {
+    if (wx.$.util('user').isGraduate()) {
+      return
+    }
     callback && callback({
       id: 'srtp',
       blocks: [{ desc: 'SRTP', info: '···' }]
@@ -252,6 +261,48 @@ module.exports = {
       }
     })
   },
+  getGpa (callback) {
+    if (wx.$.util('user').isGraduate()) {
+      return
+    }
+    callback && callback({
+      id: 'gpa',
+      blocks: [{ desc: '成绩', info: '···' }]
+    })
+    wx.$.requestApi({
+      route: 'api/gpa',
+      complete: function (res) {
+        callback && callback({
+          id: 'gpa',
+          blocks: [
+            {
+              desc: '当前绩点',
+              info: res.data.content[0].gpa || '未计算'
+            },
+            {
+              desc: '首修绩点',
+              info: res.data.content[0]['gpa without revamp'] || '未计算'
+            },
+            {
+              desc: '计算时间\n' + res.data.content[0]['calculate time']
+            },
+          ],
+          long: {
+            data: res.data.content.slice(1).map(k => {
+              return {
+                topLeft: k.name,
+                bottomLeft: k.semester + ' ' + k.type + ' ' + k.credit + '学分',
+                bottomRight: '成绩：' + k.score
+              }
+            }),
+            hint: '' +
+            'i. 成绩由任课教师录入，由学院计算绩点，并在教务处展示；\n\n' +
+            'ii. 每学期绩点经首次计算后，数天内可能进行修正，请始终以最新结果为准。'
+          }
+        });
+      }
+    })
+  },
   getBus (callback) {
     callback && callback({
       id: 'bus',
@@ -281,35 +332,52 @@ module.exports = {
         })
       }
     })
+  },
+  getLibrary (callback) {
+    callback && callback({
+      id: 'library',
+      blocks: [{ desc: '图书馆', info: '···' }]
+    })
+    let closure = res => {
+      callback && callback({
+        id: 'library',
+        blocks: res.data.code === 401 ? [
+          {
+            desc: '图书馆',
+            info: '绑定',
+            page: 'bindLibrary'
+          }
+        ] : [
+          {
+            desc: '已借图书',
+            info: res.data.content.length
+          }
+        ],
+        long: {
+          data: res.data.code === 401 ? [] : res.data.content.map(k => {
+            return {
+              topLeft: k.title,
+              topRight: k.author,
+              bottomLeft: '借于' + k.render_date + ' / ' + k.due_date + '到期'
+            }
+          })
+        }
+      })
+    }
+    wx.$.requestApi({
+      route: 'api/library',
+      complete: function (res) {
+        if (res.data.code === 401) {
+          wx.$.util('user').resetLibPassword(() => {
+            wx.$.requestApi({
+              route: 'api/library',
+              complete: closure
+            })
+          })
+        } else {
+          closure(res)
+        }
+      }
+    })
   }
-  // getLibrary(callback) {
-  //     callback && callback({
-  //         id: 'library',
-  //         blocks: [{ desc: '图书馆', info: '···' }]
-  //     })
-  //     wx.$.requestApi({
-  //         route: 'api/library',
-  //         complete: function(res) {
-  //             callback && callback({
-  //                 id: 'library',
-  //                 blocks: [
-  //                     {
-  //                         desc: '已借图书',
-  //                         info: res.data.code == 401 ? '0' : res.data.content.length
-  //                     }
-  //                 ],
-  //                 long: {
-  //                     hint: res.data.code == 401 ? '图书馆认证失败，需要您登录图书馆账号。' : ''
-  //                     // data: res.data.content.map((k, i) => {
-  //                     //     return {
-  //                     //         topLeft: k.title,
-  //                     //         topRight: k.author,
-  //                     //         bottomLeft: '借于' + k.render_date + ' / ' + k.due_date + '到期'
-  //                     //     }
-  //                     // })
-  //                 }
-  //             })
-  //         }
-  //     })
-  // },
 }
