@@ -5,7 +5,11 @@
     "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
     "pages/markdown/markdown",
-    "pages/busDetail/busDetail"
+    "pages/busDetail/busDetail",
+    "pages/bindLibrary/bindLibrary",
+    "pages/login/login",
+    "pages/oldBus/oldBus",
+    "pages/dormitory/dormitory"
   ],
   "window": {
     "backgroundColor": "#ffffff",

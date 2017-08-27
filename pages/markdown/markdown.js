@@ -92,21 +92,12 @@ Page({
     let that = this
     this.setData({ markdown: that.data.markdown })
   },
-  longTapped: false,
-  onImageTap (event) {
-    if (!this.longTapped) {
-      this.viewimg(event)
-    }
-  },
   onImageLongTap () {
     this.longTapped = true
     let that = this
     wx.showModal({
       title: '唔，你长按了',
-      content: '小程序内不支持长按识别二维码，请点击大图长按保存到相册，然后在微信扫一扫中打开图片进行识别~',
-      success: function () {
-        that.longTapped = false
-      }
+      content: '小程序内不支持长按识别二维码，请点击大图长按保存到相册，然后在微信扫一扫中打开图片进行识别~'
     })
   },
   onShareAppMessage () {

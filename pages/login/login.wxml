@@ -1,0 +1,8 @@
+<block wx:if="{{ !$service }}">
+</block>
+<block wx:elif="{{ $service.serverHealth === true }}">
+  <include src="/components/login/login.wxml"/>
+</block>
+<block wx:else>
+  <include src="/components/server_down/server_down.wxml"/>
+</block>

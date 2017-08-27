@@ -58,6 +58,10 @@ module.exports = {
     return this.getUuid() !== '0000000000000000000000000000000000000000'
   },
 
+  isGraduate: function () {
+    return this.getUser().cardnum.substr(0, 2) === '22'
+  },
+
   logout: function () {
     getApp().storage.user = null
     getApp().forceUpdateStorage()
@@ -78,4 +82,37 @@ module.exports = {
       }
     })
   },
+
+  resetLibPassword: function(callback) {
+    this.setLibPassword(this.getUser().cardnum, callback)
+  },
+
+  setLibPassword: function(password, callback) {
+    let user = this.getUser()
+    wx.$.requestApi({
+      route: 'uc/update',
+      data: {
+        cardnum: user.cardnum,
+        password: user.password,
+        lib_username: user.cardnum,
+        lib_password: password
+      },
+      complete (res) {
+        callback && callback(res)
+      }
+    })
+  },
+
+  requireLogin (page, options = {}) {
+    if (!wx.$.util('user').isLogin()) {
+      options.loginRedirectPage = '/' + page.__route__
+      let url = wx.$.config.pageFormatter('login')
+      for (let key in options) {
+        if (options.hasOwnProperty(key)) {
+          url += (url.indexOf('?') === -1 ? '?' : '&') + key + '=' + options[key];
+        }
+      }
+      wx.redirectTo({ url })
+    }
+  }
 }

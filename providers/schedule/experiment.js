@@ -41,6 +41,11 @@ module.exports = {
     let success = obj.success
     let fail = obj.fail
 
+    if (wx.$.util('user').isGraduate()) {
+      success && success([])
+      return
+    }
+
     wx.$.requestApi({
       route: 'api/phylab',
       complete: function (result) {

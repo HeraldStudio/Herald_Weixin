@@ -16,21 +16,21 @@
   <view wx:for="{{ week.d }}" wx:for-item="day"
         class="day {{ day.o }} {{ curDate == day.d && curYear == day.y && curMonth == day.m ? 'today' : '' }} {{ curYear == day.y && curMonth == day.m ? 'curMonth' : '' }}"
         id="{{ day.d == 1 && curYear == day.y && curMonth == day.m ? 'current' : '' }}"
-        catchlongtap="go" data-to="addSchedule" data-date="{{ day.y }}-{{ day.m }}-{{ day.d }}">
+        catchlongpress="go" data-to="addSchedule" data-date="{{ day.y }}-{{ day.m }}-{{ day.d }}">
     <text class="date singleline {{ day.d == 1 ? 'new-month' : '' }}">{{ day.d }}</text>
     <text class="hint" wx:if="{{ day.h && day.e.length }}">{{ day.h }}</text>
     <view wx:for="{{ day.e }}" wx:for-item="event"
           class="event {{ event.typeId }} {{ event == previewItem ? 'previewing' : '' }}"
           style="height: {{ (event.t - event.f) * 24 }}rpx; margin-top: {{ (index == 0 ? event.f - week.f : event.f - day.e[index - 1].t) * 24 }}rpx;"
           catchtap="showPreview" data-event="{{ event }}"
-          catchlongtap="nil">
+          catchlongpress="nil">
       <text>{{ event.displayData.topLeft }}</text>
     </view>
   </view>
 </view>
 <text class="empty-hint" wx:if="{{ weeks.length }}">~ 到底啦 ~</text>
-<floater wx:if="{{ previewing }}" class="{{ previewing ? '' : 'hidden' }}" catchtap="hidePreview"
-  catchlongtap="nil" bindtouchstart="hidePreview">
+<floater wx:if="{{ previewing }}" class="{{ previewing ? '' : 'hidden' }}" 
+  catchlongpress="nil" bindtouchstart="hidePreview">
   <preview-item catchtap="nil">
     <image class="schedule-avatar {{ previewItem.displayData.image ? '' : 'dot' }}"
            src="{{ previewItem.displayData.image }}"

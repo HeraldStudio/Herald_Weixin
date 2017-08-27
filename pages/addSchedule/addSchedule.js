@@ -16,6 +16,8 @@ Page({
     }
   },
   onLoad: function (options) {
+    wx.$.util('user').requireLogin(this, options)
+
     if (options.date) {
       let parts = options.date.split('-').map(k => parseInt(k))
       this.data.item.fromTime = new Date(parts[0], parts[1] - 1, parts[2]).getTime() + 8 * 60 * 60 * 1000

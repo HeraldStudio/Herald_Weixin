@@ -24,7 +24,34 @@ subpage.login input {
   padding: 15rpx 20rpx;
   background: #fafafa;
   border-radius: 10rpx;
-  margin-bottom: 20rpx;
+  margin: 10rpx;
+}
+
+subpage.login .regex-hint {
+  width: 480rpx;
+  padding: 15rpx 20rpx;
+  display: block;
+  background: #f7efc4;
+  border-radius: 10rpx;
+  margin-bottom: -10rpx;
+  font-size: 26rpx;
+  color: #bc8d3e;
+  position: relative;
+}
+
+subpage.login .regex-hint:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10rpx;
+  border-top: 10rpx solid #f7efc4;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
 }
 
 subpage.login button.login {

@@ -4,6 +4,14 @@ let data = {
 }
 
 exports.bind = function (page) {
+  if (page.data.$service && !wx.$.util('user').isLogin()) {
+    page.setData({
+      $login_regexHint: (page.data.$service.matchers || [])
+      .filter(k => new RegExp(k.regex).test(data.cardnum))
+      .slice(-1).map(k => k.hint).join('')
+    })
+  }
+
   page.setData({
     $login: {
       isLogin: wx.$.util('user').isLogin()
@@ -12,6 +20,11 @@ exports.bind = function (page) {
 
   page.$login_onCardnumChange = function (event) {
     data.cardnum = event.detail.value
+    page.setData({
+      $login_regexHint: (page.data.$service.matchers || [])
+                          .filter(k => new RegExp(k.regex).test(data.cardnum))
+                          .slice(-1).map(k => k.hint).join('')
+    })
   }
 
   page.$login_onPasswordChange = function (event) {
@@ -25,10 +38,6 @@ exports.bind = function (page) {
     }
     if (data.password.trim() === '') {
       wx.$.showError('请输入密码')
-      return
-    }
-    if (data.cardnum.substr(0, 2) !== '21') {
-      wx.$.showError('仅支持东南大学本科生登录，请检查一卡通号')
       return
     }
     wx.$.util('user').auth(data.cardnum, data.password, function () {

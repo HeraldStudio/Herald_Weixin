@@ -7,24 +7,29 @@ App({
     this.storage = wx.getStorageSync('storage') || {}
     this.scene = options.scene
   },
-  interval: null,
+  topBarLooping: false,
   topBar: '',
   onShow: function (options) {
     this.scene = options.scene
-    clearInterval(this.interval)
+    this.topBarLooping = false
   },
   onHide: function () {
     this.forceUpdateStorage()
+    this.topBarLooping = true
+    wx.$.util('seunet').reset()
     this.updateTopbar()
-    this.interval = setInterval(this.updateTopbar, 5000)
   },
   updateTopbar: function () {
-    let text = wx.$.util('topbar').get()
-    if (this.topBar !== text) {
-      wx.$.log('Topbar', text)
-      this.topBar = text
-    }
-    wx.setTopBarText && wx.setTopBarText({ text: text })
+    wx.$.util('topbar').get(text => {
+      if (this.topBar !== text) {
+        wx.$.log('Topbar', text)
+        this.topBar = text
+      }
+      wx.setTopBarText && wx.setTopBarText({ text: text })
+      if (this.topBarLooping) {
+        setTimeout(this.updateTopbar, 5000)
+      }
+    })
   },
   scene: 0,
   storage: {},

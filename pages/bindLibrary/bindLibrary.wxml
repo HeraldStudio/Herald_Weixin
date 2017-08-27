@@ -1,0 +1,17 @@
+<view>
+  <p>
+    <inline-text class="hint">小猴偷米无法自动获取您的图书馆数据，原因可能是：</inline-text>
+  </p>
+  <p>
+    <inline-text class="hint">1. 您可能设置了图书馆独立密码，请输入您在</inline-text>
+    <a catchtap="open" data-url="http://lib.seu.edu.cn" data-noconvert="true">图书馆</a>
+    <inline-text class="hint">设置的独立密码并绑定；</inline-text>
+  </p>
+  <p>
+    <inline-text class="hint">2. 您可能没有完成图书馆身份认证等必要操作，请手动登录</inline-text>
+    <a catchtap="open" data-url="http://www.libopac.seu.edu.cn:8080/reader/" data-noconvert="true">图书馆用户中心</a>
+    <inline-text class="hint">查看并解决问题。</inline-text>
+  </p>
+  <input placeholder="默认为一卡通号" focus="true" password="true" bindinput="onChange" bindconfirm="onSubmit"/>
+  <button type="blue" class="submit" bindtap="onSubmit">绑定</button>
+</view>

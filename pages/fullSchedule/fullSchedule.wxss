@@ -41,7 +41,7 @@
 
 .day.week-intro {
   width: 0;
-  flex-grow: 3;
+  flex-grow: 6;
   font-size: 20rpx;
   color: #999;
   background: #fafafa;
@@ -63,13 +63,13 @@
 .day:nth-child(5),
 .day:nth-child(6) {
   width: 0;
-  flex-grow: 5;
+  flex-grow: 10;
 }
 
 .day:nth-child(7),
 .day:nth-child(8) {
   width: 0;
-  flex-grow: 4;
+  flex-grow: 7;
   background: #fafafa;
 }
 
