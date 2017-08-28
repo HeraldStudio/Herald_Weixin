@@ -122,7 +122,7 @@ module.exports = {
             threads--
             if (threads === 0) {
               wx.$.hideLoading()
-              wx.$.showError(term + '课表获取失败，请返回重试')
+              // wx.$.showError(term + '课表获取失败，请返回重试')
             }
           }
         })

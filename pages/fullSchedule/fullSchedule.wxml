@@ -1,7 +1,7 @@
 <view class="week header">
   <view class="day week-intro">
   </view>
-  <view wx:for="{{ ['一', '二', '三', '四', '五', '六', '日'] }}" class="day">
+  <view wx:for="{{ ['一', '二', '三', '四', '五', '六', '日'] }}" wx:key="*this" class="day">
     <text class="date">{{ item }}</text>
   </view>
 </view>
