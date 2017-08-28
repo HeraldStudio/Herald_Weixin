@@ -58,7 +58,7 @@ module.exports = {
               // 此处属于在首页下拉刷新课表，这种情况下，清空原有的所有课表数据，更新当前学期课表进行填充
               // 即刷新结束后，只留下当前学期课表
               // 在 fullSchedule 中会补充获取当前一整年的课表
-              wx.$.userStorage(that.key, that.format(result.data))
+              wx.$.userStorage(that.key, that.format(result.data, true))
               wx.$.userStorage('schedule_terms', [term])
               success && success(that.get())
             } catch (e) {
@@ -108,7 +108,7 @@ module.exports = {
           route: 'api/curriculum',
           data: { term },
           success (result) {
-            let data = that.format(result.data)
+            let data = that.format(result.data, false)
             wx.$.userStorage(that.key, (that.getAll() || []).concat(data))
             storedTerms = storedTerms.concat([ term ])
             wx.$.userStorage('schedule_terms', storedTerms)
@@ -134,7 +134,7 @@ module.exports = {
     }
   },
 
-  format: function (data) {
+  format: function (data, isCurrent) {
     let sidebar = {}
     for (let item of data.sidebar) {
       sidebar[item.course] = {
@@ -161,8 +161,10 @@ module.exports = {
       startDate.setTime(startDate.getTime() - (startDate.getDay() + 6) % 7 * 86400000)
     }
 
-    // 保存开学日期以便其它地方使用
-    wx.$.userStorage('startDate', startDate.getTime())
+    if (isCurrent) {
+      // 保存开学日期以便其它地方使用
+      wx.$.userStorage('startDate', startDate.getTime())
+    }
 
     // 解析和转换数据
     let startTimes = [
