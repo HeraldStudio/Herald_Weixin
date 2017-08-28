@@ -37,6 +37,7 @@ exports.bind = function (page) {
   providers.getLecture(resolveData)
   providers.getSrtp(resolveData)
   providers.getGpa(resolveData)
+  providers.getBus(resolveData)
   // providers.getLibrary(resolveData)
 
   setTimeout(() => {

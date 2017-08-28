@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="picker-container">
+    <picker mode="date" value="{{ displayFromDate }}" bindchange="onFromDateChange">
+      <view class="picker">{{ displayFromDate }}</view>
+    </picker>
+    <picker mode="time" value="{{ displayFromTime }}" bindchange="onFromTimeChange">
+      <view class="picker">{{ displayFromTime }}</view>
+    </picker>
+    <text class="separator">~</text>
+    <picker mode="date" value="{{ displayToDate }}" bindchange="onToDateChange">
+      <view class="picker">{{ displayToDate }}</view>
+    </picker>
+    <picker mode="time" value="{{ displayToTime }}" bindchange="onToTimeChange">
+      <view class="picker">{{ displayToTime }}</view>
+    </picker>
+  </view>
+</view>

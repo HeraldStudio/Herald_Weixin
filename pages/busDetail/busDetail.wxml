@@ -1,1 +1,16 @@
-<map latitude="31.8865" longitude="118.8205" scale="16" show-location="true" markers="{{ points }}" polyline="{{ lines }}"></map>
+<view class="container">
+  <map latitude="31.8865" longitude="118.8205" scale="16" show-location="true" markers="{{ points }}" polyline="{{ lines }}"></map>
+  <block wx:if="{{ name }}">
+    <text class="title">{{ name }}</text>
+    <text class="desc">出学校途中只上不下，回学校途中只下不上。</text>
+    <view class="split">
+      <view class="side" wx:for="{{ ['工作日', '双休节假日'] }}" wx:key="*this" wx:for-item="dayType">
+        <text class="side-title">{{ dayType }}</text>
+        <view class="line" wx:for="{{ timetableJson[dayType] }}" wx:key="time">
+          <text class="time">{{ item.time }}</text>
+          <text class="bus">{{ item.bus }}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

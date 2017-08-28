@@ -8,6 +8,9 @@ const ONE_DAY = 1000 * 60 * 60 * 24
 
 Page({
   data: {},
+  onLoad () {
+    wx.$.util('user').requireLogin(this)
+  },
   onShow () {
     this.loadCurriculumForYear()
   },
