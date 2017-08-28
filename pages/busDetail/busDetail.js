@@ -1,66 +1,121 @@
+const busService = require('../../providers/busService.js')
+
 Page({
   data: {
-    bus: {}
+    stops: [],
+    lines: [],
+    buses: [],
+    points: [],
+    timetableJson: {
+      "双休节假日": [
+        { "time":"8:00-9:30", "bus":"每 30min 一班"},
+        { "time":"9:30-11:30", "bus":"每 1h 一班"},
+        { "time":"11:30-13:30", "bus":"每 30min 一班"},
+        { "time":"13:30-16:30", "bus":"每 1h 一班"},
+        { "time":"16:30-19:00", "bus":"每 30min 一班"},
+        { "time":"19:00-22:00", "bus":"每 1h 一班"}
+      ],
+      "工作日": [
+        { "time":"7:10-10:00", "bus":"每 10min 一班"},
+        { "time":"10:00-11:30", "bus":"每 30min 一班"},
+        { "time":"11:30-13:30", "bus":"每 10min 一班"},
+        { "time":"14:00-15:00", "bus":"每 1h 一班"},
+        { "time":"15:00-16:00", "bus":"每 10min 一班"},
+        { "time":"17:00-18:30", "bus":"每 10min 一班"},
+        { "time":"18:30-22:00", "bus":"每 30min 一班"}
+      ]
+    }
   },
-  onLoad (options) {
-    let id = options.id
+  onLoad(options) {
     let that = this
-    wx.$.requestApi({
-      route: 'api/newbus',
-      success (res) {
-        let theBuses = res.data.content.filter(k => k.id == id)
-        if (theBuses.length != 1) {
-          wx.$.showError('班车不存在')
-          return
-        }
-        let bus = theBuses[0]
-        wx.setNavigationBarTitle({ title: bus.name })
-        that.setData({
-          bus,
-          points: bus.stops.map(k => {
-            return {
-              latitude: k.latitude,
-              longitude: k.longitude,
-              callout: {
-                content: k.name + '站',
-                color: '#333333',
-                fontSize: 14,
-                borderRadius: 5,
-                bgColor: '#ffffff',
-                padding: 10
-              },
-              iconPath: '/images/location_point.png',
-              width: 20,
-              height: 20,
-              anchor: { x: 0.5, y: 0.5 }
-            }
-          }),
-          lines: bus.stops.map(k => k.parentIds.map(i => [i, k.id])).reduce((a, b) => a.concat(b), []).map(k => {
-            let fromStop = bus.stops.filter(i => i.id == k[0])
-            if (fromStop.length != 1) {
-              return null
-            }
-            fromStop = fromStop[0]
-            let toStop = bus.stops.filter(i => i.id == k[1])
-            if (toStop.length != 1) {
-              return null
-            }
-            toStop = toStop[0]
-            return {
-              points: [fromStop, toStop],
-              color: '#1296db80',
-              dottedLine: true,
-              width: 3
-            }
-          }).filter(k => k != null)
-        })
-      },
-      fail (res) {
-        wx.$.showError('暂时无法获取班车信息，请重试')
+    this.setData({ id: options.id })
+
+    busService.getAll(lines => {
+      let theBuses = lines.filter(k => parseInt(k.id) === parseInt(that.data.id))
+      if (theBuses.length !== 1) {
+        wx.$.showError('线路不存在')
+        return
       }
+      let bus = theBuses[0]
+      that.setData({
+        name: bus.name,
+        stops: bus.linePoints.map(k => {
+          return {
+            latitude: k.station.latitude,
+            longitude: k.station.longitude,
+            callout: {
+              content: k.station.name,
+              color: '#333333',
+              fontSize: 14,
+              borderRadius: 5,
+              bgColor: '#ffffff',
+              padding: 10
+            },
+            iconPath: '/images/location_point.png',
+            width: 20,
+            height: 20,
+            anchor: { x: 0.5, y: 0.5 }
+          }
+        }),
+        lines: bus.linePoints.map(k => k.parentIds.map(i => [i, k.id])).reduce((a, b) => a.concat(b), []).map(k => {
+          let fromStop = bus.linePoints.filter(i => i.id === k[0])
+          if (fromStop.length !== 1) {
+            return null
+          }
+          fromStop = fromStop[0]
+          let toStop = bus.linePoints.filter(i => i.id === k[1])
+          if (toStop.length !== 1) {
+            return null
+          }
+          toStop = toStop[0]
+          return {
+            points: [fromStop.station, toStop.station],
+            color: '#1296db80',
+            dottedLine: true,
+            width: 3
+          }
+        }).filter(k => k !== null)
+      })
+      that.concatPoints()
+      setInterval(that.updateBus, 5000)
     })
   },
-  onShareAppMessage () {
-  
+  updateBus() {
+    let that = this
+    busService.getBus(this.data.id, buses => {
+      that.setData({
+        buses: buses.map(k => {
+          return {
+            latitude: k.location.latitude,
+            longitude: k.location.longitude,
+            callout: {
+              content: '车牌号：' + k.bus.busNO,
+              color: '#ffffff',
+              fontSize: 14,
+              borderRadius: 5,
+              bgColor: '#1296db',
+              padding: 10,
+              display: 'ALWAYS'
+            },
+            iconPath: '/images/bus.png',
+            width: 20,
+            height: 20,
+            anchor: { x: 0.5, y: 0.5 }
+          }
+        })
+      })
+      that.concatPoints()
+    })
+  },
+  concatPoints() {
+    let that = this
+    that.setData({ points: that.data.stops.concat(that.data.buses) })
+  },
+  onShareAppMessage() {
+    let that = this
+    return {
+      title: '校车',
+      path: '/pages/busDetail/busDetail?id=' + that.data.id
+    }
   }
 })

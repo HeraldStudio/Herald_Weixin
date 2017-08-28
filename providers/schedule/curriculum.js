@@ -101,6 +101,24 @@ module.exports = {
     let threads = 0
     let that = this
     wx.$.showLoading('初始化全年课表')
+
+    wx.$.requestApi({
+      route: 'api/term',
+      success (res) {
+        let terms = res.data.content || []
+        if (!Array.isArray(terms)) {
+          wx.$.hideLoading()
+          wx.$.showError('学期列表获取失败')
+          return
+        }
+        termsAvailable = termsAvailable.filter(k => terms.indexOf(k) !== -1)
+      },
+      fail () {
+        wx.$.hideLoading()
+        wx.$.showError('学期列表获取失败')
+      }
+    })
+
     for (let term of termsAvailable) {
       if (storedTerms.filter(k => k === term).length === 0) {
         threads++

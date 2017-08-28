@@ -3,6 +3,9 @@ Page({
   data: {
     password: ''
   },
+  onLoad (options) {
+    wx.$.util('user').requireLogin(this, options)
+  },
   onChange (event) {
     this.data.password = event.detail.value
   },

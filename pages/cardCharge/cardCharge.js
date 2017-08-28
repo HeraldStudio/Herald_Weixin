@@ -7,6 +7,8 @@ Page({
     remember: false
   },
   onLoad () {
+    wx.$.util('user').requireLogin(this)
+    
     let that = this
     wx.$.requestApi({
       route: 'api/user',

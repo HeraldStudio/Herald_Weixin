@@ -308,29 +308,26 @@ module.exports = {
       id: 'bus',
       blocks: [{ desc: '实时班车', info: '···' }]
     })
-    wx.$.requestApi({
-      route: 'api/newbus',
-      complete: function (res) {
-        callback && callback({
-          id: 'bus',
-          blocks: [
-            {
-              desc: '实时班车',
-              info: res.data.content.filter(k => k.buses.length).length
-            }
-          ],
-          long: {
-            data: res.data.content.map((k) => {
-              return {
-                topLeft: k.name,
-                topRight: k.buses.length ? k.buses.length + ' 辆车' : '未运行',
-                link: 'busDetail?id=' + k.id
-              }
-            }),
-            hint: '点击班车名称可查看班车的路线详情。'
+    require('../busService.js').getAll(lines => {
+      callback && callback({
+        id: 'bus',
+        blocks: [
+          {
+            desc: '实时班车',
+            info: lines.filter(k => k.buses.length).length
           }
-        })
-      }
+        ],
+        long: {
+          data: lines.map((k) => {
+            return {
+              topLeft: k.name,
+              topRight: k.buses.length ? k.buses.length + ' 辆车' : '未运行',
+              link: 'busDetail?id=' + k.id
+            }
+          }),
+          hint: '点击班车名称可查看班车的路线详情、正在运行的车辆信息及时刻表。'
+        }
+      })
     })
   },
   getLibrary (callback) {
