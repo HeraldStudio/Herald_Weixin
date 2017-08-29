@@ -1,17 +1,24 @@
 <view class="container">
-  <view class="picker-container">
-    <picker mode="date" value="{{ displayFromDate }}" bindchange="onFromDateChange">
-      <view class="picker">{{ displayFromDate }}</view>
-    </picker>
-    <picker mode="time" value="{{ displayFromTime }}" bindchange="onFromTimeChange">
-      <view class="picker">{{ displayFromTime }}</view>
-    </picker>
-    <text class="separator">~</text>
-    <picker mode="date" value="{{ displayToDate }}" bindchange="onToDateChange">
-      <view class="picker">{{ displayToDate }}</view>
-    </picker>
-    <picker mode="time" value="{{ displayToTime }}" bindchange="onToTimeChange">
-      <view class="picker">{{ displayToTime }}</view>
-    </picker>
+  <view class="sticky">
+    <view class="picker-container">
+      <block wx:for="{{ fields }}">
+        <picker wx:if="{{ item.key !== undefined }}" mode="{{ item.options == 'date' ? 'date' : 'selector' }}" range="{{ item.options }}" range-key="{{ item.options.length && item.options[0].name !== undefined ? 'name' : '' }}" value="{{ item.select }}" bindchange="onPickerChange" data-index="{{ index }}">
+          <view class="picker">{{ item.options == 'date' ? item.select : (item.options[item.select].name !== undefined ? item.options[item.select].name : item.options[item.select]) }}</view>
+        </picker>
+        <text wx:else>{{ item }}</text>
+      </block>
+    </view>
+    <view class="result-header">
+        <text class="classroom-name">教室</text>
+        <space/>
+        <text class="classroom-usage">用途</text>
+    </view>
+  </view>
+  <view class="result-container">
+    <view class="result" wx:for="{{ results }}">
+      <text class="classroom-name">{{ item.name }}</text>
+      <space/>
+      <text class="classroom-usage" wx:for="{{ item.classroomTypeList }}">{{ item.name }}</text>
+    </view>
   </view>
 </view>

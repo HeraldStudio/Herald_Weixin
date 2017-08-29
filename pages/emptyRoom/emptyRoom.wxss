@@ -1,1 +1,54 @@
-/* pages/emptyRoom/emptyRoom.wxss */
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: #fff;
+}
+
+.picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.picker-container .picker {
+  padding: 10rpx 15rpx;
+  background: #f3f3f3;
+  color: #333;
+  border-radius: 6rpx;
+  -webkit-transition: .3s;
+}
+
+.picker-container .picker:active {
+  background: #e4e4e4;
+}
+
+.result, .result-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.result {
+  border-bottom: 1rpx solid #f0f0f0;
+  margin: 0 30rpx;
+  padding: 25rpx 0;
+}
+
+.result-header {
+  padding: 15rpx 30rpx;
+  background: #f3f3f3;
+}
+
+.classroom-name, .classroom-usage {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.classroom-usage + .classroom-usage:before {
+  content: '，';
+}

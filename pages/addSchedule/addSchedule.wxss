@@ -117,7 +117,7 @@ form radio {
 }
 
 .picker-container .picker:active {
-  background: #008dad;
+  background: #0062f4;
 }
 
 .footer {
