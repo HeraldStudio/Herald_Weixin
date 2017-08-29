@@ -29,6 +29,7 @@ Page({
   onLoad(options) {
     let that = this
     this.setData({ id: options.id })
+    wx.$.showLoading('加载中')
 
     busService.getAll(lines => {
       let theBuses = lines.filter(k => parseInt(k.id) === parseInt(that.data.id))
@@ -51,10 +52,10 @@ Page({
               bgColor: '#ffffff',
               padding: 10
             },
-            iconPath: '/images/location_point.png',
+            iconPath: '/images/icon_station.png',
             width: 20,
             height: 20,
-            anchor: { x: 0.5, y: 0.5 }
+            anchor: { x: 0.5, y: 1 }
           }
         }),
         lines: bus.linePoints.map(k => k.parentIds.map(i => [i, k.id])).reduce((a, b) => a.concat(b), []).map(k => {
@@ -70,13 +71,15 @@ Page({
           toStop = toStop[0]
           return {
             points: [fromStop.station, toStop.station],
-            color: '#1296db80',
+            color: '#3388ff80',
             dottedLine: true,
-            width: 3
+            width: 2
           }
         }).filter(k => k !== null)
       })
       that.concatPoints()
+      wx.$.hideLoading()
+      that.updateBus()
       setInterval(that.updateBus, 5000)
     })
   },
@@ -89,11 +92,11 @@ Page({
             latitude: k.location.latitude,
             longitude: k.location.longitude,
             callout: {
-              content: '车牌号：' + k.bus.busNO,
+              content: k.bus.busNO,
               color: '#ffffff',
               fontSize: 14,
               borderRadius: 5,
-              bgColor: '#1296db',
+              bgColor: '#3388ff',
               padding: 10,
               display: 'ALWAYS'
             },

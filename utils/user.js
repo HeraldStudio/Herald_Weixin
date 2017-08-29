@@ -10,7 +10,7 @@ module.exports = {
       return
     }
     wx.$.showLoading('正在登录…')
-    wx.$.requestCompat({
+    wx.$.requestSimple({
       route: 'uc/auth',
       method: 'POST',
       data: {
