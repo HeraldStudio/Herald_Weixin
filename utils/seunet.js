@@ -36,7 +36,7 @@ function loginToService (callback) {
     return
   }
   let user = wx.$.util('user').getUser()
-  wx.$.requestCompat({
+  wx.$.requestSimple({
     method: 'POST',
     url: 'https://w.seu.edu.cn/index.php/index/login',
     data: 'username=' + user.cardnum + '&password=' + wx.$.util('base64').encode(user.password) + '&enablemacauth=1',

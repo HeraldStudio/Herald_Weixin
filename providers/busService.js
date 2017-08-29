@@ -5,8 +5,7 @@ function transformPosition (positionObj) {
 }
 
 exports.getAll = (callback) => {
-  wx.$.requestApi({
-    method: 'GET',
+  wx.$.requestSimple({
     route: 'busservice/lines',
     complete (res) {
       if (!Array.isArray(res.data.data.lines)) {
@@ -16,8 +15,7 @@ exports.getAll = (callback) => {
       let threads = 0
       for (let line of lines) {
         threads++
-        wx.$.requestApi({
-          method: 'GET',
+        wx.$.requestSimple({
           route: 'busservice/lineDetail?lineId=' + line.id,
           complete (res) {
             line.linePoints = res.data.data.line.linePoints.map(k => {
@@ -39,8 +37,7 @@ exports.getAll = (callback) => {
 }
 
 exports.getBus = (id, callback) => {
-  wx.$.requestApi({
-    method: 'GET',
+  wx.$.requestSimple({
     route: 'busservice/queryBus?lineId=' + id,
     complete (res) {
       let buses = res.data.data.buses

@@ -123,12 +123,12 @@ function requestApi (obj) {
   obj.data = obj.data || {}
   obj.data.uuid = obj.data.uuid || wx.$.util('user').getUser().uuid || '0000000000000000000000000000000000000000'
   obj.method = obj.method || 'POST'
-  requestCompat(obj)
+  requestSimple(obj)
 }
 
 let requestCount = 0
 
-function requestCompat (obj) {
+function requestSimple (obj) {
   obj.header = obj.header || {}
   obj.header['Content-Type'] = 'application/x-www-form-urlencoded'
 
@@ -200,6 +200,6 @@ function showError (str, callback) {
 
 module.exports = {
   config, beginInject, Page, log, error,
-  ask, requestApi, requestCompat, userStorage, comp,
+  ask, requestApi, requestSimple, userStorage, comp,
   showActions, showSuccess, showLoading, hideLoading, showError
 }

@@ -1,3 +1,8 @@
+schedule {
+  display: block;
+  background: #fcfcfc;
+}
+
 schedule .subtitle {
   padding: 20rpx 35rpx;
   background: #f4f4f4;
@@ -29,21 +34,35 @@ schedule .subtitle image.add {
   margin-left: 20rpx;
   margin-right: 0;
 }
-
 schedule .error {
-  padding: 15rpx 30rpx;
-  background: #fafaa8;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  padding: 20rpx 20rpx;
+  display: block;
+  background: #f7efc4;
+  border-radius: 10rpx;
+  margin: 20rpx 20rpx 0;
+  font-size: 26rpx;
+  color: #bc8d3e;
+  position: relative;
+  text-align: center;
+}
+
+schedule .error:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10rpx;
+  border-top: 10rpx solid #f7efc4;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
 }
 
 schedule .error:active {
-  background: #b8b80d;
+  opacity: .8;
 }
 
 schedule .error image {
@@ -51,19 +70,11 @@ schedule .error image {
   height: 32rpx;
 }
 
-schedule .error text {
-  margin-left: 20rpx;
-  font-size: 28rpx;
-  padding: 20rpx;
-  color: rgba(0, 0, 0, .7);
-}
-
 schedule button.loading {
   background: none;
   font-size: 28rpx;
   color: #999;
   padding: 20rpx;
-  background: #fcfcfc;
   border-radius: 0 !important;
 }
 
@@ -76,10 +87,6 @@ schedule button.loading:after {
 schedule swiper {
   height: 170rpx;
   -webkit-transition: .5s;
-}
-
-schedule swiper-item {
-  background: #fcfcfc;
 }
 
 schedule swiper-item.delete {

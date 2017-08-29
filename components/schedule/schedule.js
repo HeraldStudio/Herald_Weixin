@@ -64,14 +64,14 @@ exports.bind = function (page, forceReload) {
       success (result) {
         page.setData({
           $schedule: formatSchedule(page.data.$schedule.concat(result)),
-          $schedule_loading: page.data.$schedule_loading - 1,
+          $schedule_loading: Math.max(0, page.data.$schedule_loading - 1),
           $schedule_week: getCurrentWeek()
         })
       },
       fail () {
         page.setData({
           $schedule_error: page.data.$schedule_error.concat([p]),
-          $schedule_loading: page.data.$schedule_loading - 1,
+          $schedule_loading: Math.max(0, page.data.$schedule_loading - 1),
           $schedule_week: getCurrentWeek()
         })
       }
