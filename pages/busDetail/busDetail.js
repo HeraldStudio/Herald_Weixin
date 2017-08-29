@@ -96,14 +96,14 @@ Page({
               color: '#ffffff',
               fontSize: 14,
               borderRadius: 5,
-              bgColor: '#3388ff',
+              bgColor: '#ffa254',
               padding: 10,
               display: 'ALWAYS'
             },
             iconPath: '/images/bus.png',
             width: 20,
             height: 20,
-            anchor: { x: 0.5, y: 0.5 }
+            anchor: { x: 0.5, y: 0.75 }
           }
         })
       })
