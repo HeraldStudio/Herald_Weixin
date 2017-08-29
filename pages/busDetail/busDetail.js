@@ -80,7 +80,7 @@ Page({
       that.concatPoints()
       wx.$.hideLoading()
       that.updateBus()
-      setInterval(that.updateBus, 5000)
+      setInterval(that.updateBus, 3000)
     })
   },
   updateBus() {
@@ -117,7 +117,7 @@ Page({
   onShareAppMessage() {
     let that = this
     return {
-      title: '校车',
+      title: '实时班车：' + that.data.name,
       path: '/pages/busDetail/busDetail?id=' + that.data.id
     }
   }
