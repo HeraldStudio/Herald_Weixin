@@ -5,7 +5,7 @@
     "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
     "pages/markdown/markdown",
-    "pages/busDetail/busDetail",
+    "pages/instantBus/instantBus",
     "pages/bindLibrary/bindLibrary",
     "pages/login/login",
     "pages/emptyRoom/emptyRoom"
