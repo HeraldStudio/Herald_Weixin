@@ -157,6 +157,10 @@ schedule item .bottom-left {
   text-align: left;
 }
 
+schedule item .bottom-left {
+  flex-shrink: 0;
+}
+
 schedule item .top-left {
   font-size: 32rpx;
   color: #333;
@@ -168,9 +172,12 @@ schedule item .bottom-left {
   color: #666;
 }
 
-schedule item .top-right,
-schedule item .bottom-right {
+schedule item .top-right {
   flex-shrink: 0;
+}
+
+schedule item .bottom-right {
+  flex-shrink: 1;
 }
 
 schedule item .bottom-right {
