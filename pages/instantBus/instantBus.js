@@ -31,13 +31,16 @@ Page({
     let that = this
     wx.$.showLoading('加载中')
     that.updateBus()
-    setInterval(that.updateBus, 3000)
+    setInterval(that.updateBus, 5000)
   },
   updateBus() {
     let that = this
     busService.get(buses => {
       that.setData({
-        busData: buses,
+        busData: buses.map(k => {
+          k.name = k.name.replace(/(.*)方向/g, '往$1')
+          return k
+        }),
         stops: buses
           .filter(i => i.id % 2 === 0)
           .map(k => k.linePoints)
@@ -84,6 +87,28 @@ Page({
                 width: 2
               }
             }).filter(k => k !== null)
+          ).reduce((a, b) => a.concat(b)),
+        buses: buses
+          .map(i => i.buses
+            .map(k => {
+              return {
+                latitude: k.location.latitude,
+                longitude: k.location.longitude,
+                callout: {
+                  content: k.bus.busNO + ' ' + i.name,
+                  color: '#ffffff',
+                  fontSize: 14,
+                  borderRadius: 5,
+                  bgColor: '#ffa254',
+                  padding: 10,
+                  display: 'ALWAYS'
+                },
+                iconPath: '/images/bus.png',
+                width: 20,
+                height: 20,
+                anchor: { x: 0.5, y: 0.75 }
+              }
+            })
           ).reduce((a, b) => a.concat(b))
       })
       that.concatPoints()
@@ -95,10 +120,9 @@ Page({
     that.setData({ points: that.data.stops.concat(that.data.buses) })
   },
   onShareAppMessage() {
-    let that = this
     return {
-      title: '实时班车：' + that.data.name,
-      path: '/pages/busDetail/busDetail?id=' + that.data.id
+      title: '实时班车',
+      path: '/pages/instantBus/instantBus'
     }
   }
 })
