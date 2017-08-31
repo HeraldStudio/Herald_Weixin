@@ -20,7 +20,7 @@ exports.bind = function(page) {
       setTimeout(() => {
         page.setData({
           $loading_title: '网络状况不太好',
-          $loading_content: '下拉刷新重试'
+          $loading_content: '请下拉刷新或尝试重启微信'
         })
       }, 3000)
     }
