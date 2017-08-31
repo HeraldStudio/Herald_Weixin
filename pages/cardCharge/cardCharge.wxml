@@ -1,4 +1,4 @@
-<view class="charge">
+<view class="charge" wx:if="{{ cardnum }}">
   <line>
     <text class="row-name">一卡通号码</text>
     <text class="content">{{ cardnum }}</text>
@@ -19,6 +19,7 @@
            bindinput="changeAmount" catchtap="changeAmount" data-to="{{ customAmount || 0 }}"/>
   </line>
 </view>
+<text class="greeting" wx:else>网络错误，加载失败，请重试</text>
 <text class="greeting">1. 充值的金额将从绑定的银行卡中扣除；
 
 2. 在线充值后，必须在食堂刷卡机上刷卡一次，充值金额才会写卡到账，否则将不会到账，请务必注意；
