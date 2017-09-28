@@ -1,4 +1,4 @@
-.markdown-body {
+.markdown-container {
   font-size: 28rpx;
   color: #666;
   line-height: 1.5;
@@ -7,25 +7,25 @@
   text-align: left;
 }
 
-.markdown-body .a {
+.markdown-container .a {
   color: #3688ff !important;
   text-decoration: none;
 }
 
-.markdown-body .a:active {
+.markdown-container .a:active {
   background: #f0f0f0;
 }
 
-.markdown-body .block {
+.markdown-container .block {
   margin: 30rpx 30rpx;
 }
 
-.markdown-body .hr {
+.markdown-container .hr {
   height: 0;
   border-top: 1rpx solid #f0f0f0;
 }
 
-.markdown-body .blockquote_p {
+.markdown-container .blockquote_p {
   padding: 0 1em;
   color: #666;
   border-left: 0.25em solid #f5f5f5;
@@ -34,13 +34,13 @@
   margin-bottom: 1em;
 }
 
-.markdown-body .blockquote_p + .blockquote_p,
-.markdown-body .code + .code {
+.markdown-container .blockquote_p + .blockquote_p,
+.markdown-container .code + .code {
   margin-top: -1em;
   padding-top: 1em;
 }
 
-.markdown-body .h1 {
+.markdown-container .h1 {
   padding: 30rpx 0 20rpx;
   font-size: 40rpx;
   color: #333;
@@ -48,70 +48,70 @@
   font-weight: bold;
 }
 
-.markdown-body .h2 {
+.markdown-container .h2 {
   padding: 30rpx 0 20rpx;
   font-size: 34rpx;
   color: #333;
   font-weight: bold;
 }
 
-.markdown-body .h3 {
+.markdown-container .h3 {
   padding: 30rpx 0 20rpx;
   font-size: 32rpx;
   color: #333;
   font-weight: bold;
 }
 
-.markdown-body .h4 {
+.markdown-container .h4 {
   padding: 30rpx 0;
   font-size: 30rpx;
   color: #333;
   font-weight: bold;
 }
 
-.markdown-body .h5 {
+.markdown-container .h5 {
   padding: 30rpx 0;
   font-size: 28rpx;
   color: #333;
   font-weight: bold;
 }
 
-.markdown-body .h6 {
+.markdown-container .h6 {
   padding: 30rpx 0;
   font-size: 28rpx;
   color: #333;
 }
 
-.markdown-body .h1:first-child,
-.markdown-body .h2:first-child,
-.markdown-body .h3:first-child,
-.markdown-body .h4:first-child,
-.markdown-body .h5:first-child,
-.markdown-body .h6:first-child {
+.markdown-container .h1:first-child,
+.markdown-container .h2:first-child,
+.markdown-container .h3:first-child,
+.markdown-container .h4:first-child,
+.markdown-container .h5:first-child,
+.markdown-container .h6:first-child {
   margin-top: 0;
 }
 
-.markdown-body .ul_li_p::before {
+.markdown-container .ul_li_p::before {
   content: '• ';
 }
 
-.markdown-body .ul_li_ul_li_p::before,
-.markdown-body .ol_li_ul_li_p::before {
+.markdown-container .ul_li_ul_li_p::before,
+.markdown-container .ol_li_ul_li_p::before {
   content: '◦ ';
 }
 
-.markdown-body .ul_li_ul_li_p,
-.markdown-body .ul_li_ol_li_p,
-.markdown-body .ol_li_ul_li_p,
-.markdown-body .ol_li_ol_li_p {
+.markdown-container .ul_li_ul_li_p,
+.markdown-container .ul_li_ol_li_p,
+.markdown-container .ol_li_ul_li_p,
+.markdown-container .ol_li_ol_li_p {
   padding-left: 1em;
 }
 
-.markdown-body .ul_li_p:last {
+.markdown-container .ul_li_p:last {
   margin-bottom: 1em;
 }
 
-.markdown-body .tr {
+.markdown-container .tr {
   display: flex;
   border-right: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
@@ -119,8 +119,8 @@
   margin-bottom: 0;
 }
 
-.markdown-body .th,
-.markdown-body .td {
+.markdown-container .th,
+.markdown-container .td {
   flex: 1;
   padding: 5px;
   font-size: 28rpx;
@@ -128,16 +128,16 @@
   word-break: break-all;
 }
 
-.markdown-body .td:last {
+.markdown-container .td:last {
   border-top: 1px solid #e0e0e0;
 }
 
-.markdown-body .th {
+.markdown-container .th {
   background: #f0f0f0;
   border-top: 1px solid #e0e0e0;
 }
 
-.markdown-body .img {
+.markdown-container .img {
   max-width: 100%;
   width: auto;
   height: auto;
@@ -148,15 +148,15 @@
   margin-bottom: 1em;
 }
 
-.markdown-body .img:first-child {
+.markdown-container .img:first-child {
   margin-top: 0;
 }
 
-.markdown-body .img:last-child {
+.markdown-container .img:last-child {
   margin-bottom: 0;
 }
 
-.markdown-body .code, .markdown-body .tt {
+.markdown-container .code, .markdown-container .tt {
   font: 95% "Source Code Pro", Consolas, "Liberation Mono", Menlo, Courier, monospace, "PingFang SC", "Microsoft YaHei UI";
   padding: 0;
   padding-top: 0.1em;
@@ -167,33 +167,33 @@
   border-radius: 6rpx;
 }
 
-.markdown-body .code.block {
+.markdown-container .code.block {
   padding: 0 1em;
 }
 
-.markdown-body .code::before, .markdown-body .code::after, .markdown-body .tt::before, .markdown-body .tt::after {
+.markdown-container .code::before, .markdown-container .code::after, .markdown-container .tt::before, .markdown-container .tt::after {
   letter-spacing: -0.2em;
   content: "\00a0"
 }
 
-.markdown-body .code .br, .markdown-body .tt .br {
+.markdown-container .code .br, .markdown-container .tt .br {
   display: none
 }
 
-.markdown-body .deleted {
+.markdown-container .deleted {
   text-decoration: line-through;
   border-radius: 6rpx;
 }
 
-.markdown-body .strong {
+.markdown-container .strong {
   font-weight: bold;
 }
 
-.markdown-body .em {
+.markdown-container .em {
   font-weight: 600;
 }
 
-.markdown-body .deleted .code {
+.markdown-container .deleted .code {
   text-decoration: inherit;
   margin: 0;
   background: none

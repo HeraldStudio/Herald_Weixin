@@ -20,7 +20,7 @@ exports.get = function (callback) {
         let nextEvent = nextEvents[0]
         let expiredCount = nextOrExpiredEvents.length - nextEvents.length
 
-        if (!nextEvent || Math.floor(nextEvent.fromTime / 1000 / 60 / 60 / 24) !== Math.floor(now / 1000 / 60 / 60 / 24)) {
+        if (!nextEvent || new Date(nextEvent.fromTime).toLocaleString().split(' ')[0] !== new Date(now).toLocaleString().split(' ')[0]) {
           if (expiredCount) {
             return expiredCount + '个日程已过期'
           } else {
