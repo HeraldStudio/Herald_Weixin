@@ -186,3 +186,7 @@ fab.hidden::after,
   color: #666;
   background: #fcfcfc;
 }
+
+wxs {
+  display: none;
+}

@@ -66,7 +66,7 @@ function parse (md, page, options) {
           } else {
             ret.push({
               type: env || token.type,
-              content: token.content
+              content: token.content.replace(/\*\*/g, '')
             });
             env = '';
           }

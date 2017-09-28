@@ -1,0 +1,19 @@
+<wxs module="mIntro">
+  module.exports.splitIntro = function(intro) {
+    return intro.split('\n')
+  }
+</wxs>
+<view class="container">
+  <image class="headPhoto" src="{{ club.headPhoto }}" mode="aspectFill"/>
+  <view class="info">
+    <image class="avatar" src="{{ club.avatar }}"/>
+    <text class="name">{{ club.name }}<text class="type">{{ club.type }}</text></text>
+    <text class="description">{{ club.description }}</text>
+  </view>
+  <view class="pictures" wx:if="{{ club.pictures.length }}">
+    <image class="picture" wx:for="{{ club.pictures }}" src="{{ item }}" mode="aspectFill"
+           catchtap="viewimg" data-current="{{ item }}" data-urls="{{ club.pictures }}"/>
+  </view>
+  <rich-text nodes="{{ html }}" catchlongpress="onImageLongTap"/>
+  <text class="declare">- 小主页由小猴偷米托管 / <text class="register">定制我的小主页</text> -</text>
+</view>

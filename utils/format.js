@@ -8,15 +8,15 @@ module.exports = {
     let date = new Date(timestamp)
     let now = new Date()
     let nowTime = now.getTime()
-    let dsec = parseInt((timestamp - nowTime) / 1000)
+    let dsec = Math.round((timestamp - nowTime) / 1000)
     if (Math.abs(dsec) < 60) {
       return '现在'
     }
-    let dmin = parseInt(dsec / 60)
+    let dmin = Math.round(dsec / 60)
     if (Math.abs(dmin) < 60) {
       return Math.abs(dmin) + '分钟' + (dmin < 0 ? '前' : '后')
     }
-    let dhr = parseInt(dmin / 60)
+    let dhr = Math.round(dmin / 60)
     if (date.getDate() === now.getDate()) {
       return Math.abs(dhr) + '小时' + (dhr < 0 ? '前' : '后')
     }

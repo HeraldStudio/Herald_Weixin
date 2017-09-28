@@ -10,15 +10,30 @@ exports.bind = function (page, callback) {
       versioncode: '',
       schoolnum: (user ? user.schoolnum : '00000000')
     },
-    success: function (res) {
+    success (res) {
       console.log(res)
-      // 去掉下面注释可模拟服务器down状态
-      // res.data.content.serverHealth = false
-      res.data.content.isLogin = wx.$.util('user').isLogin()
-      page.setData({ $service: res.data.content })
+      if (res.data && res.data.content) {
+        res.data.content.isLogin = wx.$.util('user').isLogin()
+        page.setData({ $service: res.data.content })
 
-      let health = res.data.content.serverHealth
-      callback(health)
+        let health = res.data.content.serverHealth
+        callback(health)
+      } else {
+        page.setData({ 
+          $service: {
+            isLogin: wx.$.util('user').isLogin()
+          }
+        })
+        callback(false)
+      }
+    },
+    fail() {
+      page.setData({
+        $service: {
+          isLogin: wx.$.util('user').isLogin()
+        }
+      })
+      callback(false)
     }
   })
 

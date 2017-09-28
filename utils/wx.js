@@ -62,8 +62,8 @@ function _Page (obj) {
 // Pretty Log
 function log (title, ...args) {
   console.log(
-    '%c' + title,
-    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
+    /*'%c' +*/ title,
+    //"display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
     ...args
   )
 }
@@ -71,8 +71,8 @@ function log (title, ...args) {
 // Pretty Log
 function error (title, ...args) {
   console.error(
-    '%c' + title,
-    "display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
+    /*'%c' +*/ title,
+    //"display: block; color: #ffffff; background: #1cadcf; border-radius: 2px; padding:2px 5px; line-height: 20px",
     ...args
   )
 }

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "小主页",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#1c1d1f",
+  "backgroundColor": "#2e3132",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": true
+}
