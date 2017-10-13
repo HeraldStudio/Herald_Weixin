@@ -1,39 +1,36 @@
-<view class="week header">
-  <view class="day week-intro">
-  </view>
-  <view wx:for="{{ ['一', '二', '三', '四', '五', '六', '日'] }}" wx:key="*this" class="day">
-    <text class="date">{{ item }}</text>
-  </view>
-</view>
-<view class="week header-placeholder"/>
-<text class="empty-hint" wx:if="{{ weeks.length }}">~ 到顶啦 ~</text>
-<view wx:for="{{ weeks }}" wx:for-item="week" class="week">
-  <view class="day week-intro">
-    <text class="month">{{ (index == 0 || weeks[index - 1].d[0].m !== week.d[0].m) ? week.d[0].m + '月' : '·' }}</text>
-    <text class="from-time" wx:if="{{ week.f != week.t }}">{{ week.f }}:00</text>
-    <text class="to-time" wx:if="{{ week.f != week.t }}">{{ week.t }}:00</text>
-  </view>
-  <view wx:for="{{ week.d }}" wx:for-item="day"
-        class="day {{ day.o }} {{ curDate == day.d && curYear == day.y && curMonth == day.m ? 'today' : '' }} {{ curYear == day.y && curMonth == day.m ? 'curMonth' : '' }}"
-        id="{{ day.d == 1 && curYear == day.y && curMonth == day.m ? 'current' : '' }}"
-        catchlongpress="go" data-to="addSchedule" data-date="{{ day.y }}-{{ day.m }}-{{ day.d }}">
-    <text class="date singleline {{ day.d == 1 ? 'new-month' : '' }}">{{ day.d }}</text>
-    <text class="hint" wx:if="{{ day.h && day.e.length }}">{{ day.h }}</text>
-    <view wx:for="{{ day.e }}" wx:for-item="event"
-          class="event {{ event.typeId }} {{ event == previewItem ? 'previewing' : '' }}"
-          style="height: {{ (event.t - event.f) * 24 }}rpx; margin-top: {{ (index == 0 ? event.f - week.f : event.f - day.e[index - 1].t) * 24 }}rpx;"
-          catchtap="showPreview" data-event="{{ event }}"
-          catchlongpress="nil">
-      <text>{{ event.displayData.topLeft }}</text>
+<swiper class="pages-swiper" current="{{ thisWeek }}" autoplay="{{ false }}" duration="300">
+  <swiper-item wx:for="{{ weeks }}" wx:for-item="week">
+    <view class="week table">
+      <view class="day week-intro">
+        <view class="header"/>
+        <text class="month">{{ week.d[0].m + '月' }}</text>
+        <text class="from-time" wx:if="{{ week.f != week.t }}">{{ week.f }}:00</text>
+        <text class="to-time" wx:if="{{ week.f != week.t }}">{{ week.t }}:00</text>
+      </view>
+      <view wx:for="{{ week.d }}" wx:for-item="day" wx:if="{{ index < 5 || index == 5 && week.d[5].e.length || week.d[6].e.length }}"
+            class="day {{ day.o }} {{ curDate == day.d && curYear == day.y && curMonth == day.m ? 'today' : '' }} {{ curYear == day.y && curMonth == day.m ? 'curMonth' : '' }}">
+            <!--catchlongpress="go" data-to="addSchedule" data-date="{{ day.y }}-{{ day.m }}-{{ day.d }}">-->
+        <view class="header">
+          <text class="date">{{ ['一', '二', '三', '四', '五', '六', '日'][index] }}</text>
+        </view>
+        <text class="date">{{ day.d }}</text>
+        <view class="events">
+          <view wx:for="{{ day.e }}" wx:for-item="event"
+                class="event {{ event.typeId }} {{ event == previewItem ? 'previewing' : '' }}"
+                style="height: {{ (event.t - event.f) / (week.t - week.f) * 100 }}%; top: {{ (event.f - week.f) / (week.t - week.f) * 100 }}%; background: {{ event.c }}"
+                catchtap="showPreview" data-event="{{ event }}"
+                catchlongpress="nil">
+            <text class="title">{{ event.displayData.topLeft }}</text>
+            <text class="desc">{{ event.displayData.bottomLeft }}</text>
+          </view>
+        </view>
+      </view>
     </view>
-  </view>
-</view>
-<text class="empty-hint" wx:if="{{ weeks.length }}">~ 到底啦 ~</text>
-<floater wx:if="{{ previewing }}" class="{{ previewing ? '' : 'hidden' }}" 
-  catchlongpress="nil" bindtouchstart="hidePreview">
+  </swiper-item>
+</swiper>
+<floater wx:if="{{ previewing }}" class="{{ previewing ? '' : 'hidden' }}" catchtap="hidePreview">
   <preview-item catchtap="nil">
-    <image class="schedule-avatar {{ previewItem.displayData.image ? '' : 'dot' }}"
-           src="{{ previewItem.displayData.image }}"
+    <view class="schedule-avatar dot"
            style="background: {{ previewItem.displayData.color }}" mode="aspectFill"/>
     <view class="schedule-desc">
       <view class="line top-line">

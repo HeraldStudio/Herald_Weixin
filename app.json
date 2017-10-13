@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/addSchedule/addSchedule",
     "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
     "pages/markdown/markdown",
