@@ -16,7 +16,7 @@
           bindchange="$schedule_delete" data-id="{{ item.id }}" class="{{ item.deleted ? 'deleted' : '' }}">
     <swiper-item>
       <item>
-        <image class="schedule-avatar {{ item.displayData.image ? '' : 'dot' }}" src="{{ item.displayData.image }}"
+        <image class="schedule-avatar dot"
                style="background: {{ item.displayData.color }}" mode="aspectFill"/>
         <view class="schedule-desc">
           <view class="line top-line">

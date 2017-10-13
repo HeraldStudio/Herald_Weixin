@@ -1,5 +1,5 @@
 const schedule = require('../../components/schedule/schedule.js')
-
+const format = require('../../utils/format.js')
 const curriculum = require('../../providers/schedule/curriculum.js')
 const experiment = require('../../providers/schedule/experiment.js')
 const exam = require('../../providers/schedule/exam.js')
@@ -10,9 +10,9 @@ Page({
   data: {},
   onLoad () {
     wx.$.util('user').requireLogin(this)
+    this.loadCurriculumForYear()
   },
   onShow () {
-    this.loadCurriculumForYear()
   },
   showPreview (event) {
     event = event.currentTarget.dataset.event
@@ -91,8 +91,9 @@ Page({
     let curDayEnd = curDayStart + ONE_DAY // 哇今天从这个时间结束
 
     // 本周的最小开始时间和最大结束时间
-    let minFromHour = 12
-    let maxToHour = 12
+    // let minFromHour = 12
+    // let maxToHour = 12
+    let thisWeek = 0
 
     while (curDayStart <= lastSunday.getTime()) { // 哇今天我还活着，起来看看有啥要干的
       let date = new Date(curDayStart)
@@ -104,14 +105,22 @@ Page({
         // 为了减少向ui层传输数据量，尽可能防止数据量超限，这里附加的字段都用一个字母命名
         k.f/* ==fromHour */ = (k.fromTime / 1000 / 60 / 60 + 8) % 24
         k.t/* ==toHour */ = (k.toTime / 1000 / 60 / 60 + 8) % 24
-        if (k.f/* ==fromHour */ < minFromHour) {
-          minFromHour = k.f/* ==fromHour */
-        }
-        if (k.t/* ==toHour */ > maxToHour) {
-          maxToHour = k.t/* ==toHour */
-        }
+        // if (k.f/* ==fromHour */ < minFromHour) {
+        //   minFromHour = k.f/* ==fromHour */
+        // }
+        // if (k.t/* ==toHour */ > maxToHour) {
+        //   maxToHour = k.t/* ==toHour */
+        // }
+        k.c = format.stringToColor(k.displayData.topLeft)
         return k
       })
+
+      if (date.getFullYear() === today.getFullYear() &&
+        date.getMonth() === today.getMonth() &&
+        date.getDate() === today.getDate()) {
+
+        thisWeek = weeks.length
+      }
 
       // 不管有没有事做，今天都是新的一天
       curWeek.push({
@@ -119,7 +128,7 @@ Page({
         m: date.getMonth() + 1,
         d: date.getDate(),
         e/* ==events */: curDay,
-        o/* ==oddOrEven */: (date.getMonth() + 1) % 2 === 0 ? 'e' : 'o'
+        // o/* ==oddOrEven */: (date.getMonth() + 1) % 2 === 0 ? 'e' : 'o'
       })
 
       // 看看今天是不是周日了
@@ -128,12 +137,12 @@ Page({
         // 哇明天是新的一周，这周要结束啦
         weeks.push({
           d/* ==days */: curWeek,
-          f/* ==minFromHour */: Math.floor(minFromHour),
-          t/* ==maxToHour */: Math.ceil(maxToHour)
+          f/* ==minFromHour */: /*Math.floor(minFromHour)*/ 8,
+          t/* ==maxToHour */: /*Math.ceil(maxToHour)*/21
         })
         curWeek = []
-        minFromHour = 12
-        maxToHour = 12
+        // minFromHour = 12
+        // maxToHour = 12
       }
 
       curDayStart = curDayEnd
@@ -141,7 +150,7 @@ Page({
     }
 
     try {
-      this.setData({ weeks })
+      this.setData({ weeks, thisWeek })
     } catch (e) {
       if (this.data.memorySaveMode) {
         wx.$.showError('您的日程数据量过大，由于小程序限制无法展示，请清除小程序数据后重试')
@@ -156,23 +165,6 @@ Page({
       wx.$.showError('您的日程数据量过大，已开启低占用模式，将只展示前后半年内的日程')
     }
 
-    let scroll = () => {
-      wx.createSelectorQuery().select('#current').boundingClientRect(rect => {
-        if (!rect) {
-          setTimeout(scroll, 100)
-        } else {
-          wx.pageScrollTo({ scrollTop: rect.top - 30 })
-          wx.$.hideLoading()
-        }
-      }).exec()
-    }
-
-    if (!this.scrolled) {
-      scroll()
-      this.scrolled = true
-    } else {
-      wx.$.hideLoading()
-    }
-  },
-  scrolled: false
+    setTimeout(wx.$.hideLoading, 1000)
+  }
 })

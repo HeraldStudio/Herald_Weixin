@@ -41,7 +41,7 @@ module.exports = {
           app.storage.user = res.data.content
           app.storage.user.uuid = uuid
           app.storage.user.password = password
-          wx.$.log('Herald', 'Logged in as', user + '(' + uuid + ')')
+          wx.$.log('Herald', 'Logged in as', app.storage.user + '(' + uuid + ')')
           app.forceUpdateStorage()
           callback && callback(res)
         } else {
