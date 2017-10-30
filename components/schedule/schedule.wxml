@@ -1,9 +1,9 @@
 <schedule>
   <view class="subtitle" catchtap="go" data-to="fullSchedule">
     <image catchtap="tapEgg" src="/images/ic_schedule.png" mode="aspectFit"/>
-    <text catchtap="tapEgg">日程表</text>
+    <text catchtap="tapEgg">{{ $schedule_week || '日程表' }}</text>
     <space/>
-    <text>{{ $schedule_week }}</text>
+    <text>周视图</text>
     <image src="/images/ic_more.png" mode="aspectFit" catchtap="go" data-to="fullSchedule" class="add"/>
   </view>
   <view class="error" wx:if="{{ $schedule_error.length }}" catchtap="$schedule_forceReload">

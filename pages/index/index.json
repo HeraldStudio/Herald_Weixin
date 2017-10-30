@@ -1,8 +1,4 @@
 {
   "navigationBarTitleText": "小猴偷米",
-  "enablePullDownRefresh": true,
-  "backgroundColor": "#ffffff",
-  "backgroundTextStyle": "dark",
-  "navigationBarBackgroundColor": "#ffffff",
-  "navigationBarTextStyle": "black"
+  "enablePullDownRefresh": true
 }

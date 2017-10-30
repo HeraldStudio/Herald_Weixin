@@ -194,7 +194,10 @@ module.exports = {
       let dayFromMon = i
       return data.content[k].map(cell => { // 对课表上每个单元格进行遍历，转换成标准的课程数据
         let name = cell[0]
-        let { teacher, credit } = sidebar[name]
+        let { teacher, credit } = sidebar[name] || {
+          teacher: '未知教师',
+          credit: '未知'
+        }
 
         // 这里不要忘了用 parseInt 否则会导致数值比较变成字符串比较，丢失部分课程
         // 另外由于 parseInt 可接受两个参数，直接用 map(parseInt) 会导致部分平台出现问题

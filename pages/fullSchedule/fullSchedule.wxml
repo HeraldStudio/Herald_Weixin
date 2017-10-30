@@ -40,7 +40,7 @@
       <view class="line">
         <text class="top-left singleline">{{ previewItem.displayData.topLeft }}</text>
         <text wx:if="{{ previewItem.displayData.goingOn }}" class="top-right singleline going-on">进行中</text>
-        <text wx:if="{{ previewItem.displayData.expired }}" class="top-right singleline expired">已过期</text>
+        <!--<text wx:if="{{ previewItem.displayData.expired }}" class="top-right singleline expired">已过期</text>-->
       </view>
       <view class="line">
         <text class="bottom-left singleline">{{ previewItem.displayData.bottomLeft }}</text>

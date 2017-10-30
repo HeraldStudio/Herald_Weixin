@@ -8,7 +8,10 @@ exports.bind = function (page) {
   wx.$.requestApi({
     route: 'api/jwc',
     success: function (res) {
-      page.setData({ $jwc: res.data.content['教务信息'] || [] })
+      page.setData({ $jwc: res.data.content['教务信息'].map(k => {
+        k.isImportant = /紧急|重要/.test(k.title)
+        return k
+      }).sort((a, b) => (a.isImportant ? 0 : 1) - (b.isImportant ? 0 : 1)) || [] })
     }
   })
 
