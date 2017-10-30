@@ -186,7 +186,7 @@ schedule item .bottom-right {
 }
 
 schedule item .going-on {
-  color: #57a509;
+  color: #3688ff;
 }
 
 schedule item .expired {

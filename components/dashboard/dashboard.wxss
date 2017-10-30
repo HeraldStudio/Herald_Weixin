@@ -45,11 +45,11 @@ dashboard item {
   -webkit-transition: .3s;
 }
 
-dashboard item:first-child {
+dashboard item:first-of-type {
   border-left: 1px solid transparent;
 }
 
-dashboard item:last-child {
+dashboard item:last-of-type {
   border-right: 1px solid transparent;
 }
 

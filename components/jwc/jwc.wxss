@@ -68,6 +68,10 @@ jwc .content {
   overflow: hidden;
 }
 
+jwc .content.important {
+  font-weight: bold;
+}
+
 jwc.selectable:active .subtitle {
   background: #f0f0f0;
 }

@@ -190,3 +190,7 @@ fab.hidden::after,
 wxs {
   display: none;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
