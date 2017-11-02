@@ -42,10 +42,13 @@
 
 .markdown-container .h1 {
   padding: 30rpx 0 20rpx;
-  font-size: 40rpx;
+  font-size: 36rpx;
   color: #333;
-  border-bottom: 1rpx solid #f0f0f0;
   font-weight: bold;
+}
+
+.markdown-container .h1:first-of-type {
+  border-bottom: 1rpx solid #f0f0f0;
 }
 
 .markdown-container .h2 {
