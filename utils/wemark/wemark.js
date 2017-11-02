@@ -59,7 +59,7 @@ function parse (md, page, options) {
         }
       }
     } else {
-      inlineToken.children.forEach(function (token, index) {
+      (inlineToken.children || []).forEach(function (token, index) {
         if (['text', 'code'].indexOf(token.type) > -1) {
           if (ret.length > 0 && ret.slice(-1)[0].type == 'a' && !ret.slice(-1)[0].content) {
             ret.slice(-1)[0].content = token.content
