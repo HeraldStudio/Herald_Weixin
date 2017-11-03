@@ -4,6 +4,7 @@
     "pages/fullSchedule/fullSchedule",
     "pages/cardCharge/cardCharge",
     "pages/markdown/markdown",
+    "pages/webView/webView",
     "pages/instantBus/instantBus",
     "pages/bindLibrary/bindLibrary",
     "pages/login/login",

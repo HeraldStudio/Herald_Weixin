@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 10rpx;
-  margin: 25rpx;
-  border-radius: 10rpx;
-  box-shadow: 0 5rpx 30rpx rgba(0, 0, 0, .1);
+  padding: 10rpx 25rpx;
+  border-bottom: 20rpx solid #f4f4f4;
   -webkit-transition: .5s;
   overflow: hidden;
 }

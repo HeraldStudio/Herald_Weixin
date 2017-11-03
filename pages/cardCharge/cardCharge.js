@@ -7,19 +7,33 @@ Page({
     remember: false
   },
   onLoad () {
-    wx.$.util('user').requireLogin(this)
-    
     let that = this
-    wx.$.requestApi({
-      route: 'api/user',
-      success (res) {
+    if (wx.$.util('user').isLogin()) {
+      wx.$.showLoading('加载中')
+      wx.$.requestApi({
+        route: 'api/user',
+        success(res) {
+          that.setData({
+            cardnum: res.data.content.cardnum,
+            password: wx.getStorageSync('charge_password_' + res.data.content.cardnum),
+            remember: !!wx.getStorageSync('charge_password_' + res.data.content.cardnum)
+          })
+          wx.$.hideLoading()
+        },
+        fail(res) {
+          wx.$.hideLoading()
+        }
+      })
+    } else {
+      let cardnum = wx.getStorageSync('charge_cardnum')
+      if (cardnum) {
         that.setData({
-          cardnum: res.data.content.cardnum,
-          password: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum),
-          remember: wx.$.userStorage('card_charge_password_' + res.data.content.cardnum) !== ''
+          cardnum: cardnum,
+          password: wx.getStorageSync('charge_password_' + cardnum),
+          remember: true
         })
       }
-    })
+    }
   },
   onShareAppMessage () {
     return {
@@ -43,22 +57,27 @@ Page({
       })
     }
   },
+  onCardnumChange(event) {
+    this.data.cardnum = event.detail.value
+    this.setData({
+      password: ''
+    })
+  },
   onPasswordChange (event) {
     this.data.password = event.detail.value
   },
   onRememberChange (event) {
     this.data.remember = event.detail.value
-    if (!this.data.remember) {
-      this.setData({
-        password: ''
-      })
-    }
   },
   submit () {
     let cardnum = this.data.cardnum + ''
     let password = this.data.password + ''
     let amount = this.data.amount + ''
     let remember = this.data.remember
+    if (!/^2\d{8}$/.test(cardnum)) {
+      wx.$.showError('请输入正确的一卡通号')
+      return
+    }
     if (!/^\d{6}$/.test(password)) {
       wx.$.showError('请输入正确的查询密码')
       return
@@ -68,6 +87,7 @@ Page({
       return
     }
     wx.$.ask('充值确认', '确认从银行卡中充值' + amount + '元吗？此操作不能撤销。', () => {
+      wx.$.showLoading('充值中…')
       wx.$.requestApi({
         url: 'https://myseu.cn/charge',
         data: {
@@ -75,13 +95,16 @@ Page({
           password: password,
           amount: amount
         },
-        complete (res) {
+        complete(res) {
+          wx.$.hideLoading()
           if (res.data.errmsg === '转账成功') {
             wx.$.showSuccess('充值成功')
             if (remember) {
-              wx.$.userStorage('card_charge_password_' + cardnum, password)
+              wx.setStorageSync('charge_cardnum', cardnum)
+              wx.setStorageSync('charge_password_' + cardnum, password)
             } else {
-              wx.$.userStorage('card_charge_password_' + cardnum, '')
+              wx.setStorageSync('charge_cardnum', '')
+              wx.setStorageSync('charge_password_' + cardnum, '')
             }
           } else {
             wx.$.showError(res.data.errmsg || '未知错误，请稍后再试')

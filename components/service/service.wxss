@@ -5,9 +5,6 @@ service .subtitle {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
 }
 
 service .subtitle image {
@@ -20,38 +17,6 @@ service .subtitle image {
 service .subtitle text {
   font-size: 28rpx;
   color: #666;
-}
-
-service swiper {
-  height: 190rpx;
-}
-
-service .subtitle {
-  padding: 20rpx 35rpx;
-  background: #f4f4f4;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-service .subtitle image {
-  width: 42rpx;
-  height: 42rpx;
-  margin-right: 30rpx;
-  flex-shrink: 0;
-}
-
-service .subtitle text {
-  font-size: 28rpx;
-  color: #666;
-}
-
-service swiper {
-  height: 190rpx;
 }
 
 service .content {
@@ -64,6 +29,10 @@ service .content {
   color: #666;
   background: #fcfcfc;
   overflow: hidden;
+}
+
+service .content + .content {
+  border-top: 1rpx solid #f4f4f4;
 }
 
 service .content image {

@@ -3,7 +3,7 @@ herald-loading {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 150rpx;
+  padding: 50rpx;
   position: relative;
 }
 

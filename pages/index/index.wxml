@@ -1,29 +1,24 @@
-<block wx:if="{{ !$service }}">
-  <include src="/components/loading/loading.wxml"/>
-</block>
-<block wx:elif="{{ $service.serverHealth === true }}">
-  <block wx:if="{{ $login.isLogin === true }}">
-    <include src="/components/menu_tip/menu_tip.wxml"/>
+<block wx:if="{{ $login.isLogin !== false }}">
+  <include src="/components/menu_tip/menu_tip.wxml"/>
+
+  <block wx:if="{{ !$service }}">
+    <include src="/components/loading/loading.wxml"/>
+  </block>
+  <block wx:elif="{{ $service.serverHealth !== false }}">
     <include src="/components/avatar/avatar.wxml"/>
     <include src="/components/dashboard/dashboard.wxml"/>
     <include src="/components/jwc/jwc.wxml"/>
-    <include src="/components/service/service.wxml"/>
-    <include src="/components/schedule/schedule.wxml"/>
-    <contact-button type="default-light"/>
+    <include src="/components/service/service.wxml"/> 
   </block>
-  <block wx:elif="{{ $login.isLogin === false }}">
-    <include src="/components/login/login.wxml"/>
+  <block wx:else>
+    <include src="/components/server_down/server_down.wxml"/>
+    <include src="/components/service/service.wxml"/> 
   </block>
+
+  <include src="/components/schedule/schedule.wxml"/>
+  <contact-button type="default-light"/>
 </block>
 <block wx:else>
-  <block wx:if="{{ $login.isLogin === true }}">
-    <include src="/components/menu_tip/menu_tip.wxml"/>
-    <include src="/components/server_down/server_down.wxml"/>
-    <include src="/components/service/service.wxml"/>
-    <include src="/components/schedule/schedule.wxml"/>
-    <contact-button type="default-light"/>
-  </block>
-  <block wx:elif="{{ $login.isLogin === false }}">
-    <include src="/components/server_down/server_down.wxml"/>
-  </block>
+  <include wx:if="{{ $service.serverHealth }}" src="/components/login/login.wxml"/>
+  <include wx:else src="/components/server_down/server_down.wxml"/>
 </block>

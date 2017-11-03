@@ -23,8 +23,7 @@ module.exports = {
             },
             {
               desc: '在线充值',
-              url: 'http://58.192.115.47:8088/wechat-web/login/initlogin.html',
-              noConvert: true
+              page: 'cardCharge'
             }
           ],
           long: {
