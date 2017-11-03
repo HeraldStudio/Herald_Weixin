@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.5.4",
+	"libVersion": "1.6.4",
 	"appid": "wx3c1c058fd07462d0",
 	"projectname": "Herald_Weixin",
 	"condition": {
@@ -34,6 +34,18 @@
 					"name": "实时班车",
 					"pathName": "pages/instantBus/instantBus",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "一卡通充值",
+					"pathName": "pages/cardCharge/cardCharge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "WebView",
+					"pathName": "pages/webView/webView",
+					"query": "url=https://rikumi.github.io/#/"
 				}
 			]
 		}

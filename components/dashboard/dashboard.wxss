@@ -61,7 +61,7 @@ dashboard item expandable {
 }
 
 dashboard items item.long {
-  background: #f7f7f7;
+  background: #fafafa;
   margin-top: 0;
   margin-bottom: 0;
   border-left: 1rpx solid transparent;
@@ -87,12 +87,12 @@ dashboard items item.long + item {
 dashboard item.expanded {
   width: 100%;
   display: block;
-  background: #f7f7f7;
+  background: #fafafa;
   margin: -1rpx 0 0 0;
   padding: 25rpx 0;
   border-left: none;
   border-right: none;
-  border-bottom: 1rpx solid #dedede;
+  border-bottom: 20rpx solid #f4f4f4;
   position: relative;
   opacity: 1;
   -webkit-transition: .3s;
@@ -102,6 +102,7 @@ dashboard item.expanded.hidden {
   max-height: 0;
   opacity: 0;
   padding: 0;
+  border-bottom-width: 0;
 }
 
 dashboard item blk {
@@ -115,7 +116,7 @@ dashboard item blk {
 }
 
 dashboard item.expanded blk {
-  border-left: 1rpx solid #ddd;
+  border-left: 1rpx solid #f0f0f0;
 }
 
 dashboard item.expanded blk:first-child {
@@ -128,7 +129,7 @@ dashboard item list {
 
 dashboard item.expanded long {
   display: flex;
-  border-color: #f4f4f4;
+  border-color: #f8f8f8;
 }
 
 dashboard item.expanded list {
@@ -192,7 +193,7 @@ dashboard item .declaration {
   font-size: 28rpx;
   margin: 0 15rpx;
   padding: 20rpx 15rpx;
-  border-top: 1rpx solid #e5e5e5;
+  border-top: 1rpx solid #f0f0f0;
   text-align: left;
   overflow: hidden;
   -webkit-transition: .3s;
@@ -219,7 +220,7 @@ dashboard item list button.loading:after {
 dashboard item list > view {
   margin: 0 15rpx;
   padding: 20rpx 25rpx;
-  border-top: 1rpx solid #e5e5e5;
+  border-top: 1rpx solid #f0f0f0;
 }
 
 dashboard item list .line {
