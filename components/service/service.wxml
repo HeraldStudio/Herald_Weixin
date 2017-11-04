@@ -1,9 +1,24 @@
 <block>
-  <service wx:if="{{ $service.messages }}">
+  <service wx:if="{{ $service.messages && $service.messages.length || $service.vote }}">
     <view class="subtitle">
       <image src="/images/ic_notice.png" mode="aspectFit"/>
-      <text>广播站</text>
+      <text>小猴广播</text>
       <space/>
+    </view>
+    <view wx:if="{{ $service.vote }}" class="vote {{ $service.vote.voted ? 'voted' : '' }}">
+      <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{
+        $service.vote.content }}
+      </text>
+      <view class="vote-bar">
+        <view class="attitude" catchtap="$service_vote" data-attitude="positive">
+          <image src="/images/ic_vote_up.png" animation="{{ $service_voteAnimationPositive }}" mode="aspectFit"/>
+          <text>{{ $service.vote.positive_verb }} {{ $service.vote.positive_count }}</text>
+        </view>
+        <view class="attitude" catchtap="$service_vote" data-attitude="negative">
+          <image src="/images/ic_vote_down.png" animation="{{ $service_voteAnimationNegative }}" mode="aspectFit"/>
+          <text>{{ $service.vote.negative_verb }} {{ $service.vote.negative_count }}</text>
+        </view>
+      </view>
     </view>
     <view wx:for="{{ $service.messages }}" wx:key="content"
           class="content {{ item.url ? 'selectable': '' }}" catchtap="open" data-url="{{ item.url }}">
@@ -13,25 +28,5 @@
         <text>{{ item.content }}</text>
       </view>
     </view>
-  </service>
-  <service wx:if="{{ $service.vote }}" class="vote {{ $service.vote.voted ? 'voted' : '' }}">
-  <view class="subtitle">
-    <image src="/images/ic_vote.png" mode="aspectFit"/>
-    <text>投票箱</text>
-    <space/>
-  </view>
-  <text class="content {{ $service.vote.url ? 'selectable': '' }}" catchtap="open" data-url="{{ $service.vote.url }}">{{
-    $service.vote.content }}
-  </text>
-  <view class="vote-bar">
-    <view class="attitude" catchtap="$service_vote" data-attitude="positive">
-      <image src="/images/ic_vote_up.png" animation="{{ $service_voteAnimationPositive }}" mode="aspectFit"/>
-      <text>{{ $service.vote.positive_verb }} {{ $service.vote.positive_count }}</text>
-    </view>
-    <view class="attitude" catchtap="$service_vote" data-attitude="negative">
-      <image src="/images/ic_vote_down.png" animation="{{ $service_voteAnimationNegative }}" mode="aspectFit"/>
-      <text>{{ $service.vote.negative_verb }} {{ $service.vote.negative_count }}</text>
-    </view>
-  </view>
   </service>
 </block>

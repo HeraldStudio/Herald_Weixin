@@ -8,17 +8,13 @@
         <text wx:else>{{ item }}</text>
       </block>
     </view>
-    <view class="result-header">
-        <text class="classroom-name">教室</text>
-        <space/>
-        <text class="classroom-usage">用途</text>
-    </view>
   </view>
   <view class="result-container">
     <view class="result" wx:for="{{ results }}">
       <text class="classroom-name">{{ item.name }}</text>
-      <space/>
-      <text class="classroom-usage" wx:for="{{ item.classroomTypeList }}">{{ item.name }}</text>
+      <view class="horizontal">
+        <text class="classroom-usage" wx:for="{{ item.classroomTypeList }}" style="background: {{ item.displayColor }}">{{ item.name }}</text>
+      </view>
     </view>
   </view>
 </view>

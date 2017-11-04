@@ -1,8 +1,14 @@
+page {
+  background: #f4f4f4;
+}
+
 .sticky {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
   background: #fff;
+  z-index: 999;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, .05);
 }
 
 .picker-container {
@@ -10,7 +16,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 20rpx 30rpx;
+  padding: 35rpx;
   font-size: 30rpx;
   color: #666;
   font-size: 28rpx;
@@ -33,22 +39,42 @@
   flex-direction: row;
 }
 
+.result-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 35rpx;
+  background: #f4f4f4;
+}
+
 .result {
-  border-bottom: 1rpx solid #f0f0f0;
-  margin: 0 30rpx;
-  padding: 25rpx 0;
+  padding: 15rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  margin: 5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.result-header {
-  padding: 15rpx 30rpx;
-  background: #f3f3f3;
-}
-
-.classroom-name, .classroom-usage {
-  font-size: 28rpx;
+.classroom-name {
+  font-size: 30rpx;
   color: #333;
 }
 
-.classroom-usage + .classroom-usage:before {
-  content: '，';
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.classroom-usage {
+  color: #fff;
+  font-size: 26rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 6rpx;
+}
+
+.classroom-usage + .classroom-usage {
+  margin-left: 10rpx;
 }

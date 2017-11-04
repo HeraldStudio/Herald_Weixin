@@ -1,9 +1,7 @@
 @import "/components/menu_tip/menu_tip.wxss";
-@import "/components/service/service.wxss";
 @import "/components/avatar/avatar.wxss";
 @import "/components/dashboard/dashboard.wxss";
 @import "/components/schedule/schedule.wxss";
 @import "/components/login/login.wxss";
-@import "/components/jwc/jwc.wxss";
 @import "/components/server_down/server_down.wxss";
 @import "/components/loading/loading.wxss";

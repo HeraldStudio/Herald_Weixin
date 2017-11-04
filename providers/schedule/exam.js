@@ -49,7 +49,6 @@ module.exports = {
     wx.$.requestApi({
       route: 'api/exam',
       complete: function (result) {
-        console.log(result)
         try {
           wx.$.userStorage(that.key, that.format(result.data.content))
           success && success(that.get())

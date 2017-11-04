@@ -1,93 +1,100 @@
 jwc {
+  display: block;
+  border-bottom: 20rpx solid #f4f4f4;
+}
+
+jwc .subtitle {
+  padding: 20rpx 40rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #fcfcfc;
-  padding: 5rpx 35rpx;
-  max-height: 100rpx;
-  -webkit-transition: .3s;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+  border-top: 20rpx solid #f4f4f4;
 }
 
-jwc.all {
-  max-height: initial;
-  align-items: flex-start;
-  padding: 30rpx 35rpx;
-}
-
-jwc.all .vertical {
-  display: flex;
-  flex-direction: column;
-}
-
-jwc.all .content {
-  margin: 10rpx;
-}
-
-jwc.all .content:before {
-  content: ' ';
-  display: inline-block;
-  width: 10rpx;
-  height: 10rpx;
-  background: #3688ff;
-  border-radius: 5rpx;
-  vertical-align: middle;
-  margin-top: -5rpx;
-  margin-right: 15rpx;
-}
-
-jwc .icon {
+jwc .subtitle image {
   width: 42rpx;
   height: 42rpx;
   margin-right: 30rpx;
   flex-shrink: 0;
 }
 
-jwc.all .icon {
-  margin-top: 10rpx;
-}
-
-jwc swiper {
-  width: 100%;
-  height: 90rpx;
-  padding: 0;
-}
-
-jwc swiper-item {
-  display: flex;
-  align-items: center;
+jwc .subtitle text {
+  font-size: 30rpx;
+  color: #666;
 }
 
 jwc .content {
-  display: block;
-  line-height: 40rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx 40rpx;
   box-sizing: border-box;
-  text-align: left;
-  vertical-align: middle;
   font-size: 28rpx;
-  color: #333;
+  color: #666;
   overflow: hidden;
-}
-
-jwc .content.important {
-  font-weight: bold;
-}
-
-jwc.selectable:active .subtitle {
-  background: #f0f0f0;
-}
-
-jwc.selectable:active .content {
-  background: #f0f0f0;
+  border-top: 1rpx solid #f4f4f4;
+  text-align: justify;
 }
 
 jwc .hint {
   display: block;
-  line-height: 40rpx;
+  padding: 30rpx 40rpx;
   box-sizing: border-box;
-  text-align: left;
-  vertical-align: middle;
   font-size: 28rpx;
-  padding-top: 20rpx;
-  color: #999;
-  overflow: hidden;
+  color: #666;
+  border-top: 20rpx solid #f4f4f4;
+  text-align: justify;
+}
+
+jwc .content .title {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 7rpx;
+}
+
+jwc .content:active {
+  background: #f0f0f0;
+}
+
+jwc .content .horizontal {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5rpx;
+  align-items: center
+}
+
+jwc .content .horizontal text + text {
+  margin-left: 10rpx;
+}
+
+jwc .content .horizontal .tag {
+  background: #eee;
+  color: #666;
+  font-size: 26rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 6rpx
+}
+
+jwc .content .horizontal .tag.urgent {
+  background: #ff4384;
+  color: #fff;
+}
+
+jwc .content .horizontal .tag.important {
+  background: #ffac00;
+  color: #fff;
+}
+
+jwc .content .horizontal .tag.announcement {
+  background: #8cce23;
+  color: #fff;
+}
+
+jwc .content .horizontal .tag.lecture {
+  background: #1cadcf;
+  color: #fff;
 }

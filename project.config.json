@@ -42,10 +42,34 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "WebView",
 					"pathName": "pages/webView/webView",
-					"query": "url=https://rikumi.github.io/#/"
+					"query": "url=https://rikumi.github.io"
+				},
+				{
+					"id": 4,
+					"name": "通知",
+					"pathName": "pages/jwcNotice/jwcNotice",
+					"query": "url=http%3A//jwc.seu.edu.cn/2017/1102/c10109a202142/page.htm"
+				},
+				{
+					"id": -1,
+					"name": "通知",
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动页",
+					"pathName": "pages/activity/activity",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "空教室",
+					"pathName": "pages/emptyRoom/emptyRoom",
+					"query": ""
 				}
 			]
 		}

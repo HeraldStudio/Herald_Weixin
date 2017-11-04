@@ -1,17 +1,30 @@
 exports.bind = function (page) {
-  if (!wx.$.util('user').isLogin()) {
-    return
-  }
-
   page.setData({ $jwc_showAll: false })
 
   wx.$.requestApi({
     route: 'api/jwc',
     success: function (res) {
-      page.setData({ $jwc: res.data.content['教务信息'].map(k => {
-        k.isImportant = /紧急|重要/.test(k.title)
-        return k
-      }).sort((a, b) => (a.isImportant ? 0 : 1) - (b.isImportant ? 0 : 1)) || [] })
+      let dict = res.data.content
+      page.setData({
+        $jwc: Object.keys(dict).map(k => {
+          return k == '最新动态' ? [] : dict[k].map(item => {
+            item.category = k
+            return item
+          })
+        }).reduce((a, b) => {
+          return a.concat(b)
+        }, []).map(k => {
+          k.isImportant = /重要/.test(k.title)
+          k.isUrgent = /急/.test(k.title)
+          k.isAnnouncement = /公示/.test(k.title)
+          k.isLecture = /课外研学讲座/.test(k.title)
+          k.isCompetition = /赛/.test(k.title)
+          let [y, m, d] = k.date.split('-').map(s => parseInt(s))
+          let date = new Date(y, m - 1, d);
+          k.displayDate = wx.$.util('format').formatDateNatural(date.getTime())
+          return k
+        }).sort((a, b) => a.date > b.date ? -1 : 1) || [] 
+      })
     }
   })
 

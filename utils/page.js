@@ -162,9 +162,14 @@ module.exports = {
     let noConvert = event.currentTarget.dataset.noconvert
     if (!url) return
 
+    // 如果是文档，打开预览文件或复制链接的选择框
     if (/\.(((doc|xls|ppt)x?)|pdf)$/.test(url)) {
       wx.$.util('downloader').download(url)
-    } else if (/^(mailto:)?([0-9a-zA-Z\-\._]+@[0-9a-zA-Z\-\._]+)$/.test(url)) {
+      return
+    }
+
+    // 如果是电子邮件地址，允许用户复制
+    if (/^(mailto:)?([0-9a-zA-Z\-\._]+@[0-9a-zA-Z\-\._]+)$/.test(url)) {
       wx.$.showActions([
         {
           name: '复制邮件地址', action: () => {
@@ -177,26 +182,47 @@ module.exports = {
         }
         }
       ])
-    } else if (noConvert) {
-      wx.setClipboardData({ data: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()) })
-      wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。')
-    } else {
+      return
+    }
+
+    // 检测 v2 专用计数器链接，如果是计数器链接，手动调用计数器接口，然后把链接换成要跳转到的链接
+    let result = /^(https:\/\/myseu.cn\/counter\/.*?)\?d=([0-9a-zA-Z/]+=*)$/.exec(url)
+
+    if (result) {
+      let counterUrl = result[1]
+      wx.$.requestSimple({
+        url: counterUrl,
+        method: 'GET'
+      })
+      url = wx.$.util('base64').decode(result[2])
+    }
+
+    // 判断特殊域名，识别微信推送和教务通知
+    let urlType = 'common'
+    if (/^https?:\/\/mp\.weixin\.qq\.com\//.test(url)) {
+      urlType = 'wechatPush'
+    } else if (/^https?:\/\/jwc\.seu\.edu\.cn\//.test(url)) {
+      urlType = 'jwcNotice'
+    }
+
+    // 如果是微信推送或教务通知，拉起对应的渲染页面
+    if (urlType !== 'common') {
       let pages = getCurrentPages()
 
-      wx.$.log('Convert html page to markdown', url)
-      if (pages.slice(-1)[0].__route__.indexOf('pages/markdown/markdown') > -1) {
-        if (pages.slice(-1)[0].data.url === url) {
-          wx.setClipboardData({ data: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()) })
-          wx.$.ask('链接已复制', '微信小程序不允许直接打开链接，你可以粘贴到浏览器打开。')
+      // 如果最上层页面已经打开了当前链接，放弃打开，进入复制链接流程；否则打开对应渲染页面
+      if (pages.slice(-1)[0].data.url !== url) {
+        if (pages.length < 5) {
+          wx.navigateTo({ url: '/pages/' + urlType + '/' + urlType + '?url=' + escape(url) })
         } else {
-          pages.slice(-1)[0].loadUrl(url)
+          wx.redirectTo({ url: '/pages/' + urlType + '/' + urlType + '?url=' + escape(url) })
         }
-      } else if (pages.length < 5) {
-        wx.navigateTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
-      } else {
-        wx.redirectTo({ url: '/pages/markdown/markdown?url=' + escape(url) })
+        return
       }
     }
+
+    // 对于前面都不匹配的情况，进入复制链接流程
+    wx.setClipboardData({ data: url.replace(/\[uuid]/g, wx.$.util('user').getUuid()) })
+    wx.$.ask('链接已复制', '微信小程序不允许打开外部链接，你可以粘贴到浏览器打开。')
   },
 
   nil: function (event) {
