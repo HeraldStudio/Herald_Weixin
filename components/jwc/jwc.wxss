@@ -1,5 +1,6 @@
 jwc {
   display: block;
+  border-bottom: 20rpx solid #f4f4f4;
 }
 
 jwc .subtitle {
@@ -12,6 +13,7 @@ jwc .subtitle {
   top: 0;
   z-index: 999;
   background: #fff;
+  border-top: 20rpx solid #f4f4f4;
 }
 
 jwc .subtitle image {

@@ -1,5 +1,5 @@
 swiper {
-  height: 385rpx;
+  height: 380rpx;
   margin-bottom: 20rpx;
 }
 
@@ -10,11 +10,16 @@ swiper-item, swiper-item image {
   overflow: hidden;
 }
 
+.activities {
+  border-top: 20rpx solid #f4f4f4;
+}
+
 .activity {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   padding: 35rpx 40rpx;
+  border-bottom: 20rpx solid #f4f4f4;
 }
 
 .horizontal {
@@ -25,14 +30,12 @@ swiper-item, swiper-item image {
 
 .horizontal .tag {
   display: inline-block;
-  vertical-align: middle;
   background: #eee;
   color: #666;
   font-size: 26rpx;
   padding: 5rpx 10rpx;
   border-radius: 6rpx;
   margin-right: 10rpx;
-  margin-bottom: 3rpx;
 }
 
 .horizontal .tag.upcoming {
