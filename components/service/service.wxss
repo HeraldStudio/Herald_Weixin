@@ -8,6 +8,7 @@ service .subtitle {
   top: 0;
   z-index: 999;
   background: #fff;
+  border-top: 20rpx solid #f4f4f4;
 }
 
 service .subtitle image {

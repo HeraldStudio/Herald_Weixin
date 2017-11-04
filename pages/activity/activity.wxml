@@ -1,6 +1,6 @@
 <swiper wx:if="{{ $service.sliderviews.length }}" duration="300" autoplay="1" interval="5000" bindchange="onSwiperChange" current="{{ curIndex }}" style="overflow: visible;">
     <swiper-item wx:for="{{ $service.sliderviews }}" style="overflow: visible;" wx:key="imageurl">
-        <image src="{{ item.imageurl }}" style="width: 100%; background: #fff; box-shadow: 0 10rpx 15rpx rgba(0, 0, 0, .1); -webkit-transform: scale({{ curIndex == index ? 0.9 : 0.65 }}) translate({{ (curIndex == index - 1 || curIndex == index + 1) ? (curIndex - index) * 30 : 0 }}%, 0); -webkit-transition: .3s;" catchtap="open" data-url="{{ item.url }}" mode="aspectFill"/>
+        <image src="{{ item.imageurl }}" style="width: 100%; height: 300rpx; background: #fff; box-shadow: 0 10rpx 15rpx rgba(0, 0, 0, .1); -webkit-transform: scale({{ curIndex == index ? 0.9 : 0.65 }}) translate({{ (curIndex == index - 1 || curIndex == index + 1) ? (curIndex - index) * 30 : 0 }}%, 0); -webkit-transition: .3s; position: relative;" catchtap="open" data-url="{{ item.url }}" mode="aspectFill"/>
         <view class="horizontal">
           <view class="tag recommend">编辑推荐</view>
           <text class="title">{{ item.title }}</text>
@@ -8,25 +8,18 @@
     </swiper-item>
 </swiper>
 
-
 <view class="activities">
-  <block wx:for="{{ activity }}">
-    <include wx:if="{{ index == 0 }}" src="/components/plainui/magic_shadow.wxml"/>
-    <include wx:else src="/components/plainui/divider.wxml"/>
-    <view class="activity" catchtap="open" data-url="{{ item.detail_url }}">
-      <view class="horizontal">
-        <view class="tag {{ item.status }}">{{ item.displayStatus }}</view>
-        <text class="title">{{ item.title }}</text>
-      </view>
-      <image class="pic" src="{{ item.pic_url }}" mode="aspectFill"/>
-      <text class="intro">{{ item.introduction }}</text>
-      <text class="time">时间：{{ item.activity_time }}</text>
-      <text class="location">地点：{{ item.location }}</text>
+  <view class="activity" wx:for="{{ activity }}" catchtap="open" data-url="{{ item.detail_url }}">
+    <view class="horizontal">
+      <view class="tag {{ item.status }}">{{ item.displayStatus }}</view>
+      <text class="title">{{ item.title }}</text>
     </view>
-  </block>
+    <image class="pic" src="{{ item.pic_url }}" mode="aspectFill"/>
+    <text class="intro">{{ item.introduction }}</text>
+    <text class="time">时间：{{ item.activity_time }}</text>
+    <text class="location">地点：{{ item.location }}</text>
+  </view>
 </view>
-
-<include src="/components/plainui/magic_shadow.wxml"/>
 
 <text class="bottom-tip" wx:if="{{ activity.length }}">{{ ended ? '- 终点站到了，请下车 -' : '上拉加载下一页' }}</text>
 

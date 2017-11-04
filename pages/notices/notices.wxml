@@ -1,6 +1,3 @@
-<include src="/components/plainui/magic_shadow.wxml"/>
 <include src="/components/service/service.wxml"/>
-<include src="/components/plainui/divider.wxml"/>
 <include src="/components/jwc/jwc.wxml"/>
-<include src="/components/plainui/magic_shadow.wxml"/>
 <tab-shadow/>
