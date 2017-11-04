@@ -1,15 +1,19 @@
 schedule {
   display: block;
-  background: #fcfcfc;
+  border-bottom: 20rpx solid #f4f4f4;
 }
 
 schedule .subtitle {
   padding: 20rpx 35rpx;
-  background: #f4f4f4;
+  border-top: 20rpx solid #f4f4f4;
+  background: #fff;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 schedule .subtitle image {
@@ -81,25 +85,6 @@ schedule button.loading:after {
   border-radius: 0 !important;
 }
 
-schedule swiper {
-  height: 170rpx;
-  -webkit-transition: .5s;
-}
-
-schedule swiper-item.delete {
-  background: #f43434;
-  color: #ffffff;
-  text-align: left;
-  line-height: 110rpx;
-  font-size: 36rpx;
-  padding: 30rpx;
-  box-sizing: border-box;
-}
-
-schedule swiper.deleted {
-  height: 0;
-}
-
 schedule item {
   margin: 0 35rpx;
   display: flex;
@@ -133,6 +118,10 @@ schedule item .schedule-desc {
   flex-direction: column;
   justify-content: center;
   border-bottom: 1rpx solid #f0f0f0;
+}
+
+schedule item:last-of-type .schedule-desc {
+  border-bottom: none;
 }
 
 schedule item .line {

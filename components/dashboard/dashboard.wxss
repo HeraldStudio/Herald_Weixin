@@ -42,6 +42,7 @@ dashboard item {
   border-top: 7rpx solid transparent;
   border-bottom: 7rpx solid transparent;
   margin-left: -1rpx;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -57,6 +58,7 @@ dashboard item expandable {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -90,11 +92,10 @@ dashboard item.expanded {
   background: #fafafa;
   margin: -1rpx 0 0 0;
   padding: 25rpx 0;
-  border-left: none;
-  border-right: none;
-  border-bottom: 20rpx solid #f4f4f4;
+  border: none;
   position: relative;
   opacity: 1;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -102,7 +103,6 @@ dashboard item.expanded.hidden {
   max-height: 0;
   opacity: 0;
   padding: 0;
-  border-bottom-width: 0;
 }
 
 dashboard item blk {
@@ -112,6 +112,7 @@ dashboard item blk {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -139,6 +140,7 @@ dashboard item.expanded list {
 dashboard item .desc {
   color: #666;
   font-size: 28rpx;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -146,12 +148,14 @@ dashboard item .info {
   color: #3688ff;
   font-size: 36rpx;
   padding-top: 10rpx;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
 dashboard item .navigate {
   color: #3688ff;
   font-size: 32rpx;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -161,6 +165,7 @@ dashboard item .intro {
   padding-top: 10rpx;
   height: 40rpx;
   overflow: hidden;
+  transition: .3s;
   -webkit-transition: .3s;
   display: none;
 }
@@ -184,6 +189,7 @@ dashboard item .hint {
   padding: 30rpx 0;
   height: 40rpx;
   overflow: hidden;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -196,6 +202,7 @@ dashboard item .declaration {
   border-top: 1rpx solid #f0f0f0;
   text-align: left;
   overflow: hidden;
+  transition: .3s;
   -webkit-transition: .3s;
 }
 
@@ -259,5 +266,6 @@ dashboard item list .collapse {
 
 dashboard item list .selectable:active {
   background: rgba(0, 0, 0, .05);
+  transition: .3s;
   -webkit-transition: .3s;
 }

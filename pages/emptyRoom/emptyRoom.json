@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "空闲教室",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f4f4f4"
 }

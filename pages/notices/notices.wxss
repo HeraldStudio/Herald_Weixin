@@ -1,0 +1,2 @@
+@import "/components/service/service.wxss";
+@import "/components/jwc/jwc.wxss";

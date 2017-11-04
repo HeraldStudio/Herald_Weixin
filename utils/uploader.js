@@ -34,7 +34,6 @@ function uploadFile (index, filePath, uploadList, callback) {
           callback && callback()
         },
         fail: function (failRes) {
-          console.log(failRes)
           uploadFail()
         }
       })

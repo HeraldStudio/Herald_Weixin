@@ -11,13 +11,12 @@ exports.bind = function (page, callback) {
       schoolnum: (user ? user.schoolnum : '00000000')
     },
     success (res) {
-      console.log(res)
       if (res.data && res.data.content) {
         res.data.content.isLogin = wx.$.util('user').isLogin()
         page.setData({ $service: res.data.content })
 
         let health = res.data.content.serverHealth
-        callback(health)
+        callback && callback(health)
       } else {
         page.setData({ 
           $service: {

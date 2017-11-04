@@ -14,7 +14,6 @@ Page({
         wx.$.comp('login').bind(this)
         wx.$.comp('avatar').bind(this)
         wx.$.comp('dashboard').bind(this)
-        wx.$.comp('jwc').bind(this)
         wx.$.comp('schedule').bind(this, force)
       } else {
         wx.$.comp('server_down').bind(this)

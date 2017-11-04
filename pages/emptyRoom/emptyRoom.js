@@ -52,6 +52,7 @@ Page({
   },
   onPickerChange (event) {
     this.data.fields[event.currentTarget.dataset.index].select = event.detail.value
+
     this.reloadData()
   },
   reloadData () {
@@ -78,18 +79,25 @@ Page({
     }
     wx.$.showLoading('正在查询')
     data.page = this.curPage + 1
-    data.pageSize = 15
+    data.pageSize = 30
     wx.$.requestApi({
       route: 'api/newemptyroom',
       data: data,
       complete (res) {
         wx.$.hideLoading()
-        if (!Array.isArray(res.data.content.rows)) {
+        if (!res.data.content || !Array.isArray(res.data.content.rows)) {
           wx.$.showError('查询失败，请重试')
           return
         }
         that.curPage++
-        that.setData({ results: that.data.results.concat(res.data.content.rows.filter(k => that.data.results.indexOf(k) === -1)) })
+        that.setData({
+          results: that.data.results.concat(res.data.content.rows.filter(k => that.data.results.indexOf(k) === -1).map(result => {
+            result.classroomTypeList.forEach(t => {
+              t.displayColor = format.stringToColor(t.name)
+            })
+            return result
+          }))
+        })
         if (res.data.content.rows.length === 0) {
           that.ended = true
         }

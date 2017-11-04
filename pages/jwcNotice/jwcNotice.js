@@ -62,10 +62,10 @@ Page({
     if (/(^|\n)#\s(.*)(\n|$)/.test(data)) {
       let title = RegExp.$2
       this.setData({ title: title })
-      // 当前页面没退出时才设置标题，防止用户在加载过程中返回导致设置了别人的标题
-      if (getCurrentPages().slice(-1)[0] === this) {
-        wx.setNavigationBarTitle({ title: title })
-      }
+      // // 当前页面没退出时才设置标题，防止用户在加载过程中返回导致设置了别人的标题
+      // if (getCurrentPages().slice(-1)[0] === this) {
+      //   wx.setNavigationBarTitle({ title: title })
+      // }
     }
     wx.$.util('wemark/wemark').parse(data, this, { name: 'markdown' })
   },
@@ -104,7 +104,7 @@ Page({
     let that = this
     return {
       title: that.data.title,
-      path: '/pages/markdown/markdown?url=' + escape(that.data.url)
+      path: '/pages/jwcNotice/jwcNotice?url=' + escape(that.data.url)
     }
   }
 })
