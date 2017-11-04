@@ -1,0 +1,2 @@
+<view style="width:100%;height:20rpx;margin-bottom:-20rpx;background:-webkit-gradient(linear,center top,center bottom,from(rgba(0,0,0,.05)),to(transparent));overflow:visible;position:sticky;top:0;z-index:9999999;"/>
+<view style="width:100%;height:20rpx;background:-webkit-gradient(linear,center top,center bottom,from(transparent),to(rgba(0,0,0,.05)));overflow:visible;position:sticky;bottom:0;z-index:9999999;"/>

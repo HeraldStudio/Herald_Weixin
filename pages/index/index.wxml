@@ -6,13 +6,16 @@
   </block>
   <block wx:elif="{{ $service.serverHealth !== false }}">
     <include src="/components/avatar/avatar.wxml"/>
+    <include src="/components/plainui/magic_shadow.wxml"/>
     <include src="/components/dashboard/dashboard.wxml"/>
   </block>
   <block wx:else>
     <include src="/components/server_down/server_down.wxml"/>
   </block>
 
+  <include src="/components/plainui/divider.wxml"/>
   <include src="/components/schedule/schedule.wxml"/>
+  <include src="/components/plainui/magic_shadow.wxml"/>
   <contact-button type="default-light"/>
 </block>
 <block wx:else>
