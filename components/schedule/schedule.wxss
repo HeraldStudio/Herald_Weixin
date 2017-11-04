@@ -1,11 +1,9 @@
 schedule {
   display: block;
-  border-bottom: 20rpx solid #f4f4f4;
 }
 
 schedule .subtitle {
   padding: 20rpx 35rpx;
-  border-top: 20rpx solid #f4f4f4;
   background: #fff;
   display: flex;
   flex-direction: row;
