@@ -10,16 +10,50 @@ swiper-item, swiper-item image {
   overflow: hidden;
 }
 
-.activities {
+.activities .subtitle {
+  padding: 20rpx 35rpx;
   border-top: 20rpx solid #f4f4f4;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.activities .subtitle image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 30rpx;
+  flex-shrink: 0;
+}
+
+.activities .subtitle text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.activities .subtitle button {
+  border-radius: 50rpx;
+  border: 3rpx solid #3688ff;
+  background: transparent;
+  color: #3688ff;
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  margin-right: 0;
+  padding: 6rpx 20rpx;
+  line-height: 1rem;
 }
 
 .activity {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 35rpx 40rpx;
-  border-bottom: 20rpx solid #f4f4f4;
+  padding: 35rpx 0;
+  margin: 0 40rpx;
+  border-bottom: 1rpx solid #f4f4f4;
 }
 
 .horizontal {

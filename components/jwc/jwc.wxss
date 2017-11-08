@@ -98,3 +98,8 @@ jwc .content .horizontal .tag.lecture {
   background: #1cadcf;
   color: #fff;
 }
+
+jwc .content .horizontal .tag.competition {
+  background: #ddcf1a;
+  color: #fff;
+}

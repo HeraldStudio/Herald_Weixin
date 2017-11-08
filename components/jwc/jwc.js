@@ -14,16 +14,21 @@ exports.bind = function (page) {
         }).reduce((a, b) => {
           return a.concat(b)
         }, []).map(k => {
-          k.isImportant = /重要/.test(k.title)
-          k.isUrgent = /急/.test(k.title)
-          k.isAnnouncement = /公示/.test(k.title)
-          k.isLecture = /课外研学讲座/.test(k.title)
-          k.isCompetition = /赛/.test(k.title)
+          // 以下标记用加号转换成整数型，方便后续位运算
+          k.isImportant = +/重要/.test(k.title)
+          k.isUrgent = +/急/.test(k.title)
+          k.isAnnouncement = +/公示/.test(k.title)
+          k.isLecture = +/课外研学讲座/.test(k.title)
+          k.isCompetition = +/赛/.test(k.title)
+
+          // 重要性量度，用位运算进行
+          k.flag = ((k.isUrgent << 1) + k.isImportant << 1) + k.isAnnouncement
+
           let [y, m, d] = k.date.split('-').map(s => parseInt(s))
           let date = new Date(y, m - 1, d);
           k.displayDate = wx.$.util('format').formatDateNatural(date.getTime())
           return k
-        }).sort((a, b) => a.date > b.date ? -1 : 1) || [] 
+        }).sort((a, b) => (b.flag - a.flag) || (a.date > b.date ? -1 : 1)) || [] 
       })
     }
   })
