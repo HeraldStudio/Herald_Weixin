@@ -52,6 +52,10 @@ button-hover[type="blue"] {
   background-color: #1c78ff !important;
 }
 
+button::after {
+  border: none;
+}
+
 contact-button {
   margin: 40rpx 0 40rpx 34rpx;
 }

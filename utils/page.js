@@ -168,6 +168,12 @@ module.exports = {
       return
     }
 
+    // 如果是图片，预览图片
+    if (/\.(jpe?g|gif|bmp|png|webp)$/.test(url)) {
+      wx.previewImage({ urls: [url] })
+      return
+    }
+
     // 如果是电子邮件地址，允许用户复制
     if (/^(mailto:)?([0-9a-zA-Z\-\._]+@[0-9a-zA-Z\-\._]+)$/.test(url)) {
       wx.$.showActions([

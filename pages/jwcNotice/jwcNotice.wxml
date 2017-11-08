@@ -12,4 +12,4 @@
              poster="{{ block.poster }}" controls></video>
     </view>
   </block>
-</view>
+</view> 

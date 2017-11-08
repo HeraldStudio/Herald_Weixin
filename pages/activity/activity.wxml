@@ -9,6 +9,12 @@
 </swiper>
 
 <view class="activities">
+  <view class="subtitle">
+    <image src="/images/ic_activity.png" mode="aspectFit"/>
+    <text>热门活动</text>
+    <space/>
+    <button catchtap='open' data-url='http://static.myseu.cn/2017-11-08-2017-activity-advertising.jpg'>免费投放</button>
+  </view>
   <view class="activity" wx:for="{{ activity }}" catchtap="open" data-url="{{ item.detail_url }}">
     <view class="horizontal">
       <view class="tag {{ item.status }}">{{ item.displayStatus }}</view>
