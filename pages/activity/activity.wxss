@@ -37,8 +37,8 @@ swiper-item, swiper-item image {
 
 .activities .subtitle button {
   border-radius: 50rpx;
-  border: 3rpx solid #3688ff;
-  background: transparent;
+  border: 2rpx solid #3688ff;
+  background: none;
   color: #3688ff;
   font-size: 26rpx;
   margin-left: 20rpx;

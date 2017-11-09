@@ -54,6 +54,7 @@ button-hover[type="blue"] {
 
 button::after {
   border: none;
+  background: none;
 }
 
 contact-button {
