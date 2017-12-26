@@ -11,7 +11,8 @@
     "pages/login/login",
     "pages/emptyRoom/emptyRoom",
     "pages/notices/notices",
-    "pages/activity/activity"
+    "pages/activity/activity",
+    "pages/curriculumPreview/curriculumPreview"
   ],
   "window": {
     "backgroundColor": "#ffffff",
