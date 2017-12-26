@@ -1,0 +1,174 @@
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
+  box-shadow: 0 10rpx 10rpx rgba(0, 0, 0, .03);
+}
+
+.picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35rpx 60rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.picker-container input {
+  width: 120rpx;
+  padding: 5rpx 10rpx;
+  background: #f3f3f3;
+  color: #333;
+  border-radius: 6rpx;
+  -webkit-transition: .3s;
+}
+
+.result, .result-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.result-container {
+  display: flex;
+  flex-flow: column;
+  padding: 35rpx;
+  -webkit-transition: .3s;
+}
+
+.result-container> text,
+.result-container> view {
+  -webkit-transition: .3s;
+}
+
+.result-container.loading> text,
+.result-container.loading> view {
+  opacity: .2;
+}
+
+.result-container.loading::after {
+  display: block;
+  content: "正在为你准备数据，请耐心等待…";
+  color: #333;
+  font-size: 28rpx;
+  position: absolute;
+  top: 370rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.periods-result {
+  display: flex;
+  flex-direction: row;
+  height: 300rpx;
+  justify-content: space-between;
+  margin: 30rpx 30rpx 0;
+  position: relative;
+}
+
+.periods-result .period {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  align-items: center;
+}
+
+.periods-result .period .outer-bar {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 0;
+  position: relative;
+}
+
+.periods-result .period .outer-bar .line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2rpx;
+  background: #f0f0f0;
+}
+
+.periods-result .period .outer-bar .inner-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 10rpx;
+  min-height: 10rpx;
+  max-height: 100%;
+  margin: 0 auto;
+  background: #3688ff;
+  border-radius: 30rpx;
+  -webkit-transition: .3s;
+}
+
+.periods-result .period .index {
+  width: 40rpx;
+  margin: 20rpx 0;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.result {
+  padding: 30rpx 0;
+  margin: 0 30rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.tip {
+  color: #aaa;
+  font-size: 28rpx;
+  text-align: left;
+  padding: 20rpx 30rpx;
+}
+
+.tip.bottom {
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.chartname {
+  display: block;
+  font-size: 26rpx;
+  color: #333;
+  text-align: center;
+  border-bottom: 1rpx solid #f0f0f0;
+  margin: 0 30rpx;
+  padding: 15rpx 0 25rpx;
+  min-height: 1.6em;
+}
+
+.classname {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.info {
+  color: #aaa;
+  font-size: 26rpx;
+  padding-right: 15rpx;
+}
+
+.result .bar {
+  max-width: 100%;
+  height: 8rpx;
+  background: #3688ff;
+  border-radius: 4rpx;
+  -webkit-transition: .3s;
+  margin: 20rpx 0 10rpx;
+}

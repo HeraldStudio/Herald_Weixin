@@ -1,3 +1,5 @@
+const format = require('../../utils/format.js')
+
 module.exports = {
   getCard (callback) {
     callback && callback({
@@ -86,10 +88,10 @@ module.exports = {
             complete: function (res2) {
               callback && callback({
                 id: 'pe',
-                blocks: [
+                blocks: parseInt(res2.data.content) ? [
                   {
                     desc: '跑操预告',
-                    info: res.data.content === 'refreshing' ? '暂无' : res.data.content.replace('今天', '')
+                    info: res.data.content === 'refreshing' ? '暂无' : res.data.content.replace('今天', '').replace('正常跑操', '正常').replace('不跑操', '不跑')
                   },
                   {
                     desc: '跑操次数',
@@ -103,7 +105,7 @@ module.exports = {
                     desc: '剩余天数',
                     info: res2.data.remain
                   }
-                ],
+                ] : [],
                 long: {
                   getter: function (callback2) {
                     let that = this
@@ -129,7 +131,8 @@ module.exports = {
                   hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
                   'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
                   'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
-                  'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
+                  'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性；\n\n' +
+                  'v. 为增加高年级用户的体验，没有跑操记录的同学将不展示跑操模块。'
                 }
               })
             }
@@ -142,7 +145,7 @@ module.exports = {
         complete: function (res) {
           callback && callback({
             id: 'pe',
-            blocks: [
+            blocks: parseInt(res.data.content) ? [
               {
                 desc: '跑操次数',
                 info: res.data.content
@@ -159,7 +162,7 @@ module.exports = {
                 desc: '剩余天数',
                 info: res.data.remain
               }
-            ],
+            ] : [],
             long: {
               getter: function (callback2) {
                 let that = this
@@ -185,12 +188,67 @@ module.exports = {
               hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
               'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
               'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
-              'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。'
+              'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。\n\n' +
+              'v. 为增加高年级用户的体验，没有跑操记录的同学将不展示跑操模块。'
             }
           })
         }
       })
     }
+  },
+  getExam(callback) {
+    callback && callback({
+      id: 'exam',
+      blocks: [{ desc: '考试', info: '···' }]
+    })
+    wx.$.requestApi({
+      route: 'api/exam',
+      complete: function (res) {
+        let now = new Date().getTime()
+        let exams = res.data.content.map(exam => {
+          let s = exam.time.match(/\d+/g).map(k => parseInt(k))
+          exam.time = new Date(s[0], s[1] - 1, s[2], s[3], s[4]).getTime()
+          exam.startTime = exam.time
+          exam.endTime = exam.startTime + parseInt(exam.hour) * 60 * 1000
+          exam.days = Math.round((exam.time - now) / 1000 / 60 / 60 / 24)
+          return exam
+        }).filter(k => k.time > now) || []
+
+        let period = 1;
+        if (exams.length > 1) {
+          period = Math.round((exams.slice(-1)[0].endTime - exams[0].startTime) / 1000 / 60 / 60 / 24)
+        }
+
+        callback && callback({
+          id: 'exam',
+          blocks: exams.length ? [
+            {
+              desc: '下次考试',
+              info: exams[0].days + '天'
+            },
+            {
+              desc: `考试${period >= 15 ? '月' : '周'}跨度`,
+              info: period + '天'
+            },
+            {
+              desc: '考试场数',
+              info: exams.length
+            }
+          ] : [],
+          long: {
+            data: exams.map(k => {
+              return {
+                topLeft: k.course,
+                topRight: k.teacher,
+                bottomLeft: format.formatPeriodNatural(k.startTime, k.endTime),
+                bottomRight: k.location
+              }
+            }),
+            hint: '数据来自教务处，不代表全部考试安排，请多加留意，防止错漏。'
+          }
+        })
+      }
+    })
   },
   getLecture (callback) {
     if (wx.$.util('user').isGraduate()) {
@@ -207,7 +265,7 @@ module.exports = {
           id: 'lecture',
           blocks: [
             {
-              desc: '讲座次数',
+              desc: '已听讲座',
               info: res.data.content.count,
             }
           ],
@@ -218,7 +276,8 @@ module.exports = {
                 topRight: k.place
               }
             }),
-            hint: '数据来自学校官方，可能包含除人文讲座打卡之外的冗余数据，请自行鉴别。'
+            hint: 'i. 数据来自一卡通中心，可能包含除人文讲座打卡之外的冗余数据，请自行鉴别；\n\n' + 
+            'ii. 数据可能出现偶尔不显示或定期被清理的情况，不会影响人文讲座实际记录。'
           }
         })
       }

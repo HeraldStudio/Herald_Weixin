@@ -13,7 +13,7 @@
     <image src="/images/ic_activity.png" mode="aspectFit"/>
     <text>热门活动</text>
     <space/>
-    <button catchtap='open' data-url='http://static.myseu.cn/2017-11-08-2017-activity-advertising.jpg'>免费投放</button>
+    <text class="button" catchtap='viewimg' data-current='http://static.myseu.cn/2017-11-08-2017-activity-advertising.jpg?{{ timestamp }}'>免费投放</text>
   </view>
   <view class="activity" wx:for="{{ activity }}" catchtap="open" data-url="{{ item.detail_url }}">
     <view class="horizontal">

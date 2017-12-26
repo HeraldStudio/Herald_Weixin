@@ -13,7 +13,6 @@
   </block>
 
   <include src="/components/schedule/schedule.wxml"/>
-  <contact-button type="default-light"/>
 </block>
 <block wx:else>
   <include wx:if="{{ $service.serverHealth }}" src="/components/login/login.wxml"/>

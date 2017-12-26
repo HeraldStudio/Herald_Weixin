@@ -5,7 +5,8 @@ Page({
     curIndex: 0,
     curPage: 0,
     loading: false,
-    ended: false
+    ended: false,
+    timestamp: new Date().getTime()
   },
   onLoad (options) {
     this.reload()

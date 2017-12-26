@@ -19,21 +19,28 @@ exports.bind = function (page) {
     for (let i in page.data.$dashboard) {
       if (page.data.$dashboard[i].id === data.id) {
         data.isLong = page.data.$dashboard[i].isLong
-        page.data.$dashboard[i] = data
+        if (data.blocks.length) {
+          page.data.$dashboard[i] = data
+        } else {
+          page.data.$dashboard.splice(i, 1)
+        }
         page.setData({
           $dashboard: page.data.$dashboard
         })
         return
       }
     }
-    page.setData({
-      $dashboard: page.data.$dashboard.concat([data])
-    })
+    if (data.blocks.length) {
+      page.setData({
+        $dashboard: page.data.$dashboard.concat([data])
+      })
+    }
   }
 
   let providers = require('../../providers/dashboard/dashboard.js')
   providers.getCard(resolveData)
   providers.getPe(resolveData)
+  providers.getExam(resolveData)
   providers.getLecture(resolveData)
   providers.getSrtp(resolveData)
   providers.getGpa(resolveData)

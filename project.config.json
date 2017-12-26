@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -51,7 +51,7 @@
 					"id": 4,
 					"name": "通知",
 					"pathName": "pages/jwcNotice/jwcNotice",
-					"query": "url=http%3A//jwc.seu.edu.cn/2017/1102/c10109a202142/page.htm"
+					"query": "url=http%3A//jwc.seu.edu.cn/2017/1225/c9963a205822/page.htm"
 				},
 				{
 					"id": -1,
@@ -69,6 +69,30 @@
 					"id": 7,
 					"name": "空教室",
 					"pathName": "pages/emptyRoom/emptyRoom",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "推送",
+					"pathName": "pages/wechatPush/wechatPush",
+					"query": "url=http%3A//mp.weixin.qq.com/s/h4GKug1oFkSr8TFyJ1yaBg"
+				},
+				{
+					"id": -1,
+					"name": "推送2",
+					"pathName": "pages/wechatPush/wechatPush",
+					"query": "url=http%3A//mp.weixin.qq.com/s/sEGOxxOJcPyAYOGc2Cw7VA"
+				},
+				{
+					"id": -1,
+					"name": "推送",
+					"pathName": "pages/wechatPush/wechatPush",
+					"query": "url=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzA5MzYzNjgwMA%3D%3D%26mid%3D2649798188%26idx%3D1%26sn%3D0e0d33380404c5cfe71d0e18430428e2%26chksm%3D885ec783bf294e9512e07b1e97d9e10c18f207702788419487ae3def37be2ada9e30c8baa2d4%26mpshare%3D1%26scene%3D23%26srcid%3D1129PhFjyZVICKhecmsrfkEW%23rd"
+				},
+				{
+					"id": -1,
+					"name": "课表预览",
+					"pathName": "pages/curriculumPreview/curriculumPreview",
 					"query": ""
 				}
 			]

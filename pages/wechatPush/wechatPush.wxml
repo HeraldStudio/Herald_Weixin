@@ -1,12 +1,14 @@
 <view class="container">
   <text class="title">{{ title }}</text>
-  <view class="horizontal" wx:if="{{ html }}">
-    <text class="declare">页面由小猴自动转换，可能丢失部分信息</text>
-    <text class="original" catchtap="open" data-url="{{ url }}">原文链接</text>
+  <view class="horizontal" wx:if="{{ html }}" catchtap="viewimg" data-url="{{ qrcode }}" data-urls="{{ [qrcode] }}">
+    <text class="author" wx:if="{{ author }}">{{ author }}</text>
+    <text class="author-id" wx:if="{{ authorId }}">{{ authorId }}</text>
+    <image class="qr" wx:if="{{ qrcode }}" src="/images/qrcode.png"/>
+    <text class="author-id" wx:if="{{ qrcode }}">保存二维码扫描关注</text>
   </view>
-  <rich-text nodes="{{ html }}" catchlongpress="onImageLongTap"/>
+  <rich-text wx:if="{{ html }}" nodes="{{ html }}" catchlongpress="onImageLongTap"/>
   <view class="horizontal" wx:if="{{ html }}">
-    <text class="declare">页面由小猴自动转换，可能丢失部分信息</text>
+    <text class="declare">以上为推送预览，部分功能可能受限</text>
     <text class="original" catchtap="open" data-url="{{ url }}">原文链接</text>
   </view>
 </view>
