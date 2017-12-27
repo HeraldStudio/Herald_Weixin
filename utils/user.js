@@ -24,7 +24,7 @@ module.exports = {
           that.uuidAuth(res.data, password, () => callback(res))
         } else {
           wx.$.hideLoading()
-          wx.$.showError('无法访问信息门户或密码错误\n' + (res1.statusCode ? '[' + res1.statusCode + ']' : res1.errMsg))
+          wx.$.showError('无法访问信息门户或密码错误\n' + (res.statusCode ? '[' + res.statusCode + ']' : res.errMsg))
         }
       }
     })
