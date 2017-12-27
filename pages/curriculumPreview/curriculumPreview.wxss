@@ -152,10 +152,10 @@
 }
 
 .horizontal {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin-top: 10rpx;
+  display: block;
+  text-align: left;
+  line-height: 1.3em;
 }
 
 .info {
