@@ -155,7 +155,7 @@ Page({
             sampler.reportSuccess()
             fun()
           } else {
-            // 请求失败，像采样器报告失败，进入下次迭代
+            // 请求失败，向采样器报告失败，进入下次迭代
             sampler.reportFail()
             fun()
           }

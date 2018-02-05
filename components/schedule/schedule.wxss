@@ -1,6 +1,5 @@
 schedule {
   display: block;
-  border-bottom: 20rpx solid #f4f4f4;
 }
 
 schedule .subtitle {
@@ -120,9 +119,9 @@ schedule item .schedule-desc {
   border-bottom: 1rpx solid #f0f0f0;
 }
 
-schedule item:last-of-type .schedule-desc {
+/* schedule item:last-of-type .schedule-desc {
   border-bottom: none;
-}
+} */
 
 schedule item .line {
   display: flex;

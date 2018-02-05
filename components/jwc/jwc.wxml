@@ -7,13 +7,12 @@
   <view wx:for="{{ $jwc }}" wx:key="href" class="content" catchtap="open" data-url="{{ item.href }}">
     <text class="title">{{ item.title }}</text>
     <view class="horizontal">
+      <text class="tag flag" wx:if="{{ item.flag }}">置顶</text>
       <text class="tag urgent" wx:if="{{ item.isUrgent }}">紧急</text>
       <text class="tag important" wx:if="{{ item.isImportant }}">重要</text>
-      <text class="tag announcement" wx:if="{{ item.isAnnouncement }}">公示</text>
-      <text class="tag lecture" wx:if="{{ item.isLecture }}">讲座</text>
-      <text class="tag competition" wx:if="{{ item.isCompetition }}">竞赛</text>
       <text class="tag">{{ item.category }}</text>
       <text>发布于{{ item.displayDate }}</text>
     </view>
   </view>
+  <text wx:if="{{ !$jwc.length }}" class="empty">…</text>
 </jwc>

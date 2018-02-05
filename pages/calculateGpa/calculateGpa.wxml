@@ -1,0 +1,20 @@
+<view class="result">
+  <text class="hint">估算结果：</text>
+  <text class="num">{{ result }}</text>
+  <text class="hint">，请手动进行修正 (删去自选课等)</text>
+</view>
+<view class="item" wx:for="{{ gpa }}">
+  <view class="left">
+    <text class="name">{{ item.name }}</text>
+    <text class="info">{{ item.credit }} * {{ item.point }} = {{ item.credit * item.point }}</text>
+  </view>
+  <text class="credit">{{ item.score }}</text>
+  <button class="remove" catchtap="remove" data-index="{{ index }}">－</button>
+</view>
+<view class="item add">
+  <input class="name" value="{{ newItem.name }}" placeholder="名称" bindinput="onNameInput"/>
+  <input class="credit" value="{{ newItem.credit }}" placeholder="学分" bindinput="onCreditInput"/>
+  <input class="score" value="{{ newItem.score }}" placeholder="成绩" bindinput="onScoreInput"/>
+  <button class="add" catchtap="add">＋</button>
+</view>
+<text class="hint">优 = 95，良 = 85，中 = 75，及格 = 60</text>

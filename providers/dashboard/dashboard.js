@@ -338,12 +338,16 @@ module.exports = {
               info: res.data.content[0].gpa || '未计算'
             },
             {
-              desc: '首修绩点',
+              desc:'首修绩点',
               info: res.data.content[0]['gpa without revamp'] || '未计算'
             },
             {
               desc: '计算时间\n' + res.data.content[0]['calculate time']
             },
+            {
+              desc: '估算绩点',
+              page: 'calculateGpa'
+            }
           ],
           long: {
             data: res.data.content.slice(1).map(k => {

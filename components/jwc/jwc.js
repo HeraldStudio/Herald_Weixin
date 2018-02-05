@@ -17,12 +17,11 @@ exports.bind = function (page) {
           // 以下标记用加号转换成整数型，方便后续位运算
           k.isImportant = +/重要/.test(k.title)
           k.isUrgent = +/急/.test(k.title)
-          k.isAnnouncement = +/公示/.test(k.title)
           k.isLecture = +/课外研学讲座/.test(k.title)
           k.isCompetition = +/赛/.test(k.title)
 
           // 重要性量度，用位运算进行
-          k.flag = ((k.isUrgent << 1) + k.isImportant << 1) + k.isAnnouncement
+          k.flag = (k.isUrgent << 1) + k.isImportant << 1
 
           let [y, m, d] = k.date.split('-').map(s => parseInt(s))
           let date = new Date(y, m - 1, d);
