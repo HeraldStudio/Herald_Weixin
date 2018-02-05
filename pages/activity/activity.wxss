@@ -1,6 +1,17 @@
 swiper {
   height: 380rpx;
   margin-bottom: 20rpx;
+  position: relative;
+}
+
+.empty {
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999;
 }
 
 swiper-item, swiper-item image {

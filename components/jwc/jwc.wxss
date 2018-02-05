@@ -1,6 +1,5 @@
 jwc {
   display: block;
-  border-bottom: 20rpx solid #f4f4f4;
 }
 
 jwc .subtitle {
@@ -61,9 +60,8 @@ jwc .content:active {
 }
 
 jwc .content .horizontal {
-  display: flex;
+  display: inline;
   flex-direction: row;
-  margin-top: 5rpx;
   align-items: center
 }
 
@@ -77,6 +75,11 @@ jwc .content .horizontal .tag {
   font-size: 26rpx;
   padding: 5rpx 10rpx;
   border-radius: 6rpx
+}
+
+jwc .content .horizontal .tag.flag {
+  background: #1cadcf;
+  color: #fff;
 }
 
 jwc .content .horizontal .tag.urgent {
@@ -102,4 +105,13 @@ jwc .content .horizontal .tag.lecture {
 jwc .content .horizontal .tag.competition {
   background: #ddcf1a;
   color: #fff;
+}
+
+jwc .empty {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: #999;
+  font-size: 32rpx;
 }

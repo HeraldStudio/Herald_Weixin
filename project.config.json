@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.4",
+	"libVersion": "1.9.1",
 	"appid": "wx3c1c058fd07462d0",
 	"projectname": "Herald_Weixin",
 	"condition": {
@@ -20,8 +20,11 @@
 			"current": -1,
 			"list": []
 		},
+		"game": {
+			"list": []
+		},
 		"miniprogram": {
-			"current": 11,
+			"current": 12,
 			"list": [
 				{
 					"id": -1,
@@ -93,6 +96,12 @@
 					"id": -1,
 					"name": "课表预览",
 					"pathName": "pages/curriculumPreview/curriculumPreview",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绩点估算",
+					"pathName": "pages/calculateGpa/calculateGpa",
 					"query": ""
 				}
 			]

@@ -196,11 +196,11 @@ fab.hidden::after,
 .empty-hint {
   display: block;
   width: 100%;
-  padding: 35rpx 0;
+  padding: 60rpx 0;
   text-align: center;
   font-size: 28rpx;
   color: #666;
-  background: #fcfcfc;
+  background: #fff;
 }
 
 wxs {

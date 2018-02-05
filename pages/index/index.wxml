@@ -1,5 +1,5 @@
 <block wx:if="{{ $login.isLogin !== false }}">
-  <include src="/components/menu_tip/menu_tip.wxml"/>
+  <!-- <include src="/components/menu_tip/menu_tip.wxml"/> -->
 
   <block wx:if="{{ !$service }}">
     <include src="/components/loading/loading.wxml"/>

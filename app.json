@@ -12,7 +12,8 @@
     "pages/emptyRoom/emptyRoom",
     "pages/notices/notices",
     "pages/activity/activity",
-    "pages/curriculumPreview/curriculumPreview"
+    "pages/curriculumPreview/curriculumPreview",
+    "pages/calculateGpa/calculateGpa"
   ],
   "window": {
     "backgroundColor": "#ffffff",
