@@ -1,19 +1,4 @@
-.select-mode {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  z-index: 999;
-  padding: 0 35rpx;
-  margin-bottom: 20rpx;
-  background: #fff;
-  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, .05);
-  justify-content: space-between;
-}
-
-.select {
+.field {
   font-size: 26rpx;
   color: #888;
   margin-right: 10rpx;
@@ -27,22 +12,16 @@
 .result {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  /*position: sticky;
+  align-items: baseline;
+  position: sticky;
   position: -webkit-sticky;
   top: 0;
   z-index: 999;
-  padding: 0 35rpx;
+  padding: 30rpx 40rpx;
   margin-bottom: 20rpx;
   background: #fff;
   box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, .05);
-  justify-content: space-between; */
-}
-
-.result picker {
-  width: 200rpx;
-  height: 40rpx;
-  overflow: hidden;
+  justify-content: space-between; 
 }
 
 .result .hint {
@@ -58,7 +37,7 @@
 
 .item {
   padding: 20rpx 0;
-  margin: 0 35rpx;
+  margin: 0 40rpx;
   border-bottom: 1rpx solid #f0f0f0;
   display: flex;
   flex-direction: row;
@@ -130,7 +109,10 @@
 
 .hint {
   display: block;
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #888;
-  padding: 40rpx 0;
+  padding: 30rpx 0;
+  margin: 0 40rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  text-align: left;
 }
