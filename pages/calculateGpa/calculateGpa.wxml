@@ -1,17 +1,13 @@
-<view class="select-mode">
-  <view class="result">
-    <text class="select">选择计算方法：</text>
-    <picker bindchange="modeChange" value="{{ mode }}" range="{{ methods }}">
-        <text class="mode">{{ methods[mode] }}</text>
-    </picker>
-  </view>
-  <view class="result">
-    <text class="hint">估算结果：</text>
-    <text class="num" wx:if="{{ mode == 0 }}">{{ result[0] }}</text>
-    <text class="num" wx:else>{{ result[1] }}</text>
-    <text class="hint">，请手动进行修正 (删去自选课等)</text>
-  </view>
+<view class="result">
+  <text class="field">算法</text>
+  <picker bindchange="modeChange" value="{{ mode }}" range="{{ methods }}">
+      <text class="mode">{{ methods[mode] }}</text>
+  </picker>
+  <text class="field">估算结果</text>
+  <text class="num" wx:if="{{ mode == 0 }}">{{ result[0] }}</text>
+  <text class="num" wx:else>{{ result[1] }}</text>
 </view>
+<text class="hint">已自动过滤选修课程，请根据培养计划手动去除其他不算绩点的课程（如任选、研讨等）</text>
 <view class="item" wx:for="{{ gpa }}">
   <view class="left">
     <text class="name">{{ item.name }}</text>
@@ -27,4 +23,3 @@
   <input class="score" value="{{ newItem.score }}" placeholder="成绩" bindinput="onScoreInput"/>
   <button class="add" catchtap="add">＋</button>
 </view>
-<text class="hint">优 = 95，良 = 85，中 = 75，及格 = 60</text>

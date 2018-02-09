@@ -7,7 +7,7 @@ Page({
       score: '',
     },
     result: [0, 0],
-    methods: ["东大计算方法", "WES计算方法（满绩4.0，出国党参考）"],
+    methods: ["东大校内算法 (0 ~ 4.8)", "WES出国算法 (0 ~ 4.0)"],
     mode: 0
   },
   onLoad(options) {
@@ -29,7 +29,7 @@ Page({
       }
     })
   },
-  scoreToPoints (score) {
+  scoreToPointsSEU (score) {
     if (/优/.test(score)) {
       score = 95
     } else if (/良/.test(score)) {
@@ -56,7 +56,7 @@ Page({
     if (score >= 60) { return 1.0 }
     return 0
   },
-  scoreToPoints_WES (score) {
+  scoreToPointsWES (score) {
     if (/优/.test(score)) {
       score = 95
     } else if (/良/.test(score)) {
@@ -77,8 +77,8 @@ Page({
   updatePoints () {
     let total = 0, total_wes = 0, totalCredit = 0
     this.data.gpa.map(k => {
-      k.point = this.scoreToPoints(k.score)
-      k.point_wes = this.scoreToPoints_WES(k.score)
+      k.point = this.scoreToPointsSEU(k.score)
+      k.point_wes = this.scoreToPointsWES(k.score)
       total += k.point * k.credit
       total_wes += k.point_wes * k.credit
       totalCredit += parseFloat(k.credit)
