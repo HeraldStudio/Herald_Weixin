@@ -4,9 +4,11 @@ Page({
     newItem: {
       name: '',
       credit: '',
-      score: ''
+      score: '',
     },
-    result: 0
+    result: [0, 0],
+    methods: ["东大计算方法", "WES计算方法（满绩4.0，出国党参考）"],
+    mode: 0
   },
   onLoad(options) {
     wx.$.util('user').requireLogin(this)
@@ -54,17 +56,44 @@ Page({
     if (score >= 60) { return 1.0 }
     return 0
   },
+  scoreToPoints_WES (score) {
+    if (/优/.test(score)) {
+      score = 95
+    } else if (/良/.test(score)) {
+      score = 85
+    } else if (/中/.test(score)) {
+      score = 75
+    } else if (/不及格/.test(score)) {
+      score = 0
+    } else if (/及格/.test(score)) {
+      score = 60
+    }
+    score = parseInt(score)
+    if (score >= 85) { return 4 }
+    if (score >= 75) { return 3 }
+    if (score >= 60) { return 2 }
+    return 0
+  },
   updatePoints () {
-    let total = 0, totalCredit = 0
+    let total = 0, total_wes = 0, totalCredit = 0
     this.data.gpa.map(k => {
       k.point = this.scoreToPoints(k.score)
+      k.point_wes = this.scoreToPoints_WES(k.score)
       total += k.point * k.credit
+      total_wes += k.point_wes * k.credit
       totalCredit += parseFloat(k.credit)
     })
-    let result = (totalCredit === 0 ? '0' : total / totalCredit).toFixed(3)
+    let result = []
+    result.push((totalCredit === 0 ? '0' : total / totalCredit).toFixed(3))
+    result.push((totalCredit === 0 ? '0' : total_wes / totalCredit).toFixed(3))
     this.setData({
       gpa: this.data.gpa,
       result
+    })
+  },
+  modeChange (e) {
+    this.setData({
+      mode: e.detail.value
     })
   },
   onNameInput(e) {
