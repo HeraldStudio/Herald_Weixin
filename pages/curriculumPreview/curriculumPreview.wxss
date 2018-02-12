@@ -101,7 +101,7 @@
   min-height: 10rpx;
   max-height: 100%;
   margin: 0 auto;
-  background: #3688ff;
+  background: #d61518;
   border-radius: 30rpx;
   -webkit-transition: .3s;
 }
@@ -167,7 +167,7 @@
 .result .bar {
   max-width: 100%;
   height: 8rpx;
-  background: #3688ff;
+  background: #d61518;
   border-radius: 4rpx;
   -webkit-transition: .3s;
   margin: 20rpx 0 10rpx;

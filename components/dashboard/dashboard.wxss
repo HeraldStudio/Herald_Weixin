@@ -37,8 +37,8 @@ dashboard item {
   justify-content: center;
   text-align: center;
   background: transparent;
-  border-left: 1rpx solid #f0f0f0;
-  border-right: 1rpx solid #f0f0f0;
+  border-left: 1rpx solid rgba(255, 255, 255, .2);
+  border-right: 1rpx solid rgba(255, 255, 255, .2);
   border-top: 7rpx solid transparent;
   border-bottom: 7rpx solid transparent;
   margin-left: -1rpx;
@@ -68,7 +68,6 @@ dashboard items item.long {
   margin-bottom: 0;
   border-left: 1rpx solid transparent;
   border-right: 1rpx solid transparent;
-  border-top: 7rpx solid #3688ff;
   border-bottom: 7rpx solid transparent;
   padding: 37rpx 0;
 }
@@ -145,15 +144,20 @@ dashboard item .desc {
 }
 
 dashboard item .info {
-  color: #3688ff;
+  color: #d61518;
   font-size: 36rpx;
   padding-top: 10rpx;
   transition: .3s;
   -webkit-transition: .3s;
 }
 
+dashboard scroll-view item:not(.long) .desc,
+dashboard scroll-view item:not(.long) .info {
+  color: #fff;
+}
+
 dashboard item .navigate {
-  color: #3688ff;
+  color: #d61518;
   font-size: 32rpx;
   transition: .3s;
   -webkit-transition: .3s;
@@ -245,7 +249,7 @@ dashboard item list .bottom-left {
 
 dashboard item list .top-left {
   font-size: 32rpx;
-  color: #3688ff;
+  color: #d61518;
 }
 
 dashboard item list .top-right,

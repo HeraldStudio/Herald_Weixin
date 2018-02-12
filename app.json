@@ -16,11 +16,12 @@
     "pages/calculateGpa/calculateGpa"
   ],
   "window": {
-    "backgroundColor": "#ffffff",
-    "backgroundTextStyle": "dark",
+    "backgroundColor": "#d61518",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "小猴偷米",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "list": [
@@ -44,7 +45,7 @@
       }
     ],
     "color": "#888888",
-    "selectedColor": "#3688ff",
+    "selectedColor": "#d61518",
     "backgroundColor": "#ffffff",
     "borderStyle": "white"
   },

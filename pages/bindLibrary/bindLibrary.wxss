@@ -19,7 +19,7 @@ inline-text {
 
 a {
   display: inline;
-  color: #3688ff;
+  color: #d61518;
 }
 
 a:active {

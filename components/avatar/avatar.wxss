@@ -3,7 +3,6 @@
   flex-direction: row;
   align-items: flex-start;
   padding: 10rpx 25rpx;
-  border-bottom: 20rpx solid #f4f4f4;
   -webkit-transition: .5s;
   overflow: hidden;
 }
@@ -13,13 +12,13 @@
   height: 100rpx;
   margin: 30rpx;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .1)
+  background: rgba(255, 255, 255, .1)
 }
 
 .avatar-container .name {
   display: block;
   font-size: 34rpx;
-  color: #333;
+  color: #fff;
   margin-top: 5rpx;
 }
 
@@ -33,7 +32,7 @@
 .avatar-container .identity {
   display: block;
   font-size: 28rpx;
-  color: #666;
+  color: #fff;
   margin-top: 5rpx;
 }
 
@@ -63,4 +62,5 @@
   width: 48rpx;
   height: 48rpx;
   margin: 56rpx 30rpx;
+  filter: brightness(10)
 }

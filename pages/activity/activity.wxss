@@ -1,6 +1,7 @@
 swiper {
   height: 380rpx;
   margin-bottom: 20rpx;
+  margin-top: 30rpx;
   position: relative;
 }
 
@@ -48,9 +49,9 @@ swiper-item, swiper-item image {
 
 .activities .subtitle .button {
   border-radius: 50rpx;
-  border: 2rpx solid #3688ff;
+  border: 2rpx solid #d61518;
   background: none;
-  color: #3688ff;
+  color: #d61518;
   font-size: 26rpx;
   margin-left: 20rpx;
   margin-right: 0;
@@ -94,7 +95,7 @@ swiper-item, swiper-item image {
 }
 
 .horizontal .tag.recommend {
-  background: #3688ff;
+  background: #d61518;
   color: #fff;
 }
 

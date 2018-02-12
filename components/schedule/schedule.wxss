@@ -4,7 +4,6 @@ schedule {
 
 schedule .subtitle {
   padding: 20rpx 35rpx;
-  border-top: 20rpx solid #f4f4f4;
   background: #fff;
   display: flex;
   flex-direction: row;
@@ -30,7 +29,7 @@ schedule .subtitle text {
 schedule .subtitle image.add {
   width: 42rpx;
   height: 42rpx;
-  color: #3688ff;
+  color: #d61518;
   margin-left: 20rpx;
   margin-right: 0;
 }
@@ -171,7 +170,7 @@ schedule item .bottom-right {
 }
 
 schedule item .going-on {
-  color: #3688ff;
+  color: #d61518;
 }
 
 schedule item .expired {

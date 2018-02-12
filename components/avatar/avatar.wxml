@@ -4,7 +4,7 @@
   <view class="right-container">
     <text class="name">{{ $avatar.name }}</text>
     <text class="identity">{{ $avatar.identity }}</text>
-    <view class="detail {{ $avatar.showAll ? '' : 'hidden' }}">
+    <view class="detail hidden">
       <view class="divider"/>
       <text class="identity">一卡通号：{{ $avatar.cardnum }}</text>
       <text class="identity">学号：{{ $avatar.schoolnum }}</text>

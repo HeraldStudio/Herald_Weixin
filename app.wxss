@@ -2,9 +2,21 @@
 page {
   margin: 0;
   padding: 0;
+  padding-top: 150rpx;
   background: #ffffff;
   text-align: center;
   overflow-x: hidden;
+}
+
+page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150rpx;
+  background: url('http://static.myseu.cn/2018-02-12-year_of_the_dog_head.jpg') no-repeat;
+  background-size: cover;
 }
 
 tab-shadow {
@@ -43,13 +55,13 @@ page, input, textarea {
 
 button[type="blue"] {
   color: #ffffff;
-  background-color: #3688ff;
+  background-color: #d61518;
 }
 
 button[type="blue"]:active,
 button-hover[type="blue"] {
   color: #ffffff;
-  background-color: #1c78ff !important;
+  background-color: #a61e20 !important;
 }
 
 button::after {
@@ -75,13 +87,13 @@ contact-button:before {
 contact-button:after {
   content: "客服";
   font-size: 28rpx;
-  color: #3688ff;
+  color: #d61518;
   line-height: 40rpx;
   margin-left: -90rpx;
   z-index: 99999999999;
   display: inline-block;
   padding: 5rpx 20rpx;
-  border: 2rpx solid #3688ff;
+  border: 2rpx solid #d61518;
   background: #ffffff;
   border-radius: 40rpx;
   pointer-events: none;
@@ -101,7 +113,7 @@ fab, .fab {
   bottom: 40rpx;
   width: 109rpx;
   height: 109rpx;
-  background: #3688ff;
+  background: #d61518;
   border-radius: 50%;
   display: block;
   /*box-shadow: 0 8rpx 12rpx rgba(2, 0, 33, .2);*/

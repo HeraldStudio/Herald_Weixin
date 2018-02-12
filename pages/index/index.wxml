@@ -1,3 +1,4 @@
+<image class="year-of-the-dog" mode="widthFix" src="/images/year_of_the_dog.jpg"/>
 <block wx:if="{{ $login.isLogin !== false }}">
   <!-- <include src="/components/menu_tip/menu_tip.wxml"/> -->
 

@@ -52,7 +52,7 @@
 .original {
   padding-left: 10rpx;
   font-size: 28rpx;
-  color: #3688ff;
+  color: #d61518;
   display: inline-block;
 }
 

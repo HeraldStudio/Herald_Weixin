@@ -113,7 +113,7 @@ line.amount button.selected,
 line.amount input.selected,
 line.amount input.selected .input-placeholder {
   color: #fff;
-  background: #3688ff;
+  background: #d61518;
   transition: .1s;
   -webkit-transition: .1s;
 }
@@ -131,7 +131,7 @@ button.submit {
   color: #fff;
   font-size: 32rpx;
   font-weight: normal;
-  background: #3688ff;
+  background: #d61518;
   border-radius: 8rpx;
   transition: .3s;
   -webkit-transition: .3s;

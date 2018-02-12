@@ -2,18 +2,23 @@ subpage.login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20rpx;
+  padding-top: 40rpx;
+  background: #fff;
 }
 
 subpage.login .logo {
   width: 180rpx;
   height: 180rpx;
   margin: 90rpx auto 20rpx;
+  display: none;
 }
 
 subpage.login .slogan {
   font-size: 36rpx;
   color: #666;
   margin-bottom: 60rpx;
+  display: none;
 }
 
 subpage.login input {
@@ -58,7 +63,7 @@ subpage.login button.login {
   width: 520rpx;
   text-align: center;
   border-radius: 10rpx;
-  margin: 40rpx 0 20rpx;
+  margin: 80rpx 0 20rpx;
 }
 
 subpage.login .copyright {

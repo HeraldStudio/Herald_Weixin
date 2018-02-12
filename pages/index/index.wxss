@@ -5,3 +5,9 @@
 @import "/components/login/login.wxss";
 @import "/components/server_down/server_down.wxss";
 @import "/components/loading/loading.wxss";
+
+.year-of-the-dog {
+  display: block;
+  width: 100%;
+  margin-bottom: -400rpx;
+}

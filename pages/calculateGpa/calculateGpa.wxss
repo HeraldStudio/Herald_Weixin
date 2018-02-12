@@ -53,7 +53,7 @@
 
 .item .name {
   font-size: 32rpx;
-  color: #3688ff;
+  color: #d61518;
   text-align: left;
   margin-right: 15rpx;
   overflow: hidden;

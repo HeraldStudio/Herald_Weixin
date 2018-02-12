@@ -8,7 +8,7 @@
 }
 
 .markdown-container .a {
-  color: #3688ff !important;
+  color: #d61518 !important;
   text-decoration: none;
 }
 

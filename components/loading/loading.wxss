@@ -5,6 +5,8 @@ herald-loading {
   justify-content: center;
   padding: 50rpx;
   position: relative;
+  margin-top: 20rpx;
+  background: #fff;
 }
 
 herald-loading image {
