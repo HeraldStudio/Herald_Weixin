@@ -24,7 +24,7 @@ module.exports = {
           that.uuidAuth(res.data, password, () => callback(res))
         } else {
           wx.$.hideLoading()
-          wx.$.showError('无法访问信息门户或密码错误\n' + (res.statusCode ? '[' + res.statusCode + ']' : res.errMsg))
+          wx.$.showError('登录失败，请重试')
         }
       }
     })
@@ -34,19 +34,17 @@ module.exports = {
     wx.$.requestApi({
       route: 'api/user',
       data: { uuid },
+      success (res) {
+        let app = getApp()
+        app.storage.user = res.data.content
+        app.storage.user.uuid = uuid
+        app.storage.user.password = password
+        wx.$.log('Herald', 'Logged in as', app.storage.user + '(' + uuid + ')')
+        app.forceUpdateStorage()
+        callback && callback(res)
+      },
       complete (res) {
         wx.$.hideLoading()
-        if (res.data.content.schoolnum.length === 8) {
-          let app = getApp()
-          app.storage.user = res.data.content
-          app.storage.user.uuid = uuid
-          app.storage.user.password = password
-          wx.$.log('Herald', 'Logged in as', app.storage.user + '(' + uuid + ')')
-          app.forceUpdateStorage()
-          callback && callback(res)
-        } else {
-          wx.$.showError('用户不是本科生或用户信息不完善，请手动登录信息门户解决')
-        }
       }
     })
   },

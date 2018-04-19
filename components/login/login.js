@@ -49,14 +49,6 @@ exports.bind = function (page) {
       wx.$.util('user').uuidAuth(data.password, '', page.$login_reload)
       return
     }
-    if (data.password === '+debug') {
-      wx.setEnableDebug({ enableDebug: true })
-      return
-    }
-    if (data.password === '-debug') {
-      wx.setEnableDebug({ enableDebug: false })
-      return
-    }
     if (data.cardnum.trim() === '') {
       wx.$.showError('请输入一卡通号')
       return

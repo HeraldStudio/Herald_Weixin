@@ -41,7 +41,7 @@ Page({
         //url: 'http://localhost:8080/wxapp/tomd',
         url: 'https://myseu.cn/wxapp/tomd',
         method: 'POST',
-        data: parsedUrl,
+        data: JSON.stringify(parsedUrl),
         success (res) {
           wx.$.hideLoading()
           if (res.statusCode < 400) {
