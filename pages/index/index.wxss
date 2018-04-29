@@ -3,5 +3,4 @@
 @import "/components/dashboard/dashboard.wxss";
 @import "/components/schedule/schedule.wxss";
 @import "/components/login/login.wxss";
-@import "/components/server_down/server_down.wxss";
 @import "/components/loading/loading.wxss";

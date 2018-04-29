@@ -4,14 +4,6 @@ let data = {
 }
 
 exports.bind = function (page) {
-  if (page.data.$service && !wx.$.util('user').isLogin()) {
-    page.setData({
-      $login_regexHint: (page.data.$service.matchers || [])
-      .filter(k => new RegExp(k.regex).test(data.cardnum))
-      .slice(-1).map(k => k.hint).join('')
-    })
-  }
-
   page.setData({
     $login: {
       isLogin: wx.$.util('user').isLogin()
@@ -20,11 +12,6 @@ exports.bind = function (page) {
 
   page.$login_onCardnumChange = function (event) {
     data.cardnum = event.detail.value
-    page.setData({
-      $login_regexHint: (page.data.$service.matchers || [])
-                          .filter(k => new RegExp(k.regex).test(data.cardnum))
-                          .slice(-1).map(k => k.hint).join('')
-    })
   }
 
   page.$login_onPasswordChange = function (event) {

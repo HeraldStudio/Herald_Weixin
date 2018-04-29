@@ -1,10 +1,10 @@
 <jwc>
   <view class="subtitle">
     <image src="/images/ic_jwc.png" mode="aspectFit"/>
-    <text>教务通知</text>
+    <text>通知公告</text>
     <space/>
   </view>
-  <view wx:for="{{ $jwc }}" wx:key="href" class="content" catchtap="open" data-url="{{ item.href }}">
+  <view wx:for="{{ $jwc }}" wx:key="href" class="content" catchtap="open" data-url="{{ item.href }}" data-title="{{ item.title }}">
     <text class="title">{{ item.title }}</text>
     <view class="horizontal">
       <text class="tag flag" wx:if="{{ item.flag }}">置顶</text>

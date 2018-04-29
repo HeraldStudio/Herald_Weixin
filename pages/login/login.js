@@ -22,12 +22,7 @@ Page({
       wx.redirectTo({ url })
       return
     }
-    wx.$.comp('service').bind(this, (serverHealth) => {
-      if (serverHealth) {
-        wx.$.comp('login').bind(this)
-      } else {
-        wx.$.comp('server_down').bind(this)
-      }
-    })
+    wx.$.comp('service').bind(this)
+    wx.$.comp('login').bind(this)
   }
 })

@@ -3,7 +3,7 @@ Page({
   },
   onLoad (options) {
     let that = this
-    let url = unescape(options.url).replace(/^http:/, 'https:')
+    let url = decodeURIComponent(options.url).replace(/^http:/, 'https:')
     that.setData({ url: url })
     wx.$.showLoading('加载中')
     wx.$.requestSimple({

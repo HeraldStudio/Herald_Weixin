@@ -6,7 +6,8 @@ Page({
     markdownText: ''
   },
   onLoad (options) {
-    this.loadUrl(unescape(options.url))
+    this.setData({ title: options.title })
+    this.loadUrl(decodeURIComponent(options.url))
   },
   loadUrl (url) {
     let that = this
@@ -39,15 +40,15 @@ Page({
     } else { // 服务器转换加载
       wx.request({
         //url: 'http://localhost:8080/wxapp/tomd',
-        url: 'https://myseu.cn/wxapp/tomd',
+        url: 'https://myseu.cn/ws3/api/notice',
         method: 'POST',
-        data: JSON.stringify(parsedUrl),
+        data: { url: parsedUrl },
         success (res) {
           wx.$.hideLoading()
-          if (res.statusCode < 400) {
-            that.loadMarkdown(res.data)
+          if (res.data.result) {
+            that.loadMarkdown('# ' + that.data.title + '\n\n' + res.data.result + '\n\n---\n\n页面由小猴偷米转码，部分格式可能丢失 [原文链接](' + parsedUrl + ')')
           } else {
-            that.loadMarkdown('# ' + res.statusCode + '\n\n页面不存在或暂无法打开')
+            that.loadMarkdown('# 解析失败\n\n页面不存在或暂无法打开')
           }
         },
         fail (res) {
@@ -59,14 +60,6 @@ Page({
   },
   loadMarkdown (data) {
     this.setData({ markdownText: data })
-    if (/(^|\n)#\s(.*)(\n|$)/.test(data)) {
-      let title = RegExp.$2
-      this.setData({ title: title })
-      // // 当前页面没退出时才设置标题，防止用户在加载过程中返回导致设置了别人的标题
-      // if (getCurrentPages().slice(-1)[0] === this) {
-      //   wx.setNavigationBarTitle({ title: title })
-      // }
-    }
     wx.$.util('wemark/wemark').parse(data, this, { name: 'markdown' })
   },
   onPullDownRefresh () {

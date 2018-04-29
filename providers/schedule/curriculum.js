@@ -162,17 +162,13 @@ module.exports = {
     }
 
     // 读取开学日期
-    let startDate = new Date()
-
-    // 服务器端返回的startMonth已经是Java/JavaScript型的月份表示，直接设置不用减一
     let split = data.term.split('-')
-    startDate.setFullYear(parseInt('20' + split[0]) + (split[2] === '3' ? 1 : 0))
-    startDate.setMonth(data.content.startdate.month)
-    startDate.setDate(data.content.startdate.day)
-    startDate.setHours(0)
-    startDate.setMinutes(0)
-    startDate.setSeconds(0)
-    startDate.setMilliseconds(0)
+    let year = parseInt('20' + split[0]) + (split[2] === '3' ? 1 : 0)
+
+    // 服务器端返回的 startMonth 是 Java/JavaScript 型的月份表示，比实际月份少 1
+    let month = data.content.startdate.month + 1
+    let date = data.content.startdate.day
+    let startDate = new Date(year + '-' + month + '-' + date)
 
     // 为了保险，检查开学日期的星期，不是周一的话往前推到周一
     if (startDate.getDay() !== 1) {

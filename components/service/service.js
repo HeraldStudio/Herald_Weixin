@@ -1,4 +1,4 @@
-exports.bind = function (page, callback) {
+exports.bind = function (page) {
   let info = wx.getSystemInfoSync()
   let user = wx.$.util('user').getUser()
   wx.$.requestApi({
@@ -13,16 +13,12 @@ exports.bind = function (page, callback) {
       if (res.data && res.data.content) {
         res.data.content.isLogin = wx.$.util('user').isLogin()
         page.setData({ $service: res.data.content })
-
-        let health = res.data.content.serverHealth
-        callback && callback(health)
       } else {
         page.setData({ 
           $service: {
             isLogin: wx.$.util('user').isLogin()
           }
         })
-        callback(false)
       }
     },
     fail() {

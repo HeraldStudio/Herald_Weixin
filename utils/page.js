@@ -63,7 +63,8 @@ module.exports = {
   navigate: function (event) {
     let that = this
     let url = that.parseJumpEvent(event)
-    let parts = url.match(/^([^\?]+)(\?[^\?]+)?$/)
+    console.log(url)
+    let parts = url.match(/^([^\?]+)(\?.+)?$/)
 
     let pages = getCurrentPages()
     let regex = /^\//g
@@ -191,39 +192,45 @@ module.exports = {
       return
     }
 
-    // 检测 v2 专用计数器链接，如果是计数器链接，手动调用计数器接口，然后把链接换成要跳转到的链接
-    let result = /^(https:\/\/myseu.cn\/counter\/.*?)\?d=([0-9a-zA-Z/]+=*)$/.exec(url)
+    // 检测 ws3 专用计数器链接，如果是计数器链接，手动调用计数器接口，然后把链接换成要跳转到的链接
+    let result = /^https:\/\/myseu.cn\/ws3\/adapter-ws2\/click\?([ab]id)=(\d+)/.exec(url)
 
     if (result) {
-      let counterUrl = result[1]
+      let route, data
+      if (result[1] === 'aid') {
+        route = '/api/activity'
+        data = { aid: result[2] }
+      } else {
+        route = '/api/banner'
+        data = { bid: result[2] }
+      }
       wx.$.requestSimple({
-        url: counterUrl,
-        method: 'GET'
+        url: 'https://myseu.cn/ws3' + route,
+        method: 'PUT',
+        data,
+        complete: (res) => {
+          let url = res.data.result
+          event.currentTarget.dataset.url = url
+          this.open(event)
+        }
       })
-      url = wx.$.util('base64').decode(result[2])
+      return
     }
 
     // 判断特殊域名，识别微信推送和教务通知
     let urlType = 'common'
     if (/^https?:\/\/mp\.weixin\.qq\.com\//.test(url)) {
       urlType = 'wechatPush'
-    } else if (/^https?:\/\/jwc\.seu\.edu\.cn\//.test(url)) {
+    } else if (/^https?:\/\/[0-9a-zA-Z]+\.seu\.edu\.cn\//.test(url)) {
       urlType = 'jwcNotice'
     }
 
     // 如果是微信推送或教务通知，拉起对应的渲染页面
     if (urlType !== 'common') {
-      let pages = getCurrentPages()
-
-      // 如果最上层页面已经打开了当前链接，放弃打开，进入复制链接流程；否则打开对应渲染页面
-      if (pages.slice(-1)[0].data.url !== url) {
-        if (pages.length < 5) {
-          wx.navigateTo({ url: '/pages/' + urlType + '/' + urlType + '?url=' + escape(url) })
-        } else {
-          wx.redirectTo({ url: '/pages/' + urlType + '/' + urlType + '?url=' + escape(url) })
-        }
-        return
-      }
+      event.currentTarget.dataset.to = urlType
+      event.currentTarget.dataset.url = encodeURIComponent(event.currentTarget.dataset.url)
+      this.go(event)
+      return 
     }
 
     // 对于前面都不匹配的情况，进入复制链接流程

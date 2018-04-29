@@ -49,12 +49,6 @@
 					"query": ""
 				},
 				{
-					"id": 3,
-					"name": "WebView",
-					"pathName": "pages/webView/webView",
-					"query": "url=https://rikumi.github.io"
-				},
-				{
 					"id": 4,
 					"name": "通知",
 					"pathName": "pages/jwcNotice/jwcNotice",
