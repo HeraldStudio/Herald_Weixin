@@ -16,11 +16,11 @@ module.exports = {
           id: 'card',
           blocks: [
             {
-              desc: '卡余额',
+              desc: '余额',
               info: res.data.content.cardLeft
             },
             {
-              desc: '一卡通状态',
+              desc: '卡状态',
               info: res.data.content.state,
             },
             {
@@ -79,122 +79,60 @@ module.exports = {
     })
     let d = new Date()
     let hm = d.getHours() * 60 + d.getMinutes()
-    if (hm > 390 && hm < 440) { // 跑操期间的情况
-      wx.$.requestApi({
-        route: 'api/pc',
-        complete: function (res) {
-          wx.$.requestApi({
-            route: 'api/pe',
-            complete: function (res2) {
-              callback && callback({
-                id: 'pe',
-                blocks: parseInt(res2.data.content) ? [
-                  {
-                    desc: '跑操预告',
-                    info: res.data.content === 'refreshing' ? '暂无' : res.data.content.replace('今天', '').replace('正常跑操', '正常').replace('不跑操', '不跑')
-                  },
-                  {
-                    desc: '跑操次数',
-                    info: res2.data.content
-                  },
-                  {
-                    desc: '剩余次数',
-                    info: Math.max(0, 45 - parseInt(res2.data.content))
-                  },
-                  {
-                    desc: '剩余天数',
-                    info: res2.data.remain
+    wx.$.requestApi({
+      route: 'api/pe',
+      complete: function (res) {
+        callback && callback({
+          id: 'pe',
+          blocks: parseInt(res.data.content) ? [
+            {
+              desc: '跑操',
+              info: res.data.content
+            },
+            {
+              desc: '击败人数',
+              info: res.data.rank + '%'
+            },
+            {
+              desc: '剩余次数',
+              info: Math.max(0, 45 - parseInt(res.data.content))
+            },
+            {
+              desc: '剩余天数',
+              info: res.data.remain
+            }
+          ] : [],
+          long: {
+            getter: function (callback2) {
+              let that = this
+              wx.$.requestApi({
+                route: 'api/pedetail',
+                complete: function (res) {
+                  if (!Array.isArray(res.data.content)) {
+                    that.data = 'fail'
+                    callback2 && callback2(that.data)
+                    return
                   }
-                ] : [],
-                long: {
-                  getter: function (callback2) {
-                    let that = this
-                    wx.$.requestApi({
-                      route: 'api/pedetail',
-                      complete: function (res) {
-                        if (!Array.isArray(res.data.content) || res.data.code >= 400) {
-                          that.data = 'fail'
-                          callback2 && callback2(that.data)
-                          return
-                        }
-                        that.data = res.data.content.map((k, index) => {
-                          let comps = k.sign_time.split('.')
-                          return {
-                            topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length === 1 ? comps[1] + '0' : comps[1]),
-                            topRight: '第' + (index + 1) + '次跑操'
-                          }
-                        })
-                        callback2 && callback2(that.data)
-                      }
-                    })
-                  },
-                  hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
-                  'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
-                  'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
-                  'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性；\n\n' +
-                  'v. 为增加高年级用户的体验，没有跑操记录的同学将不展示跑操模块。'
+                  that.data = res.data.content.map((k, index) => {
+                    let comps = k.sign_time.split('.')
+                    return {
+                      topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length === 1 ? comps[1] + '0' : comps[1]),
+                      topRight: '第' + (index + 1) + '次跑操'
+                    }
+                  })
+                  callback2 && callback2(that.data)
                 }
               })
-            }
-          })
-        }
-      })
-    } else { // 非跑操期间的情况
-      wx.$.requestApi({
-        route: 'api/pe',
-        complete: function (res) {
-          callback && callback({
-            id: 'pe',
-            blocks: parseInt(res.data.content) ? [
-              {
-                desc: '跑操次数',
-                info: res.data.content
-              },
-              {
-                desc: '击败人数',
-                info: res.data.rank + '%'
-              },
-              {
-                desc: '剩余次数',
-                info: Math.max(0, 45 - parseInt(res.data.content))
-              },
-              {
-                desc: '剩余天数',
-                info: res.data.remain
-              }
-            ] : [],
-            long: {
-              getter: function (callback2) {
-                let that = this
-                wx.$.requestApi({
-                  route: 'api/pedetail',
-                  complete: function (res) {
-                    if (!Array.isArray(res.data.content)) {
-                      that.data = 'fail'
-                      callback2 && callback2(that.data)
-                      return
-                    }
-                    that.data = res.data.content.map((k, index) => {
-                      let comps = k.sign_time.split('.')
-                      return {
-                        topLeft: k.sign_date + ' ' + comps[0] + ':' + (comps[1].length === 1 ? comps[1] + '0' : comps[1]),
-                        topRight: '第' + (index + 1) + '次跑操'
-                      }
-                    })
-                    callback2 && callback2(that.data)
-                  }
-                })
-              },
-              hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
-              'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
-              'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
-              'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。\n\n' +
-              'v. 为增加高年级用户的体验，没有跑操记录的同学将不展示跑操模块。'
-            }
-          })
-        }
-      })
-    }
+            },
+            hint: 'i. 数据来自体育系官方，由于服务器缓存、活动加跑操等原因，显示的跑操次数与跑操记录条数之间可能有出入，请自行鉴别；\n\n' +
+            'ii. 剩余天数由星期推算，请综合考虑天气、节假日等因素合理安排时间；\n\n' +
+            'iii. 跑操打卡及录入与小猴偷米无关，若打卡未到账，请与校体育系联系；\n\n' +
+            'iv. 跑操预告由体育系官方提供，小猴偷米不保证其正确性和及时性。\n\n' +
+            'v. 为增加高年级用户的体验，没有跑操记录的同学将不展示跑操模块。'
+          }
+        })
+      }
+    })
   },
   getExam(callback) {
     callback && callback({
@@ -223,7 +161,7 @@ module.exports = {
           id: 'exam',
           blocks: exams.length ? [
             {
-              desc: '下次考试',
+              desc: '考试',
               info: exams[0].days + '天'
             },
             {
@@ -256,7 +194,7 @@ module.exports = {
     }
     callback && callback({
       id: 'lecture',
-      blocks: [{ desc: '人文讲座', info: '···' }]
+      blocks: [{ desc: '讲座', info: '···' }]
     })
     wx.$.requestApi({
       route: 'api/lecture',
@@ -265,7 +203,7 @@ module.exports = {
           id: 'lecture',
           blocks: [
             {
-              desc: '已听讲座',
+              desc: '讲座',
               info: res.data.content.count,
             }
           ],
@@ -298,7 +236,7 @@ module.exports = {
           id: 'srtp',
           blocks: [
             {
-              desc: 'SRTP学分',
+              desc: 'SRTP',
               info: res.data.content[0].total
             },
             {
@@ -334,11 +272,11 @@ module.exports = {
           id: 'gpa',
           blocks: [
             {
-              desc: '当前绩点',
+              desc: '成绩',
               info: res.data.content[0].gpa || '未计算'
             },
             {
-              desc:'首修绩点',
+              desc: '首修',
               info: res.data.content[0]['gpa without revamp'] || '未计算'
             },
             {

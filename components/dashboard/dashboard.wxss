@@ -106,7 +106,7 @@ dashboard item.expanded.hidden {
 }
 
 dashboard item blk {
-  width: 180rpx;
+  width: 145rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
