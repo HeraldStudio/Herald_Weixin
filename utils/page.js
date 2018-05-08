@@ -226,7 +226,7 @@ module.exports = {
     }
 
     // 如果是微信推送或教务通知，拉起对应的渲染页面
-    if (urlType !== 'common') {
+    if (urlType !== 'common' && !noConvert) {
       event.currentTarget.dataset.to = urlType
       event.currentTarget.dataset.url = encodeURIComponent(event.currentTarget.dataset.url)
       this.go(event)

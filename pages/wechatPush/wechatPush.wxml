@@ -9,6 +9,6 @@
   <rich-text wx:if="{{ html }}" nodes="{{ html }}" catchlongpress="onImageLongTap"/>
   <view class="horizontal" wx:if="{{ html }}">
     <text class="declare">以上为推送预览，部分功能可能受限</text>
-    <text class="original" catchtap="open" data-url="{{ url }}">原文链接</text>
+    <text class="original" catchtap="open" data-url="{{ url }}" data-noconvert="true">原文链接</text>
   </view>
 </view>

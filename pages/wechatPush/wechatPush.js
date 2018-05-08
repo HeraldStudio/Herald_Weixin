@@ -38,7 +38,7 @@ Page({
 
         let html = res.data
           .replace(/<!([^<>]*<[^<>]*>)*[^<>]*>/g, '')
-          .replace(/<(script|style|title|h2)[\s\S]*?<\/\s*\1>/img, '')
+          .replace(/<(script|style|title|h2|svg)[\s\S]*?<\/\s*\1>/img, '')
           .replace(/<(iframe)[\s\S]*?<\/\s*\1>/img, '<p style="font-size: 12px">小程序不支持此控件，请到文末复制链接打开</p>')
           .replace(/(<div\s+id="meta_content"[^>]*>)[\s\S]*?(<div\s+class="rich_media_content)/img, '$1$2')
           .replace(/([>^])\s+([<$])/g, '$1$2')
