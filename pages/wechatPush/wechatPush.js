@@ -11,12 +11,12 @@ Page({
       method: 'GET',
       success (res) {
         wx.$.hideLoading()
-        let titleMatch = /[^.]rich_media_title[^>]*>\s*([^<]*)\s*</img.exec(res.data)
+        let titleMatch = /[^.]rich_media_title_ios[^>]*>\s*([^<]*)\s*</img.exec(res.data)
         if (titleMatch) {
           that.setData({ title: titleMatch[1] })
         }
 
-        let authorMatch = /[^.]rich_media_meta_nickname[^>]*>\s*([^<]*)\s*</img.exec(res.data)
+        let authorMatch = /[^.]profile_nickname[^>]*>\s*([^<]*)\s*</img.exec(res.data)
         if (authorMatch) {
           that.setData({ author: authorMatch[1] })
         }
@@ -52,6 +52,7 @@ Page({
           // .replace(/width:\s*([\d\.]+px|auto)(;?)/img, 'max-width: 100%;$2')
           .replace(/(width|height)="[^"]+"/img, '')
           .replace(/<a[^>]*?>阅读原文<\/\s*a>/img, '')
+          .replace(/(<[^>]*)==([^>]*>)/img, '$1=$2')
 
         html = '<div class="font-size: 80%">' + html + '</div>'
         that.setData({ html: html })
