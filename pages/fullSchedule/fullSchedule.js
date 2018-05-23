@@ -10,9 +10,9 @@ Page({
   data: {},
   onLoad () {
     wx.$.util('user').requireLogin(this)
-    this.loadCurriculumForYear()
   },
   onShow () {
+    this.loadSchedule()
   },
   showPreview (event) {
     event = event.currentTarget.dataset.event
@@ -29,12 +29,6 @@ Page({
     custom.delete(id)
     this.setData({ previewing: false })
     this.loadSchedule()
-  },
-  loadCurriculumForYear() {
-    let that = this
-    curriculum.updateFullYear({
-      success: that.loadSchedule
-    })
   },
   loadSchedule () {
     wx.$.showLoading('正在加载日程')
