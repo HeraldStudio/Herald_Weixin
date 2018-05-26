@@ -5,12 +5,12 @@ Page({
     let that = this
     let url = decodeURIComponent(options.url).replace(/^http:/, 'https:')
     that.setData({ url: url })
-    wx.$.showLoading('加载中')
-    wx.$.requestSimple({
+    wx.showNavigationBarLoading()
+    wx.request({
       url: url,
       method: 'GET',
       success (res) {
-        wx.$.hideLoading()
+        wx.hideNavigationBarLoading()
         let titleMatch = /[^.]rich_media_title_ios[^>]*>\s*([^<]*)\s*</img.exec(res.data)
         if (titleMatch) {
           that.setData({ title: titleMatch[1] })
@@ -57,15 +57,14 @@ Page({
         html = '<div class="font-size: 80%">' + html + '</div>'
         that.setData({ html: html })
       },
-      fail (res) {
-        wx.$.hideLoading()
-        wx.$.showError('不是微信推送页面')
+      fail(res) {
+        wx.hideNavigationBarLoading()
+        wx.showModal({
+          title: '错误',
+          content: '获取微信文章失败',
+        })
       }
     })
-  },
-  loadMarkdown (data) {
-    this.setData({ markdownText: data })
-    wx.$.util('wemark/wemark').parse(data, this, { name: 'markdown' })
   },
   onPullDownRefresh () {
     wx.stopPullDownRefresh()
@@ -76,11 +75,5 @@ Page({
       title: that.data.title,
       path: '/pages/wechatPush/wechatPush?url=' + escape(that.data.url)
     }
-  },
-  // onImageLongTap () {
-  //   wx.showModal({
-  //     title: '唔，你长按了',
-  //     content: '小程序内不支持长按识别二维码，请截图后在微信扫一扫中打开图片进行识别~'
-  //   })
-  // },
+  }
 })

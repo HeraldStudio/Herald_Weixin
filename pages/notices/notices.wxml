@@ -1,3 +1,0 @@
-<include src="/components/service/service.wxml"/>
-<include src="/components/jwc/jwc.wxml"/>
-<tab-shadow/>

@@ -1,5 +1,0 @@
-<herald-loading>
-  <image src="/images/ic_loading.png" mode="aspectFit"/>
-  <text class="title">{{ $loading_title }}</text>
-  <text class="content">{{ $loading_content }}</text>
-</herald-loading>

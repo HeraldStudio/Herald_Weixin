@@ -146,14 +146,6 @@
   color: #00b4ff;
 }
 
-@import "/pages/jwcNotice/jwcNotice.wxss";
-
-.markdown-container {
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
 rich-text {
   width: 100%;
   padding: 40rpx;

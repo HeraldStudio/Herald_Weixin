@@ -1,5 +1,0 @@
-<block wx:if="{{ !$service }}">
-</block>
-<block wx:else>
-  <include src="/components/login/login.wxml"/>
-</block>

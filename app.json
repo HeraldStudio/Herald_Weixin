@@ -1,17 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/fullSchedule/fullSchedule",
-    "pages/cardCharge/cardCharge",
-    "pages/jwcNotice/jwcNotice",
     "pages/wechatPush/wechatPush",
-    "pages/instantBus/instantBus",
-    "pages/bindLibrary/bindLibrary",
-    "pages/login/login",
-    "pages/emptyRoom/emptyRoom",
-    "pages/notices/notices",
-    "pages/activity/activity",
-    "pages/calculateGpa/calculateGpa"
+    "pages/link/link"
   ],
   "window": {
     "backgroundColor": "#ffffff",
@@ -19,32 +10,6 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "小猴偷米",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/tab_home.png",
-        "selectedIconPath": "images/tab_home_selected.png"
-      },
-      {
-        "pagePath": "pages/activity/activity",
-        "text": "活动",
-        "iconPath": "images/tab_activity.png",
-        "selectedIconPath": "images/tab_activity_selected.png"
-      },
-      {
-        "pagePath": "pages/notices/notices",
-        "text": "通知",
-        "iconPath": "images/tab_notices.png",
-        "selectedIconPath": "images/tab_notices_selected.png"
-      }
-    ],
-    "color": "#888888",
-    "selectedColor": "#3688ff",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "white"
   },
   "networkTimeout": {
     "request": 10000,

@@ -1,17 +1,1 @@
-<block wx:if="{{ $login.isLogin !== false }}">
-  <!-- <include src="/components/menu_tip/menu_tip.wxml"/> -->
-
-  <block wx:if="{{ !$service }}">
-    <include src="/components/loading/loading.wxml"/>
-  </block>
-  <block wx:else>
-    <include src="/components/avatar/avatar.wxml"/>
-    <include src="/components/dashboard/dashboard.wxml"/>
-  </block>
-
-  <include src="/components/schedule/schedule.wxml"/>
-</block>
-<block wx:else>
-  <include src="/components/login/login.wxml"/>
-</block>
-<tab-shadow/>
+<web-view src="http://localhost:8080/" bindmessage="onMessage"></web-view>
