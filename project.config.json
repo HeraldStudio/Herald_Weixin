@@ -30,12 +30,6 @@
 		"miniprogram": {
 			"current": -1,
 			"list": [
-				{
-					"id": -1,
-					"name": "复制链接",
-					"pathName": "pages/link/link",
-					"query": "href=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2FFknyjD2zPoEdchwR6IR_nw"
-				}
 			]
 		}
 	}

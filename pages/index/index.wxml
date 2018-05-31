@@ -1,1 +1,1 @@
-<web-view wx:if="{{ loaded }}" src="{{ token ? 'https://myseu.cn/?importToken=' + token : 'https://myseu.cn/' }}" bindmessage="onMessage"></web-view>
+ <web-view wx:if="{{ loaded }}" src="{{ token ? 'https://myseu.cn/?importToken=' + token : 'https://myseu.cn/' }}"></web-view> 

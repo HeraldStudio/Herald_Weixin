@@ -7,7 +7,7 @@ Page({
     return {
       title: '小猴偷米',
       path: '/pages/index/index',
-      imageUrl: 'http://static.myseu.cn/2017-08-27-icon_unboxing.png'
+      imageUrl: 'https://static.myseu.cn/2017-08-27-icon_unboxing.png'
     }
   },
   onLoad () {
@@ -31,8 +31,5 @@ Page({
         wx.clearStorage()
       }
     })
-  },
-  onMessage (e) {
-    console.log(e)
   }
 })

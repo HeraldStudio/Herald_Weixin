@@ -1,30 +1,6 @@
-/**app.wxss**/
 page {
   margin: 0;
   padding: 0;
-  background: #ffffff;
-  text-align: center;
-  overflow-x: hidden;
-}
-
-tab-shadow {
-  position: fixed;
-  bottom: -99rpx;
-  left: 0;
-  right: 0;
-  height: 100rpx;
-  border-top: 1rpx solid #eee;
-  z-index: 9999999;
-  box-shadow: 0 0 30rpx rgba(0, 0, 0, .05);
-}
-
-text {
-  cursor: default;
-  line-height: 1.45em;
-}
-
-page, input, textarea {
-  font-family: "Microsoft YaHei UI", "PingFang SC", -apple-system-font;
 }
 
 ::-webkit-scrollbar {

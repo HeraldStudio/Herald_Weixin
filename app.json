@@ -1,18 +1,12 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/wechatPush/wechatPush",
-    "pages/link/link"
+    "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#f0f0f0",
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarBackgroundColor": "#f0f0f0",
     "navigationBarTitleText": "小猴偷米",
     "navigationBarTextStyle": "black"
-  },
-  "networkTimeout": {
-    "request": 10000,
-    "downloadFile": 5000
   }
 }

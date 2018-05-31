@@ -1,5 +1,1 @@
-//app.js
-App({
-  onLaunch (options) {
-  }
-})
+App({})
