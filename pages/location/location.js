@@ -17,7 +17,7 @@ Page({
         // 如果有分享来的数据，取出分享数据进行展示
         if (options.data) {
             console.log(options.data);
-            this.setData(JSON.parse(decodeURIComponent(options.data)));
+            this.setData(JSON.parse(options.data));
         } else {
             // 否则尝试取本地缓存数据，无缓存则用初始数据
             this.setData(wx.getStorageSync('wifi-location-data') || {});
@@ -49,7 +49,7 @@ Page({
         let { locations, mapName, mapImage } = this.data;
         return {
             title: '室内定位 - ' + (this.data.mapName || '新建地图'),
-            path: '/pages/location/location?data=' + encodeURIComponent(JSON.stringify({ locations, mapName, mapImage }))
+            path: '/pages/location/location?data=' + JSON.stringify({ locations, mapName, mapImage })
         }
     },
     onNameInput(e) {
@@ -268,7 +268,7 @@ Page({
                     
                     for (let wifi of wifiList) {
                         // 为了节省存储空间，防止分享路径过长，需要尽可能缩短 MAC 地址
-                        wifi.BSSID = wifi.BSSID.replace(/:/g, '');
+                        wifi.BSSID = wifi.BSSID.splice(2, 8);
                         let { SSID, BSSID, signalStrength } = wifi;
 
                         // 返回结果是一个 map，以 MAC 为键，信号强度为值
