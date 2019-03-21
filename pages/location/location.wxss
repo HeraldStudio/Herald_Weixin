@@ -1,0 +1,101 @@
+button {
+    margin: 50rpx 200rpx;
+    padding: 20rpx 30rpx;
+    font-size: 32rpx;
+    height: auto;
+    line-height: normal;
+}
+
+.edit {
+    padding: 15rpx 10rpx;
+    margin: 10rpx 40rpx;
+    font-size: 32rpx;
+    border-bottom: 1px solid #000; 
+}
+
+.input-placeholder {
+    color: #ccc;
+}
+
+.map {
+    width: 750rpx;
+    height: 750rpx;
+    position: relative;
+}
+
+.map button {
+    position: absolute;
+    top: 320rpx;
+    left: 240rpx;
+    right: 240rpx;
+    margin: 0;
+}
+
+.map image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.flag {
+    position: absolute;
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: -40rpx;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cdefs%3E%3Cstyle/%3E%3C/defs%3E%3Cpath d='M132.55 63.053h71.632v81.803s266.814 51.811 597.378-35.895c-35.86 32.496-159.438 181.896-159.438 181.896L890.72 529.681H204.182v430.812H132.55V63.053z' fill='%2308f'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 101;
+    pointer-events: none;
+    transition: 1s;
+}
+
+.sample-flag {
+    position: absolute;
+    width: 8rpx;
+    height: 8rpx;
+    margin-top: -4rpx;
+    margin-left: -4rpx;
+    background: #08f;
+    border-radius: 50%;
+    z-index: 100;
+    pointer-events: none;
+    transition: 1s;
+}
+
+.wifi-flag {
+    position: absolute;
+    width: 24rpx;
+    height: 24rpx;
+    margin-top: -12rpx;
+    margin-left: -12rpx;
+    border-radius: 50%;
+    box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, .1);
+    background-image: url("data:image/svg+xml,%3Csvg class='icon' viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cdefs%3E%3Cstyle/%3E%3C/defs%3E%3Cpath d='M0 512a512 512 0 1 0 1024 0A512 512 0 1 0 0 512z' fill='%23DBF5E3' data-spm-anchor-id='a313x.7781069.0.i12'/%3E%3Cpath d='M567.467 676.267c0 29.866-25.6 55.466-55.467 55.466-29.867 0-55.467-25.6-55.467-55.466S482.133 620.8 512 620.8c29.867 0 55.467 25.6 55.467 55.467zm119.466-108.8c6.4-6.4 6.4-14.934 0-19.2-100.266-89.6-249.6-89.6-349.866 0-6.4 4.266-6.4 14.933 0 19.2l29.866 29.866c4.267 4.267 12.8 6.4 19.2 0 72.534-64 181.334-64 253.867 0 6.4 4.267 12.8 4.267 19.2 0l27.733-29.866zm98.134-98.134c6.4-6.4 6.4-14.933 0-19.2-153.6-142.933-392.534-142.933-546.134 0-6.4 6.4-6.4 14.934 0 19.2L268.8 499.2c4.267 4.267 14.933 6.4 19.2 0 125.867-117.333 322.133-117.333 448 0 6.4 4.267 14.933 4.267 19.2 0l29.867-29.867z' fill='%234DCB73'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    pointer-events: none;
+    transition: 1s;
+}
+
+.wifi {
+    font-size: 28rpx;
+    padding: 30rpx 10rpx;
+    margin: 0 40rpx;
+    border-bottom: 1rpx solid #eee;
+}
+
+.operation {
+    display: flex;
+    flex-direction: row;
+    overflow: visible;
+}
+
+.operation > button {
+    flex: 1 1 0;
+    margin: 45rpx;
+}

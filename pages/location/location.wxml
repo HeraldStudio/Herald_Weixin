@@ -1,0 +1,23 @@
+<view class="map" catchtap="onTap">
+    <button wx:if="{{ !mapImage }}">选择图片</button>
+    <block wx:else>
+        <image src="{{ mapImage }}" mode="aspectFit"/>
+
+        <view class="flag" wx:if="{{ point.x || point.y }}" style="left: {{ point.x }}px; top: {{ point.y }}px"/>
+        <view class="wifi-flag" wx:for="{{ wifiMap }}" wx:if="{{ item.estimatedPoint.x || item.estimatedPoint.y }}" style="left: {{ item.estimatedPoint.x }}px; top: {{ item.estimatedPoint.y }}px; opacity: {{ item.wifi.signalStrength / 100 + 0.1 }};"/>
+        <view class="sample-flag" wx:for="{{ locations }}" wx:if="{{ item.point.x || item.point.y }}" style="left: {{ item.point.x }}px; top: {{ item.point.y }}px"/>
+    </block>
+</view>
+
+<input class="edit" placeholder="为地图命名" value="{{ mapName }}" bindinput="onNameInput" />
+
+<view class="list" wx:if="{{ mapImage }}">
+    <view class="wifi">{{ updateTime < lastAddTime ? '当前位置已采集，请等待重新扫描' : '点击地图采集当前位置' }}</view>
+    <view class="wifi">采集点个数：{{ locations.length }}</view>
+    <view class="wifi">当前热点数：{{ wifiList.length }}</view>
+</view>
+
+<view class="operation" wx:if="{{ mapImage }}">
+    <button bindtap="clear">重置地图</button>
+    <button type="primary" open-type="share">分享地图</button>
+</view>
