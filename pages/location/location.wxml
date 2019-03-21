@@ -4,7 +4,7 @@
         <image src="{{ mapImage }}" mode="aspectFit"/>
 
         <view class="flag" wx:if="{{ point.x || point.y }}" style="left: {{ point.x }}px; top: {{ point.y }}px"/>
-        <view class="wifi-flag" wx:for="{{ wifiMap }}" wx:if="{{ item.estimatedPoint.x || item.estimatedPoint.y }}" style="left: {{ item.estimatedPoint.x }}px; top: {{ item.estimatedPoint.y }}px; opacity: {{ item.wifi.signalStrength / 100 + 0.1 }};"/>
+        <view class="wifi-flag" wx:for="{{ wifiMap }}" wx:if="{{ item.estimatedPoint.x || item.estimatedPoint.y }}" style="left: {{ item.estimatedPoint.x }}px; top: {{ item.estimatedPoint.y }}px; opacity: {{ item.wifi.signalStrength / 100 }};"/>
         <view class="sample-flag" wx:for="{{ locations }}" wx:if="{{ item.point.x || item.point.y }}" style="left: {{ item.point.x }}px; top: {{ item.point.y }}px"/>
     </block>
 </view>
